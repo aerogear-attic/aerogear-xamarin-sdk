@@ -1,13 +1,16 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\NUnit3TestAdapter.3.10.0\build\net35\NUnit3TestAdapter.props" Condition="Exists('..\packages\NUnit3TestAdapter.3.10.0\build\net35\NUnit3TestAdapter.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{F3CEAF1A-1384-4754-9DB7-513B720A56F2}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>aerogeardotnetsdk</RootNamespace>
-    <AssemblyName>aerogear-dotnet-sdk</AssemblyName>
+    <RootNamespace>Aerogear.Mobile</RootNamespace>
+    <AssemblyName>aerogear-xamarinsdk</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -32,18 +35,20 @@
     <Compile Include="AeroGear.Mobile\Core\MobileCore.cs" />
     <Compile Include="AeroGear.Mobile.Tests\MobileCoreTests.cs" />
   </ItemGroup>
- <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-   <ItemGroup>
-    <Folder Include="AeroGear.Mobile\" />
-    <Folder Include="AeroGear.Mobile\Core\" />
-    <Folder Include="AeroGear.Mobile.Tests\" />
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup />
+  <ItemGroup>
+    <Reference Include="nunit.framework">
+      <HintPath>..\packages\NUnit.3.9.0\lib\net45\nunit.framework.dll</HintPath>
+    </Reference>
   </ItemGroup>
-   <ItemGroup>
-     <Reference Include="nunit.framework">
-       <HintPath>..\packages\NUnit.3.9.0\lib\net45\nunit.framework.dll</HintPath>
-     </Reference>
-   </ItemGroup>
-   <ItemGroup>
-     <None Include="packages.config" />
-   </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\NUnit3TestAdapter.3.10.0\build\net35\NUnit3TestAdapter.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NUnit3TestAdapter.3.10.0\build\net35\NUnit3TestAdapter.props'))" />
+  </Target>
 </Project>
