@@ -4,5 +4,5 @@ before_build:
   - nuget restore
 build:
   verbosity: normal
-  project: aerogear-dotnet-sdk.sln
+  project: aerogear-xamarin-sdk.sln
 test: on
