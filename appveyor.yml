@@ -1,0 +1,8 @@
+version: 0.1.0-BUILD{build}
+image: Visual Studio 2017
+before_build:
+  - nuget restore
+build:
+  verbosity: normal
+  project: aerogear-dotnet-sdk.sln
+test: on
