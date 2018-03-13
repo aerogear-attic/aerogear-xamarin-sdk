@@ -4,7 +4,7 @@ namespace Aerogear.Mobile.Core
 {
 	public class MobileCore
 	{
-		private MobileCore ()
+		public MobileCore ()
 		{
 		}
 	}
