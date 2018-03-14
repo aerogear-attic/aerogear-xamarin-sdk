@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Example {
+namespace Example.Resources {
     using System;
     using System.Reflection;
     
@@ -30,7 +30,7 @@ namespace Example {
         internal static System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.Equals(null, resourceMan)) {
-                    System.Resources.ResourceManager temp = new System.Resources.ResourceManager("Example.StringResources", typeof(StringResources).Assembly);
+                    System.Resources.ResourceManager temp = new System.Resources.ResourceManager("Example.Resources.StringResources", typeof(StringResources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -44,6 +44,30 @@ namespace Example {
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        internal static string AppName {
+            get {
+                return ResourceManager.GetString("AppName", resourceCulture);
+            }
+        }
+        
+        internal static string NavHome {
+            get {
+                return ResourceManager.GetString("NavHome", resourceCulture);
+            }
+        }
+        
+        internal static string NavHttp {
+            get {
+                return ResourceManager.GetString("NavHttp", resourceCulture);
+            }
+        }
+        
+        internal static string NavAuth {
+            get {
+                return ResourceManager.GetString("NavAuth", resourceCulture);
             }
         }
     }

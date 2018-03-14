@@ -12,4 +12,16 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
+    <data name="AppName">
+        <value>AeroGear Xamarin Example</value>
+    </data>
+    <data name="NavHome">
+        <value>Home</value>
+    </data>
+    <data name="NavHttp">
+        <value>HTTP</value>
+    </data>
+    <data name="NavAuth">
+        <value>Auth</value>
+    </data>
 </root>

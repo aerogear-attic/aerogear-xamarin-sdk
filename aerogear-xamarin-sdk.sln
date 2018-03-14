@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example.Android", "Example\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example.iOS", "Example\Example.iOS\Example.iOS.csproj", "{00023BF2-7D9E-439C-8942-54D3F21E2710}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Example", "Example\Example\Example.csproj", "{F40048C7-7FA6-4BDF-9D0E-F3DEB847C63C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example", "Example\Example\Example.csproj", "{F40048C7-7FA6-4BDF-9D0E-F3DEB847C63C}"
 	ProjectSection(ProjectDependencies) = postProject
 		{F3CEAF1A-1384-4754-9DB7-513B720A56F2} = {F3CEAF1A-1384-4754-9DB7-513B720A56F2}
 	EndProjectSection
