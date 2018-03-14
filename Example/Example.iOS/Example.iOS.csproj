@@ -150,7 +150,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Example\Example.csproj">
-      <Project>{092ABA50-A796-46D6-B640-09013FA3A1A6}</Project>
+      <Project>{F40048C7-7FA6-4BDF-9D0E-F3DEB847C63C}</Project>
       <Name>Example</Name>
     </ProjectReference>
   </ItemGroup>
