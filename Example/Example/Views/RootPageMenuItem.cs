@@ -11,7 +11,7 @@ namespace Example.Views
     {
         public RootPageMenuItem()
         {
-            TargetType = typeof(RootPageDetail);
+            TargetType = typeof(Pages.HomePage);
         }
         public int Id { get; set; }
         public string Title { get; set; }

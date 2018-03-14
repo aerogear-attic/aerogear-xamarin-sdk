@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-namespace Example.Views
+namespace Example.Views.Pages
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class RootPageDetail : ContentPage
+    public partial class HomePage : ContentPage
     {
-        public RootPageDetail()
+        public HomePage()
         {
             InitializeComponent();
         }

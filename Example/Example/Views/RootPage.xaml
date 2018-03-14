@@ -1,15 +1,16 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Example.Views.RootPage"
-             xmlns:pages="clr-namespace:Example.Views">
+             xmlns:masterpages="clr-namespace:Example.Views"     
+             xmlns:pages="clr-namespace:Example.Views.Pages">
   <MasterDetailPage.Master>
-    <pages:RootPageMaster x:Name="MasterPage" />
+    <masterpages:RootPageMaster x:Name="MasterPage" />
   </MasterDetailPage.Master>
   <MasterDetailPage.Detail>
     <NavigationPage>
       <x:Arguments>
-        <pages:RootPageDetail />
+        <pages:HomePage />
       </x:Arguments>
     </NavigationPage>
   </MasterDetailPage.Detail>

@@ -6,7 +6,8 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
-
+using Example.Resources;
+using Example.Views.Pages;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -33,11 +34,8 @@ namespace Example.Views
             {
                 MenuItems = new ObservableCollection<RootPageMenuItem>(new[]
                 {
-                    new RootPageMenuItem { Id = 0, Title = "Page 1" },
-                    new RootPageMenuItem { Id = 1, Title = "Page 2" },
-                    new RootPageMenuItem { Id = 2, Title = "Page 3" },
-                    new RootPageMenuItem { Id = 3, Title = "Page 4" },
-                    new RootPageMenuItem { Id = 4, Title = "Page 5" },
+                    new RootPageMenuItem { Id = 0, Title = StringResources.NavHome, TargetType=typeof(HomePage) },
+                    new RootPageMenuItem { Id = 1, Title = StringResources.NavHttp, TargetType=typeof(HttpPage) },                  
                 });
             }
             
