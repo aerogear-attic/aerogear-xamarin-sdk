@@ -16,8 +16,27 @@ namespace Example.Views
         {
             InitializeComponent();
             DrawerMenuPage.ListView.ItemSelected += ListView_ItemSelected;
-            Title = StringResources.AppName;
+            ChangePage(MenuItem.HOME_PAGE);
         }
+
+        /// <summary>
+        /// Changes the current page to the new based by menu item.
+        /// </summary>
+        /// <param name="item">menu item</param>
+        private void ChangePage(MenuItem item) {
+            if (item == null)
+                return;
+
+            var page = (Page)Activator.CreateInstance(item.TargetType);
+
+            page.Title = StringResources.AppName;
+
+            Detail = new NavigationPage(page);
+            IsPresented = false;
+
+            DrawerMenuPage.ListView.SelectedItem = null;
+        }
+
 
         /// <summary>
         /// Replaces page when item is selected in the drawer menu.
@@ -25,15 +44,7 @@ namespace Example.Views
         private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
             var item = e.SelectedItem as MenuItem;
-            if (item == null)
-                return;
-
-            var page = (Page)Activator.CreateInstance(item.TargetType);
-
-            Detail = new NavigationPage(page);
-            IsPresented = false;
-
-            DrawerMenuPage.ListView.SelectedItem = null;
+            ChangePage(item);
         }
     }
 }

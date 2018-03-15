@@ -6,6 +6,8 @@ using Android.Runtime;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using FFImageLoading;
+using FFImageLoading.Forms.Droid;
 
 namespace Example.Droid
 {
@@ -20,7 +22,7 @@ namespace Example.Droid
             base.OnCreate(savedInstanceState);
 
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
-            TwinTechsForms.NControl.Android.SvgImageViewRenderer.Init();
+            CachedImageRenderer.Init(true);         
             LoadApplication(new App());
         }
     }

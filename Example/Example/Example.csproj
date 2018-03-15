@@ -6,11 +6,8 @@
 
   <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="2.5.0.280555" />
-    <PackageReference Include="TwinTechsForms.NControl.SvgImageView" Version="0.0.3" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\..\aerogear-xamarin-sdk\aerogear-xamarin-sdk.csproj" />
+    <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms" Version="2.3.4" />
+    <PackageReference Include="Xamarin.FFImageLoading" Version="2.3.4" />
   </ItemGroup>
 
   <ItemGroup>
@@ -45,6 +42,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Include="Resources\ic_auth.svg" />
+    <EmbeddedResource Include="Resources\ic_home.svg" />
+    <EmbeddedResource Include="Resources\ic_http.svg" />
+    <EmbeddedResource Include="Resources\ic_label.svg" />
+    <EmbeddedResource Include="Resources\ic_phonelink_lock.svg" />
+  </ItemGroup>
+  <ItemGroup>
     <EmbeddedResource Update="Views\RootPageMaster.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -64,5 +68,16 @@
     <Folder Include="Models\" />
     <Folder Include="ViewModels\" />
     <Folder Include="Views\Pages\" />
+    <Folder Include="Utils\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Resources\ic_auth.svg" />
+    <None Remove="Resources\ic_home.svg" />
+    <None Remove="Resources\ic_http.svg" />
+    <None Remove="Resources\ic_label.svg" />
+    <None Remove="Resources\ic_phonelink_lock.svg" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\Core.csproj" />
   </ItemGroup>
 </Project>

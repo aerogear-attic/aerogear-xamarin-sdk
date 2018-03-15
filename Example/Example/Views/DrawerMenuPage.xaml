@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Example.Views.DrawerMenuPage" xmlns:controls="clr-namespace:TwinTechsForms.NControl;assembly=TwinTechsForms.NControl.SvgImageView" xmlns:masterpages="clr-namespace:Example.Views" xmlns:xfg="clr-namespace:XFGloss;assembly=XFGloss" Title="Master">
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Example.Views.DrawerMenuPage" xmlns:controls="clr-namespace:TwinTechsForms.NControl;assembly=TwinTechsForms.NControl.SvgImageView" xmlns:masterpages="clr-namespace:Example.Views" xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms" Title="Master">
     <StackLayout>
         <ListView x:Name="MenuItemsListView" SeparatorVisibility="None" HasUnevenRows="true" ItemsSource="{Binding MenuItems}">
             <ListView.Header>
@@ -13,8 +13,7 @@
                                 <ColumnDefinition Width="56" />
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
-                            <!--<controls:SvgImageView VerticalOptions="Start" SvgAssembly="{Binding SvgAssembly}" SvgPath="ic_label.svg" WidthRequest="24" HeightRequest="24" />-->
-                            <Label Text="XX" Grid.Column="1" VerticalOptions="Start" />
+                            <ffimageloadingsvg:SvgCachedImage WidthRequest="24" HeightRequest="24" Source="resource://Example.Resources.ic_label.svg"/>
                             <Label Grid.Column="2" VerticalOptions="FillAndExpand" VerticalTextAlignment="Center" FontAttributes="Bold" Text="{Binding Title}" FontSize="14" TextColor="{DynamicResource PrimaryTextColor}" />
                         </Grid>
                     </ViewCell>

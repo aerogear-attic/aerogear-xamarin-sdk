@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,12 +30,12 @@ namespace Example.Views
         class RootPageMasterViewModel : INotifyPropertyChanged
         {
             public ObservableCollection<MenuItem> MenuItems { get; set; }
-            
+
             public RootPageMasterViewModel()
             {
                 MenuItems = new ObservableCollection<MenuItem>(new[]
                 {
-                    new MenuItem { Id = 0, Title = StringResources.NavHome, TargetType=typeof(HomePage) },
+                    MenuItem.HOME_PAGE,
                     new MenuItem { Id = 1, Title = StringResources.NavHttp, TargetType=typeof(HttpPage) },                  
                 });
             }
