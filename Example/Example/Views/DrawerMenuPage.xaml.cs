@@ -7,10 +7,13 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using Example.Models;
 using Example.Resources;
+using Example.Utils;
 using Example.Views.Pages;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+
 
 namespace Example.Views
 {
@@ -29,14 +32,14 @@ namespace Example.Views
 
         class RootPageMasterViewModel : INotifyPropertyChanged
         {
-            public ObservableCollection<MenuItem> MenuItems { get; set; }
+            public ObservableCollection<NavigationItem> NavigationItems { get; set; }
 
             public RootPageMasterViewModel()
             {
-                MenuItems = new ObservableCollection<MenuItem>(new[]
+                NavigationItems = new ObservableCollection<NavigationItem>(new[]
                 {
-                    MenuItem.HOME_PAGE,
-                    new MenuItem { Id = 1, Title = StringResources.NavHttp, TargetType=typeof(HttpPage) },                  
+                    NavigationItem.HOME_PAGE,
+                    new NavigationItem { Id = 1, Title = StringResources.NavHttp, TargetType=typeof(HttpPage),Icon=ResourceUtils.GetSvg("ic_http") },                  
                 });
             }
             

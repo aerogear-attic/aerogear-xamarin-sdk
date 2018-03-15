@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Example.Models;
 using Example.Resources;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -16,14 +17,14 @@ namespace Example.Views
         {
             InitializeComponent();
             DrawerMenuPage.ListView.ItemSelected += ListView_ItemSelected;
-            ChangePage(MenuItem.HOME_PAGE);
+            ChangePage(NavigationItem.HOME_PAGE);
         }
 
         /// <summary>
         /// Changes the current page to the new based by menu item.
         /// </summary>
         /// <param name="item">menu item</param>
-        private void ChangePage(MenuItem item) {
+        private void ChangePage(NavigationItem item) {
             if (item == null)
                 return;
 
@@ -43,8 +44,7 @@ namespace Example.Views
         /// </summary>
         private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            var item = e.SelectedItem as MenuItem;
-            ChangePage(item);
+            ChangePage(e.SelectedItem as NavigationItem);
         }
     }
 }

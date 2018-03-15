@@ -4,6 +4,8 @@ using System.Linq;
 
 using Foundation;
 using UIKit;
+using FFImageLoading;
+using FFImageLoading.Forms.Touch;
 
 namespace Example.iOS
 {
@@ -24,7 +26,7 @@ namespace Example.iOS
         {
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
-            TwinTechsForms.NControl.iOS.SvgImageViewRenderer.Init();
+            CachedImageRenderer.Init();
             return base.FinishedLaunching(app, options);
         }
     }

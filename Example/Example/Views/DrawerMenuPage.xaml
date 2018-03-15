@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Example.Views.DrawerMenuPage" xmlns:controls="clr-namespace:TwinTechsForms.NControl;assembly=TwinTechsForms.NControl.SvgImageView" xmlns:masterpages="clr-namespace:Example.Views" xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms" Title="Master">
     <StackLayout>
-        <ListView x:Name="MenuItemsListView" SeparatorVisibility="None" HasUnevenRows="true" ItemsSource="{Binding MenuItems}">
+        <ListView x:Name="MenuItemsListView" SeparatorVisibility="None" HasUnevenRows="true" ItemsSource="{Binding NavigationItems}">
             <ListView.Header>
-                    <masterpages:DrawerMenuHeader HorizontalOptions="Fill" HeightRequest="164" />
+                <masterpages:DrawerMenuHeader HorizontalOptions="Fill" HeightRequest="164" />
             </ListView.Header>
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
-                        <Grid Margin="16,16" HorizontalOptions="FillAndExpand">
+                        <Grid HorizontalOptions="FillAndExpand" HeightRequest="48">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="56" />
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
-                            <ffimageloadingsvg:SvgCachedImage WidthRequest="24" HeightRequest="24" Source="resource://Example.Resources.ic_label.svg"/>
-                            <Label Grid.Column="2" VerticalOptions="FillAndExpand" VerticalTextAlignment="Center" FontAttributes="Bold" Text="{Binding Title}" FontSize="14" TextColor="{DynamicResource PrimaryTextColor}" />
+                            <ffimageloadingsvg:SvgCachedImage WidthRequest="24" HeightRequest="24" HorizontalOptions="Center" VerticalOptions="Center" Source="{Binding Icon}" />
+                            <Label Grid.Column="2" VerticalOptions="Fill" VerticalTextAlignment="Center" FontAttributes="Bold" Text="{Binding Title}" FontSize="14" TextColor="{DynamicResource PrimaryTextColor}" />
                         </Grid>
                     </ViewCell>
                 </DataTemplate>

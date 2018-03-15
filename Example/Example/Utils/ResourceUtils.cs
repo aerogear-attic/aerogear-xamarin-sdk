@@ -11,6 +11,14 @@ namespace Example.Utils
         public static String GetResourceUri(String fileName) {
             return $"resource://Example.Resources.{fileName}";
         }
+        /// <summary>
+        /// Gets the resource URI of the SVG image stored 
+        /// </summary>
+        /// <returns>The svg.</returns>
+        /// <param name="name">Name.</param>
+        public static String GetSvg(String name) {
+            return GetResourceUri($"{name}.svg");
+        }
 
     }
 }
