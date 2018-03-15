@@ -13,7 +13,6 @@ namespace Example
 		{
 			InitializeComponent();
 
-
             MainPage = new RootPage();
         }
 

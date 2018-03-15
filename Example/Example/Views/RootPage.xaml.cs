@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Example.Resources;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -16,6 +16,7 @@ namespace Example.Views
         {
             InitializeComponent();
             DrawerMenuPage.ListView.ItemSelected += ListView_ItemSelected;
+            Title = StringResources.AppName;
         }
 
         /// <summary>
@@ -28,7 +29,6 @@ namespace Example.Views
                 return;
 
             var page = (Page)Activator.CreateInstance(item.TargetType);
-            page.Title = item.Title;
 
             Detail = new NavigationPage(page);
             IsPresented = false;

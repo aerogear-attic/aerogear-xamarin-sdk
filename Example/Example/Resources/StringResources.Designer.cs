@@ -16,7 +16,7 @@ namespace Example.Resources {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class StringResources {
+    public class StringResources {
         
         private static System.Resources.ResourceManager resourceMan;
         
@@ -27,7 +27,7 @@ namespace Example.Resources {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static System.Resources.ResourceManager ResourceManager {
+        public static System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.Equals(null, resourceMan)) {
                     System.Resources.ResourceManager temp = new System.Resources.ResourceManager("Example.Resources.StringResources", typeof(StringResources).Assembly);
@@ -38,7 +38,7 @@ namespace Example.Resources {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
-        internal static System.Globalization.CultureInfo Culture {
+        public static System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -47,27 +47,33 @@ namespace Example.Resources {
             }
         }
         
-        internal static string AppName {
+        public static string AppName {
             get {
                 return ResourceManager.GetString("AppName", resourceCulture);
             }
         }
         
-        internal static string NavHome {
+        public static string NavHome {
             get {
                 return ResourceManager.GetString("NavHome", resourceCulture);
             }
         }
         
-        internal static string NavHttp {
+        public static string NavHttp {
             get {
                 return ResourceManager.GetString("NavHttp", resourceCulture);
             }
         }
         
-        internal static string NavAuth {
+        public static string NavAuth {
             get {
                 return ResourceManager.GetString("NavAuth", resourceCulture);
+            }
+        }
+        
+        public static string Home {
+            get {
+                return ResourceManager.GetString("Home", resourceCulture);
             }
         }
     }

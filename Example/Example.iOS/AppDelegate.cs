@@ -24,7 +24,7 @@ namespace Example.iOS
         {
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
-
+            TwinTechsForms.NControl.iOS.SvgImageViewRenderer.Init();
             return base.FinishedLaunching(app, options);
         }
     }

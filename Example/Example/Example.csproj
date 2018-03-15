@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <PackageReference Include="Xamarin.Forms" Version="2.5.0.280555" />
+    <PackageReference Include="TwinTechsForms.NControl.SvgImageView" Version="0.0.3" />
   </ItemGroup>
 
   <ItemGroup>
@@ -34,6 +35,12 @@
     </Compile>
     <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Views\DrawerMenuPage.xaml.cs">
       <DependentUpon>DrawerMenuPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\DrawerMenuHeaderV.xaml.cs">
+      <DependentUpon>DrawerMenuHeaderV.xaml</DependentUpon>
+    </Compile>
+    <Compile Update="Views\DrawerMenuHeader.xaml.cs">
+      <DependentUpon>DrawerMenuHeader.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
 

@@ -24,4 +24,7 @@
     <data name="NavAuth">
         <value>Auth</value>
     </data>
+    <data name="Home">
+        <value>Home!!!</value>
+    </data>
 </root>

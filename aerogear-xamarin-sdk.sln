@@ -10,9 +10,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example.iOS", "Example\Example.iOS\Example.iOS.csproj", "{00023BF2-7D9E-439C-8942-54D3F21E2710}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example", "Example\Example\Example.csproj", "{F40048C7-7FA6-4BDF-9D0E-F3DEB847C63C}"
-	ProjectSection(ProjectDependencies) = postProject
-		{F3CEAF1A-1384-4754-9DB7-513B720A56F2} = {F3CEAF1A-1384-4754-9DB7-513B720A56F2}
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AeroGear.Mobile.Core.Tests", "AeroGear.Mobile.Core.Tests\AeroGear.Mobile.Core.Tests.csproj", "{8EDF4429-251A-416D-BB68-93F227191BCF}"
 EndProject
