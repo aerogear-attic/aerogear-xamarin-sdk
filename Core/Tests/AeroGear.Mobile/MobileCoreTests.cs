@@ -1,7 +1,7 @@
 ﻿using System;
 using NUnit.Framework;
 
-namespace Aerogear.Mobile.Core.Tests
+namespace Aerogear.Mobile.Core
 {
     [TestFixture]
     public class MobileCoreTests
@@ -9,6 +9,7 @@ namespace Aerogear.Mobile.Core.Tests
         [Test]
         public void TestCase()
         {
+            var core = new MobileCore();
             Assert.Pass("Test Passes");
         }
     }
