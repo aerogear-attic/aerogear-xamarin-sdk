@@ -14,11 +14,11 @@ using Xamarin.Forms.Xaml;
 namespace Example.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class RootPageMaster : ContentPage
+    public partial class DrawerMenuPage : ContentPage
     {
         public ListView ListView;
 
-        public RootPageMaster()
+        public DrawerMenuPage()
         {
             InitializeComponent();
 
@@ -28,14 +28,14 @@ namespace Example.Views
 
         class RootPageMasterViewModel : INotifyPropertyChanged
         {
-            public ObservableCollection<RootPageMenuItem> MenuItems { get; set; }
+            public ObservableCollection<MenuItem> MenuItems { get; set; }
             
             public RootPageMasterViewModel()
             {
-                MenuItems = new ObservableCollection<RootPageMenuItem>(new[]
+                MenuItems = new ObservableCollection<MenuItem>(new[]
                 {
-                    new RootPageMenuItem { Id = 0, Title = StringResources.NavHome, TargetType=typeof(HomePage) },
-                    new RootPageMenuItem { Id = 1, Title = StringResources.NavHttp, TargetType=typeof(HttpPage) },                  
+                    new MenuItem { Id = 0, Title = StringResources.NavHome, TargetType=typeof(HomePage) },
+                    new MenuItem { Id = 1, Title = StringResources.NavHttp, TargetType=typeof(HttpPage) },                  
                 });
             }
             

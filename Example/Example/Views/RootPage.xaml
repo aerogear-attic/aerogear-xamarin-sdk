@@ -5,7 +5,7 @@
              xmlns:masterpages="clr-namespace:Example.Views"     
              xmlns:pages="clr-namespace:Example.Views.Pages">
   <MasterDetailPage.Master>
-    <masterpages:RootPageMaster x:Name="MasterPage" />
+    <masterpages:DrawerMenuPage x:Name="DrawerMenuPage" />
   </MasterDetailPage.Master>
   <MasterDetailPage.Detail>
     <NavigationPage>

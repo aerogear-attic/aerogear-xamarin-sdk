@@ -15,12 +15,15 @@ namespace Example.Views
         public RootPage()
         {
             InitializeComponent();
-            MasterPage.ListView.ItemSelected += ListView_ItemSelected;
+            DrawerMenuPage.ListView.ItemSelected += ListView_ItemSelected;
         }
 
+        /// <summary>
+        /// Replaces page when item is selected in the drawer menu.
+        /// </summary>
         private void ListView_ItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            var item = e.SelectedItem as RootPageMenuItem;
+            var item = e.SelectedItem as MenuItem;
             if (item == null)
                 return;
 
@@ -30,7 +33,7 @@ namespace Example.Views
             Detail = new NavigationPage(page);
             IsPresented = false;
 
-            MasterPage.ListView.SelectedItem = null;
+            DrawerMenuPage.ListView.SelectedItem = null;
         }
     }
 }

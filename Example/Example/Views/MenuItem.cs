@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace Example.Views
 {
-
-    public class RootPageMenuItem
+    public class MenuItem
     {
-        public RootPageMenuItem()
+        public MenuItem()
         {
             TargetType = typeof(Pages.HomePage);
         }
