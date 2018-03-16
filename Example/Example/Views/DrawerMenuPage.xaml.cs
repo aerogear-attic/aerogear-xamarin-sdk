@@ -28,6 +28,7 @@ namespace Example.Views
 
             BindingContext = new RootPageMasterViewModel();
             ListView = MenuItemsListView;
+            Title = "balbla";
         }
 
         class RootPageMasterViewModel : INotifyPropertyChanged

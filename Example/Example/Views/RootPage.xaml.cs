@@ -17,6 +17,7 @@ namespace Example.Views
         {
             InitializeComponent();
             DrawerMenuPage.ListView.ItemSelected += ListView_ItemSelected;
+
             ChangePage(NavigationItem.HOME_PAGE);
         }
 
@@ -34,8 +35,7 @@ namespace Example.Views
 
             Detail = new NavigationPage(page);
             IsPresented = false;
-
-            DrawerMenuPage.ListView.SelectedItem = null;
+            DrawerMenuPage.ListView.SelectedItem = item;
         }
 
 

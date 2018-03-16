@@ -5,7 +5,7 @@
              xmlns:masterpages="clr-namespace:Example.Views"     
              xmlns:pages="clr-namespace:Example.Views.Pages">
   <MasterDetailPage.Master>
-    <masterpages:DrawerMenuPage x:Name="DrawerMenuPage" />
+    <masterpages:DrawerMenuPage x:Name="DrawerMenuPage" Title="{DynamicResource AppName}"/>
   </MasterDetailPage.Master>
   <MasterDetailPage.Detail>
     <NavigationPage>
