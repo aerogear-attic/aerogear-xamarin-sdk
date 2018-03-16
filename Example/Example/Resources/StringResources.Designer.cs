@@ -76,5 +76,11 @@ namespace Example.Resources {
                 return ResourceManager.GetString("Home", resourceCulture);
             }
         }
+        
+        public static string Menu {
+            get {
+                return ResourceManager.GetString("Menu", resourceCulture);
+            }
+        }
     }
 }

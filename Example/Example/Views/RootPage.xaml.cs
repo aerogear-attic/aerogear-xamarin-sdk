@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Example.Models;
 using Example.Resources;
+using Example.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -13,12 +15,14 @@ namespace Example.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class RootPage : MasterDetailPage
     {
+        private NavigationItem oldSelectedItem;
+
         public RootPage()
         {
             InitializeComponent();
             DrawerMenuPage.ListView.ItemSelected += ListView_ItemSelected;
 
-            ChangePage(NavigationItem.HOME_PAGE);
+            DrawerMenuPage.ListView.SelectedItem=NavigationItem.HOME_PAGE;
         }
 
         /// <summary>
@@ -26,7 +30,7 @@ namespace Example.Views
         /// </summary>
         /// <param name="item">menu item</param>
         private void ChangePage(NavigationItem item) {
-            if (item == null)
+            if (item == null || item==oldSelectedItem)
                 return;
 
             var page = (Page)Activator.CreateInstance(item.TargetType);
@@ -35,7 +39,9 @@ namespace Example.Views
 
             Detail = new NavigationPage(page);
             IsPresented = false;
-            DrawerMenuPage.ListView.SelectedItem = item;
+            item.Selected = true;
+            if (oldSelectedItem!=null) oldSelectedItem.Selected = false;
+            oldSelectedItem = item;
         }
 
 

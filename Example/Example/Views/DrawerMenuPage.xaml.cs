@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using Example.Models;
 using Example.Resources;
 using Example.Utils;
+using Example.ViewModels;
 using Example.Views.Pages;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -22,38 +23,15 @@ namespace Example.Views
     {
         public ListView ListView;
 
+        private DrawerMenuVM ViewModel;
+
         public DrawerMenuPage()
         {
             InitializeComponent();
-
-            BindingContext = new RootPageMasterViewModel();
+            ViewModel=new DrawerMenuVM();
+            BindingContext = ViewModel;
             ListView = MenuItemsListView;
-            Title = "balbla";
-        }
-
-        class RootPageMasterViewModel : INotifyPropertyChanged
-        {
-            public ObservableCollection<NavigationItem> NavigationItems { get; set; }
-
-            public RootPageMasterViewModel()
-            {
-                NavigationItems = new ObservableCollection<NavigationItem>(new[]
-                {
-                    NavigationItem.HOME_PAGE,
-                    new NavigationItem { Id = 1, Title = StringResources.NavHttp, TargetType=typeof(HttpPage),Icon=ResourceUtils.GetSvg("ic_http") },                  
-                });
-            }
-            
-            #region INotifyPropertyChanged Implementation
-            public event PropertyChangedEventHandler PropertyChanged;
-            void OnPropertyChanged([CallerMemberName] string propertyName = "")
-            {
-                if (PropertyChanged == null)
-                    return;
-
-                PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
-            }
-            #endregion
+            Title = StringResources.Menu;
         }
     }
 }

@@ -27,4 +27,7 @@
     <data name="Home">
         <value>Home!!!</value>
     </data>
+    <data name="Menu">
+        <value>Menu</value>
+    </data>
 </root>
