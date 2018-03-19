@@ -112,6 +112,9 @@
     <BundleResource Include="Resources\Icon-Small%403x.png" />
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
     <BundleResource Include="Resources\aerogear_icon.png" />
+    <BundleResource Include="Resources\ic_view_headline%403x.png" />
+    <BundleResource Include="Resources\ic_view_headline%402x.png" />
+    <BundleResource Include="Resources\ic_view_headline.png" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

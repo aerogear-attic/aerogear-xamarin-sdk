@@ -21,7 +21,6 @@ namespace Example.Views
         {
             InitializeComponent();
             DrawerMenuPage.ListView.ItemSelected += ListView_ItemSelected;
-
             DrawerMenuPage.ListView.SelectedItem=NavigationItem.HOME_PAGE;
         }
 
