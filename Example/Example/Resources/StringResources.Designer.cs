@@ -82,5 +82,11 @@ namespace Example.Resources {
                 return ResourceManager.GetString("Menu", resourceCulture);
             }
         }
+        
+        public static string AeroGear {
+            get {
+                return ResourceManager.GetString("AeroGear", resourceCulture);
+            }
+        }
     }
 }

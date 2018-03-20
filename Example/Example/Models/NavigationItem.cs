@@ -38,10 +38,7 @@ namespace Example.Models
         public string Icon { get; set; }
         public bool Selected
         {
-            get
-            {
-                return selected;
-            }
+            get => selected;
             set
             {
                 if (selected != value)

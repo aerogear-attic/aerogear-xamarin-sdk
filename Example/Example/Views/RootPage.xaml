@@ -4,10 +4,6 @@
         <masterpages:DrawerMenuPage x:Name="DrawerMenuPage" Title="{DynamicResource AppName}" Icon="ic_view_headline.png" />
     </MasterDetailPage.Master>
     <MasterDetailPage.Detail>
-        <NavigationPage>
-            <!--<x:Arguments>
-        <pages:HomePage />
-      </x:Arguments>-->
-        </NavigationPage>
+        <NavigationPage/>
     </MasterDetailPage.Detail>
 </MasterDetailPage>

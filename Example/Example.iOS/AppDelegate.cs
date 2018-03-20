@@ -6,6 +6,7 @@ using Foundation;
 using UIKit;
 using FFImageLoading;
 using FFImageLoading.Forms.Touch;
+using ImageCircle.Forms.Plugin.iOS;
 
 namespace Example.iOS
 {
@@ -27,6 +28,7 @@ namespace Example.iOS
             global::Xamarin.Forms.Forms.Init();
             LoadApplication(new App());
             CachedImageRenderer.Init();
+            ImageCircleRenderer.Init();
             return base.FinishedLaunching(app, options);
         }
     }

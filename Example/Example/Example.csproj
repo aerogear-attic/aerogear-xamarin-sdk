@@ -9,6 +9,7 @@
     <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms" Version="2.3.4" />
     <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.3.4" />
     <PackageReference Include="Xamarin.FFImageLoading.Forms" Version="2.3.4" />
+    <PackageReference Include="Xam.Plugins.Forms.ImageCircle" Version="2.0.2" />
   </ItemGroup>
 
   <ItemGroup>
@@ -48,6 +49,7 @@
     <EmbeddedResource Include="Resources\ic_http.svg" />
     <EmbeddedResource Include="Resources\ic_label.svg" />
     <EmbeddedResource Include="Resources\ic_phonelink_lock.svg" />
+    <EmbeddedResource Include="Resources\aerogear_icon.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="Views\RootPageMaster.xaml">
@@ -67,7 +69,6 @@
     <Folder Include="Resources\" />
     <Folder Include="Services\" />
     <Folder Include="Models\" />
-    <Folder Include="ViewModels\" />
     <Folder Include="Views\Pages\" />
     <Folder Include="Utils\" />
   </ItemGroup>
@@ -77,6 +78,7 @@
     <None Remove="Resources\ic_http.svg" />
     <None Remove="Resources\ic_label.svg" />
     <None Remove="Resources\ic_phonelink_lock.svg" />
+    <None Remove="Resources\aerogear_icon.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Core\Core.csproj" />

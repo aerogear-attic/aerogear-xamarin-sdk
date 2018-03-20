@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using Example.Models;
+using Example.Resources;
+using Example.Utils;
 using Xamarin.Forms;
 
 namespace Example.Views
@@ -9,6 +12,8 @@ namespace Example.Views
         public DrawerMenuHeader()
         {
             InitializeComponent();
+            BindingContext = new Header(StringResources.AeroGear,StringResources.AppName, ImageSource.FromResource("Example.Resources.aerogear_icon.png"));
         }
+
     }
 }

@@ -8,10 +8,11 @@ using Android.Widget;
 using Android.OS;
 using FFImageLoading;
 using FFImageLoading.Forms.Droid;
+using ImageCircle.Forms.Plugin.Droid;
 
 namespace Example.Droid
 {
-    [Activity(Label = "Example", Icon = "@drawable/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
+    [Activity(Label = "AeroGear Xamarin", Icon = "@mipmap/ic_launcher", RoundIcon = "@mipmap/ic_launcher_round", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
     public class MainActivity : global::Xamarin.Forms.Platform.Android.FormsAppCompatActivity
     {
         protected override void OnCreate(Bundle savedInstanceState)
@@ -22,7 +23,8 @@ namespace Example.Droid
             base.OnCreate(savedInstanceState);
 
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
-            CachedImageRenderer.Init(true);         
+            CachedImageRenderer.Init(true);
+            ImageCircleRenderer.Init();
             LoadApplication(new App());
         }
     }
