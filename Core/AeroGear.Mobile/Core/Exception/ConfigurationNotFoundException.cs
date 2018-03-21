@@ -2,11 +2,11 @@
 namespace Core.AeroGear.Mobile.Core.Exception
 {
     /// <summary>
-    /// This is an exception that is thrown when bootstrapping a module fails.
+    /// This is an exception that is thrown when core can't find configuration JSON file.
     /// </summary>
-    public class InitializationException: System.Exception
+    public class ConfigurationNotFoundException: System.Exception
     {
-        public InitializationException(String message) : base(message) {}
-        public InitializationException(String message,System.Exception exception) : base(message,exception) { }
+        public ConfigurationNotFoundException(String message) : base(message) {}
+        public ConfigurationNotFoundException(String message,System.Exception exception) : base(message,exception) { }
     }
 }
