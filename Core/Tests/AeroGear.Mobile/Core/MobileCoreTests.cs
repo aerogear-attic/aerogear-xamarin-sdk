@@ -6,10 +6,18 @@ namespace Aerogear.Mobile.Core
     [TestFixture]
     public class MobileCoreTests
     {
+        private MobileCore mobileCore;
+
+
+        [SetUp]
+        public void SetUp() {
+            mobileCore = MobileCore.init();
+        }
+
+
         [Test]
         public void TestCase()
         {
-            var core = new MobileCore();
             Assert.Pass("Test Passes");
         }
     }

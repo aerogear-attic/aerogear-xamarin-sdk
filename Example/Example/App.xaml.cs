@@ -18,7 +18,8 @@ namespace Example
 
 		protected override void OnStart ()
 		{
-            MobileCore core = new MobileCore();
+            //MobileCore core = new MobileCore();
+
 		}
 
 		protected override void OnSleep ()
