@@ -13,6 +13,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="Views\Pages\AuthPage.cs" />
+    <Compile Remove="Views\Pages\HomePage.xaml %28copy%29.cs" />
+  </ItemGroup>
+  <ItemGroup>
     <Compile Update="Views\RootPageMenuItem.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -43,6 +47,9 @@
     </Compile>
   </ItemGroup>
 
+  <ItemGroup>
+    <EmbeddedResource Remove="Views\Pages\HomePage %28copy%29.xaml" />
+  </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\ic_auth.svg" />
     <EmbeddedResource Include="Resources\ic_home.svg" />

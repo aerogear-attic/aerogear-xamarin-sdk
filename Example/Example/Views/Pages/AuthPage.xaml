@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:controls="clr-namespace:TwinTechsForms.NControl;assembly=TwinTechsForms.NControl.SvgImageView"
+             xmlns:utils="clr-namespace:Example.Utils"
+             x:Class="Example.Views.Pages.AuthPage">
+    <ContentPage.Content>
+            <utils:TintedSvgImage WidthRequest="200" HeightRequest="200" HorizontalOptions="Center" VerticalOptions="Center" Source="ic_home.svg">
+            </utils:TintedSvgImage>
+    </ContentPage.Content>
+</ContentPage>
