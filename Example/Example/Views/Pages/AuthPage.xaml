@@ -6,10 +6,14 @@
              xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
              x:Class="Example.Views.Pages.AuthPage">
     <ContentPage.Content>
-        <Image Source="ic_openid.png" 
-               Aspect="Fill"
-               HorizontalOptions="FillAndExpand"
+        <RelativeLayout>
+            <Image 
+                HorizontalOptions="FillAndExpand"
                 VerticalOptions="FillAndExpand"
-               />
+                Aspect="Fill"
+                RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, ElementName=SearchControlsGrid,Property=Width, Factor=1, Constant=0 }"
+                RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, ElementName=SearchControlsGrid, Property=Height,Factor=1, Constant=0}"
+                Source="ic_openid.png" />
+         </RelativeLayout>
     </ContentPage.Content>
 </ContentPage>

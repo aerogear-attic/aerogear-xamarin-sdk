@@ -72,6 +72,13 @@
     <AndroidResource Include="Resources\mipmap-mdpi\ic_launcher_round.png" />
     <AndroidResource Include="Resources\mipmap-hdpi\ic_launcher.png" />
     <AndroidResource Include="Resources\mipmap-hdpi\ic_launcher_round.png" />
+    <AndroidResource Include="Resources\drawable\aerogear_icon.png" />
+    <AndroidResource Include="Resources\drawable\ic_auth.svg" />
+    <AndroidResource Include="Resources\drawable\ic_home.svg" />
+    <AndroidResource Include="Resources\drawable\ic_http.svg" />
+    <AndroidResource Include="Resources\drawable\ic_label.svg" />
+    <AndroidResource Include="Resources\drawable\ic_openid.png" />
+    <AndroidResource Include="Resources\drawable\ic_phonelink_lock.svg" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />
