@@ -57,6 +57,8 @@
     <EmbeddedResource Include="Resources\ic_label.svg" />
     <EmbeddedResource Include="Resources\ic_phonelink_lock.svg" />
     <EmbeddedResource Include="Resources\aerogear_icon.png" />
+    <EmbeddedResource Include="Resources\ag_background.png" />
+    <EmbeddedResource Include="Resources\ag_background.svg" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="Views\RootPageMaster.xaml">
@@ -86,6 +88,8 @@
     <None Remove="Resources\ic_label.svg" />
     <None Remove="Resources\ic_phonelink_lock.svg" />
     <None Remove="Resources\aerogear_icon.png" />
+    <None Remove="Resources\ag_background.png" />
+    <None Remove="Resources\ag_background.svg" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Core\Core.csproj" />

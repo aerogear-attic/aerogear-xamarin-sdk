@@ -3,9 +3,24 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:controls="clr-namespace:TwinTechsForms.NControl;assembly=TwinTechsForms.NControl.SvgImageView"
              xmlns:utils="clr-namespace:Example.Utils"
+             xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
              x:Class="Example.Views.Pages.AuthPage">
     <ContentPage.Content>
-            <utils:TintedSvgImage WidthRequest="200" HeightRequest="200" HorizontalOptions="Center" VerticalOptions="Center" Source="ic_home.svg">
-            </utils:TintedSvgImage>
+        <RelativeLayout>
+            <ffimageloadingsvg:SvgCachedImage 
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="FillAndExpand"
+                Aspect="Fill"
+                RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, ElementName=SearchControlsGrid,Property=Width, Factor=1, Constant=0 }"
+                RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, ElementName=SearchControlsGrid, Property=Height,Factor=1, Constant=0}"
+                Source="resource://Example.Resources.ag_background.svg"/>
+
+            <Button Text="Authenticate"
+                     RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, Property=Height, Factor=0.8}"
+                RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent,Property=Width, Factor=1, Constant=0 }"
+                    BackgroundColor="{DynamicResource Primary}"
+                    TextColor="{DynamicResource InversePrimaryTextColor}"
+            />
+        </RelativeLayout>
     </ContentPage.Content>
 </ContentPage>
