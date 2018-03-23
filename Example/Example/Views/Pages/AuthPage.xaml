@@ -6,14 +6,25 @@
              xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
              x:Class="Example.Views.Pages.AuthPage">
     <ContentPage.Content>
-        <RelativeLayout>
-            <Image 
+            <RelativeLayout>
+            <ffimageloadingsvg:SvgCachedImage 
                 HorizontalOptions="FillAndExpand"
                 VerticalOptions="FillAndExpand"
                 Aspect="Fill"
                 RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, ElementName=SearchControlsGrid,Property=Width, Factor=1, Constant=0 }"
                 RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, ElementName=SearchControlsGrid, Property=Height,Factor=1, Constant=0}"
-                Source="ic_openid.png" />
-         </RelativeLayout>
+                Source="resource://Example.Resources.ag_background.svg"/>
+
+            <StackLayout VerticalOptions="End"
+                HorizontalOptions="FillAndExpand"
+                RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, ElementName=SearchControlsGrid,Property=Width, Factor=1, Constant=0 }"
+                RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, ElementName=SearchControlsGrid, Property=Height,Factor=1, Constant=0}">
+                <Image Source="ic_openid.png" />
+                <Button Text="Authenticate" x:Name="authButton"
+                    BackgroundColor="{DynamicResource Primary}"
+                    TextColor="{DynamicResource InversePrimaryTextColor}"
+                />
+            </StackLayout>
+        </RelativeLayout>
     </ContentPage.Content>
 </ContentPage>
