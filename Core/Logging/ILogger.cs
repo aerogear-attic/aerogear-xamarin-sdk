@@ -1,7 +1,7 @@
 ﻿using System;
 using SystemException=System.Exception;
 
-namespace Core.AeroGear.Mobile.Core.Logging
+namespace AeroGear.Mobile.Core.Logging
 {
     /// <summary>
     /// Common interface for logging.

@@ -1,8 +1,8 @@
 ﻿using System;
 using Aerogear.Mobile.Core;
-using Core.AeroGear.Mobile.Core.Configuration;
+using AeroGear.Mobile.Core.Configuration;
 
-namespace Core.AeroGear.Mobile
+namespace Aerogear.Mobile.Core
 {
     public interface IServiceModule
     {

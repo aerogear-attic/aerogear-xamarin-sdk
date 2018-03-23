@@ -47,9 +47,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="AeroGear.Mobile\AsyncExperiments.cs" />
-    <Compile Include="AeroGear.Mobile\Core\MobileCoreTests.cs" />
-    <Compile Include="AeroGear.Mobile\Core\Configuration\ServiceConfigurationTest.cs" />
+    <Compile Include="AsyncExperiments.cs" />
+    <Compile Include="Configuration\ServiceConfigurationTest.cs" />
+    <Compile Include="MobileCoreTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
@@ -64,8 +64,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="AeroGear.Mobile\Core\" />
-    <Folder Include="AeroGear.Mobile\Core\Configuration\" />
+    <Folder Include="Configuration\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

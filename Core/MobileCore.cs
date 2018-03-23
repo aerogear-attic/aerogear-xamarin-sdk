@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using Core.AeroGear.Mobile.Core.Configuration;
-using Core.AeroGear.Mobile.Core.Logging;
+using AeroGear.Mobile.Core.Configuration;
+using AeroGear.Mobile.Core.Logging;
 
 namespace Aerogear.Mobile.Core
 {

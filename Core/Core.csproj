@@ -7,7 +7,7 @@
     <ProjectTypeGuids>{786C830F-07A1-408B-BD7F-6EE04809D6DB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <UseMSBuildEngine>true</UseMSBuildEngine>
     <OutputType>Library</OutputType>
-    <RootNamespace>Core</RootNamespace>
+    <RootNamespace>AeroGear.Mobile.Core</RootNamespace>
     <AssemblyName>Core</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <TargetFrameworkProfile>Profile111</TargetFrameworkProfile>
@@ -29,18 +29,17 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="AeroGear.Mobile\Core\MobileCore.cs" />
-    <Compile Include="AeroGear.Mobile\Core\Exception\InitializationException.cs" />
-    <Compile Include="AeroGear.Mobile\Core\Exception\ConfigurationNotFoundException.cs" />
-    <Compile Include="AeroGear.Mobile\Core\Logging\ILogger.cs" />
-    <Compile Include="AeroGear.Mobile\Core\Configuration\ServiceConfiguration.cs" />
-    <Compile Include="AeroGear.Mobile\IServiceModule.cs" />
+    <Compile Include="Configuration\ServiceConfiguration.cs" />
+    <Compile Include="Exception\ConfigurationNotFoundException.cs" />
+    <Compile Include="Exception\InitializationException.cs" />
+    <Compile Include="Logging\ILogger.cs" />
+    <Compile Include="MobileCore.cs" />
+    <Compile Include="IServiceModule.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="AeroGear.Mobile\" />
-    <Folder Include="AeroGear.Mobile\Core\Exception\" />
-    <Folder Include="AeroGear.Mobile\Core\Logging\" />
-    <Folder Include="AeroGear.Mobile\Core\Configuration\" />
+    <Folder Include="Configuration\" />
+    <Folder Include="Exception\" />
+    <Folder Include="Logging\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
 </Project>

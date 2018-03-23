@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 
-namespace Core.AeroGear.Mobile.Core.Configuration
+namespace AeroGear.Mobile.Core.Configuration
 {
     /// <summary>
     /// This represents a parsed singleThreadService configuration from JSON configuration.

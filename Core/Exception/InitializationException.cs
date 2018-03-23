@@ -1,5 +1,5 @@
 ﻿using System;
-namespace Core.AeroGear.Mobile.Core.Exception
+namespace AeroGear.Mobile.Core.Exception
 {
     /// <summary>
     /// This is an exception that is thrown when bootstrapping a module fails.
