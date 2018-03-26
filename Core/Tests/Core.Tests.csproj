@@ -50,6 +50,7 @@
     <Compile Include="AsyncExperiments.cs" />
     <Compile Include="Configuration\ServiceConfigurationTest.cs" />
     <Compile Include="MobileCoreTests.cs" />
+    <Compile Include="Configuration\MobileCoreParserTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
@@ -65,6 +66,10 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Configuration\" />
+    <Folder Include="Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\mobile-services.json" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

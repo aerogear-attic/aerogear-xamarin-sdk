@@ -1,4 +1,5 @@
 ﻿using System;
+using AeroGear.Mobile.Core;
 using NUnit.Framework;
 
 namespace Aerogear.Mobile.Core
@@ -11,7 +12,7 @@ namespace Aerogear.Mobile.Core
 
         [SetUp]
         public void SetUp() {
-            mobileCore = MobileCore.init();
+            MobileCore.Init();
         }
 
 

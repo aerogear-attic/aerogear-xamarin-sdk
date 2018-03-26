@@ -37,11 +37,20 @@
     <Compile Include="IServiceModule.cs" />
     <Compile Include="IPlatformInjector.cs" />
     <Compile Include="Exception\NotInitializedException.cs" />
+    <Compile Include="Configuration\MobileCoreJsonParser.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Configuration\" />
     <Folder Include="Exception\" />
     <Folder Include="Logging\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Json">
+      <HintPath>..\packages\System.Json.4.4.0\lib\netstandard1.0\System.Json.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="Platform\Core.Platform.Shared\Core.Platform.Shared.projitems" Label="Shared" Condition="Exists('Platform\Core.Platform.Shared\Core.Platform.Shared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />

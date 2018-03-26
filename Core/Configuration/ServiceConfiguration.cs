@@ -8,20 +8,20 @@ namespace AeroGear.Mobile.Core.Configuration
     /// <summary>
     /// This represents a parsed singleThreadService configuration from JSON configuration.
     /// </summary>
-    public class ServiceConfiguration : IReadOnlyDictionary<String,String>
+    public class ServiceConfiguration : IReadOnlyDictionary<string,string>
     {
 
-        public String Name
+        public string Name
         {
             get; private set;
         }
 
-        public String Type
+        public string Type
         {
             get; private set;
         }
 
-        public String Url
+        public string Url
         {
             get; private set;
         }
@@ -34,9 +34,9 @@ namespace AeroGear.Mobile.Core.Configuration
 
         public string this[string key] => properties[key];
 
-        private IDictionary<String, String> properties;
+        private IDictionary<string, string> properties;
 
-        private ServiceConfiguration(String name, IDictionary<String, String> properties, String type, String url)
+        private ServiceConfiguration(string name, IDictionary<string, string> properties, string type, string url)
         {
             Name = name;
             this.properties = properties;
@@ -49,33 +49,33 @@ namespace AeroGear.Mobile.Core.Configuration
         public class ServiceConfigurationBuilder
         {
 
-            protected String name;
+            protected string name;
 
-            protected Dictionary<String, String> properties = new Dictionary<string, string>();
+            protected Dictionary<string, string> properties = new Dictionary<string, string>();
 
-            protected String type;
+            protected string type;
 
-            protected String url;
+            protected string url;
 
-            public ServiceConfigurationBuilder Name(String name) {
+            public ServiceConfigurationBuilder Name(string name) {
                 Contract.Requires(string.IsNullOrEmpty(name) == false);
                 this.name = name;
                 return this;
             }
 
-            public ServiceConfigurationBuilder Property(String name, String value)
+            public ServiceConfigurationBuilder Property(string name, string value)
             {
                 this.properties[name]=value;
                 return this;
             }
 
-            public ServiceConfigurationBuilder Type(String type)
+            public ServiceConfigurationBuilder Type(string type)
             {
                 this.type = type;
                 return this;
             }
 
-            public ServiceConfigurationBuilder Url(String url)
+            public ServiceConfigurationBuilder Url(string url)
             {
                 this.url = url;
                 return this;

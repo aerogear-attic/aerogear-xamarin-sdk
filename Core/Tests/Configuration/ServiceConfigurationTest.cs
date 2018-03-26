@@ -1,5 +1,5 @@
 ﻿using System;
-using Core.AeroGear.Mobile.Core.Configuration;
+using AeroGear.Mobile.Core.Configuration;
 using NUnit.Framework;
 
 namespace AeroGear.Mobile.Core.Tests.AeroGear.Mobile.Core.Configuration

@@ -4,6 +4,9 @@ using Android.Util;
 
 namespace AeroGear.Mobile.Core.Platform.Android.Logging
 {
+    /// <summary>
+    /// Android specific implementation of <see cref="ILogger"/> using default Android <see cref="Log"/>.
+    /// </summary>
     public class AndroidLogger : ILogger
     {
         public const string DEFAULT_TAG = "AeroGear";
