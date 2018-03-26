@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Example.Droid</RootNamespace>
     <AssemblyName>Example.Android</AssemblyName>
-    <TargetFrameworkVersion>v8.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v7.1</TargetFrameworkVersion>
     <AndroidApplication>True</AndroidApplication>
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
     <AndroidResgenClass>Resource</AndroidResgenClass>
@@ -90,6 +90,14 @@
     <ProjectReference Include="..\Example\Example.csproj">
       <Project>{F40048C7-7FA6-4BDF-9D0E-F3DEB847C63C}</Project>
       <Name>Example</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\Core.csproj">
+      <Project>{5329A095-CE6D-4219-927F-DCAC1370911B}</Project>
+      <Name>Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\Platform\Core.Platform.Android\Core.Platform.Android.csproj">
+      <Project>{E30A4499-8EF8-4542-AAF9-C9D30A543752}</Project>
+      <Name>Core.Platform.Android</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

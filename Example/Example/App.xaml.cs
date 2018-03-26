@@ -2,7 +2,7 @@
 
 using Example.Views;
 using Xamarin.Forms;
-using Aerogear.Mobile.Core;
+using AeroGear.Mobile.Core;
 
 namespace Example
 {

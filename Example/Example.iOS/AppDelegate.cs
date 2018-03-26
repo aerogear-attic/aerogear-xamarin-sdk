@@ -7,6 +7,8 @@ using UIKit;
 using FFImageLoading;
 using FFImageLoading.Forms.Touch;
 using ImageCircle.Forms.Plugin.iOS;
+using AeroGear.Mobile.Core;
+using AeroGear.Mobile.Core.Platform.iOS;
 
 namespace Example.iOS
 {
@@ -26,6 +28,7 @@ namespace Example.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
+			MobileCore.Init(new IOSPlatformInjector());
             LoadApplication(new App());
             CachedImageRenderer.Init();
             ImageCircleRenderer.Init();

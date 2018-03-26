@@ -9,6 +9,8 @@ using Android.OS;
 using FFImageLoading;
 using FFImageLoading.Forms.Droid;
 using ImageCircle.Forms.Plugin.Droid;
+using AeroGear.Mobile.Core;
+using AeroGear.Mobile.Core.Platform.Android;
 
 namespace Example.Droid
 {
@@ -23,6 +25,7 @@ namespace Example.Droid
             base.OnCreate(savedInstanceState);
 
             global::Xamarin.Forms.Forms.Init(this, savedInstanceState);
+            MobileCore.Init(new AndroidPlatformInjector());
             CachedImageRenderer.Init(true);
             ImageCircleRenderer.Init();
             LoadApplication(new App());

@@ -7,17 +7,31 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example.Android", "Example\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example.iOS", "Example\Example.iOS\Example.iOS.csproj", "{00023BF2-7D9E-439C-8942-54D3F21E2710}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example", "Example\Example\Example.csproj", "{F40048C7-7FA6-4BDF-9D0E-F3DEB847C63C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Example", "Example\Example\Example.csproj", "{F40048C7-7FA6-4BDF-9D0E-F3DEB847C63C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Tests", "Core\Tests\Core.Tests.csproj", "{8EDF4429-251A-416D-BB68-93F227191BCF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{5329A095-CE6D-4219-927F-DCAC1370911B}"
+EndProject
+Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Core.Platform.Shared", "Core\Platform\Core.Platform.Shared\Core.Platform.Shared.shproj", "{CB2A9F9E-48D2-4B24-8679-BE890F402EBF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Platform.iOS", "Core\Platform\Core.Platform.iOS\Core.Platform.iOS.csproj", "{C5B8A6AF-90D0-43DC-B097-A5F3CEB01E9F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Platform.Android", "Core\Platform\Core.Platform.Android\Core.Platform.Android.csproj", "{E30A4499-8EF8-4542-AAF9-C9D30A543752}"
+EndProject
+Project("{5DD5E4FA-CB73-4610-85AB-557B54E96AA9}") = "Core.Platform.NuGet", "Core\Platform\Core.Platform.NuGet\Core.Platform.NuGet.nuproj", "{6E66BB56-5540-44D9-8828-3ABB58BF7671}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth", "Auth\Auth.csproj", "{69C1D610-3543-4410-AC28-ED12B11C17E6}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth.Tests", "Auth.Tests\Auth.Tests.csproj", "{A0452B0D-CFD7-4B81-BDD4-4E04ED3FCD20}"
 EndProject
 Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Core\Platform\Core.Platform.Shared\Core.Platform.Shared.projitems*{5329a095-ce6d-4219-927f-dcac1370911b}*SharedItemsImports = 4
+		Core\Platform\Core.Platform.Shared\Core.Platform.Shared.projitems*{c5b8a6af-90d0-43dc-b097-a5f3ceb01e9f}*SharedItemsImports = 4
+		Core\Platform\Core.Platform.Shared\Core.Platform.Shared.projitems*{cb2a9f9e-48d2-4b24-8679-be890f402ebf}*SharedItemsImports = 13
+		Core\Platform\Core.Platform.Shared\Core.Platform.Shared.projitems*{e30a4499-8ef8-4542-aaf9-c9d30a543752}*SharedItemsImports = 4
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Ad-Hoc|Any CPU = Ad-Hoc|Any CPU
 		Ad-Hoc|iPhone = Ad-Hoc|iPhone
