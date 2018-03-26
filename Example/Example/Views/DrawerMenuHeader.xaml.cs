@@ -14,7 +14,7 @@ namespace Example.Views
         public DrawerMenuHeader()
         {
             InitializeComponent();
-            ILogger logger = MobileCore.Instance.Logger;
+            ILogger logger = MobileCore.Logger;
             logger.Debug("DrawerMenuHeader init");
             BindingContext = new Header(StringResources.AeroGear,StringResources.AppName, ImageSource.FromResource("Example.Resources.aerogear_icon.png"));
         }
