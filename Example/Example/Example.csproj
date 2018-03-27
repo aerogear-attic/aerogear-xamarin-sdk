@@ -45,6 +45,9 @@
     <Compile Update="Views\DrawerMenuHeader.xaml.cs">
       <DependentUpon>DrawerMenuHeader.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\Pages\UserDetails.xaml.cs">
+      <DependentUpon>UserDetails.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>

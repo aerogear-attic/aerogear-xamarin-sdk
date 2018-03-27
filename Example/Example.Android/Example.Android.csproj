@@ -79,6 +79,7 @@
     <AndroidResource Include="Resources\drawable\ic_label.svg" />
     <AndroidResource Include="Resources\drawable\ic_openid.png" />
     <AndroidResource Include="Resources\drawable\ic_phonelink_lock.svg" />
+    <AndroidResource Include="Resources\drawable\ag_background.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />

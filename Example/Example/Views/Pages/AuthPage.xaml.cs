@@ -13,5 +13,10 @@ namespace Example.Views.Pages
         {
             InitializeComponent();
         }
+
+        public void OnAuthenticateClicked(object sender, EventArgs args)
+        {
+            Navigation.PushAsync(new UserDetails());
+        }
     }
 }

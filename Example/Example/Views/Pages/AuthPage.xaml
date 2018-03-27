@@ -23,6 +23,7 @@
                 <Button Text="Authenticate" x:Name="authButton"
                     BackgroundColor="{DynamicResource Primary}"
                     TextColor="{DynamicResource InversePrimaryTextColor}"
+                    Clicked="OnAuthenticateClicked"
                 />
             </StackLayout>
         </RelativeLayout>
