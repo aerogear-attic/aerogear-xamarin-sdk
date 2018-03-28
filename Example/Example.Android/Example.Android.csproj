@@ -72,6 +72,9 @@
     <AndroidResource Include="Resources\mipmap-mdpi\ic_launcher_round.png" />
     <AndroidResource Include="Resources\mipmap-hdpi\ic_launcher.png" />
     <AndroidResource Include="Resources\mipmap-hdpi\ic_launcher_round.png" />
+    <AndroidResource Include="Resources\drawable\aerogear_icon.png" />
+    <AndroidResource Include="Resources\drawable\ic_openid.png" />
+    <AndroidResource Include="Resources\drawable\ag_background.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Properties\AndroidManifest.xml" />

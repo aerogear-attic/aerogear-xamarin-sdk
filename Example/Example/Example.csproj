@@ -13,6 +13,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Remove="Views\Pages\AuthPage.cs" />
+    <Compile Remove="Views\Pages\HomePage.xaml %28copy%29.cs" />
+  </ItemGroup>
+  <ItemGroup>
     <Compile Update="Views\RootPageMenuItem.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -41,8 +45,14 @@
     <Compile Update="Views\DrawerMenuHeader.xaml.cs">
       <DependentUpon>DrawerMenuHeader.xaml</DependentUpon>
     </Compile>
+    <Compile Update="Views\Pages\UserDetails.xaml.cs">
+      <DependentUpon>UserDetails.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
 
+  <ItemGroup>
+    <EmbeddedResource Remove="Views\Pages\HomePage %28copy%29.xaml" />
+  </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\ic_auth.svg" />
     <EmbeddedResource Include="Resources\ic_home.svg" />
@@ -50,6 +60,9 @@
     <EmbeddedResource Include="Resources\ic_label.svg" />
     <EmbeddedResource Include="Resources\ic_phonelink_lock.svg" />
     <EmbeddedResource Include="Resources\aerogear_icon.png" />
+    <EmbeddedResource Include="Resources\ag_background.svg" />
+    <EmbeddedResource Include="Resources\ic_openid.png" />
+    <EmbeddedResource Include="Resources\ag_background.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="Views\RootPageMaster.xaml">
@@ -79,6 +92,9 @@
     <None Remove="Resources\ic_label.svg" />
     <None Remove="Resources\ic_phonelink_lock.svg" />
     <None Remove="Resources\aerogear_icon.png" />
+    <None Remove="Resources\ag_background.png" />
+    <None Remove="Resources\ag_background.svg" />
+    <None Remove="Resources\ic_openid_connect.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Core\Core.csproj" />

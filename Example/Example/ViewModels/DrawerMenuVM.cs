@@ -19,6 +19,7 @@ namespace Example.ViewModels
             {
                     NavigationItem.HOME_PAGE,
                     new NavigationItem { Id = 1, Title = StringResources.NavHttp, TargetType=typeof(HttpPage),Icon=ResourceUtils.GetSvg("ic_http") },
+                    new NavigationItem { Id = 2, Title = StringResources.NavAuth, TargetType=typeof(AuthPage),Icon=ResourceUtils.GetSvg("ic_auth") },
                 });
         }
 
