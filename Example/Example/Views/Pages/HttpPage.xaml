@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Example.Views.Pages.HttpPage">
+    <ContentPage.Content>
+        <StackLayout Padding="10">
+            <Label Text="HTTP" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms" xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" x:Class="Example.Views.RootPage" xmlns:masterpages="clr-namespace:Example.Views" xmlns:pages="clr-namespace:Example.Views.Pages">
+    <MasterDetailPage.Master>
+        <masterpages:DrawerMenuPage x:Name="DrawerMenuPage" Title="{DynamicResource AppName}" Icon="ic_view_headline.png" />
+    </MasterDetailPage.Master>
+    <MasterDetailPage.Detail>
+        <NavigationPage/>
+    </MasterDetailPage.Detail>
+</MasterDetailPage>
