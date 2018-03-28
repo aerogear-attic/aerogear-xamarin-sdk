@@ -6,14 +6,13 @@
              xmlns:ffimageloadingsvg="clr-namespace:FFImageLoading.Svg.Forms;assembly=FFImageLoading.Svg.Forms"
              x:Class="Example.Views.Pages.AuthPage">
     <ContentPage.Content>
-            <RelativeLayout>
-            <ffimageloadingsvg:SvgCachedImage 
+        <RelativeLayout>
+            <Image Source="ag_background.png" 
                 HorizontalOptions="FillAndExpand"
                 VerticalOptions="FillAndExpand"
                 Aspect="Fill"
                 RelativeLayout.WidthConstraint="{ConstraintExpression Type=RelativeToParent, ElementName=SearchControlsGrid,Property=Width, Factor=1, Constant=0 }"
-                RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, ElementName=SearchControlsGrid, Property=Height,Factor=1, Constant=0}"
-                Source="resource://Example.Resources.ag_background.svg"/>
+                RelativeLayout.HeightConstraint="{ConstraintExpression Type=RelativeToParent, ElementName=SearchControlsGrid, Property=Height,Factor=1, Constant=0}"/>
 
             <StackLayout VerticalOptions="End"
                 HorizontalOptions="FillAndExpand"
