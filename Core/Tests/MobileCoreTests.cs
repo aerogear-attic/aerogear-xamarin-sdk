@@ -4,7 +4,7 @@ using NUnit.Framework;
 
 namespace Aerogear.Mobile.Core
 {
-    [TestFixture]
+    [TestFixture(Category ="Core")]
     public class MobileCoreTests
     {
         private MobileCore mobileCore;

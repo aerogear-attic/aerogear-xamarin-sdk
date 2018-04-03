@@ -6,7 +6,7 @@ using NUnit.Framework;
 
 namespace AeroGear.Mobile.Core.Tests.Configuration
 {
-    [TestFixture]
+    [TestFixture(Category ="Configuration")]
     public class MobileCoreParserTest
     {
         [Test]

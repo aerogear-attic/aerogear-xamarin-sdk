@@ -21,7 +21,7 @@ namespace AeroGear.Mobile.Core
         /// </summary>
         /// <param name="core">MobileCore instance</param>
         /// <param name="serviceConfiguration">the configuration for the singleThreadService</param>
-        void configure(MobileCore core, ServiceConfiguration serviceConfiguration);
+        void Configure(MobileCore core, ServiceConfiguration serviceConfiguration);
 
         /// <summary>
         /// Whether the singleThreadService module requires its singleThreadService configuration to be
@@ -36,6 +36,6 @@ namespace AeroGear.Mobile.Core
         /// <summary>
         /// Called when singleThreadService destroyed.
         /// </summary>
-        void destroy();
+        void Destroy();
     }
 }
