@@ -17,7 +17,7 @@ namespace AeroGear.Mobile.Core
 
         private static String TAG = "AEROGEAR/CORE";
 
-        private static int DEFAULT_TIMEOUT = 10;
+        private static int DEFAULT_TIMEOUT = 20;
 
         public ILogger Logger
         {
@@ -90,9 +90,6 @@ namespace AeroGear.Mobile.Core
                 }
                 else
                     throw new InitializationException("Must provide either filename or JSON configuration in Init() options");
-                {
-
-                }
             }
 
             if (options.HttpServiceModule == null)
@@ -106,6 +103,7 @@ namespace AeroGear.Mobile.Core
                     configuration = ServiceConfiguration.Builder.Build();
                 }
                 httpServiceModule.Configure(this, configuration);
+                HttpLayer = httpServiceModule;
             }
             else HttpLayer = options.HttpServiceModule;
         }
@@ -130,6 +128,7 @@ namespace AeroGear.Mobile.Core
             {
                 serviceModule.Destroy();
             }
+            instance = null;
         }
 
         /// <summary>
@@ -167,7 +166,7 @@ namespace AeroGear.Mobile.Core
 
         public ServiceConfiguration getServiceConfiguration(String type)
         {
-            return servicesConfig.ContainsKey(type) ? servicesConfig[type]:null;
+            return servicesConfig.ContainsKey(type) ? servicesConfig[type] : null;
         }
     }
 }

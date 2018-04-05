@@ -4,7 +4,7 @@ using NUnit.Framework;
 
 namespace AeroGear.Mobile.Core.Tests.AeroGear.Mobile.Core.Configuration
 {
-    [TestFixture(Category = "Configuration")]
+    [TestFixture]
     public class ServiceConfigurationTest
     {
         [Test]

@@ -29,8 +29,8 @@ namespace AeroGear.Mobile.Core.Platform.Android
         {
             get
             {
-                var split = ExecutingAssembly.FullName.Split(',');
-                return $"{split[0]}.Resources";
+                var name = ExecutingAssembly.GetName().Name;
+                return $"{name}.Resources";
             }
         }       
     }

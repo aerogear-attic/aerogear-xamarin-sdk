@@ -5,6 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Acr.UserDialogs" Version="7.0.1" />
+    <PackageReference Include="ListDiff" Version="1.0.7" />
+    <PackageReference Include="Newtonsoft.Json" Version="11.0.2" />
     <PackageReference Include="Xamarin.Forms" Version="2.5.0.280555" />
     <PackageReference Include="Xamarin.FFImageLoading.Svg.Forms" Version="2.3.4" />
     <PackageReference Include="Xamarin.FFImageLoading.Transformations" Version="2.3.4" />
@@ -63,8 +66,12 @@
     <EmbeddedResource Include="Resources\ag_background.svg" />
     <EmbeddedResource Include="Resources\ic_openid.png" />
     <EmbeddedResource Include="Resources\ag_background.png" />
+    <EmbeddedResource Include="Resources\mobile-services.json" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Update="Views\Pages\ListViewPage1.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\RootPageMaster.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -79,10 +86,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Resources\" />
-    <Folder Include="Services\" />
-    <Folder Include="Models\" />
-    <Folder Include="Views\Pages\" />
     <Folder Include="Utils\" />
   </ItemGroup>
   <ItemGroup>
@@ -95,6 +98,7 @@
     <None Remove="Resources\ag_background.png" />
     <None Remove="Resources\ag_background.svg" />
     <None Remove="Resources\ic_openid_connect.png" />
+    <None Remove="Resources\mobile-services.json" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Core\Core.csproj" />
