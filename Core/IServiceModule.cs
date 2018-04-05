@@ -29,7 +29,7 @@ namespace AeroGear.Mobile.Core
         /// if singleThreadService configuration cannot be found.
         /// </summary>
         /// <value><c>true</c> if the singleThreadService configuration should be defined.</value>
-        bool requiresConfiguration {
+        bool RequiresConfiguration {
             get;
         }
 

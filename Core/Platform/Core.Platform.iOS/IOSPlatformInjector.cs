@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using AeroGear.Mobile.Core.Logging;
 using AeroGear.Mobile.Core.Platform.iOS;
 using Core.Platform.Logging;
@@ -6,10 +7,29 @@ using Core.Platform.Logging;
 [assembly: Xamarin.Forms.Dependency(typeof(IOSPlatformInjector))]
 namespace AeroGear.Mobile.Core.Platform.iOS
 {
-    public class IOSPlatformInjector : IPlatformInjector
+    /// <summary>
+    /// Class handles injection of iOS specific classes and access to resoureces.
+    /// </summary>
+    internal class IOSPlatformInjector : IPlatformInjector
     {
         public ILogger CreateLogger() => new IOSLogger();
 
         public String PlatformName => "iOS";
+
+        public Assembly ExecutingAssembly { get; private set; }
+        
+        public IOSPlatformInjector(Assembly assembly)
+        {
+            ExecutingAssembly = assembly;
+        }
+
+        public String DefaultResources
+        {
+            get
+            {
+                var split = ExecutingAssembly.FullName.Split(',');
+                return $"{split[0]}.Resources";
+            }
+        }
     }
 }

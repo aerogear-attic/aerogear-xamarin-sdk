@@ -49,13 +49,13 @@ namespace AeroGear.Mobile.Core.Configuration
         public class ServiceConfigurationBuilder
         {
 
-            protected string name;
+            private string name;
 
-            protected Dictionary<string, string> properties = new Dictionary<string, string>();
+            private Dictionary<string, string> properties = new Dictionary<string, string>();
 
-            protected string type;
+            private string type;
 
-            protected string url;
+            private string url;
 
             public ServiceConfigurationBuilder Name(string name) {
                 Contract.Requires(string.IsNullOrEmpty(name) == false);

@@ -12,7 +12,7 @@ namespace AeroGear.Mobile.Core.Http
     {
         public string Type => "http";
 
-        public bool requiresConfiguration => true;
+        public bool RequiresConfiguration => true;
 
         private ServiceConfiguration serviceConfiguration;
         private HttpClient httpClient;

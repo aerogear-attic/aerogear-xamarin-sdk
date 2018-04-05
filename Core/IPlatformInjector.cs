@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection;
 using AeroGear.Mobile.Core.Logging;
 
 namespace AeroGear.Mobile.Core
@@ -14,6 +15,10 @@ namespace AeroGear.Mobile.Core
         /// <returns>The logger.</returns>
         ILogger CreateLogger();
 
+        /// <summary>
+        /// Returns executing assembly. For accessing resources, etc.
+        /// </summary>
+        Assembly ExecutingAssembly { get; }
 
         /// <summary>
         /// Returns platform name of the current injector.
@@ -22,5 +27,10 @@ namespace AeroGear.Mobile.Core
         String PlatformName {
             get;
         }
+
+        /// <summary>
+        /// Returns prefix for default resources. By default it would be "&lt;DefaultNamespace&gt;.Resources".
+        /// </summary>
+        String DefaultResources { get; }
     }
 }

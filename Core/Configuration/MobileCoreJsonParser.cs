@@ -21,6 +21,13 @@ namespace AeroGear.Mobile.Core.Configuration
             ParseMobileCoreArray((JsonArray)jsonDocument["services"]);
         }
 
+        private MobileCoreJsonParser(string jsonString)
+        {
+            Contract.Requires(jsonString != null);
+            var jsonDocument = JsonValue.Parse(jsonString);
+            ParseMobileCoreArray((JsonArray)jsonDocument["services"]);
+        }
+
         private String ReadJsonStream(Stream jsonStream)
         {
             Contract.Requires(jsonStream != null);
@@ -72,6 +79,19 @@ namespace AeroGear.Mobile.Core.Configuration
         public static Dictionary<String, ServiceConfiguration> Parse(Stream jsonStream)
         {
             MobileCoreJsonParser parser = new MobileCoreJsonParser(jsonStream);
+            return parser.values;
+        }
+
+        /// <summary>
+        /// Parses JSON configuration string.
+        /// </summary>
+        /// <returns>A dictionary of ServiceConfigs mapped by their name.</returns>
+        /// <param name="jsonString">string with json configuration
+        /// Please note that this should be managed by the calling core. 
+        /// The parser will not close the resource when it is finished.</param>
+        public static Dictionary<String, ServiceConfiguration> Parse(string jsonString)
+        {
+            MobileCoreJsonParser parser = new MobileCoreJsonParser(jsonString);
             return parser.values;
         }
     }
