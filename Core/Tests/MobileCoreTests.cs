@@ -49,7 +49,7 @@ namespace Aerogear.Mobile.Core
         [TearDown]
         public void TearDown()
         {
-            server.Stop();
+            server.Stop();            
         }
 
 
@@ -83,6 +83,7 @@ namespace Aerogear.Mobile.Core
             Assert.AreEqual(GET_TEST_BODY, response.Body);
             var jsonObject = JsonObject.Parse(response.Body);
             Assert.AreEqual(HELLO_WORLD, (string)jsonObject["text"]);
+            MobileCore.Instance.Destroy();
         }
     }
 }
