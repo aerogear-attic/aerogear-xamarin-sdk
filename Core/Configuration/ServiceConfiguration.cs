@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
+using System.Json;
 
 namespace AeroGear.Mobile.Core.Configuration
 {
@@ -65,7 +66,13 @@ namespace AeroGear.Mobile.Core.Configuration
 
             public ServiceConfigurationBuilder Property(string name, string value)
             {
-                this.properties[name]=value;
+                properties[name] = value;
+                return this;
+            }
+
+            public ServiceConfigurationBuilder Property(string name, JsonValue value)
+            {
+                properties[name] = value.JsonType == JsonType.String ? (string)value:value.ToString();
                 return this;
             }
 

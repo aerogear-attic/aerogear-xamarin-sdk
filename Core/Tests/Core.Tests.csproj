@@ -119,6 +119,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DummyModuleInitTest.cs" />
     <Compile Include="Http\SystemNetHttpServiceModuleTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AsyncExperiments.cs" />

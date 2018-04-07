@@ -22,7 +22,7 @@ namespace Aerogear.Mobile.Core
         private const string GET_TEST_BODY = "{\"text\":\"" + HELLO_WORLD + "\"}";
         private const String GET_TEST_PATH = "/test";
 
-        private class TestInjector : IPlatformInjector
+        public class TestInjector : IPlatformInjector
         {
             public Assembly ExecutingAssembly { get; set; }
 
@@ -37,6 +37,7 @@ namespace Aerogear.Mobile.Core
                 ExecutingAssembly = assembly;
             }
         }
+        
 
         [SetUp]
         public void SetUp()

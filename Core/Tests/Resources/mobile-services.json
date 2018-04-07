@@ -31,6 +31,17 @@
       "type": "metrics",
       "url": "https://www.mocky.io/v2/5a79c6572e000028009a5c4f",
       "config": {}
+    },
+    {
+      "id": "dummy",
+      "name": "dummy",
+      "type": "dummy",
+      "url": "http://localhost",
+      "config": {
+        "data1": "Hello world!",
+        "data2": 42,
+        "data3":  true
+      }
     }
   ]
 }

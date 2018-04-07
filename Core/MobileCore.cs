@@ -97,7 +97,7 @@ namespace AeroGear.Mobile.Core
                 HttpClient httpClient = new HttpClient();
                 httpClient.Timeout = TimeSpan.FromSeconds(DEFAULT_TIMEOUT);
                 var httpServiceModule = new SystemNetHttpServiceModule(httpClient);
-                var configuration = getServiceConfiguration(httpServiceModule.Type);
+                var configuration = GetServiceConfiguration(httpServiceModule.Type);
                 if (configuration == null)
                 {
                     configuration = ServiceConfiguration.Builder.Build();
@@ -137,7 +137,15 @@ namespace AeroGear.Mobile.Core
         /// <typeparam name="T">service module type</typeparam>
         /// <param name="serviceClass">service module class type</param>
         /// <returns></returns>
-        public T GetInstance<T>(Type serviceClass) where T : IServiceModule => GetInstance<T>(serviceClass, null);
+        public T GetInstance<T>() where T : IServiceModule => GetInstance<T>(typeof(T), null);
+
+        /// <summary>
+        /// Returns instance of a service module.
+        /// </summary>
+        /// <typeparam name="T">service module type</typeparam>
+        /// <param name="serviceConfiguration">service configuration</param>
+        /// <returns></returns>
+        public T GetInstance<T>(ServiceConfiguration serviceConfiguration) where T : IServiceModule => GetInstance<T>(typeof(T), serviceConfiguration);
 
         /// <summary>
         /// Returns instance of a service module.
@@ -146,7 +154,7 @@ namespace AeroGear.Mobile.Core
         /// <param name="serviceClass">service module class type</param>
         /// <param name="serviceConfiguration">service configuration</param>
         /// <returns></returns>
-        public T GetInstance<T>(Type serviceClass, ServiceConfiguration serviceConfiguration)
+        private T GetInstance<T>(Type serviceClass, ServiceConfiguration serviceConfiguration)
             where T : IServiceModule
         {
             Contract.Requires(serviceClass != null);
@@ -157,14 +165,14 @@ namespace AeroGear.Mobile.Core
 
             IServiceModule serviceModule = Activator.CreateInstance(serviceClass) as IServiceModule;
             var serviceCfg = serviceConfiguration;
-            if (serviceCfg == null) serviceCfg = getServiceConfiguration(serviceModule.Type);
+            if (serviceCfg == null) serviceCfg = GetServiceConfiguration(serviceModule.Type);
             if (serviceCfg == null && serviceModule.RequiresConfiguration) throw new ConfigurationNotFoundException($"{serviceModule.Type} not found on " + ConfigFileName);
             serviceModule.Configure(this, serviceCfg);
             services[serviceClass] = serviceModule;
             return (T)serviceModule;
         }
 
-        public ServiceConfiguration getServiceConfiguration(String type)
+        public ServiceConfiguration GetServiceConfiguration(String type)
         {
             return servicesConfig.ContainsKey(type) ? servicesConfig[type] : null;
         }
