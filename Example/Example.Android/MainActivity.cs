@@ -10,9 +10,9 @@ using FFImageLoading;
 using FFImageLoading.Forms.Droid;
 using ImageCircle.Forms.Plugin.Droid;
 using AeroGear.Mobile.Core;
-using AeroGear.Mobile.Core.Platform.Android;
 using Xamarin.Forms;
 using Acr.UserDialogs;
+using AeroGear.Mobile.Core.Platform;
 
 namespace Example.Android
 {

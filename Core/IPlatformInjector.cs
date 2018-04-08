@@ -18,7 +18,7 @@ namespace AeroGear.Mobile.Core
         /// <summary>
         /// Returns executing assembly. For accessing resources, etc.
         /// </summary>
-        Assembly ExecutingAssembly { get; }
+        Assembly ExecutingAssembly { get; set; }
 
         /// <summary>
         /// Returns platform name of the current injector.

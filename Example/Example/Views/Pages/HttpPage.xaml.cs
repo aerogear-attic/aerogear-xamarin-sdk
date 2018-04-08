@@ -7,6 +7,8 @@ using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Example.Models;
 using Acr.UserDialogs;
+using AeroGear.Mobile.Core;
+using AeroGear.Mobile.Core.Logging;
 
 namespace Example.Views.Pages
 {
@@ -15,6 +17,7 @@ namespace Example.Views.Pages
     {
         private readonly PlaceholderUsersVM placeholderUsersVM;
         private CancellationTokenSource cts;
+        private ILogger LOGGER = MobileCore.Instance.Logger;
 
         public HttpPage()
         {
@@ -39,10 +42,12 @@ namespace Example.Views.Pages
         private void OnItemTapped(object sender, ItemTappedEventArgs e)
         {
             PlaceholderUser user = (PlaceholderUser)e.Item;
-            var toastConfig = new ToastConfig($"{user.name}\n{user.email}");
+            var message = $"{user.name}\n{user.email}";
+            var toastConfig = new ToastConfig(message);
             toastConfig.Duration = TimeSpan.FromMilliseconds(3000);
             toastConfig.BackgroundColor = System.Drawing.Color.FromArgb(12, 131, 193);
             UserDialogs.Instance.Toast(toastConfig);
+            LOGGER.Info("HttpPage", message);
         }
     }
 }

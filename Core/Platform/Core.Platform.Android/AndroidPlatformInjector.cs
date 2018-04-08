@@ -18,12 +18,7 @@ namespace AeroGear.Mobile.Core.Platform.Android
 
         public String PlatformName => "Android";
 
-        public AndroidPlatformInjector(Assembly assembly)
-        {
-            ExecutingAssembly = assembly;            
-        }
-
-        public Assembly ExecutingAssembly { get; private set; }
+        public Assembly ExecutingAssembly { get; set; }
 
         public String DefaultResources
         {

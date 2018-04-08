@@ -6,7 +6,7 @@ using System.Text;
 using AeroGear.Mobile.Core.Exception;
 using Xamarin.Forms;
 
-namespace AeroGear.Mobile.Core.Platform.Android
+namespace AeroGear.Mobile.Core.Platform
 {
     public sealed class MobileCoreInitializer
     {
@@ -26,7 +26,9 @@ namespace AeroGear.Mobile.Core.Platform.Android
         /// <param name="options">additional initialization options</param>
         public static void Init(Application app, Options options)
         {
-            MobileCore.Init(new AndroidPlatformInjector(app.GetType().Assembly),options);
+            IPlatformInjector platformInjector = DependencyService.Get<IPlatformInjector>();
+            platformInjector.ExecutingAssembly = app.GetType().Assembly;
+            MobileCore.Init(platformInjector,options);
         }
     }
 }

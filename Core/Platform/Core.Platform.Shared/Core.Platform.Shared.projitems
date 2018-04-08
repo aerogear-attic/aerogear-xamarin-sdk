@@ -8,4 +8,7 @@
   <PropertyGroup Label="Configuration">
     <Import_RootNamespace>Core.Platform</Import_RootNamespace>
   </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)MobileCoreInitializer.cs" />
+  </ItemGroup>
 </Project>

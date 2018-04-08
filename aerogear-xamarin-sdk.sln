@@ -27,7 +27,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth.Tests", "Auth.Tests\Au
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		Core\Platform\Core.Platform.Shared\Core.Platform.Shared.projitems*{5329a095-ce6d-4219-927f-dcac1370911b}*SharedItemsImports = 4
+		Core\Platform\Core.Platform.Shared\Core.Platform.Shared.projitems*{00023bf2-7d9e-439c-8942-54d3f21e2710}*SharedItemsImports = 4
 		Core\Platform\Core.Platform.Shared\Core.Platform.Shared.projitems*{c5b8a6af-90d0-43dc-b097-a5f3ceb01e9f}*SharedItemsImports = 4
 		Core\Platform\Core.Platform.Shared\Core.Platform.Shared.projitems*{cb2a9f9e-48d2-4b24-8679-be890f402ebf}*SharedItemsImports = 13
 		Core\Platform\Core.Platform.Shared\Core.Platform.Shared.projitems*{e30a4499-8ef8-4542-aaf9-c9d30a543752}*SharedItemsImports = 4

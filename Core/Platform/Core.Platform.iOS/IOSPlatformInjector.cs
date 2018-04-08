@@ -16,13 +16,8 @@ namespace AeroGear.Mobile.Core.Platform.iOS
 
         public String PlatformName => "iOS";
 
-        public Assembly ExecutingAssembly { get; private set; }
+        public Assembly ExecutingAssembly { get;  set; }
         
-        public IOSPlatformInjector(Assembly assembly)
-        {
-            ExecutingAssembly = assembly;
-        }
-
         public String DefaultResources
         {
             get
