@@ -129,6 +129,10 @@
     <BundleResource Include="Resources\tab_feed%403x.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Core\Core.csproj">
+      <Project>{5329a095-ce6d-4219-927f-dcac1370911b}</Project>
+      <Name>Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Core\Platform\Core.Platform.iOS\Core.Platform.iOS.csproj">
       <Project>{c5b8a6af-90d0-43dc-b097-a5f3ceb01e9f}</Project>
       <Name>Core.Platform.iOS</Name>
@@ -139,16 +143,11 @@
       <Project>{F40048C7-7FA6-4BDF-9D0E-F3DEB847C63C}</Project>
       <Name>Example</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Core\Core.csproj">
-      <Project>{5329A095-CE6D-4219-927F-DCAC1370911B}</Project>
-      <Name>Core</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
       <Visible>false</Visible>
     </ImageAsset>
   </ItemGroup>
-  <Import Project="..\..\Core\Platform\Core.Platform.Shared\Core.Platform.Shared.projitems" Label="Shared" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

@@ -8,8 +8,8 @@
     <ProjectGuid>{E30A4499-8EF8-4542-AAF9-C9D30A543752}</ProjectGuid>
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
-    <RootNamespace>AeroGear.Mobile.Core.Platform.Android</RootNamespace>
-    <AssemblyName>Core.Platform</AssemblyName>
+    <RootNamespace>AeroGear.Mobile.Core</RootNamespace>
+    <AssemblyName>AeroGear.Mobile.Core.Platform.Android</AssemblyName>
     <TargetFrameworkVersion>v7.1</TargetFrameworkVersion>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
@@ -114,11 +114,10 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Core.csproj">
-      <Project>{5329A095-CE6D-4219-927F-DCAC1370911B}</Project>
+      <Project>{5329a095-ce6d-4219-927f-dcac1370911b}</Project>
       <Name>Core</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="..\Core.Platform.Shared\Core.Platform.Shared.projitems" Label="Shared" Condition="Exists('..\Core.Platform.Shared\Core.Platform.Shared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\..\..\packages\NuGet.Build.Packaging.0.2.0\build\NuGet.Build.Packaging.targets" Condition="Exists('..\..\..\packages\NuGet.Build.Packaging.0.2.0\build\NuGet.Build.Packaging.targets')" />

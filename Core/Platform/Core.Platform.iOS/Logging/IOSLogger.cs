@@ -1,13 +1,13 @@
-﻿using System;
-using AeroGear.Mobile.Core.Logging;
+﻿using AeroGear.Mobile.Core.Logging;
+using System;
 
-namespace Core.Platform.Logging
+namespace AeroGear.Mobile.Core.Logging
 {
     public class IOSLogger : ILogger
     {
         public const string DEFAULT_TAG = "AeroGear";
 
-        private void log(string level, string tag, string message, Exception e)
+        private void Log(string level, string tag, string message, System.Exception e)
         {
             System.Console.WriteLine($"{level}/{tag}/{message}");
             if (e != null)
@@ -16,25 +16,25 @@ namespace Core.Platform.Logging
             } 
         }
 
-        public void Debug(string tag, string message) => log("D", tag, message, null);
-        public void Debug(string message) => log("D", DEFAULT_TAG, message, null);
-        public void Debug(string tag, string message, Exception e) => log("D", tag, message, e);
-        public void Debug(string message, Exception e) => log("D", DEFAULT_TAG, message, null);
+        public void Debug(string tag, string message) => Log("D", tag, message, null);
+        public void Debug(string message) => Log("D", DEFAULT_TAG, message, null);
+        public void Debug(string tag, string message, System.Exception e) => Log("D", tag, message, e);
+        public void Debug(string message, System.Exception e) => Log("D", DEFAULT_TAG, message, null);
 
-        public void Info(string tag, string message) => log("I", tag, message, null);
-        public void Info(string message) => log("I", DEFAULT_TAG, message, null);
-        public void Info(string tag, string message, Exception e) => log("I", tag, message, e);
-        public void Info(string message, Exception e) => log("I", DEFAULT_TAG, message, null);
+        public void Info(string tag, string message) => Log("I", tag, message, null);
+        public void Info(string message) => Log("I", DEFAULT_TAG, message, null);
+        public void Info(string tag, string message, System.Exception e) => Log("I", tag, message, e);
+        public void Info(string message, System.Exception e) => Log("I", DEFAULT_TAG, message, null);
 
-        public void Error(string tag, string message) => log("E", tag, message, null);
-        public void Error(string message) => log("E", DEFAULT_TAG, message, null);
-        public void Error(string tag, string message, Exception e) => log("E", tag, message, e);
-        public void Error(string message, Exception e) => log("E", DEFAULT_TAG, message, null);
+        public void Error(string tag, string message) => Log("E", tag, message, null);
+        public void Error(string message) => Log("E", DEFAULT_TAG, message, null);
+        public void Error(string tag, string message, System.Exception e) => Log("E", tag, message, e);
+        public void Error(string message, System.Exception e) => Log("E", DEFAULT_TAG, message, null);
 
-        public void Warning(string tag, string message) => log("W", tag, message, null);
-        public void Warning(string message) => log("W", DEFAULT_TAG, message, null);
-        public void Warning(string tag, string message, Exception e) => log("W", tag, message, e);
-        public void Warning(string message, Exception e) => log("W", DEFAULT_TAG, message, null);
+        public void Warning(string tag, string message) => Log("W", tag, message, null);
+        public void Warning(string message) => Log("W", DEFAULT_TAG, message, null);
+        public void Warning(string tag, string message, System.Exception e) => Log("W", tag, message, e);
+        public void Warning(string message, System.Exception e) => Log("W", DEFAULT_TAG, message, null);
 
 
     }

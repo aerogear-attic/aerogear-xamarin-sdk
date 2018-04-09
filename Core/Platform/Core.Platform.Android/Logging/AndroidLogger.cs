@@ -2,7 +2,7 @@
 using AeroGear.Mobile.Core.Logging;
 using Android.Util;
 
-namespace AeroGear.Mobile.Core.Platform.Android.Logging
+namespace AeroGear.Mobile.Core.Logging
 {
     /// <summary>
     /// Android specific implementation of <see cref="ILogger"/> using default Android <see cref="Log"/>.

@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Reflection;
+using AeroGear.Mobile.Core;
 using AeroGear.Mobile.Core.Logging;
-using AeroGear.Mobile.Core.Platform.iOS;
-using Core.Platform.Logging;
 
 [assembly: Xamarin.Forms.Dependency(typeof(IOSPlatformInjector))]
-namespace AeroGear.Mobile.Core.Platform.iOS
+namespace AeroGear.Mobile.Core
 {
     /// <summary>
     /// Class handles injection of iOS specific classes and access to resoureces.

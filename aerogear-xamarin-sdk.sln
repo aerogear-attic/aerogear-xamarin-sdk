@@ -11,13 +11,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Example", "Example\Example\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Tests", "Core\Tests\Core.Tests.csproj", "{8EDF4429-251A-416D-BB68-93F227191BCF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core.csproj", "{5329A095-CE6D-4219-927F-DCAC1370911B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Core\Core.csproj", "{5329A095-CE6D-4219-927F-DCAC1370911B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Platform.iOS", "Core\Platform\Core.Platform.iOS\Core.Platform.iOS.csproj", "{C5B8A6AF-90D0-43DC-B097-A5F3CEB01E9F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Platform.Android", "Core\Platform\Core.Platform.Android\Core.Platform.Android.csproj", "{E30A4499-8EF8-4542-AAF9-C9D30A543752}"
-EndProject
-Project("{5DD5E4FA-CB73-4610-85AB-557B54E96AA9}") = "Core.Platform.NuGet", "Core\Platform\Core.Platform.NuGet\Core.Platform.NuGet.nuproj", "{6E66BB56-5540-44D9-8828-3ABB58BF7671}"
 EndProject
 Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Core.Platform", "Core\Platform\Core.Platform.Shared\Core.Platform.shproj", "{CB2A9F9E-48D2-4B24-8679-BE890F402EBF}"
 EndProject
@@ -27,7 +25,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth.Tests", "Auth.Tests\Au
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		Core\Platform\Core.Platform.Shared\Core.Platform.Shared.projitems*{00023bf2-7d9e-439c-8942-54d3f21e2710}*SharedItemsImports = 4
 		Core\Platform\Core.Platform.Shared\Core.Platform.Shared.projitems*{c5b8a6af-90d0-43dc-b097-a5f3ceb01e9f}*SharedItemsImports = 4
 		Core\Platform\Core.Platform.Shared\Core.Platform.Shared.projitems*{cb2a9f9e-48d2-4b24-8679-be890f402ebf}*SharedItemsImports = 13
 		Core\Platform\Core.Platform.Shared\Core.Platform.Shared.projitems*{e30a4499-8ef8-4542-aaf9-c9d30a543752}*SharedItemsImports = 4

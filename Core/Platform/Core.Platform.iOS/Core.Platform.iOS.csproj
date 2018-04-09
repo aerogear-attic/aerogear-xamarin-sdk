@@ -8,8 +8,8 @@
     <ProjectGuid>{C5B8A6AF-90D0-43DC-B097-A5F3CEB01E9F}</ProjectGuid>
     <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
-    <RootNamespace>Core.Platform</RootNamespace>
-    <AssemblyName>Core.Platform</AssemblyName>
+    <RootNamespace>AeroGear.Mobile.Core</RootNamespace>
+    <AssemblyName>AeroGear.Mobile.Core.Platform.iOS</AssemblyName>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -77,11 +77,10 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Core.csproj">
-      <Project>{5329A095-CE6D-4219-927F-DCAC1370911B}</Project>
+      <Project>{5329a095-ce6d-4219-927f-dcac1370911b}</Project>
       <Name>Core</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="..\Core.Platform.Shared\Core.Platform.Shared.projitems" Label="Shared" Condition="Exists('..\Core.Platform.Shared\Core.Platform.Shared.projitems')" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\..\..\packages\NuGet.Build.Packaging.0.2.0\build\NuGet.Build.Packaging.targets" Condition="Exists('..\..\..\packages\NuGet.Build.Packaging.0.2.0\build\NuGet.Build.Packaging.targets')" />

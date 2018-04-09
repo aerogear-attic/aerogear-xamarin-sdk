@@ -90,6 +90,10 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Core\Core.csproj">
+      <Project>{5329a095-ce6d-4219-927f-dcac1370911b}</Project>
+      <Name>Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Core\Platform\Core.Platform.Android\Core.Platform.Android.csproj">
       <Project>{e30a4499-8ef8-4542-aaf9-c9d30a543752}</Project>
       <Name>Core.Platform.Android</Name>
@@ -97,10 +101,6 @@
     <ProjectReference Include="..\Example\Example.csproj">
       <Project>{F40048C7-7FA6-4BDF-9D0E-F3DEB847C63C}</Project>
       <Name>Example</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Core\Core.csproj">
-      <Project>{5329A095-CE6D-4219-927F-DCAC1370911B}</Project>
-      <Name>Core</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
