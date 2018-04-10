@@ -18,7 +18,7 @@ namespace Example.Services
 
             var request = httpLayer.NewRequest();
             Stopwatch sw = new Stopwatch();
-            var url = "http://jsonplaceholder.typicode.com/users";
+            var url = "https://jsonplaceholder.typicode.com/users";
             sw.Start();
             var response = await request.Get(url).Execute();
             sw.Stop();
