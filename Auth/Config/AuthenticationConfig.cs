@@ -15,7 +15,7 @@ namespace Core.AeroGear.Mobile.Auth.Config
         public string Scopes { get; private set; }
 
         /// <returns>the minimum time between Json Web Key Set (JWKS) requests in minutes. Default value is 1440 (1 day)</returns>
-        public UInt16 MinTimeBetweenJwksRequests { get; private set; }
+        public ushort MinTimeBetweenJwksRequests { get; private set; }
 
         /// <summary>
         /// Creates a new AuthenticationConfig object.
@@ -23,7 +23,7 @@ namespace Core.AeroGear.Mobile.Auth.Config
         /// <param name="redirectUri">Redirect URI</param>
         /// <param name="scopes">OIDC Scopes of auth request</param>
         /// <param name="minTimeBetweenJwksRequests">the minimum time between Json Web Key Set (JWKS) requests in minutes</param>
-        private AuthenticationConfig(Uri redirectUri, string scopes, UInt16 minTimeBetweenJwksRequests)
+        private AuthenticationConfig(Uri redirectUri, string scopes, ushort minTimeBetweenJwksRequests)
         {
             RedirectUri = redirectUri;
             Scopes = scopes;
@@ -41,7 +41,7 @@ namespace Core.AeroGear.Mobile.Auth.Config
         {
             private Uri redirectUri;
             private string scopes = "openid";
-            private UInt16 minTimeBetweenJwksRequests = 24 * 60;
+            private ushort minTimeBetweenJwksRequests = 24 * 60;
 
             /// <summary>Specify the redirect value</summary>
             /// <param name="redirectUri">redirect uri value</param>
@@ -65,7 +65,7 @@ namespace Core.AeroGear.Mobile.Auth.Config
             /// <summary>Specify the minimum time between Json Web Key Set (JWKS) requests in minutes.</summary>
             /// <param name="minTimeBetweenJwksRequests">the minimum time between Json Web Key Set (JWKS) requests in minutes</param>
             /// <returns>AuthenticationConfigBuilder instance</returns>
-            public AuthenticationConfigBuilder MinTimeBetweenJwksRequests(UInt16 minTimeBetweenJwksRequests)
+            public AuthenticationConfigBuilder MinTimeBetweenJwksRequests(ushort minTimeBetweenJwksRequests)
             {
                 this.minTimeBetweenJwksRequests = minTimeBetweenJwksRequests;
                 return this;
