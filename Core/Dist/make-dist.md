@@ -8,7 +8,7 @@ Create a branch with your new release version.
 2) Build the project for the desired platform:
  
  * open VisualStudio, open solution
- * choose `Debug` on the top bar schema selection select `CoreXXX` where XXX is iOS or Android
+ * choose `Release` on the top bar schema selection select `CoreXXX` where XXX is iOS or Android
 
 3) Bump version in `Core/Core.nuspec`
 
@@ -24,8 +24,8 @@ nuget setApiKey <api key>
 After updating the nuspec with the right version you can pack the release and upload:
 
 ```bash
-nuget pack FHSDK.nuspec -Symbols
-nuget push FH.SDK.<version>.nupkg
+nuget pack Core.nuspec -Symbols
+nuget push aerogear-xamarin-core.<version>.nupkg
 ```
 
 5) Merge the branch
