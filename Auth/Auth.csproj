@@ -31,9 +31,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AuthService.cs" />
     <Compile Include="Config\AuthenticationConfig.cs" />
+    <Compile Include="User\UserRole.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Config\" />
+    <Folder Include="User\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
 </Project>
