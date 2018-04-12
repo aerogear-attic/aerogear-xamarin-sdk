@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Auth.Tests</RootNamespace>
     <AssemblyName>Auth.Tests</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -32,10 +32,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Config\AuthenticationConfigTests.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Config\" />
+    <Compile Include="AeroGear.Mobile\Auth\Config\AuthenticationConfigTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Auth\Auth.csproj">

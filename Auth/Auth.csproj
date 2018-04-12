@@ -29,11 +29,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="AuthService.cs" />
-    <Compile Include="Config\AuthenticationConfig.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Config\" />
+    <Compile Include="AeroGear.Mobile\Auth\AuthService.cs" />
+    <Compile Include="AeroGear.Mobile\Auth\Config\AuthenticationConfig.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
 </Project>

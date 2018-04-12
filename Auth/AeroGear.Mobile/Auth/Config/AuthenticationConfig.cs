@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Diagnostics.Contracts;
 
-namespace Auth.Config
+namespace AeroGear.Mobile.Auth.Config
 {
     /// <summary>
     /// Configurations for the authentication service
