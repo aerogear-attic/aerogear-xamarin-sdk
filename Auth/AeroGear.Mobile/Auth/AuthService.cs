@@ -1,5 +1,5 @@
 ﻿using System;
-namespace Auth
+namespace AeroGear.Mobile.Auth
 {
     public class AuthService
     {
