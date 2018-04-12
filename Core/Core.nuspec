@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>aerogear-xamarin-core</id>
+    <version>1.0.0</version>
+    <title>Aerogear Xamarin SDK Core</title>
+    <authors>Aerogear Community</authors>
+    <owners>Aerogear Community</owners>
+    <licenseUrl>https://github.com/aerogear/aerogear-xamarin-sdk/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/aerogear/aerogear-xamarin-sdk</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>.Net and Xamarin libraries for the AeroGear Mobile Core</description>
+    <copyright>Copyright 2018</copyright>
+    <tags>aerogear security sso openid xamarin iOS android mobile</tags>
+  </metadata>
+  <files>
+    <file src="../readme.md" target="" />
+  </files>
+</package>
