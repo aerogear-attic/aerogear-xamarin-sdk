@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Example.Android</RootNamespace>
     <AssemblyName>Example.Android</AssemblyName>
-    <TargetFrameworkVersion>v8.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v7.1</TargetFrameworkVersion>
     <AndroidApplication>True</AndroidApplication>
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
     <AndroidResgenClass>Resource</AndroidResgenClass>
@@ -93,13 +93,13 @@
     </AndroidResource>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Core\Core.csproj">
-      <Project>{5329a095-ce6d-4219-927f-dcac1370911b}</Project>
-      <Name>Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Core\Platform\Core.Platform.Android\Core.Platform.Android.csproj">
+    <ProjectReference Include="..\..\Core\Core.Platform.Android\Core.Platform.Android.csproj">
       <Project>{e30a4499-8ef8-4542-aaf9-c9d30a543752}</Project>
       <Name>Core.Platform.Android</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\Core\Core.csproj">
+      <Project>{f1ea4bba-d775-45c0-99da-db0590bee87e}</Project>
+      <Name>Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\Example\Example.csproj">
       <Project>{F40048C7-7FA6-4BDF-9D0E-F3DEB847C63C}</Project>

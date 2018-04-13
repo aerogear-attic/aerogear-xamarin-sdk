@@ -119,18 +119,6 @@
     <Reference Include="XPath2, Version=1.0.5.1, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\XPath2.1.0.5.1\lib\net40\XPath2.dll</HintPath>
     </Reference>
-    <Reference Include="xunit.abstractions, Version=2.0.0.0, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\xunit.abstractions.2.0.1\lib\net35\xunit.abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="xunit.assert, Version=2.3.1.3858, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\xunit.assert.2.3.1\lib\netstandard1.1\xunit.assert.dll</HintPath>
-    </Reference>
-    <Reference Include="xunit.core, Version=2.3.1.3858, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\xunit.extensibility.core.2.3.1\lib\netstandard1.1\xunit.core.dll</HintPath>
-    </Reference>
-    <Reference Include="xunit.execution.desktop, Version=2.3.1.3858, Culture=neutral, PublicKeyToken=8d05b1bb7a6fdb6c, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\xunit.extensibility.execution.2.3.1\lib\net452\xunit.execution.desktop.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DummyModuleInitTest.cs" />
@@ -154,14 +142,14 @@
     <EmbeddedResource Include="Resources\mobile-services.json" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Core.csproj">
-      <Project>{5329a095-ce6d-4219-927f-dcac1370911b}</Project>
+    <ProjectReference Include="..\Core\Core.csproj">
+      <Project>{f1ea4bba-d775-45c0-99da-db0590bee87e}</Project>
       <Name>Core</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="Test" DependsOnTargets="Build">
-    <NUnit3 Assemblies=".\bin\Debug\AeroGear.Mobile.Core.Tests.dll" Process="Multiple" TestTimeout="2000" Workers="10" EnableShadowCopy="true" OutputXmlFile="Core.Tests.Results.xml" WorkingDirectory="." ToolPath="..\..\packages\NUnit.ConsoleRunner.3.8.0\tools" ShowLabels="All"/>
+    <NUnit3 Assemblies=".\bin\Debug\AeroGear.Mobile.Core.Tests.dll" Process="Multiple" TestTimeout="2000" Workers="10" EnableShadowCopy="true" OutputXmlFile="Core.Tests.Results.xml" WorkingDirectory="." ToolPath="..\..\packages\NUnit.ConsoleRunner.3.8.0\tools" ShowLabels="All" />
   </Target>
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
@@ -171,13 +159,9 @@
     <Error Condition="!Exists('..\..\packages\NUnit3TestAdapter.3.10.0\build\net35\NUnit3TestAdapter.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NUnit3TestAdapter.3.10.0\build\net35\NUnit3TestAdapter.props'))" />
     <Error Condition="!Exists('..\..\packages\Microsoft.NET.Test.Sdk.15.7.0\build\net45\Microsoft.Net.Test.Sdk.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.NET.Test.Sdk.15.7.0\build\net45\Microsoft.Net.Test.Sdk.props'))" />
     <Error Condition="!Exists('..\..\packages\Microsoft.NET.Test.Sdk.15.7.0\build\net45\Microsoft.Net.Test.Sdk.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\Microsoft.NET.Test.Sdk.15.7.0\build\net45\Microsoft.Net.Test.Sdk.targets'))" />
-    <Error Condition="!Exists('..\..\packages\xunit.runner.console.2.3.1\build\xunit.runner.console.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\xunit.runner.console.2.3.1\build\xunit.runner.console.props'))" />
-    <Error Condition="!Exists('..\..\packages\xunit.core.2.3.1\build\xunit.core.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\xunit.core.2.3.1\build\xunit.core.props'))" />
-    <Error Condition="!Exists('..\..\packages\xunit.core.2.3.1\build\xunit.core.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\xunit.core.2.3.1\build\xunit.core.targets'))" />
     <Error Condition="!Exists('..\..\packages\MSBuildTasks.1.5.0.235\build\MSBuildTasks.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\MSBuildTasks.1.5.0.235\build\MSBuildTasks.targets'))" />
   </Target>
   <Import Project="..\..\packages\Microsoft.NET.Test.Sdk.15.7.0\build\net45\Microsoft.Net.Test.Sdk.targets" Condition="Exists('..\..\packages\Microsoft.NET.Test.Sdk.15.7.0\build\net45\Microsoft.Net.Test.Sdk.targets')" />
-  <Import Project="..\..\packages\xunit.core.2.3.1\build\xunit.core.targets" Condition="Exists('..\..\packages\xunit.core.2.3.1\build\xunit.core.targets')" />
   <Import Project="..\..\packages\MSBuildTasks.1.5.0.235\build\MSBuildTasks.targets" Condition="Exists('..\..\packages\MSBuildTasks.1.5.0.235\build\MSBuildTasks.targets')" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

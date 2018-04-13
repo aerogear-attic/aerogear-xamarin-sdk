@@ -1,8 +1,8 @@
-﻿using NUnit.Framework;
+﻿using AeroGear.Mobile.Auth.Config;
+using NUnit.Framework;
 using System;
-using Auth.Config;
 
-namespace Auth.Tests.Config
+namespace AeroGear.Mobile.Auth.Tests.Config
 {
     [TestFixture(Category = "Configuration")]
     public class AuthenticationConfigTests
