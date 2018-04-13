@@ -32,6 +32,7 @@
     <Compile Include="AuthService.cs" />
     <Compile Include="Config\AuthenticationConfig.cs" />
     <Compile Include="User\UserRole.cs" />
+    <Compile Include="User\User.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Config\" />

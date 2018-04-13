@@ -1,5 +1,4 @@
 ﻿using System;
-using Aerogear.Mobile.Auth.User;
 using NUnit.Framework;
 
 namespace Aerogear.Mobile.Auth.User.Test
