@@ -26,14 +26,16 @@ namespace Aerogear.Mobile.Auth.User
         /// <value>The type of the role.</value>
         private RoleType RoleType { get; }
 
+        private UserRole() {
+        }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="T:Aerogear.Mobile.Auth.UserRole"/> class.
         /// </summary>
         /// <param name="name">Role Name.</param>
         /// <param name="type">Role Type.</param>
         /// <param name="roleNamespace">Role name space/client ID.</param>
-        public UserRole(string name, RoleType type, string roleNamespace)
-        {
+        public UserRole(string name, RoleType type, string roleNamespace) {
             Name = name;
             RoleType = type;
             RoleNamespace = roleNamespace;

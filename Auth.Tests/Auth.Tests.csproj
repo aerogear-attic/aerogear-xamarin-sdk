@@ -33,9 +33,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Config\AuthenticationConfigTests.cs" />
+    <Compile Include="User\UserRoleTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Config\" />
+    <Folder Include="User\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Auth\Auth.csproj">
