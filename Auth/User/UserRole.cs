@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics.Contracts;
+using static AeroGear.Mobile.Core.Utils.SanityCheck;
 
 namespace Aerogear.Mobile.Auth.User
 {
@@ -36,8 +37,8 @@ namespace Aerogear.Mobile.Auth.User
         /// <param name="type">Role Type.</param>
         /// <param name="roleNamespace">Role name space/client ID.</param>
         public UserRole(string name, RoleType type, string roleNamespace) {
-            Name = name;
-            RoleType = type;
+            Name = nonEmpty(name, "name");
+            RoleType = nonNull(type, "type");
             RoleNamespace = roleNamespace;
         }
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using static AeroGear.Mobile.Core.Utils.SanityCheck;
 
 namespace Aerogear.Mobile.Auth.User
 {
@@ -76,7 +77,7 @@ namespace Aerogear.Mobile.Auth.User
                      string refreshToken,
                      IList<UserRole> roles)
         {
-            this.Username = username;
+            this.Username = nonEmpty(username, "username");
             this.Firstname = firstName;
             this.Lastname = lastName;
             this.Email = email;
@@ -102,6 +103,7 @@ namespace Aerogear.Mobile.Auth.User
         /// <param name="role">role to be checked.</param>
         /// <param name="resourceId">resourceId related to role.</param>
         public bool HasResourceRole(string role, string resourceId) {
+            nonEmpty(role, "role");
             return Roles.Contains(new UserRole(role, RoleType.RESOURCE, resourceId));
         }
 
@@ -111,6 +113,7 @@ namespace Aerogear.Mobile.Auth.User
         /// <returns><c>true</c>, if the passed in role is associated with this user, <c>false</c> otherwise.</returns>
         /// <param name="role">role to be checked.</param>
         public bool HasRealmRole(string role) {
+            nonEmpty(role, "role");
             return Roles.Contains(new UserRole(role, RoleType.REALM, null));
         }
 
@@ -150,7 +153,7 @@ namespace Aerogear.Mobile.Auth.User
         }
 
         public UserBuilder WithUsername(string username) {
-            this.Username = username;
+            this.Username = nonEmpty(username, "username");
             return this;
         }
 
