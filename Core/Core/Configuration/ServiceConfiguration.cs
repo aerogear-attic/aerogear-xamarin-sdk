@@ -12,7 +12,7 @@ namespace AeroGear.Mobile.Core.Configuration
     public class ServiceConfiguration : IReadOnlyDictionary<string,string>
     {
 
-        public string Name
+        public string Id
         {
             get; private set;
         }
@@ -37,9 +37,9 @@ namespace AeroGear.Mobile.Core.Configuration
 
         private IDictionary<string, string> properties;
 
-        private ServiceConfiguration(string name, IDictionary<string, string> properties, string type, string url)
+        private ServiceConfiguration(string id, IDictionary<string, string> properties, string type, string url)
         {
-            Name = name;
+            Id = id;
             this.properties = properties;
             Type = type;
             Url = url;
@@ -50,7 +50,7 @@ namespace AeroGear.Mobile.Core.Configuration
         public class ServiceConfigurationBuilder
         {
 
-            private string name;
+            private string id;
 
             private Dictionary<string, string> properties = new Dictionary<string, string>();
 
@@ -58,9 +58,9 @@ namespace AeroGear.Mobile.Core.Configuration
 
             private string url;
 
-            public ServiceConfigurationBuilder Name(string name) {
-                Contract.Requires(string.IsNullOrEmpty(name) == false);
-                this.name = name;
+            public ServiceConfigurationBuilder Id(string id) {
+                Contract.Requires(string.IsNullOrEmpty(id) == false);
+                this.id = id;
                 return this;
             }
 
@@ -90,7 +90,7 @@ namespace AeroGear.Mobile.Core.Configuration
 
             public ServiceConfiguration Build()
             {
-                return new ServiceConfiguration(this.name, this.properties, this.type, this.url);
+                return new ServiceConfiguration(this.id, this.properties, this.type, this.url);
             }
         }
 

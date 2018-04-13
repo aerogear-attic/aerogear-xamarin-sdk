@@ -18,7 +18,7 @@ namespace Example
 
 		protected override void OnStart ()
 		{
-            //MobileCore core = new MobileCore();
+            
 
 		}
 

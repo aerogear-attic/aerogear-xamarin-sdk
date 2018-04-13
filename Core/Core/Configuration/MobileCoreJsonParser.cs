@@ -54,7 +54,7 @@ namespace AeroGear.Mobile.Core.Configuration
             Contract.Requires(jsonObject != null);
 
             var serviceConfigBuilder = ServiceConfiguration.Builder;
-            serviceConfigBuilder.Name(jsonObject["name"]).Url(jsonObject["url"]).Type(jsonObject["type"]);
+            serviceConfigBuilder.Id(jsonObject["id"]).Url(jsonObject["url"]).Type(jsonObject["type"]);
             JsonObject config = (JsonObject)jsonObject["config"];
             var names = config.Keys;
             if ((names != null))
@@ -66,7 +66,7 @@ namespace AeroGear.Mobile.Core.Configuration
             }
 
             ServiceConfiguration serviceConfig = serviceConfigBuilder.Build();
-            values[serviceConfig.Name] = serviceConfig;
+            values[serviceConfig.Id] = serviceConfig;
         }
 
         /// <summary>

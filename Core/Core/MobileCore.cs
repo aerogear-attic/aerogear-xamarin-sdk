@@ -10,6 +10,9 @@ using System.Net.Http;
 
 namespace AeroGear.Mobile.Core
 {
+    /// <summary>
+    /// MobileCore is the entry point into AeroGear mobile services.
+    /// </summary>
     public sealed class MobileCore
     {
 
@@ -33,6 +36,9 @@ namespace AeroGear.Mobile.Core
 
         private static MobileCore instance;
 
+        /// <summary>
+        /// Holds MobileCore singleton instance. It's needed to initialize core before using this.
+        /// </summary>
         public static MobileCore Instance
         {
             get
@@ -46,6 +52,9 @@ namespace AeroGear.Mobile.Core
             }
         }
 
+        /// <summary>
+        /// Gets HTTP service module of the MobileCore.
+        /// </summary>
         public IHttpServiceModule HttpLayer
         {
             get; private set;
@@ -108,10 +117,25 @@ namespace AeroGear.Mobile.Core
             else HttpLayer = options.HttpServiceModule;
         }
 
+        /// <summary>
+        /// Initializes MobileCore with defaults and without platform-specific injector. 
+        /// </summary>
+        /// <returns>MobileCore singleton instance</returns>
         public static MobileCore Init() => Init(null, new Options());
 
+        /// <summary>
+        /// Initializes MobileCore with defaults and with platform-specific injector. 
+        /// </summary>
+        /// <param name="injector">platform specific implementation dependency injection module</param>
+        /// <returns>MobileCore singleton instance</returns>
         public static MobileCore Init(IPlatformInjector injector) => Init(injector, new Options());
 
+        /// <summary>
+        /// Initializes MobileCore with specific options and with platform-specific injector. 
+        /// </summary>
+        /// <param name="injector">platform specific implementation dependency injection module</param>
+        /// <param name="options">initialization options</param>
+        /// <returns>MobileCore singleton instance</returns>
         public static MobileCore Init(IPlatformInjector injector, Options options)
         {
             Contract.Requires(options != null);
@@ -135,7 +159,6 @@ namespace AeroGear.Mobile.Core
         /// Returns instance of a service module.
         /// </summary>
         /// <typeparam name="T">service module type</typeparam>
-        /// <param name="serviceClass">service module class type</param>
         /// <returns></returns>
         public T GetInstance<T>() where T : IServiceModule => GetInstance<T>(typeof(T), null);
 
