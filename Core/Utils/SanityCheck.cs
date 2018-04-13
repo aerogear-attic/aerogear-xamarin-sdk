@@ -64,11 +64,13 @@ namespace AeroGear.Mobile.Core.Utils
         }
 
         /// <summary>
-        /// Nons the empty.
+        /// Checks if the passed in value is an empty String. If it is empty an
+        /// ArgumentException is thrown with the passed in custom message. The params are
+        /// applied to the customMessage according to String.Format
         /// </summary>
         /// <returns>The received value.</returns>
         /// <param name="value">String to be checked.</param>
-        /// <param name="trim">whether the string must be trimmed or not.</param>
+        /// <param name="trim">Whether the string must be trimmed or not.</param>
         /// <param name="customMessage">Custom message to be put into the exception.</param>
         /// <param name="messageParams">Parameters to be applied to the custom message.</param>
         public static string nonEmpty(string value, bool trim,

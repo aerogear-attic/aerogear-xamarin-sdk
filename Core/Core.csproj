@@ -30,11 +30,11 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="AeroGear.Mobile\Core\MobileCore.cs" />
-    <Compile Include="AeroGear.Mobile\Core\Utils\SanityCheck.cs" />
+    <Compile Include="Utils\SanityCheck.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="AeroGear.Mobile\" />
-    <Folder Include="AeroGear.Mobile\Core\Utils\" />
+    <Folder Include="Utils\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
 </Project>
