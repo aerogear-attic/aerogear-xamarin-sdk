@@ -16,7 +16,7 @@ namespace AeroGear.Mobile.Core.Utils
             }
             catch (ArgumentNullException ane)
             {
-                Assert.AreEqual("Value cannot be null.\nParameter name: test-param", ane.Message);
+                Assert.AreEqual(String.Format("Value cannot be null.{0}Parameter name: test-param", Environment.NewLine), ane.Message);
             }
         }
 
