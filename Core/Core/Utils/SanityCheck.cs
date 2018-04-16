@@ -76,7 +76,7 @@ namespace AeroGear.Mobile.Core.Utils
         public static string nonEmpty(string value, bool trim,
                                       string customMessage, params Object[] messageParams)
         {
-            nonNull(value, customMessage);
+            nonNull(value, String.Format(customMessage, messageParams));
 
             if (value.Length == 0 || (trim && value.Trim().Length == 0))
             {

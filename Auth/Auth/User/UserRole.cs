@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics.Contracts;
 using static AeroGear.Mobile.Core.Utils.SanityCheck;
 
 namespace Aerogear.Mobile.Auth.User
