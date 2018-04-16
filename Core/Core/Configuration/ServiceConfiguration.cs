@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Diagnostics.Contracts;
 using System.Json;
+using static AeroGear.Mobile.Core.Utils.SanityCheck;
 
 namespace AeroGear.Mobile.Core.Configuration
 {
@@ -59,7 +59,7 @@ namespace AeroGear.Mobile.Core.Configuration
             private string url;
 
             public ServiceConfigurationBuilder Id(string id) {
-                Contract.Requires(string.IsNullOrEmpty(id) == false);
+                nonEmpty(id, "id");
                 this.id = id;
                 return this;
             }

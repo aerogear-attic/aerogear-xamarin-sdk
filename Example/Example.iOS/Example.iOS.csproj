@@ -137,7 +137,7 @@
       <Name>Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\Example\Example.csproj">
-      <Project>{F40048C7-7FA6-4BDF-9D0E-F3DEB847C63C}</Project>
+      <Project>{F0217CFC-1E56-4703-AECE-EE4196A59B17}</Project>
       <Name>Example</Name>
     </ProjectReference>
   </ItemGroup>

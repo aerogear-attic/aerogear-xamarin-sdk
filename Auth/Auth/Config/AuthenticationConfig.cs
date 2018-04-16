@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Diagnostics.Contracts;
+using static AeroGear.Mobile.Core.Utils.SanityCheck;
 
 namespace AeroGear.Mobile.Auth.Config
 {
@@ -64,7 +64,7 @@ namespace AeroGear.Mobile.Auth.Config
             /// <returns>AuthenticationConfigBuilder instance</returns>
             public AuthenticationConfigBuilder RedirectUri(string redirectUri)
             {
-                Contract.Requires(!string.IsNullOrEmpty(redirectUri));
+                nonEmpty(redirectUri, "redirectUri");
                 this.redirectUri = new Uri(redirectUri);
                 return this;
             }

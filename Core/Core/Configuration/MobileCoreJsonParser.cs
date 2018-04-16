@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.Contracts;
 using System.IO;
 using System.Json;
+using static AeroGear.Mobile.Core.Utils.SanityCheck;
 
 namespace AeroGear.Mobile.Core.Configuration
 {
@@ -15,7 +15,7 @@ namespace AeroGear.Mobile.Core.Configuration
 
         private MobileCoreJsonParser(Stream jsonStream)
         {
-            Contract.Requires(jsonStream != null);
+            nonNull(jsonStream, "jsonStream");
             var jsonText = ReadJsonStream(jsonStream);
             var jsonDocument = JsonValue.Parse(jsonText);
             ParseMobileCoreArray((JsonArray)jsonDocument["services"]);
@@ -23,15 +23,14 @@ namespace AeroGear.Mobile.Core.Configuration
 
         private MobileCoreJsonParser(string jsonString)
         {
-            Contract.Requires(jsonString != null);
+            nonNull(jsonString, "jsonString");
             var jsonDocument = JsonValue.Parse(jsonString);
             ParseMobileCoreArray((JsonArray)jsonDocument["services"]);
         }
 
         private String ReadJsonStream(Stream jsonStream)
         {
-            Contract.Requires(jsonStream != null);
-            Contract.Requires(jsonStream.CanRead);
+            nonNull(jsonStream, "jsonStream");
             using (var streamReader = new StreamReader(jsonStream))
             {
                 return streamReader.ReadToEnd();
@@ -40,7 +39,7 @@ namespace AeroGear.Mobile.Core.Configuration
 
         private void ParseMobileCoreArray(JsonArray array)
         {
-            Contract.Requires(array != null);
+            nonNull(array, "array");
             int length = array.Count;
             for (int i = 0; (i < length); i++)
             {
@@ -51,8 +50,7 @@ namespace AeroGear.Mobile.Core.Configuration
 
         private void ParseConfigObject(JsonObject jsonObject)
         {
-            Contract.Requires(jsonObject != null);
-
+            nonNull(jsonObject, "jsonObject");
             var serviceConfigBuilder = ServiceConfiguration.Builder;
             serviceConfigBuilder.Id(jsonObject["id"]).Url(jsonObject["url"]).Type(jsonObject["type"]);
             JsonObject config = (JsonObject)jsonObject["config"];
