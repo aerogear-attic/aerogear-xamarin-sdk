@@ -15,7 +15,7 @@ namespace AeroGear.Mobile.Core.Utils
         /// <param name="value">String to be checked.</param>
         /// <param name="paramName">Parameter name to be used in the error message.</param>
         /// <typeparam name="T">The 1st type parameter.</typeparam>
-        public static T nonNull<T>(T value, string paramName) {
+        public static T NonNull<T>(T value, string paramName) {
             if (value == null)
             {
                 throw new ArgumentNullException(String.Format(paramName));
@@ -30,9 +30,9 @@ namespace AeroGear.Mobile.Core.Utils
         /// <returns>The received value.</returns>
         /// <param name="value">String to be checked.</param>
         /// <param name="paramName">Parameter name to be used in the error message.</param>
-        public static string nonEmpty(string value, string paramName)
+        public static string NonEmpty(string value, string paramName)
         {
-            return nonEmpty(value, true, "'{0}' can't be empty or null", paramName);
+            return NonEmpty(value, true, "'{0}' can't be empty or null", paramName);
         }
 
         /// <summary>
@@ -44,9 +44,9 @@ namespace AeroGear.Mobile.Core.Utils
         /// <param name="value">String to be checked.</param>
         /// <param name="paramName">Parameter name to be used in the error message.</param>
         /// <param name="trim">whether the string must be trimmed or not.</param>
-        public static string nonEmpty(string value, String paramName, bool trim)
+		public static string NonEmpty(string value, String paramName, bool trim)
         {
-            return nonEmpty(value, trim, "'{0}' can't be empty or null", paramName);
+            return NonEmpty(value, trim, "'{0}' can't be empty or null", paramName);
         }
 
         /// <summary>
@@ -58,9 +58,9 @@ namespace AeroGear.Mobile.Core.Utils
         /// <param name="value">String to be checked.</param>
         /// <param name="customMessage">Custom message to be put into the exception.</param>
         /// <param name="messageParams">Parameters to be applied to the custom message.</param>
-        public static string nonEmpty(string value, string customMessage, params Object[] messageParams)
+        public static string NonEmpty(string value, string customMessage, params Object[] messageParams)
         {
-            return nonEmpty(value, true, customMessage, messageParams);
+            return NonEmpty(value, true, customMessage, messageParams);
         }
 
         /// <summary>
@@ -73,10 +73,10 @@ namespace AeroGear.Mobile.Core.Utils
         /// <param name="trim">Whether the string must be trimmed or not.</param>
         /// <param name="customMessage">Custom message to be put into the exception.</param>
         /// <param name="messageParams">Parameters to be applied to the custom message.</param>
-        public static string nonEmpty(string value, bool trim,
+		public static string NonEmpty(string value, bool trim,
                                       string customMessage, params Object[] messageParams)
         {
-            nonNull(value, String.Format(customMessage, messageParams));
+            NonNull(value, String.Format(customMessage, messageParams));
 
             if (value.Length == 0 || (trim && value.Trim().Length == 0))
             {
