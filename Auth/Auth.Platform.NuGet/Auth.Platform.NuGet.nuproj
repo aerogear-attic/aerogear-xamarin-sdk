@@ -15,7 +15,7 @@
     <RootNamespace>Auth.Platform</RootNamespace>
     <UsePartialTypes>false</UsePartialTypes>
     <AssemblyName>Auth.Platform.NuGet</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
