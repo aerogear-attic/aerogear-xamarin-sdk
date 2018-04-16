@@ -23,8 +23,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth", "Auth\Auth\Auth.cspr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth.Tests", "Auth\Auth.Tests\Auth.Tests.csproj", "{49AB0AE8-D54A-4C4A-A0B2-45CAD81F9EBE}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "Auth.Platform.Shared", "Auth\Auth.Platform.Shared\Auth.Platform.Shared.shproj", "{D67EDF74-1F00-45A1-B0CB-6C6A30D5F223}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth.Platform.iOS", "Auth\Auth.Platform.iOS\Auth.Platform.iOS.csproj", "{CBB87B9E-D526-46B1-B05A-AD3D383EACED}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth.Platform.Android", "Auth\Auth.Platform.Android\Auth.Platform.Android.csproj", "{ACEB8935-989F-46CA-8F0F-FBA3B358C70C}"
