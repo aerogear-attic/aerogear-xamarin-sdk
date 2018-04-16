@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics.Contracts;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
+using static AeroGear.Mobile.Core.Utils.SanityCheck;
 
 namespace AeroGear.Mobile.Core.Http
 {
@@ -21,13 +21,14 @@ namespace AeroGear.Mobile.Core.Http
 
         internal SystemNetHttpRequest(HttpClient httpClient)
         {
-            Contract.Requires(httpClient != null);
+            nonNull(httpClient, "httpClient");
             this.httpClient = httpClient;
         }
 
         public IHttpRequest AddHeader(string key, string value)
         {
-            Contract.Requires(key != null && value != null);
+            nonNull(key, "header key");
+            nonNull(value, "header value");
             headers.Add(new KeyValuePair<string, string>(key, value));
             return this;
         }
@@ -35,7 +36,8 @@ namespace AeroGear.Mobile.Core.Http
 
         public IHttpRequestToBeExecuted Custom(string method, string url, byte[] body)
         {
-            Contract.Requires(method != null && url != null && body != null);
+            nonNull(method, "method");
+            nonNull(url, "url");
             var message = new HttpRequestMessage();
             message.Method = new HttpMethod(method);
             message.RequestUri = new Uri(url);

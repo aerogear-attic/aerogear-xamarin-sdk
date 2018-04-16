@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using static AeroGear.Mobile.Core.Utils.SanityCheck;
 using AeroGear.Mobile.Core.Configuration;
 using AeroGear.Mobile.Core.Logging;
 using AeroGear.Mobile.Core.Exception;
-using System.Diagnostics.Contracts;
 using AeroGear.Mobile.Core.Http;
 using System.Reflection;
 using System.Net.Http;
@@ -66,7 +66,7 @@ namespace AeroGear.Mobile.Core
 
         private MobileCore(IPlatformInjector injector, Options options)
         {
-            Contract.Requires(options != null);
+            
             Logger = options.Logger ?? injector?.CreateLogger() ?? new NullLogger();
 
             if (injector != null && options.ConfigFileName != null)
@@ -138,7 +138,7 @@ namespace AeroGear.Mobile.Core
         /// <returns>MobileCore singleton instance</returns>
         public static MobileCore Init(IPlatformInjector injector, Options options)
         {
-            Contract.Requires(options != null);
+            nonNull<Options>(options, "init options");
             instance = new MobileCore(injector, options);
             return instance;
         }
@@ -180,7 +180,7 @@ namespace AeroGear.Mobile.Core
         private T GetInstance<T>(Type serviceClass, ServiceConfiguration serviceConfiguration)
             where T : IServiceModule
         {
-            Contract.Requires(serviceClass != null);
+            nonNull<Type>(serviceClass, "serviceClass");
             if (services.ContainsKey(serviceClass))
             {
                 return (T)services[serviceClass];
