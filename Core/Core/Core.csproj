@@ -6,15 +6,6 @@
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Remove="Platform\**" />
-    <Compile Remove="Tests\**" />
-    <EmbeddedResource Remove="Platform\**" />
-    <EmbeddedResource Remove="Tests\**" />
-    <None Remove="Platform\**" />
-    <None Remove="Tests\**" />
-    
-  </ItemGroup>
-  <ItemGroup>
     <PackageReference Include="System.Json" Version="4.4.0" />
   </ItemGroup>
 </Project>
