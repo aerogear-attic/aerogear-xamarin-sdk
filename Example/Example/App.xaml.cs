@@ -2,7 +2,7 @@
 
 using Example.Views;
 using Xamarin.Forms;
-using Aerogear.Mobile.Core;
+using AeroGear.Mobile.Core;
 
 namespace Example
 {
@@ -18,7 +18,8 @@ namespace Example
 
 		protected override void OnStart ()
 		{
-            MobileCore core = new MobileCore();
+            
+
 		}
 
 		protected override void OnSleep ()

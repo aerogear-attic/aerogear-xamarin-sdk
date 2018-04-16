@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
 using Foundation;
 using UIKit;
 using FFImageLoading;
 using FFImageLoading.Forms.Touch;
 using ImageCircle.Forms.Plugin.iOS;
+using AeroGear.Mobile.Core;
+using Xamarin.Forms;
+using Acr.UserDialogs;
+using AeroGear.Mobile.Core.Platform;
 
 namespace Example.iOS
 {
@@ -26,7 +29,9 @@ namespace Example.iOS
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
             global::Xamarin.Forms.Forms.Init();
-            LoadApplication(new App());
+            var xamApp = new App();
+            MobileCoreInitializer.Init(xamApp);
+            LoadApplication(xamApp);
             CachedImageRenderer.Init();
             ImageCircleRenderer.Init();
             return base.FinishedLaunching(app, options);

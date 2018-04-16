@@ -5,11 +5,12 @@ using System.Runtime.CompilerServices;
 using Example.Models;
 using Example.Resources;
 using Example.Utils;
+using Example.ViewModels.Base;
 using Example.Views.Pages;
 
 namespace Example.ViewModels
 {
-    public class DrawerMenuVM : INotifyPropertyChanged
+    public class DrawerMenuVM : BaseVM
     {
         public ObservableCollection<NavigationItem> NavigationItems { get; set; }
 
@@ -22,17 +23,5 @@ namespace Example.ViewModels
                     new NavigationItem { Id = 2, Title = StringResources.NavAuth, TargetType=typeof(AuthPage),Icon=ResourceUtils.GetSvg("ic_auth") },
                 });
         }
-
-
-        #region INotifyPropertyChanged Implementation
-        public event PropertyChangedEventHandler PropertyChanged;
-        void OnPropertyChanged([CallerMemberName] string propertyName = "")
-        {
-            if (PropertyChanged == null)
-                return;
-
-            PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-        #endregion
     }
 }
