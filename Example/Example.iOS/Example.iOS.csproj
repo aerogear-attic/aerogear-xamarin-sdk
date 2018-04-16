@@ -106,6 +106,12 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Xamarin.iOS" />
+    <Reference Include="AeroGear.Mobile.Core.Platform.iOS">
+      <HintPath>..\..\Core\Core.Platform.iOS\bin\Debug\AeroGear.Mobile.Core.Platform.iOS.dll</HintPath>
+    </Reference>
+    <Reference Include="AeroGear.Mobile.Core.Platform.iOS">
+      <HintPath>..\..\Core\Core.Platform.iOS\bin\Debug\AeroGear.Mobile.Core.Platform.iOS.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <BundleResource Include="Resources\tab_about.png" />
