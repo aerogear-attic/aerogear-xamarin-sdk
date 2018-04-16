@@ -7,11 +7,11 @@ namespace AeroGear.Mobile.Core.Utils
     public class SanityCheckTests
     {
         [Test]
-        public void testNonNull()
+        public void TestNonNull()
         {
             try
             {
-                SanityCheck.nonNull((String)null, "test-param");
+                SanityCheck.NonNull((String)null, "test-param");
                 Assert.Fail("null value has not been detected");
             }
             catch (ArgumentNullException ane)
@@ -21,11 +21,11 @@ namespace AeroGear.Mobile.Core.Utils
         }
 
         [Test]
-        public void testNonEmpty()
+        public void TestNonEmpty()
         {
             try
             {
-                SanityCheck.nonEmpty("     ", "empty-string");
+                SanityCheck.NonEmpty("     ", "empty-string");
                 Assert.Fail("empty value has not been detected");
             }
             catch (ArgumentException ae)
@@ -35,17 +35,17 @@ namespace AeroGear.Mobile.Core.Utils
         }
 
         [Test]
-        public void testNonEmptyNoTrim()
+        public void TestNonEmptyNoTrim()
         {
-            SanityCheck.nonEmpty("     ", "empty-string", false);
+			SanityCheck.NonEmpty("     ", "empty-string", false);
         }
 
         [Test]
-        public void testNonEmptyWithCustomMessage()
+        public void TestNonEmptyWithCustomMessage()
         {
             try
             {
-                SanityCheck.nonEmpty("     ",
+				SanityCheck.NonEmpty("     ",
                                      "Parameter '{0}' must be valorised and only spaces are not accepted",
                                      "testParam");
                 Assert.Fail("empty value has not been detected");

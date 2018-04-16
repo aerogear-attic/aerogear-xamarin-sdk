@@ -36,8 +36,8 @@ namespace Aerogear.Mobile.Auth.User
         /// <param name="type">Role Type.</param>
         /// <param name="roleNamespace">Role name space/client ID.</param>
         public UserRole(string name, RoleType type, string roleNamespace) {
-            Name = nonEmpty(name, "name");
-            RoleType = nonNull(type, "type");
+            Name = NonEmpty(name, "name");
+            RoleType = NonNull(type, "type");
             RoleNamespace = roleNamespace;
         }
 
