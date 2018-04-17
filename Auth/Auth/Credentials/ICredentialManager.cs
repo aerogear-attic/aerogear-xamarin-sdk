@@ -5,21 +5,21 @@ namespace AeroGear.Mobile.Auth.Credentials
 {
     public interface ICredentialManager
     {
-		/// <summary>
+        /// <summary>
         /// Store the specified credential.
         /// </summary>
         /// <param name="credential">Credential to store.</param>
-		void Store(ICredential credential);
+        void Store(ICredential credential);
 
         /// <summary>
         /// Loads the serialized string representation of the credential.
         /// </summary>
         /// <returns>The serialized credential.</returns>
-		string LoadSerialized();
+        string LoadSerialized();
 
         /// <summary>
         /// Clear the credential.
         /// </summary>
-		void Clear();
+        void Clear();
     }
 }
