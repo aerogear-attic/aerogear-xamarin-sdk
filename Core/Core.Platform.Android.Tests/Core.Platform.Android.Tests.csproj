@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\..\packages\NuGet.Build.Packaging.0.2.0\build\NuGet.Build.Packaging.props" Condition="Exists('..\..\packages\NuGet.Build.Packaging.0.2.0\build\NuGet.Build.Packaging.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{ACEB8935-989F-46CA-8F0F-FBA3B358C70C}</ProjectGuid>
+    <ProjectGuid>{A01DBE99-3BDE-4C44-AFF7-2B00B9F961BB}</ProjectGuid>
     <ProjectTypeGuids>{EFBA0AD7-5A72-4C68-AF49-83D382785DCF};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
-    <RootNamespace>Auth.Platform</RootNamespace>
-    <AssemblyName>Auth.Platform</AssemblyName>
+    <RootNamespace>Core.Platform.Android.Tests</RootNamespace>
+    <AssemblyName>Core.Platform.Android.Tests</AssemblyName>
     <TargetFrameworkVersion>v8.1</TargetFrameworkVersion>
+    <AndroidApplication>True</AndroidApplication>
+    <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
+    <AndroidResgenClass>Resource</AndroidResgenClass>
     <MonoAndroidResourcePrefix>Resources</MonoAndroidResourcePrefix>
     <MonoAndroidAssetsPrefix>Assets</MonoAndroidAssetsPrefix>
     <AndroidUseLatestPlatformSdk>true</AndroidUseLatestPlatformSdk>
@@ -24,6 +26,7 @@
     <WarningLevel>4</WarningLevel>
     <AndroidLinkMode>None</AndroidLinkMode>
     <JavaMaximumHeapSize></JavaMaximumHeapSize>
+    <AndroidSupportedAbis>arm64-v8a;armeabi;armeabi-v7a;x86</AndroidSupportedAbis>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -41,30 +44,33 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Mono.Android" />
-    <Reference Include="OpenId.AppAuth.Android">
-      <HintPath>..\..\packages\Xamarin.OpenId.AppAuth.Android.0.7.0\lib\MonoAndroid\OpenId.AppAuth.Android.dll</HintPath>
-    </Reference>
+    <Reference Include="Xamarin.Android.NUnitLite" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MainActivity.cs" />
+    <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Credentials\OIDCCredential.cs" />
+    <Compile Include="Storage\StorageManagerTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <None Include="Resources\AboutResources.txt" />
+    <None Include="Assets\AboutAssets.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Credentials\" />
+    <AndroidResource Include="Resources\mipmap-hdpi\Icon.png" />
+    <AndroidResource Include="Resources\mipmap-mdpi\Icon.png" />
+    <AndroidResource Include="Resources\mipmap-xhdpi\Icon.png" />
+    <AndroidResource Include="Resources\mipmap-xxhdpi\Icon.png" />
+    <AndroidResource Include="Resources\mipmap-xxxhdpi\Icon.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Auth\Auth.csproj">
-      <Project>{55FF3B02-07D1-46F3-B0D5-584D3B98467E}</Project>
-      <Name>Auth</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\Core\Core\Core.csproj">
-      <Project>{F1EA4BBA-D775-45C0-99DA-DB0590BEE87E}</Project>
-      <Name>Core</Name>
+    <Folder Include="Storage\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Core.Platform.Android\Core.Platform.Android.csproj">
+      <Project>{E30A4499-8EF8-4542-AAF9-C9D30A543752}</Project>
+      <Name>Core.Platform.Android</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
-  <Import Project="..\..\packages\NuGet.Build.Packaging.0.2.0\build\NuGet.Build.Packaging.targets" Condition="Exists('..\..\packages\NuGet.Build.Packaging.0.2.0\build\NuGet.Build.Packaging.targets')" />
 </Project>

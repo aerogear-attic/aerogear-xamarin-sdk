@@ -5,7 +5,7 @@ namespace AeroGear.Mobile.Core.Storage
     /// Interface for a storage manager. Used to store, retrieve, update and
     /// remove data.
     /// </summary>
-    public interface IStorageManager<T>
+    public interface IStorageManager
     {
         /// <summary>
         /// Save the value using the specified key. The key acts as an
@@ -14,14 +14,14 @@ namespace AeroGear.Mobile.Core.Storage
         /// </summary>
         /// <param name="key">The key to save the value with.</param>
         /// <param name="value">The value to be saved.</param>
-        void Save(string key, T value);
+        void Save(string key, string value);
 
         /// <summary>
         /// Retrieve the value associated with the specified key.
         /// </summary>
         /// <returns>The value associated with the key.</returns>
         /// <param name="key">The identifier of the value to retrieve.</param>
-        T Read(string key);
+        string Read(string key);
 
         /// <summary>
         /// Remove the value assocated with the specified key.

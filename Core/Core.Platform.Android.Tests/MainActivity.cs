@@ -4,9 +4,9 @@ using Android.App;
 using Android.OS;
 using Xamarin.Android.NUnitLite;
 
-namespace Auth.Platform.Android.Tests
+namespace Core.Platform.Android.Tests
 {
-    [Activity(Label = "Auth.Platform.Android.Tests", MainLauncher = true)]
+    [Activity(Label = "Core.Platform.Android.Tests", MainLauncher = true)]
     public class MainActivity : TestSuiteActivity
     {
         protected override void OnCreate(Bundle bundle)
