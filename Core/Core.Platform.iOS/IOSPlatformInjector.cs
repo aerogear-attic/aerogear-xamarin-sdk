@@ -1,9 +1,9 @@
 ﻿using System;
+using System.IO;
 using System.Reflection;
 using AeroGear.Mobile.Core;
 using AeroGear.Mobile.Core.Logging;
 
-[assembly: Xamarin.Forms.Dependency(typeof(IOSPlatformInjector))]
 namespace AeroGear.Mobile.Core
 {
     /// <summary>
@@ -16,13 +16,17 @@ namespace AeroGear.Mobile.Core
         public String PlatformName => "iOS";
 
         public Assembly ExecutingAssembly { get;  set; }
-        
-        public String DefaultResources
+
+        public Stream GetBundledFileStream(string fileName)
         {
-            get
+            if (ExecutingAssembly != null)
             {
-                var name = ExecutingAssembly.GetName().Name;
-                return $"{name}.Resources";
+                var extendedName = $"{ExecutingAssembly.GetName().Name}.Resources.{fileName}";
+                return ExecutingAssembly.GetManifestResourceStream(extendedName);
+            }
+            else
+            {
+                return System.IO.File.OpenRead(fileName);
             }
         }
     }

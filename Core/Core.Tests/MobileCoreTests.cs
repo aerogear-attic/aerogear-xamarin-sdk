@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Json;
 using System.Reflection;
 using System.Threading.Tasks;
@@ -31,6 +32,11 @@ namespace Aerogear.Mobile.Core
             public string DefaultResources => "AeroGear.Mobile.Core.Tests.Resources";
 
             public ILogger CreateLogger() => new NullLogger();
+
+            public Stream GetBundledFileStream(string fileName)
+            {
+                return ExecutingAssembly.GetManifestResourceStream($"{DefaultResources}.{fileName}");
+            }
 
             public TestInjector(Assembly assembly)
             {

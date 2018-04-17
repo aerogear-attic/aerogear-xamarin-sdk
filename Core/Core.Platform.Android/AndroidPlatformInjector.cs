@@ -1,29 +1,41 @@
-﻿using System;
+﻿using AeroGear.Mobile.Core.Logging;
+using Android.Content;
+using System;
+using System.IO;
 using System.Reflection;
-using AeroGear.Mobile.Core;
-using AeroGear.Mobile.Core.Logging;
 
-[assembly: Xamarin.Forms.Dependency(typeof(AndroidPlatformInjector))]
-namespace AeroGear.Mobile.Core
+namespace AeroGear.Mobile.Core.Platform.Android
 {
-    /// <summary>
-    /// Class handles injection of Android specific classes and access to resoureces.
-    /// </summary>
+    ///<summary>
+    ///Class handles injection of Android specific classes and access to resoureces.
+    ///</summary>    internal class AndroidPlatformInjector : IPlatformInjector
     internal class AndroidPlatformInjector : IPlatformInjector
     {
+
         public ILogger CreateLogger() => new AndroidLogger();
 
         public String PlatformName => "Android";
 
         public Assembly ExecutingAssembly { get; set; }
 
-        public String DefaultResources
+        private readonly Context context;
+
+        public AndroidPlatformInjector(Context ctx)
         {
-            get
+            this.context = ctx;
+        }
+
+        public Stream GetBundledFileStream(string fileName)
+        {
+            if (ExecutingAssembly != null)
             {
-                var name = ExecutingAssembly.GetName().Name;
-                return $"{name}.Resources";
+                var extendedName = $"{ExecutingAssembly.GetName().Name}.Resources.{fileName}";
+                return ExecutingAssembly.GetManifestResourceStream(extendedName);
             }
-        }       
+            else
+            {
+                return context.Assets.Open(fileName);
+            }
+        }
     }
 }

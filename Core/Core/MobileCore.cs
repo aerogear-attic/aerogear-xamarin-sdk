@@ -71,17 +71,16 @@ namespace AeroGear.Mobile.Core
 
             if (injector != null && options.ConfigFileName != null)
             {
-                var filename = $"{injector.DefaultResources}.{options.ConfigFileName}";
                 try
                 {
-                    using (var stream = injector.ExecutingAssembly.GetManifestResourceStream(filename))
+                    using (var stream = injector.GetBundledFileStream(options.ConfigFileName))
                     {
                         servicesConfig = MobileCoreJsonParser.Parse(stream);
                     }
                 }
                 catch (System.Exception e)
                 {
-                    throw new InitializationException($"{filename} could not be loaded", e);
+                    throw new InitializationException($"{options.ConfigFileName} could not be loaded", e);
                 }
             }
             else
