@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Example.Android</RootNamespace>
     <AssemblyName>Example.Android</AssemblyName>
-    <TargetFrameworkVersion>v8.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v7.1</TargetFrameworkVersion>
     <AndroidApplication>True</AndroidApplication>
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
     <AndroidResgenClass>Resource</AndroidResgenClass>
@@ -26,6 +26,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AndroidLinkMode>None</AndroidLinkMode>
+    <AotAssemblies>false</AotAssemblies>
+    <EnableLLVM>false</EnableLLVM>
+    <BundleAssemblies>false</BundleAssemblies>
     <AndroidSupportedAbis />
     <AndroidTlsProvider>btls</AndroidTlsProvider>
     <AndroidHttpClientHandlerType>Xamarin.Android.Net.AndroidClientHandler</AndroidHttpClientHandlerType>
@@ -99,7 +102,7 @@
       <Name>Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\Example\Example.csproj">
-      <Project>{F0217CFC-1E56-4703-AECE-EE4196A59B17}</Project>
+      <Project>{F40048C7-7FA6-4BDF-9D0E-F3DEB847C63C}</Project>
       <Name>Example</Name>
     </ProjectReference>
   </ItemGroup>
