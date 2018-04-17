@@ -16,4 +16,15 @@
   <ItemGroup>
     <ProjectReference Include="..\Auth\Auth.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Resources\mobile-services.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\mobile-services.json">
+      <LogicalName>AeroGear.Mobile.Auth.Tests.Resources.mobile-services.json</LogicalName>
+    </EmbeddedResource>
+  </ItemGroup>
 </Project>
