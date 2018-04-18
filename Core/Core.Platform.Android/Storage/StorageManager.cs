@@ -40,7 +40,7 @@ namespace AeroGear.Mobile.Core.Storage
             }
         }
 
-        /// <summary>
+		/// <summary>
         /// Save the specified key and value.
         /// </summary>
         /// <param name="key">Key.</param>
