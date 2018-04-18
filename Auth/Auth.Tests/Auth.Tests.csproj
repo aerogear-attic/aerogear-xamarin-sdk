@@ -18,6 +18,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
+    <Folder Include="Storage\" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Resources\mobile-services.json" />
