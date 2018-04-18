@@ -29,7 +29,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth.Platform.Android", "Au
 EndProject
 Project("{5DD5E4FA-CB73-4610-85AB-557B54E96AA9}") = "Auth.Platform.NuGet", "Auth\Auth.Platform.NuGet\Auth.Platform.NuGet.nuproj", "{63DA0100-76DE-42F0-BF7E-29196D257677}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Platform.Android.Tests", "Core\Core.Platform.Android.Tests\Core.Platform.Android.Tests.csproj", "{A01DBE99-3BDE-4C44-AFF7-2B00B9F961BB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Android.Tests", "Tests\Android.Tests\Android.Tests.csproj", "{A01DBE99-3BDE-4C44-AFF7-2B00B9F961BB}"
 EndProject
 Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
