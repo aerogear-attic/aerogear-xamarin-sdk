@@ -2,7 +2,7 @@
 using NUnit.Framework;
 using AeroGear.Mobile.Core.Storage;
 
-namespace Core.Platform.iOS.Tests.Storage
+namespace iOS.Tests.Storage
 {
     public class StorageManagerTests
     {

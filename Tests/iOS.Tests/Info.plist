@@ -3,9 +3,9 @@
 <plist version="1.0">
 	<dict>
 		<key>CFBundleName</key>
-		<string>Core.Platform.iOS.Tests</string>
+		<string>iOS.Tests</string>
 		<key>CFBundleIdentifier</key>
-		<string>org.aerogear.Core-Platform-iOS-Tests</string>
+		<string>org.aerogear.iOS-Tests</string>
 		<key>CFBundleShortVersionString</key>
 		<string>1.0</string>
 		<key>CFBundleVersion</key>

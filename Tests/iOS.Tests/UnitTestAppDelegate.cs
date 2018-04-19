@@ -6,7 +6,7 @@ using Foundation;
 using UIKit;
 using MonoTouch.NUnit.UI;
 
-namespace Core.Platform.iOS.Tests
+namespace iOS.Tests
 {
     // The UIApplicationDelegate for the application. This class is responsible for launching the 
     // User Interface of the application, as well as listening (and optionally responding) to 

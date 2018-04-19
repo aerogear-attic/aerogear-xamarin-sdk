@@ -3,11 +3,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">iPhoneSimulator</Platform>
-    <ProjectGuid>{2CC81A0B-AA6A-4F85-9B23-8066C36F48C4}</ProjectGuid>
+    <ProjectGuid>{5AA00B29-4CF4-4356-A453-AFCBBEE26114}</ProjectGuid>
     <ProjectTypeGuids>{FEACFBD2-3405-455C-9665-78FE426C6842};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <OutputType>Exe</OutputType>
-    <RootNamespace>Core.Platform.iOS.Tests</RootNamespace>
-    <AssemblyName>Core.Platform.iOS.Tests</AssemblyName>
+    <RootNamespace>iOS.Tests</RootNamespace>
+    <AssemblyName>iOS.Tests</AssemblyName>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|iPhoneSimulator' ">
@@ -22,7 +22,7 @@
     <MtouchDebug>true</MtouchDebug>
     <MtouchNoSymbolStrip>true</MtouchNoSymbolStrip>
     <MtouchFastDev>true</MtouchFastDev>
-    <IOSDebuggerPort>27835</IOSDebuggerPort>
+    <IOSDebuggerPort>14652</IOSDebuggerPort>
     <MtouchLink>None</MtouchLink>
     <MtouchArch>x86_64</MtouchArch>
     <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
@@ -74,7 +74,7 @@
     <MtouchFastDev>true</MtouchFastDev>
     <MtouchFloat32>true</MtouchFloat32>
     <CodesignEntitlements>Entitlements.plist</CodesignEntitlements>
-    <IOSDebuggerPort>48759</IOSDebuggerPort>
+    <IOSDebuggerPort>46000</IOSDebuggerPort>
     <MtouchLink>SdkOnly</MtouchLink>
     <MtouchArch>ARM64</MtouchArch>
     <MtouchHttpClientHandler>HttpClientHandler</MtouchHttpClientHandler>
@@ -104,14 +104,6 @@
     <Folder Include="Storage\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Core.Platform.iOS\Core.Platform.iOS.csproj">
-      <Project>{C5B8A6AF-90D0-43DC-B097-A5F3CEB01E9F}</Project>
-      <Name>Core.Platform.iOS</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Core\Core.csproj">
-      <Project>{F1EA4BBA-D775-45C0-99DA-DB0590BEE87E}</Project>
-      <Name>Core</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Auth\Auth\Auth.csproj">
       <Project>{55FF3B02-07D1-46F3-B0D5-584D3B98467E}</Project>
       <Name>Auth</Name>
@@ -119,6 +111,14 @@
     <ProjectReference Include="..\..\Auth\Auth.Platform.iOS\Auth.Platform.iOS.csproj">
       <Project>{CBB87B9E-D526-46B1-B05A-AD3D383EACED}</Project>
       <Name>Auth.Platform.iOS</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\Core\Core.csproj">
+      <Project>{F1EA4BBA-D775-45C0-99DA-DB0590BEE87E}</Project>
+      <Name>Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\Core.Platform.iOS\Core.Platform.iOS.csproj">
+      <Project>{C5B8A6AF-90D0-43DC-B097-A5F3CEB01E9F}</Project>
+      <Name>Core.Platform.iOS</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />

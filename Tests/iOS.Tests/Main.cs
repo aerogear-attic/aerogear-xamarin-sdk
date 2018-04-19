@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using Foundation;
 using UIKit;
 
-namespace Core.Platform.iOS.Tests
+namespace iOS.Tests
 {
     public class Application
     {
