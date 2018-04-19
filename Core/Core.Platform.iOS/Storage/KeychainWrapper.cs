@@ -1,6 +1,7 @@
 ﻿using System;
 using Foundation;
 using Security;
+using static AeroGear.Mobile.Core.Utils.SanityCheck;
 
 namespace AeroGear.Mobile.Core.Storage
 {
@@ -55,14 +56,8 @@ namespace AeroGear.Mobile.Core.Storage
         /// <param name="synchronizable">Whether the item is synchronizable through iCloud.</param>
         private string GetPassword(string service, string username, bool synchronizable)
         {
-            if (service == null)
-            {
-                throw new ArgumentNullException("service", "Service cannot be null");
-            }
-            if (username == null)
-            {
-                throw new ArgumentNullException("username", "Username cannot be null");
-            }
+            nonNull<string>(service, "service");
+            nonNull(username, "username");
 
             SecRecord secRecord = new SecRecord(SecKind.GenericPassword)
             {
@@ -88,15 +83,9 @@ namespace AeroGear.Mobile.Core.Storage
         /// <param name="username">Username associated with the password.</param>
         /// <param name="synchronizable">Whether the item is synchronizable through iCloud.</param>
         private SecStatusCode DeletePassword(string service, string username, bool synchronizable)
-        {
-            if (service == null)
-            {
-                throw new ArgumentNullException("service", "Service cannot be null");
-            }
-            if (username == null)
-            {
-                throw new ArgumentNullException("username", "Username cannot be null");
-            }
+        {            
+            nonNull(service, "service");
+            nonNull(username, "username");
 
             SecRecord secRecord = new SecRecord(SecKind.GenericPassword)
             {
@@ -118,18 +107,9 @@ namespace AeroGear.Mobile.Core.Storage
         /// <param name="synchronizable">Whether the item is synchronizable through iCloud.</param>
         private SecStatusCode SetPassword(string service, string username, string password, SecAccessible accessible, bool synchronizable)
         {
-            if (service == null)
-            {
-                throw new ArgumentNullException("service", "Service cannot be null");
-            }
-            if (username == null)
-            {
-                throw new ArgumentNullException("username", "Username cannot be null");
-            }
-            if (password == null)
-            {
-                throw new ArgumentNullException("password", "Password cannot be null");
-            }
+            nonNull(service, "service");
+            nonNull(username, "username");
+            nonNull(password, "password");
 
             SecRecord secRecord = new SecRecord(SecKind.GenericPassword)
             {
