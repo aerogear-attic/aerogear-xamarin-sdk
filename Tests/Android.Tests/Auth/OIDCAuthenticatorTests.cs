@@ -57,7 +57,7 @@ namespace AeroGear.Mobile.Android.Tests.Auth
         [Test]
         public async void TestLogout()
         {
-            var currentUer = User.newUser().WithUsername("testuser").WithIdentityToken("testid");
+            var currentUer = User.NewUser().WithUsername("testuser").WithIdentityToken("testid");
 
             bool result = await authenticatorToTest.Logout(currentUer);
             credentialManagerMock.Verify(arg => arg.Clear(), Times.Once);

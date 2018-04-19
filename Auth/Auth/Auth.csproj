@@ -15,6 +15,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="NuGet.Build.Packaging" Version="0.2.0" />
+    <PackageReference Include="JWT" Version="4.0.0" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Credentials\" />

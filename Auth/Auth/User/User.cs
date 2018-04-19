@@ -1,10 +1,78 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Security.Cryptography;
+using AeroGear.Mobile.Auth.Credentials;
+using JWT.Builder;
+using Newtonsoft.Json;
 using static AeroGear.Mobile.Core.Utils.SanityCheck;
 
 namespace Aerogear.Mobile.Auth.User
 {
+    [JsonObject(MemberSerialization.OptIn)]
+    internal class KeycloakProfile
+    {
+
+        internal class AccessRoles
+        {
+            [JsonProperty(PropertyName = "roles")]
+            internal string[] Roles { get; set; }
+        }
+
+        [JsonProperty(PropertyName = "name")]
+        internal string Name { get; set; }
+
+        [JsonProperty(PropertyName = "preferred_name")]
+        internal string PreferredName { get; set; }
+
+        [JsonProperty(PropertyName = "email")]
+        internal string Email { get; set; }
+
+        [JsonProperty(PropertyName = "given_name")]
+        internal string FirstName { get; set; }
+
+        [JsonProperty(PropertyName = "family_name")]
+        internal string LastName { get; set; }
+
+        [JsonProperty(PropertyName = "realm_access")]
+        internal AccessRoles RealmAccess { get; set; }
+
+        [JsonProperty(PropertyName = "resource_access")]
+        internal IDictionary<string, AccessRoles> ResourceAccess { get; set; }
+
+        internal string UserName
+        {
+            get
+            {
+                return PreferredName == null ? (Name == null ? null : Name) : PreferredName;
+            }
+        }
+
+        internal List<UserRole> GetUserRoles(string resource)
+        {
+            var userRoles = new List<UserRole>();
+            if (RealmAccess != null && RealmAccess.Roles != null && RealmAccess.Roles.Length > 0)
+            {
+                var realmRoles = RealmAccess.Roles;
+                foreach (var realmRole in realmRoles)
+                {
+                    userRoles.Add(new UserRole(realmRole, RoleType.REALM, null));
+                }
+            }
+
+            if (ResourceAccess != null && ResourceAccess.ContainsKey(resource) && ResourceAccess[resource].Roles != null && ResourceAccess[resource].Roles.Length > 0)
+            {
+                var resourceRoles = ResourceAccess[resource].Roles;
+                foreach (var resourceRole in resourceRoles)
+                {
+                    userRoles.Add(new UserRole(resourceRole, RoleType.RESOURCE, resource));
+                }
+            }
+
+            return userRoles;
+        }
+    }
+
     /// <summary>
     /// This class represent an authenticated user.
     /// </summary>
@@ -68,11 +136,11 @@ namespace Aerogear.Mobile.Auth.User
         /// <param name="accessToken">Access token.</param>
         /// <param name="refreshToken">Refresh token.</param>
         /// <param name="roles">roles assigned to the user.</param>
-        internal User(string username, 
+        internal User(string username,
                      string firstName,
-                     string lastName, 
-                     string email, 
-                     string identityToken, 
+                     string lastName,
+                     string email,
+                     string identityToken,
                      string accessToken,
                      string refreshToken,
                      IList<UserRole> roles)
@@ -92,7 +160,8 @@ namespace Aerogear.Mobile.Auth.User
         /// Gets the roles.
         /// </summary>
         /// <returns>All the roles associated with this user.</returns>
-        public ICollection<UserRole> getRoles() {
+        public ICollection<UserRole> getRoles()
+        {
             return new ReadOnlyCollection<UserRole>(Roles);
         }
 
@@ -102,7 +171,8 @@ namespace Aerogear.Mobile.Auth.User
         /// <returns><c>true</c>, if the passed in role is associated with this user, <c>false</c> otherwise.</returns>
         /// <param name="role">role to be checked.</param>
         /// <param name="resourceId">resourceId related to role.</param>
-        public bool HasResourceRole(string role, string resourceId) {
+        public bool HasResourceRole(string role, string resourceId)
+        {
             nonEmpty(role, "role");
             return Roles.Contains(new UserRole(role, RoleType.RESOURCE, resourceId));
         }
@@ -112,7 +182,8 @@ namespace Aerogear.Mobile.Auth.User
         /// </summary>
         /// <returns><c>true</c>, if the passed in role is associated with this user, <c>false</c> otherwise.</returns>
         /// <param name="role">role to be checked.</param>
-        public bool HasRealmRole(string role) {
+        public bool HasRealmRole(string role)
+        {
             nonEmpty(role, "role");
             return Roles.Contains(new UserRole(role, RoleType.REALM, null));
         }
@@ -121,7 +192,8 @@ namespace Aerogear.Mobile.Auth.User
         /// Instantiate a new user object with a fluent api.
         /// </summary>
         /// <returns>The user, ready to be configured with fluent api.</returns>
-        public static UserBuilder newUser() {
+        public static UserBuilder NewUser()
+        {
             return new UserBuilder();
         }
     }
@@ -129,7 +201,8 @@ namespace Aerogear.Mobile.Auth.User
     /// <summary>
     /// Builder for User objects.
     /// </summary>
-    public class UserBuilder {
+    public class UserBuilder
+    {
         private string Username;
         private string Firstname;
         private string Lastname;
@@ -139,53 +212,88 @@ namespace Aerogear.Mobile.Auth.User
         private string RefreshToken;
         List<UserRole> Roles = new List<UserRole>();
 
-        internal UserBuilder() {
+        internal UserBuilder()
+        {
         }
 
-        public UserBuilder WithFirstName(string firstName) {
+        public UserBuilder WithFirstName(string firstName)
+        {
             this.Firstname = firstName;
             return this;
         }
 
-        public UserBuilder WithLastName(string lastName) {
+        public UserBuilder WithLastName(string lastName)
+        {
             this.Lastname = lastName;
             return this;
         }
 
-        public UserBuilder WithUsername(string username) {
+        public UserBuilder WithUsername(string username)
+        {
             this.Username = nonEmpty(username, "username");
             return this;
         }
 
 
-        public UserBuilder WithEmail(string email) {
+        public UserBuilder WithEmail(string email)
+        {
             this.Email = email;
             return this;
         }
 
-        public UserBuilder WithRoles(ISet<UserRole> roles) {
-            if (roles != null) {
+        public UserBuilder WithRoles(ISet<UserRole> roles)
+        {
+            if (roles != null)
+            {
                 this.Roles.AddRange(roles);
             }
             return this;
         }
 
-        public UserBuilder WithIdentityToken(string idToken) {
+        public UserBuilder WithIdentityToken(string idToken)
+        {
             this.IdentityToken = idToken;
             return this;
         }
 
-        public UserBuilder WithAccessToken(string accessToken) {
+        public UserBuilder WithAccessToken(string accessToken)
+        {
             this.AccessToken = accessToken;
             return this;
         }
 
-        public UserBuilder WithRefreshToken(string refreshToken) {
+        public UserBuilder WithRefreshToken(string refreshToken)
+        {
             this.RefreshToken = refreshToken;
             return this;
         }
 
-        public static implicit operator User(UserBuilder ub) {
+        /// <summary>
+        /// Use a unverified credential to build a new user instance.
+        /// </summary>
+        /// <returns> user builder</returns>
+        /// <param name="credential">Credential.</param>
+        /// <param name="resource">Resource.</param>
+        public UserBuilder FromUnverifiedCredential(ICredential credential, string resource)
+        {
+            nonNull(credential, "credential");
+            var accessToken = nonNull(credential.AccessToken, "credential.AccessToken");
+            KeycloakProfile kcProfile = new JwtBuilder()
+                .DoNotVerifySignature()
+                .Decode<KeycloakProfile>(accessToken);
+            this.AccessToken = credential.AccessToken;
+            this.IdentityToken = credential.IdentityToken;
+            this.RefreshToken = credential.RefreshToken;
+            this.Email = kcProfile.Email;
+            this.Username = kcProfile.UserName;
+            this.Firstname = kcProfile.FirstName;
+            this.Lastname = kcProfile.LastName;
+            this.Roles = kcProfile.GetUserRoles(resource);
+            return this;
+        }
+
+        public static implicit operator User(UserBuilder ub)
+        {
             return new User(ub.Username, ub.Firstname, ub.Lastname, ub.Email,
                             ub.IdentityToken, ub.AccessToken, ub.RefreshToken, ub.Roles);
         }
