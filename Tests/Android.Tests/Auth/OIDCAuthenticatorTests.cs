@@ -33,7 +33,7 @@ namespace AeroGear.Mobile.Android.Tests.Auth
         Mock<ILogger> logger = new Mock<ILogger>();
 
         IAuthenticator authenticatorToTest;
-        
+
         [SetUp]
         public void SetUp()
         {

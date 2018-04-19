@@ -4,19 +4,19 @@ using static AeroGear.Mobile.Core.Utils.SanityCheck;
 
 namespace AeroGear.Mobile.Auth.Authenticator
 {
-    public class AndroidAuthenticateOptions: IAuthenticateOptions
+    public class AndroidAuthenticateOptions : IAuthenticateOptions
     {
         /// <summary>
         /// The activity that the authentication request is triggered from
         /// </summary>
         /// <value>an instance of <see cref="Android.App.Activity"></value>
-        public Activity FromActvity { get; private set;  }
+        public Activity FromActvity { get; }
 
         /// <summary>
         /// A unique integer that can be used to identity the authentication request in the fromActivity's <see cref="Android.App.Activity.OnActivityResult(int, Result, Android.Content.Intent)"> method
         /// </summary>
         /// <value>The result code.</value>
-        public int ResultCode { get; private set;  }
+        public int ResultCode { get; }
 
         /// <summary>
         /// Initializes a new instance of the

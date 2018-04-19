@@ -17,7 +17,7 @@ using System.Net;
 
 namespace AeroGear.Mobile.Auth.Authenticator
 {
-    public class OIDCAuthenticator: IAuthenticator
+    public class OIDCAuthenticator : IAuthenticator
     {
         private AuthenticationConfig authenticationConfig;
         private KeycloakConfig keycloakConfig;
@@ -55,8 +55,8 @@ namespace AeroGear.Mobile.Auth.Authenticator
         /// <param name="authenticateOptions">Authenticate options.</param>
         public Task<User> Authenticate(IAuthenticateOptions authenticateOptions)
         {
-            
-            AndroidAuthenticateOptions authOptions = (AndroidAuthenticateOptions) nonNull(authenticateOptions, "authenticateOptions");
+
+            AndroidAuthenticateOptions authOptions = (AndroidAuthenticateOptions)nonNull(authenticateOptions, "authenticateOptions");
             Activity fromActivity = nonNull(authOptions.FromActvity, "fromActivity");
             int resultCode = nonNull(authOptions.ResultCode, "resultCode");
 
@@ -92,7 +92,8 @@ namespace AeroGear.Mobile.Auth.Authenticator
 
             authState.Update(response, error);
 
-            if (response != null) {
+            if (response != null)
+            {
                 try
                 {
                     User user = await exchangeTokens(response);
@@ -103,12 +104,14 @@ namespace AeroGear.Mobile.Auth.Authenticator
                     this.logger.Error("Unexpected error in token exchange", ex);
                     authenticateTaskComplete.TrySetException(ex);
                 }
-            } else {
+            }
+            else
+            {
                 authenticateTaskComplete.TrySetException(error);
             }
         }
 
-        private AuthorizationServiceConfiguration GetAuthorizationServiceConfiguration() 
+        private AuthorizationServiceConfiguration GetAuthorizationServiceConfiguration()
         {
             var authEndpoint = parseUri(keycloakConfig.AuthenticationEndpoint);
             var tokenEndpoint = parseUri(keycloakConfig.TokenEndpoint);
@@ -116,7 +119,7 @@ namespace AeroGear.Mobile.Auth.Authenticator
             return new AuthorizationServiceConfiguration(authEndpoint, tokenEndpoint);
         }
 
-        private AuthorizationService GetAuthorizationService(Context appContext) 
+        private AuthorizationService GetAuthorizationService(Context appContext)
         {
             AppAuthConfiguration appAuthConfiguration = new AppAuthConfiguration.Builder()
                                                                                 .SetBrowserMatcher(new BrowserBlacklist(VersionedBrowserMatcher.ChromeCustomTab))
@@ -158,12 +161,16 @@ namespace AeroGear.Mobile.Auth.Authenticator
 
             TaskCompletionSource<bool> completionSource = new TaskCompletionSource<bool>();
             IHttpResponse response = await httpService.NewRequest().Get(logoutUrl).Execute();
-            if (response.StatusCode == (int) HttpStatusCode.OK || response.StatusCode == (int) HttpStatusCode.Redirect) {
+            if (response.StatusCode == (int)HttpStatusCode.OK || response.StatusCode == (int)HttpStatusCode.Redirect)
+            {
                 credentialManager.Clear();
                 completionSource.TrySetResult(true);
-            } else {
+            }
+            else
+            {
                 Exception error = response.Error;
-                if (error == null) {
+                if (error == null)
+                {
                     error = new Exception("Non HTTP 200 or 302 status code");
                 }
                 completionSource.TrySetException(error);
