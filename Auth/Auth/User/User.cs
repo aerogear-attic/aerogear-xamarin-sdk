@@ -48,9 +48,9 @@ namespace Aerogear.Mobile.Auth.User
             }
         }
 
-        internal ISet<UserRole> GetUserRoles(string resource)
+        internal List<UserRole> GetUserRoles(string resource)
         {
-            var userRoles = new HashSet<UserRole>();
+            var userRoles = new List<UserRole>();
             if (RealmAccess != null && RealmAccess.Roles != null && RealmAccess.Roles.Length > 0)
             {
                 var realmRoles = RealmAccess.Roles;
@@ -196,31 +196,6 @@ namespace Aerogear.Mobile.Auth.User
         {
             return new UserBuilder();
         }
-
-        /// <summary>
-        /// Get a user instance from a unverified credential.
-        /// </summary>
-        /// <returns>The user instance from the unverified credential.</returns>
-        /// <param name="credential">Credential.</param>
-        /// <param name="resource">Resource.</param>
-        public static User NewUserFromUnverifiedCredential(ICredential credential, string resource)
-        {
-            nonNull(credential, "credential");
-            var accessToken = nonNull(credential.AccessToken, "credential.AccessToken");
-            KeycloakProfile kcProfile = new JwtBuilder()
-                .DoNotVerifySignature()
-                .Decode<KeycloakProfile>(accessToken);
-            return NewUser()
-                .WithAccessToken(credential.AccessToken)
-                .WithRefreshToken(credential.RefreshToken)
-                .WithIdentityToken(credential.IdentityToken)
-                .WithEmail(kcProfile.Email)
-                .WithUsername(kcProfile.UserName)
-                .WithFirstName(kcProfile.FirstName)
-                .WithLastName(kcProfile.LastName)
-                .WithRoles(kcProfile.GetUserRoles(resource));
-
-        }
     }
 
     /// <summary>
@@ -290,6 +265,30 @@ namespace Aerogear.Mobile.Auth.User
         public UserBuilder WithRefreshToken(string refreshToken)
         {
             this.RefreshToken = refreshToken;
+            return this;
+        }
+
+        /// <summary>
+        /// Use a unverified credential to build a new user instance.
+        /// </summary>
+        /// <returns> user builder</returns>
+        /// <param name="credential">Credential.</param>
+        /// <param name="resource">Resource.</param>
+        public UserBuilder FromUnverifiedCredential(ICredential credential, string resource)
+        {
+            nonNull(credential, "credential");
+            var accessToken = nonNull(credential.AccessToken, "credential.AccessToken");
+            KeycloakProfile kcProfile = new JwtBuilder()
+                .DoNotVerifySignature()
+                .Decode<KeycloakProfile>(accessToken);
+            this.AccessToken = credential.AccessToken;
+            this.IdentityToken = credential.IdentityToken;
+            this.RefreshToken = credential.RefreshToken;
+            this.Email = kcProfile.Email;
+            this.Username = kcProfile.UserName;
+            this.Firstname = kcProfile.FirstName;
+            this.Lastname = kcProfile.LastName;
+            this.Roles = kcProfile.GetUserRoles(resource);
             return this;
         }
 

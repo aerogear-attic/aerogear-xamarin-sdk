@@ -58,7 +58,7 @@ namespace Aerogear.Mobile.Auth.User.Test
             var credentialMock = new Mock<ICredential>();
             credentialMock.Setup(arg => arg.AccessToken).Returns(TEST_ACCESS_TOKEN);
 
-            User user = User.NewUserFromUnverifiedCredential(credentialMock.Object, "client-app");
+            User user = User.NewUser().FromUnverifiedCredential(credentialMock.Object, "client-app");
             Assert.AreEqual(user.Email, "user1@feedhenry.org");
             Assert.AreEqual(user.Username, "User 1");
             Assert.IsTrue(user.HasRealmRole("mobile-user"));

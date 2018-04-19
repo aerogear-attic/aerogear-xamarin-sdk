@@ -144,7 +144,7 @@ namespace AeroGear.Mobile.Auth.Authenticator
 
         private User GetUser(ICredential credential)
         {
-            return User.NewUserFromUnverifiedCredential(credential, keycloakConfig.ResourceId);
+            return User.NewUser().FromUnverifiedCredential(credential, keycloakConfig.ResourceId);
         }
 
         /// <summary>
