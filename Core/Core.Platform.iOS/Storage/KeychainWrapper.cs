@@ -23,10 +23,7 @@ namespace AeroGear.Mobile.Core.Storage
         /// <param name="value">Value to store.</param>
         public bool Save(string key, string value)
         {
-            Console.WriteLine("=== SAVE ===");
-            bool val = SetPassword(KeychainService, key, value, SecAccessible.Always, DefaultSynchronize) == SecStatusCode.Success;
-            Console.WriteLine(val);
-            return val;
+            return SetPassword(KeychainService, key, value, SecAccessible.Always, DefaultSynchronize) == SecStatusCode.Success;
         }
 
         /// <summary>
@@ -75,9 +72,6 @@ namespace AeroGear.Mobile.Core.Storage
             };
             SecStatusCode secStatusCode;
             SecRecord queryRecord = SecKeyChain.QueryAsRecord(secRecord, out secStatusCode);
-
-            Console.WriteLine("=== SUPER DUPER ===");
-            Console.WriteLine(queryRecord == null);
 
             if (secStatusCode == SecStatusCode.Success && queryRecord != null && queryRecord.Generic != null)
             {
