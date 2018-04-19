@@ -144,8 +144,7 @@ namespace AeroGear.Mobile.Auth.Authenticator
 
         private User GetUser(ICredential credential)
         {
-            //TODO: Implement me!! Need to decode the JWT token from credentials and return the user info
-            return User.newUser().WithFirstName("test").WithLastName("test").WithEmail("test@example.com");
+            return User.NewUserFromUnverifiedCredential(credential, keycloakConfig.ResourceId);
         }
 
         /// <summary>
