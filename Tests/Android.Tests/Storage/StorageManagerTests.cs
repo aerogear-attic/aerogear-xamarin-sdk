@@ -3,7 +3,7 @@ using AeroGear.Mobile.Core.Storage;
 using Android.App;
 using NUnit.Framework;
 
-namespace Core.Platform.Android.Tests.Storage
+namespace AeroGear.Mobile.Android.Tests.Core.Storage
 {
     [TestFixture]
     public class StorageManagerTests

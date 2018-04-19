@@ -4,9 +4,9 @@ using Android.App;
 using Android.OS;
 using Xamarin.Android.NUnitLite;
 
-namespace Core.Platform.Android.Tests
+namespace AeroGear.Mobile.Android.Tests
 {
-    [Activity(Label = "Core.Platform.Android.Tests", MainLauncher = true)]
+    [Activity(Label = "Android.Tests", MainLauncher = true)]
     public class MainActivity : TestSuiteActivity
     {
         protected override void OnCreate(Bundle bundle)
