@@ -1,5 +1,6 @@
 version: 0.1.0-BUILD{build}
 image: Visual Studio 2017
+install: install-android-sdk.ps1 
 before_build:
   - nuget restore
 build:
