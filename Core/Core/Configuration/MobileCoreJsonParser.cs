@@ -15,7 +15,7 @@ namespace AeroGear.Mobile.Core.Configuration
 
         private MobileCoreJsonParser(Stream jsonStream)
         {
-            nonNull(jsonStream, "jsonStream");
+            NonNull(jsonStream, "jsonStream");
             var jsonText = ReadJsonStream(jsonStream);
             var jsonDocument = JsonValue.Parse(jsonText);
             ParseMobileCoreArray((JsonArray)jsonDocument["services"]);
@@ -23,14 +23,14 @@ namespace AeroGear.Mobile.Core.Configuration
 
         private MobileCoreJsonParser(string jsonString)
         {
-            nonNull(jsonString, "jsonString");
+            NonNull(jsonString, "jsonString");
             var jsonDocument = JsonValue.Parse(jsonString);
             ParseMobileCoreArray((JsonArray)jsonDocument["services"]);
         }
 
         private String ReadJsonStream(Stream jsonStream)
         {
-            nonNull(jsonStream, "jsonStream");
+            NonNull(jsonStream, "jsonStream");
             using (var streamReader = new StreamReader(jsonStream))
             {
                 return streamReader.ReadToEnd();
@@ -39,7 +39,7 @@ namespace AeroGear.Mobile.Core.Configuration
 
         private void ParseMobileCoreArray(JsonArray array)
         {
-            nonNull(array, "array");
+            NonNull(array, "array");
             int length = array.Count;
             for (int i = 0; (i < length); i++)
             {
@@ -50,7 +50,7 @@ namespace AeroGear.Mobile.Core.Configuration
 
         private void ParseConfigObject(JsonObject jsonObject)
         {
-            nonNull(jsonObject, "jsonObject");
+            NonNull(jsonObject, "jsonObject");
             var serviceConfigBuilder = ServiceConfiguration.Builder;
             serviceConfigBuilder.Id(jsonObject["id"]).Url(jsonObject["url"]).Type(jsonObject["type"]);
             JsonObject config = (JsonObject)jsonObject["config"];

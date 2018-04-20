@@ -137,7 +137,7 @@ namespace AeroGear.Mobile.Core
         /// <returns>MobileCore singleton instance</returns>
         public static MobileCore Init(IPlatformInjector injector, Options options)
         {
-            nonNull<Options>(options, "init options");
+            NonNull<Options>(options, "init options");
             instance = new MobileCore(injector, options);
             return instance;
         }
@@ -179,7 +179,7 @@ namespace AeroGear.Mobile.Core
         private T GetInstance<T>(Type serviceClass, ServiceConfiguration serviceConfiguration)
             where T : IServiceModule
         {
-            nonNull<Type>(serviceClass, "serviceClass");
+            NonNull<Type>(serviceClass, "serviceClass");
             if (services.ContainsKey(serviceClass))
             {
                 return (T)services[serviceClass];

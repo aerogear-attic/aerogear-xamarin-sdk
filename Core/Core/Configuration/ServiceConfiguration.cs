@@ -59,7 +59,7 @@ namespace AeroGear.Mobile.Core.Configuration
             private string url;
 
             public ServiceConfigurationBuilder Id(string id) {
-                nonEmpty(id, "id");
+                NonEmpty(id, "id");
                 this.id = id;
                 return this;
             }

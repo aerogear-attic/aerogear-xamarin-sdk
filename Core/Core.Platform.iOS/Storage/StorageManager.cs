@@ -5,7 +5,7 @@ namespace AeroGear.Mobile.Core.Storage
 {
     public class StorageManager : IStorageManager
     {
-		private readonly SecureKeyValueStore KeyValStore;
+        private readonly SecureKeyValueStore KeyValStore;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="T:AeroGear.Mobile.Core.Storage.StorageManager"/> class.
@@ -14,7 +14,7 @@ namespace AeroGear.Mobile.Core.Storage
         /// <param name="context">Context.</param>
         public StorageManager(string storeName)
         {
-			KeyValStore = new SecureKeyValueStore(storeName);
+            KeyValStore = new SecureKeyValueStore(storeName);
         }
 
         /// <summary>
@@ -25,8 +25,8 @@ namespace AeroGear.Mobile.Core.Storage
         /// <exception cref="ArgumentNullException">Thrown when the key is <c>null</c>.</exception>
         public string Read(string key)
         {
-			nonNull(key, "key");
-			return KeyValStore.Load(key);
+            NonNull(key, "key");
+            return KeyValStore.Load(key);
         }
 
         /// <summary>
@@ -36,8 +36,8 @@ namespace AeroGear.Mobile.Core.Storage
         /// <exception cref="ArgumentNullException">Thrown when the key is <c>null</c>.</exception>
         public void Remove(string key)
         {
-			nonNull(key, "key");
-			KeyValStore.Remove(key);
+            NonNull(key, "key");
+            KeyValStore.Remove(key);
         }
 
         /// <summary>
@@ -48,13 +48,13 @@ namespace AeroGear.Mobile.Core.Storage
         /// <exception cref="ArgumentNullException">Thrown when the key is <c>null</c>.</exception>
         public void Save(string key, string value)
         {
-			nonNull(key, "key");
-			if (value == null)
-			{
-				KeyValStore.Remove(key);
-				return;
-			}
-			KeyValStore.Save(key, value);
+            NonNull(key, "key");
+            if (value == null)
+            {
+                KeyValStore.Remove(key);
+                return;
+            }
+            KeyValStore.Save(key, value);
         }
     }
 }

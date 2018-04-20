@@ -26,8 +26,8 @@ namespace AeroGear.Mobile.Auth.Authenticator
         /// <param name="resultCode">an integer to identify the authentication request</param>
         public AndroidAuthenticateOptions(Activity from, int resultCode)
         {
-            this.FromActvity = nonNull(from, "from activity");
-            this.ResultCode = nonNull(resultCode, "result code");
+            this.FromActvity = NonNull(from, "from activity");
+            this.ResultCode = NonNull(resultCode, "result code");
         }
     }
 }

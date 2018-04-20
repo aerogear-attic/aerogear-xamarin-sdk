@@ -14,7 +14,7 @@ namespace AeroGear.Mobile.Core.Storage
         /// Initializes a new instance of the <see cref="T:AeroGear.Mobile.Core.Storage.SecureKeyValueStore"/> class.
         /// </summary>
         /// <param name="keychainService">Keychain service.</param>
-		public SecureKeyValueStore(string keychainService)
+        public SecureKeyValueStore(string keychainService)
         {
             KeychainService = keychainService;
         }
@@ -60,8 +60,8 @@ namespace AeroGear.Mobile.Core.Storage
         /// <param name="synchronizable">Whether the item is synchronizable through iCloud.</param>
         private string GetPassword(string service, string username, bool synchronizable)
         {
-            nonNull<string>(service, "service");
-            nonNull(username, "username");
+            NonNull<string>(service, "service");
+            NonNull(username, "username");
 
             SecRecord secRecord = new SecRecord(SecKind.GenericPassword)
             {
@@ -88,8 +88,8 @@ namespace AeroGear.Mobile.Core.Storage
         /// <param name="synchronizable">Whether the item is synchronizable through iCloud.</param>
         private SecStatusCode DeletePassword(string service, string username, bool synchronizable)
         {            
-            nonNull(service, "service");
-            nonNull(username, "username");
+            NonNull(service, "service");
+            NonNull(username, "username");
 
             SecRecord secRecord = new SecRecord(SecKind.GenericPassword)
             {
@@ -111,9 +111,9 @@ namespace AeroGear.Mobile.Core.Storage
         /// <param name="synchronizable">Whether the item is synchronizable through iCloud.</param>
         private SecStatusCode SetPassword(string service, string username, string password, SecAccessible accessible, bool synchronizable)
         {
-            nonNull(service, "service");
-            nonNull(username, "username");
-            nonNull(password, "password");
+            NonNull(service, "service");
+            NonNull(username, "username");
+            NonNull(password, "password");
 
             SecRecord secRecord = new SecRecord(SecKind.GenericPassword)
             {
