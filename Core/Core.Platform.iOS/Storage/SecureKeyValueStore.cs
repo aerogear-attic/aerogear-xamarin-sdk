@@ -5,12 +5,16 @@ using static AeroGear.Mobile.Core.Utils.SanityCheck;
 
 namespace AeroGear.Mobile.Core.Storage
 {
-    public class KeychainWrapper
+    public class SecureKeyValueStore
     {
         private readonly string KeychainService;
         private static readonly bool DefaultSynchronize = false;
 
-        public KeychainWrapper(string keychainService)
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:AeroGear.Mobile.Core.Storage.SecureKeyValueStore"/> class.
+        /// </summary>
+        /// <param name="keychainService">Keychain service.</param>
+		public SecureKeyValueStore(string keychainService)
         {
             KeychainService = keychainService;
         }

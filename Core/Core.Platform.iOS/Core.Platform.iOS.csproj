@@ -67,7 +67,7 @@
     <Compile Include="IOSPlatformInjector.cs" />
     <Compile Include="Logging\IOSLogger.cs" />
     <Compile Include="Storage\StorageManager.cs" />
-    <Compile Include="Storage\KeychainWrapper.cs" />
+    <Compile Include="Storage\SecureKeyValueStore.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core\Core.csproj">
