@@ -35,11 +35,20 @@ namespace AeroGear.Mobile.Auth
         {
         }
 
+        /// <summary>
+        /// Initializes the service and pass the configuration to be used to configure it
+        /// </summary>
+        /// <returns>The initialized service.</returns>
+        /// <param name="configuration">The service configuration.</param>
         public static IAuthService InitializeService(ServiceConfiguration configuration)
         {
             return MobileCore.Instance.RegisterService<IAuthService>(new AuthService(configuration));
         }
 
+        /// <summary>
+        /// Initializes the service demanding to the SDK to retrieve the service configuration.
+        /// </summary>
+        /// <returns>The initialized service.</returns>
         public static IAuthService InitializeService()
         {
             return MobileCore.Instance.RegisterService<IAuthService>(new AuthService());
