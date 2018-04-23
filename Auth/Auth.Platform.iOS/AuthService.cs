@@ -4,7 +4,7 @@ using AeroGear.Mobile.Core.Configuration;
 
 namespace AeroGear.Mobile.Auth
 {
-    public class AuthService : IServiceModule
+    public class AuthService : IAuthService
     {
         public AuthService()
         {
@@ -16,12 +16,15 @@ namespace AeroGear.Mobile.Auth
 
         public void Configure(MobileCore core, ServiceConfiguration serviceConfiguration)
         {
-            throw new NotImplementedException();
         }
 
         public void Destroy()
         {
-            throw new NotImplementedException();
+        }
+
+        public void Init()
+        {
+            ServiceFinder.RegisterType<IAuthService, AuthService>();
         }
     }
 }

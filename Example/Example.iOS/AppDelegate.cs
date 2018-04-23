@@ -1,4 +1,6 @@
-﻿using AeroGear.Mobile.Core;
+﻿using System;
+using AeroGear.Mobile.Auth;
+using AeroGear.Mobile.Core;
 using FFImageLoading.Forms.Touch;
 using Foundation;
 using ImageCircle.Forms.Plugin.iOS;
@@ -23,7 +25,7 @@ namespace Example.iOS
         {
             global::Xamarin.Forms.Forms.Init();
             var xamApp = new App();
-            MobileCoreIOS.Init(xamApp.GetType().Assembly);
+            MobileCoreIOS.Init(xamApp.GetType().Assembly, new Type[] { typeof(AuthService)});
             LoadApplication(xamApp);
             CachedImageRenderer.Init();
             ImageCircleRenderer.Init();

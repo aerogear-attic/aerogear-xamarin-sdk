@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using AeroGear.Mobile.Auth;
+using AeroGear.Mobile.Core;
 using Xamarin.Forms;
 
 using Xamarin.Forms.Xaml;
@@ -16,6 +17,7 @@ namespace Example.Views.Pages
 
         public void OnAuthenticateClicked(object sender, EventArgs args)
         {
+            IAuthService service = ServiceFinder.Resolve<IAuthService>();
             Navigation.PushAsync(new UserDetails());
         }
     }

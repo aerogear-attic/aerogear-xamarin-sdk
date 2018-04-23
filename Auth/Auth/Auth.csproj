@@ -21,4 +21,7 @@
     <Folder Include="Credentials\" />
     <Folder Include="Authenticator\" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Remove="AuthService.cs" />
+  </ItemGroup>
 </Project>

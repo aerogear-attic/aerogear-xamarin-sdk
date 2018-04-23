@@ -102,5 +102,6 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Core\Core\Core.csproj" />
+    <ProjectReference Include="..\..\Auth\Auth\Auth.csproj" />
   </ItemGroup>
 </Project>
