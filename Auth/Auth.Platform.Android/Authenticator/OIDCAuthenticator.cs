@@ -41,11 +41,11 @@ namespace AeroGear.Mobile.Auth.Authenticator
         /// <param name="httpServiceModule">Http service module.</param>
         public OIDCAuthenticator(AuthenticationConfig authenticationConfig, KeycloakConfig keycloakConfig, ICredentialManager credentialManager, IHttpServiceModule httpServiceModule, ILogger logger)
         {
-            this.authenticationConfig = nonNull(authenticationConfig, "authenticationConfig");
-            this.keycloakConfig = nonNull(keycloakConfig, "keycloakConfig");
-            this.credentialManager = nonNull(credentialManager, "credentialManager");
-            this.httpService = nonNull(httpServiceModule, "httpServiceModule");
-            this.logger = nonNull(logger, "logger");
+            this.authenticationConfig = NonNull(authenticationConfig, "authenticationConfig");
+            this.keycloakConfig = NonNull(keycloakConfig, "keycloakConfig");
+            this.credentialManager = NonNull(credentialManager, "credentialManager");
+            this.httpService = NonNull(httpServiceModule, "httpServiceModule");
+            this.logger = NonNull(logger, "logger");
         }
 
         /// <summary>
@@ -56,9 +56,9 @@ namespace AeroGear.Mobile.Auth.Authenticator
         public Task<User> Authenticate(IAuthenticateOptions authenticateOptions)
         {
 
-            AndroidAuthenticateOptions authOptions = (AndroidAuthenticateOptions)nonNull(authenticateOptions, "authenticateOptions");
-            Activity fromActivity = nonNull(authOptions.FromActvity, "fromActivity");
-            int resultCode = nonNull(authOptions.ResultCode, "resultCode");
+            AndroidAuthenticateOptions authOptions = (AndroidAuthenticateOptions)NonNull(authenticateOptions, "authenticateOptions");
+            Activity fromActivity = NonNull(authOptions.FromActvity, "fromActivity");
+            int resultCode = NonNull(authOptions.ResultCode, "resultCode");
 
             authenticateTaskComplete = new TaskCompletionSource<User>();
             authenticateTask = authenticateTaskComplete.Task;
@@ -84,8 +84,8 @@ namespace AeroGear.Mobile.Auth.Authenticator
         /// <param name="intent">Intent.</param>
         public async Task HandleAuthResult(Intent intent)
         {
-            nonNull(intent, "intent");
-            nonNull(authenticateTaskComplete, "authenticateTaskComplete");
+            NonNull(intent, "intent");
+            NonNull(authenticateTaskComplete, "authenticateTaskComplete");
 
             AuthorizationResponse response = AuthorizationResponse.FromIntent(intent);
             AuthorizationException error = AuthorizationException.FromIntent(intent);
@@ -154,7 +154,7 @@ namespace AeroGear.Mobile.Auth.Authenticator
         /// <param name="currentUser">Current user.</param>
         public async Task<bool> Logout(User currentUser)
         {
-            nonNull(currentUser, "current user");
+            NonNull(currentUser, "current user");
             string identityToken = currentUser.IdentityToken;
             var logoutUrl = keycloakConfig.LogoutUrl(identityToken, authenticationConfig.RedirectUri.ToString());
 

@@ -145,7 +145,7 @@ namespace Aerogear.Mobile.Auth.User
                      string refreshToken,
                      IList<UserRole> roles)
         {
-            this.Username = nonEmpty(username, "username");
+            this.Username = NonEmpty(username, "username");
             this.Firstname = firstName;
             this.Lastname = lastName;
             this.Email = email;
@@ -173,7 +173,7 @@ namespace Aerogear.Mobile.Auth.User
         /// <param name="resourceId">resourceId related to role.</param>
         public bool HasResourceRole(string role, string resourceId)
         {
-            nonEmpty(role, "role");
+            NonEmpty(role, "role");
             return Roles.Contains(new UserRole(role, RoleType.RESOURCE, resourceId));
         }
 
@@ -184,7 +184,7 @@ namespace Aerogear.Mobile.Auth.User
         /// <param name="role">role to be checked.</param>
         public bool HasRealmRole(string role)
         {
-            nonEmpty(role, "role");
+            NonEmpty(role, "role");
             return Roles.Contains(new UserRole(role, RoleType.REALM, null));
         }
 
@@ -230,7 +230,7 @@ namespace Aerogear.Mobile.Auth.User
 
         public UserBuilder WithUsername(string username)
         {
-            this.Username = nonEmpty(username, "username");
+            this.Username = NonEmpty(username, "username");
             return this;
         }
 
@@ -276,8 +276,8 @@ namespace Aerogear.Mobile.Auth.User
         /// <param name="resource">Resource.</param>
         public UserBuilder FromUnverifiedCredential(ICredential credential, string resource)
         {
-            nonNull(credential, "credential");
-            var accessToken = nonNull(credential.AccessToken, "credential.AccessToken");
+            NonNull(credential, "credential");
+            var accessToken = NonNull(credential.AccessToken, "credential.AccessToken");
             KeycloakProfile kcProfile = new JwtBuilder()
                 .DoNotVerifySignature()
                 .Decode<KeycloakProfile>(accessToken);

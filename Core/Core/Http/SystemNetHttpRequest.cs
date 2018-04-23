@@ -21,14 +21,14 @@ namespace AeroGear.Mobile.Core.Http
 
         internal SystemNetHttpRequest(HttpClient httpClient)
         {
-            nonNull(httpClient, "httpClient");
+            NonNull(httpClient, "httpClient");
             this.httpClient = httpClient;
         }
 
         public IHttpRequest AddHeader(string key, string value)
         {
-            nonNull(key, "header key");
-            nonNull(value, "header value");
+            NonNull(key, "header key");
+            NonNull(value, "header value");
             headers.Add(new KeyValuePair<string, string>(key, value));
             return this;
         }
@@ -36,8 +36,8 @@ namespace AeroGear.Mobile.Core.Http
 
         public IHttpRequestToBeExecuted Custom(string method, string url, byte[] body)
         {
-            nonNull(method, "method");
-            nonNull(url, "url");
+            NonNull(method, "method");
+            NonNull(url, "url");
             var message = new HttpRequestMessage();
             message.Method = new HttpMethod(method);
             message.RequestUri = new Uri(url);

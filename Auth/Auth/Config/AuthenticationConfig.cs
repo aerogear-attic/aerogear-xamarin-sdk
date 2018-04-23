@@ -64,7 +64,7 @@ namespace AeroGear.Mobile.Auth.Config
             /// <returns>AuthenticationConfigBuilder instance</returns>
             public AuthenticationConfigBuilder RedirectUri(string redirectUri)
             {
-                nonEmpty(redirectUri, "redirectUri");
+                NonEmpty(redirectUri, "redirectUri");
                 this.redirectUri = new Uri(redirectUri);
                 return this;
             }

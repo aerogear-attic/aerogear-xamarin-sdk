@@ -46,8 +46,8 @@ namespace AeroGear.Mobile.Core.Utils
             try
             {
                 SanityCheck.nonEmpty("     ",
-                                     "Parameter '{0}' must be valorised and only spaces are not accepted",
-                                     "testParam");
+                                        "Parameter '{0}' must be valorised and only spaces are not accepted",
+                                        "testParam");
                 Assert.Fail("empty value has not been detected");
             }
             catch (ArgumentException ae)

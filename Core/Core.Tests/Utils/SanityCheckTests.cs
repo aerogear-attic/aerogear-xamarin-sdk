@@ -11,7 +11,7 @@ namespace AeroGear.Mobile.Core.Utils
         {
             try
             {
-                SanityCheck.nonNull((String)null, "test-param");
+                SanityCheck.NonNull((String)null, "test-param");
                 Assert.Fail("null value has not been detected");
             }
             catch (ArgumentNullException ane)
@@ -25,7 +25,7 @@ namespace AeroGear.Mobile.Core.Utils
         {
             try
             {
-                SanityCheck.nonEmpty("     ", "empty-string");
+                SanityCheck.NonEmpty("     ", "empty-string");
                 Assert.Fail("empty value has not been detected");
             }
             catch (ArgumentException ae)
@@ -37,7 +37,7 @@ namespace AeroGear.Mobile.Core.Utils
         [Test]
         public void testNonEmptyNoTrim()
         {
-            SanityCheck.nonEmpty("     ", "empty-string", false);
+            SanityCheck.NonEmpty("     ", "empty-string", false);
         }
 
         [Test]
@@ -45,7 +45,7 @@ namespace AeroGear.Mobile.Core.Utils
         {
             try
             {
-                SanityCheck.nonEmpty("     ",
+                SanityCheck.NonEmpty("     ",
                                      "Parameter '{0}' must be valorised and only spaces are not accepted",
                                      "testParam");
                 Assert.Fail("empty value has not been detected");
