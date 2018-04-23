@@ -100,18 +100,6 @@
     <Reference Include="Xamarin.Android.Support.v4, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Xamarin.Android.Support.v4.26.1.0.1\lib\MonoAndroid80\Xamarin.Android.Support.v4.dll</HintPath>
     </Reference>
-    <Reference Include="CommonServiceLocator">
-      <HintPath>..\..\packages\Unity.5.8.6\lib\netstandard2.0\CommonServiceLocator.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Abstractions">
-      <HintPath>..\..\packages\Unity.5.8.6\lib\netstandard2.0\Unity.Abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Container">
-      <HintPath>..\..\packages\Unity.5.8.6\lib\netstandard2.0\Unity.Container.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.ServiceLocation">
-      <HintPath>..\..\packages\Unity.5.8.6\lib\netstandard2.0\Unity.ServiceLocation.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MainActivity.cs" />

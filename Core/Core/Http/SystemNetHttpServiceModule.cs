@@ -41,10 +41,5 @@ namespace AeroGear.Mobile.Core.Http
         {
             return new SystemNetHttpRequest(httpClient);
         }
-
-        public void Init() 
-        {
-            
-        }
     }
 }

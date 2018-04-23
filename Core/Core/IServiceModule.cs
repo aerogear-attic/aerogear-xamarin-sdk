@@ -16,8 +16,6 @@ namespace AeroGear.Mobile.Core
             get;
         }
 
-        void Init();
-
         /// <summary>
         /// A method how create/configure the singleThreadService
         /// </summary>

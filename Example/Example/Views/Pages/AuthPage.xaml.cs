@@ -17,7 +17,7 @@ namespace Example.Views.Pages
 
         public void OnAuthenticateClicked(object sender, EventArgs args)
         {
-            IAuthService service = ServiceFinder.Resolve<IAuthService>();
+            IAuthService service = MobileCore.Instance.GetInstance<IAuthService>();
             Navigation.PushAsync(new UserDetails());
         }
     }

@@ -154,9 +154,16 @@ namespace AeroGear.Mobile.Core
             instance = null;
         }
 
-        public void RegisterService(Type serviceClass) {
-            IServiceModule serviceModule = Activator.CreateInstance(serviceClass) as IServiceModule;
-            serviceModule.Init();
+        /// <summary>
+        /// Registers an instance of a service module.
+        /// </summary>
+        /// <returns>The registered service module.</returns>
+        /// <param name="serviceModule">The service module instance.</param>
+        /// <typeparam name="T">service module type.</typeparam>
+        public T RegisterService<T>(T serviceModule) where T : IServiceModule 
+        {
+            services[typeof(T)] = serviceModule;
+            return serviceModule;
         }
 
         /// <summary>

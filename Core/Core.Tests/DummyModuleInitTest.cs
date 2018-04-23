@@ -36,11 +36,6 @@ namespace AeroGear.Mobile.Core.Tests
             {
 
             }
-
-            public void Init()
-            {
-                
-            }
         }
 
         [SetUp]

@@ -147,6 +147,10 @@
       <Project>{CBB87B9E-D526-46B1-B05A-AD3D383EACED}</Project>
       <Name>Auth.Platform.iOS</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Auth\Auth\Auth.csproj">
+      <Project>{55FF3B02-07D1-46F3-B0D5-584D3B98467E}</Project>
+      <Name>Auth</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
