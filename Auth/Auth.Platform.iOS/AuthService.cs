@@ -13,13 +13,13 @@ namespace AeroGear.Mobile.Auth
 
         private AuthService()
         {
-            this.serviceConfiguration = nonNull(MobileCore.Instance.GetServiceConfiguration(Type), "configuration");
+            this.serviceConfiguration = NonNull(MobileCore.Instance.GetServiceConfiguration(Type), "configuration");
             this.keycloakConfig = new KeycloakConfig(serviceConfiguration);
         }
 
         private AuthService(ServiceConfiguration configuration)
         {
-            this.serviceConfiguration = nonNull(configuration, "configuration");
+            this.serviceConfiguration = NonNull(configuration, "configuration");
             this.keycloakConfig = new KeycloakConfig(serviceConfiguration);
         }
 
