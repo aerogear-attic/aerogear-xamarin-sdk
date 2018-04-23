@@ -1,18 +1,11 @@
-﻿using System;
-
+﻿
+using Acr.UserDialogs;
+using AeroGear.Mobile.Core;
 using Android.App;
 using Android.Content.PM;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
 using Android.OS;
-using FFImageLoading;
 using FFImageLoading.Forms.Droid;
 using ImageCircle.Forms.Plugin.Droid;
-using AeroGear.Mobile.Core;
-using Xamarin.Forms;
-using Acr.UserDialogs;
-using AeroGear.Mobile.Core.Platform;
 
 namespace Example.Android
 {
@@ -30,9 +23,9 @@ namespace Example.Android
             
             CachedImageRenderer.Init(true);
             ImageCircleRenderer.Init();
-            UserDialogs.Init(() => (Activity)Forms.Context);
+            UserDialogs.Init(this);
             var app = new App();
-            MobileCoreInitializer.Init(app);
+            MobileCoreAndroid.Init(app.GetType().Assembly,ApplicationContext);
             LoadApplication(app);
         }
     }

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Reflection;
 using AeroGear.Mobile.Core.Logging;
 
@@ -19,6 +20,12 @@ namespace AeroGear.Mobile.Core
         /// Returns executing assembly. For accessing resources, etc.
         /// </summary>
         Assembly ExecutingAssembly { get; set; }
+        
+        /// <summary>
+        /// Returns stream of file budled withhin your application.
+        /// </summary>
+        /// <returns>readable stream</returns>
+        Stream GetBundledFileStream(string fileName);
 
         /// <summary>
         /// Returns platform name of the current injector.
@@ -27,10 +34,6 @@ namespace AeroGear.Mobile.Core
         String PlatformName {
             get;
         }
-
-        /// <summary>
-        /// Returns prefix for default resources. By default it would be "&lt;DefaultNamespace&gt;.Resources".
-        /// </summary>
-        String DefaultResources { get; }
+      
     }
 }
