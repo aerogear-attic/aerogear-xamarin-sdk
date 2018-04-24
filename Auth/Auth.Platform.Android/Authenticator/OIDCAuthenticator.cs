@@ -11,26 +11,17 @@ using OpenId.AppAuth;
 using Android.Content;
 using OpenId.AppAuth.Browser;
 using AeroGear.Mobile.Core.Logging;
-using AeroGear.Mobile.Core;
 using AeroGear.Mobile.Core.Http;
-using System.Net;
 
 namespace AeroGear.Mobile.Auth.Authenticator
 {
-    public class OIDCAuthenticator : IAuthenticator
+    public class OIDCAuthenticator : AbstractAuthenticator
     {
-        private AuthenticationConfig authenticationConfig;
-        private KeycloakConfig keycloakConfig;
-        private ICredentialManager credentialManager;
-        private IHttpServiceModule httpService;
-
         private AuthState authState;
         private AuthorizationService authorizationService;
 
         private TaskCompletionSource<User> authenticateTaskComplete;
         private Task<User> authenticateTask;
-
-        private ILogger logger;
 
         /// <summary>
         /// Initializes a new instance of the <see cref="T:AeroGear.Mobile.Auth.Authenticator.OIDCAuthenticator"/> class.
@@ -39,13 +30,12 @@ namespace AeroGear.Mobile.Auth.Authenticator
         /// <param name="keycloakConfig">Keycloak config.</param>
         /// <param name="credentialManager">Credential manager.</param>
         /// <param name="httpServiceModule">Http service module.</param>
-        public OIDCAuthenticator(AuthenticationConfig authenticationConfig, KeycloakConfig keycloakConfig, ICredentialManager credentialManager, IHttpServiceModule httpServiceModule, ILogger logger)
+        public OIDCAuthenticator(AuthenticationConfig authenticationConfig, 
+                                 KeycloakConfig keycloakConfig, 
+                                 ICredentialManager credentialManager, 
+                                 IHttpServiceModule httpServiceModule, 
+                                 ILogger logger) : base(authenticationConfig, keycloakConfig, credentialManager, httpServiceModule, logger)
         {
-            this.authenticationConfig = NonNull(authenticationConfig, "authenticationConfig");
-            this.keycloakConfig = NonNull(keycloakConfig, "keycloakConfig");
-            this.credentialManager = NonNull(credentialManager, "credentialManager");
-            this.httpService = NonNull(httpServiceModule, "httpServiceModule");
-            this.logger = NonNull(logger, "logger");
         }
 
         /// <summary>
@@ -53,9 +43,8 @@ namespace AeroGear.Mobile.Auth.Authenticator
         /// </summary>
         /// <returns>The authenticate.</returns>
         /// <param name="authenticateOptions">Authenticate options.</param>
-        public Task<User> Authenticate(IAuthenticateOptions authenticateOptions)
+        override public Task<User> Authenticate(IAuthenticateOptions authenticateOptions)
         {
-
             AndroidAuthenticateOptions authOptions = (AndroidAuthenticateOptions)NonNull(authenticateOptions, "authenticateOptions");
             Activity fromActivity = NonNull(authOptions.FromActvity, "fromActivity");
             int resultCode = NonNull(authOptions.ResultCode, "resultCode");
@@ -145,36 +134,6 @@ namespace AeroGear.Mobile.Auth.Authenticator
         private User GetUser(ICredential credential)
         {
             return User.NewUser().FromUnverifiedCredential(credential, keycloakConfig.ResourceId);
-        }
-
-        /// <summary>
-        /// Logout the specified currentUser.
-        /// </summary>
-        /// <returns>True of the user is logged out successfully</returns>
-        /// <param name="currentUser">Current user.</param>
-        public async Task<bool> Logout(User currentUser)
-        {
-            NonNull(currentUser, "current user");
-            string identityToken = currentUser.IdentityToken;
-            var logoutUrl = keycloakConfig.LogoutUrl(identityToken, authenticationConfig.RedirectUri.ToString());
-
-            TaskCompletionSource<bool> completionSource = new TaskCompletionSource<bool>();
-            IHttpResponse response = await httpService.NewRequest().Get(logoutUrl).Execute();
-            if (response.StatusCode == (int)HttpStatusCode.OK || response.StatusCode == (int)HttpStatusCode.Redirect)
-            {
-                credentialManager.Clear();
-                completionSource.TrySetResult(true);
-            }
-            else
-            {
-                Exception error = response.Error;
-                if (error == null)
-                {
-                    error = new Exception("Non HTTP 200 or 302 status code");
-                }
-                completionSource.TrySetException(error);
-            }
-            return await completionSource.Task;
         }
     }
 }

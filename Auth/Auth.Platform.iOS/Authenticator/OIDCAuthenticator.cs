@@ -11,16 +11,12 @@ using AeroGear.Mobile.Core.Http;
 using Foundation;
 
 using static AeroGear.Mobile.Core.Utils.SanityCheck;
-
+using AeroGear.Mobile.Core.Logging;
 
 namespace AeroGear.Mobile.Auth.Authenticator
 {
-    public class OIDCAuthenticator : IAuthenticator
+    public class OIDCAuthenticator : AbstractAuthenticator
     {
-        private AuthenticationConfig authenticationConfig;
-        private KeycloakConfig keycloakConfig;
-        private ICredentialManager credentialManager;
-
         private IAuthorizationFlowSession currentAuthorizationFlow;
 
         private delegate void OIDAuthFlowCallback(OIDCCredential credential, NSError error);
@@ -28,19 +24,17 @@ namespace AeroGear.Mobile.Auth.Authenticator
         private TaskCompletionSource<User> authenticateTaskComplete;
         private Task<User> authenticateTask;
 
-        private IHttpServiceModule httpService;
-
-        public OIDCAuthenticator(AuthenticationConfig authenticationConfig, KeycloakConfig keycloakConfig, ICredentialManager credentialManager, IHttpServiceModule httpServiceModule)
+        public OIDCAuthenticator(AuthenticationConfig authenticationConfig, 
+                                 KeycloakConfig keycloakConfig, 
+                                 ICredentialManager credentialManager, 
+                                 IHttpServiceModule httpServiceModule,
+                                 ILogger logger) : base(authenticationConfig, keycloakConfig, credentialManager, httpServiceModule, logger)
         {
-            this.authenticationConfig = nonNull(authenticationConfig, "authenticationConfig");
-            this.keycloakConfig = nonNull(keycloakConfig, "keycloakConfig");
-            this.credentialManager = nonNull(credentialManager, "credentialManager");
-            this.httpService = nonNull(httpServiceModule, "httpServiceModule");
         }
 
-        public Task<User> Authenticate(IAuthenticateOptions authenticateOptions)
+        override public Task<User> Authenticate(IAuthenticateOptions authenticateOptions)
         {
-            IOSAuthenticateOptions options = nonNull((IOSAuthenticateOptions)authenticateOptions, "authenticateOptions");
+            IOSAuthenticateOptions options = NonNull((IOSAuthenticateOptions)authenticateOptions, "authenticateOptions");
             ServiceConfiguration oidServiceConfiguration = new ServiceConfiguration(this.keycloakConfig.AuthenticationEndpoint, this.keycloakConfig.TokenEndpoint); // = GetAuthorizationServiceConfiguration();
             AuthorizationRequest oidAuthRequest = new AuthorizationRequest(oidServiceConfiguration,
                                                                            this.keycloakConfig.ResourceId,
@@ -63,32 +57,6 @@ namespace AeroGear.Mobile.Auth.Authenticator
 
             return authenticateTask;
         }
-
-        public async Task<bool> Logout(User currentUser)
-        {
-            nonNull(currentUser, "current user");
-            string identityToken = currentUser.IdentityToken;
-            var logoutUrl = keycloakConfig.LogoutUrl(identityToken, authenticationConfig.RedirectUri.ToString());
-
-            TaskCompletionSource<bool> completionSource = new TaskCompletionSource<bool>();
-            IHttpResponse response = await httpService.NewRequest().Get(logoutUrl).Execute();
-            if (response.StatusCode == (int)HttpStatusCode.OK || response.StatusCode == (int)HttpStatusCode.Redirect)
-            {
-                credentialManager.Clear();
-                completionSource.TrySetResult(true);
-            }
-            else
-            {
-                Exception error = response.Error;
-                if (error == null)
-                {
-                    error = new Exception("Non HTTP 200 or 302 status code");
-                }
-                completionSource.TrySetException(error);
-            }
-            return await completionSource.Task;
-        }
-
 
         private IAuthorizationFlowSession startAuthorizationFlow(AuthorizationRequest request, UIViewController presentingViewController, OIDAuthFlowCallback callback)
         {
