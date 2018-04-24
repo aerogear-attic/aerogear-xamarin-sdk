@@ -48,12 +48,6 @@ namespace AeroGear.Mobile.Auth
         }
 
         /// <summary>
-        /// Configure the service module.
-        /// </summary>
-        /// <param name="authConfig">Authentication configuration.</param>
-        public abstract void Configure(AuthenticationConfig authConfig);
-
-        /// <summary>
         /// Perform teardown steps that should be done before destroying the instance.
         /// </summary>
         public void Destroy()
