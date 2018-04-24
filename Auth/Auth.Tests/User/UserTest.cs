@@ -4,7 +4,7 @@ using AeroGear.Mobile.Auth.Credentials;
 using Moq;
 using NUnit.Framework;
 
-namespace Aerogear.Mobile.Auth.User.Test
+namespace AeroGear.Mobile.Auth.Test
 {
     [TestFixture]
     public class UserTest

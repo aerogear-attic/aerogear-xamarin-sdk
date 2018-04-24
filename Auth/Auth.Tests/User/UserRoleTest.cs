@@ -1,7 +1,7 @@
 ﻿using System;
 using NUnit.Framework;
 
-namespace Aerogear.Mobile.Auth.User.Test
+namespace AeroGear.Mobile.Auth.Test
 {
     [TestFixture]
     public class UserRoleTest
