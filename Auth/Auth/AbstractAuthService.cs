@@ -38,6 +38,12 @@ namespace AeroGear.Mobile.Auth
         }
 
         /// <summary>
+        /// Configure the service module.
+        /// </summary>
+        /// <param name="authConfig">Authentication configuration.</param>
+        public abstract void Configure(AuthenticationConfig authConfig);
+
+        /// <summary>
         /// Initiate an authentication flow.
         /// </summary>
         /// <returns>The authenticate.</returns>

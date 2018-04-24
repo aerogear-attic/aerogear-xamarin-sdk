@@ -10,13 +10,13 @@
       "type": "keycloak",
       "url": "https://keycloak.security.feedhenry.org",
       "config": {
-    "auth-server-url": "https://keycloak-memegear.192.168.238.93.nip.io/auth", 
-    "bearer-only": true, 
-    "confidential-port": 0, 
-    "realm": "memegear", 
-    "resource": "org.aerogear.example-bearer", 
-    "ssl-required": "external"
-}
+        "auth-server-url": "https://keycloak.security.feedhenry.org/auth",
+        "clientId": "client-app",
+        "realm": "secure-app",
+        "resource": "client-app",
+        "ssl-required": "external",
+        "url": "https://keycloak.security.feedhenry.org/auth"
+      }
     },
     {
       "id": "metrics",

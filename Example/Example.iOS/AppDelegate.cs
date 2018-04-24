@@ -32,9 +32,9 @@ namespace Example.iOS
 
 
             MobileCore core = MobileCoreIOS.Init(xamApp.GetType().Assembly);
-            var authConfig = AuthenticationConfig.Builder.RedirectUri("com.aerogear.auth://callback").Build();
-            AuthService.InitializeService(authConfig);
-
+            IAuthService service = core.GetInstance<IAuthService>();
+            var authConfig = AuthenticationConfig.Builder.RedirectUri("org.aerogear.mobile.example:/callback").Build();
+            service.Configure(authConfig);
             LoadApplication(xamApp);
             CachedImageRenderer.Init();
             ImageCircleRenderer.Init();
