@@ -15,6 +15,9 @@ using AeroGear.Mobile.Core.Logging;
 
 namespace AeroGear.Mobile.Auth.Authenticator
 {
+    /// <summary>
+    /// Concrete OIDC Authenticator implementation for iOS
+    /// </summary>
     public class OIDCAuthenticator : AbstractAuthenticator
     {
         private IAuthorizationFlowSession currentAuthorizationFlow;
@@ -32,6 +35,11 @@ namespace AeroGear.Mobile.Auth.Authenticator
         {
         }
 
+        /// <summary>
+        /// Perform the authentication request
+        /// </summary>
+        /// <returns>The authenticate.</returns>
+        /// <param name="authenticateOptions">Authenticate options.</param>
         override public Task<User> Authenticate(IAuthenticateOptions authenticateOptions)
         {
             IOSAuthenticateOptions options = NonNull((IOSAuthenticateOptions)authenticateOptions, "authenticateOptions");
@@ -58,6 +66,15 @@ namespace AeroGear.Mobile.Auth.Authenticator
             return authenticateTask;
         }
 
+        /// <summary>
+        /// Sends a request to the Keycloak server to perform token exchange.
+        /// On successfully completing the token exchange the callback is invoked with the `openid` credentials for the user.
+        /// Otherwise the callback is invoked with the error that occured during token exchange.
+        /// </summary>
+        /// <returns>The authorization flow.</returns>
+        /// <param name="request">an openid authorisation request.</param>
+        /// <param name="presentingViewController">The view controller from which to present the SafariViewController.</param>
+        /// <param name="callback">a callback function that will be invoked when the token exchange is completed.</param>
         private IAuthorizationFlowSession startAuthorizationFlow(AuthorizationRequest request, UIViewController presentingViewController, OIDAuthFlowCallback callback)
         {
             return AuthState.PresentAuthorizationRequest(request, presentingViewController, (authState, error) =>

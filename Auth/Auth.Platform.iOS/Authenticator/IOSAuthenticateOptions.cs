@@ -10,7 +10,11 @@ namespace AeroGear.Mobile.Auth.Authenticator
 
     public class IOSAuthenticateOptions
     {
-        public UIViewController PresentingViewController { get; }
+        /// <summary>
+        /// Gets the view controller from which to present the SafariViewController.
+        /// </summary>
+        /// <value>The view controller from which to present the SafariViewController.</value>
+        public readonly UIViewController PresentingViewController;
 
         public IOSAuthenticateOptions(UIViewController presentingViewController)
         {
