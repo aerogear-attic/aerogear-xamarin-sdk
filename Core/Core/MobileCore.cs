@@ -66,7 +66,7 @@ namespace AeroGear.Mobile.Core
 
         private MobileCore(IPlatformInjector injector, Options options)
         {
-            
+
             Logger = options.Logger ?? injector?.CreateLogger() ?? new NullLogger();
 
             if (injector != null && options.ConfigFileName != null)
@@ -160,7 +160,7 @@ namespace AeroGear.Mobile.Core
         /// <returns>The registered service module.</returns>
         /// <param name="serviceModule">The service module instance.</param>
         /// <typeparam name="T">service module type.</typeparam>
-        public T RegisterService<T>(T serviceModule) where T : IServiceModule 
+        public T RegisterService<T>(T serviceModule) where T : IServiceModule
         {
             services[typeof(T)] = NonNull(serviceModule, "serviceModule");
             return serviceModule;
@@ -197,11 +197,7 @@ namespace AeroGear.Mobile.Core
                 return (T)services[serviceClass];
             }
 
-            IServiceModule serviceModule = Activator.CreateInstance(serviceClass) as IServiceModule;
-            var serviceCfg = serviceConfiguration;
-            if (serviceCfg == null) serviceCfg = GetServiceConfiguration(serviceModule.Type);
-            if (serviceCfg == null && serviceModule.RequiresConfiguration) throw new ConfigurationNotFoundException($"{serviceModule.Type} not found on " + ConfigFileName);
-            serviceModule.Configure(this, serviceCfg);
+            IServiceModule serviceModule = Activator.CreateInstance(serviceClass, this, serviceConfiguration) as IServiceModule;
             services[serviceClass] = serviceModule;
             return (T)serviceModule;
         }
@@ -212,4 +208,3 @@ namespace AeroGear.Mobile.Core
         }
     }
 }
-
