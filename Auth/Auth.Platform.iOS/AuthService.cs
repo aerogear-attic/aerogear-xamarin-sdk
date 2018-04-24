@@ -1,34 +1,38 @@
 ﻿using System;
+using System.Threading.Tasks;
+using Aerogear.Mobile.Auth.User;
+using AeroGear.Mobile.Auth.Authenticator;
 using AeroGear.Mobile.Auth.Config;
+using AeroGear.Mobile.Auth.Credentials;
 using AeroGear.Mobile.Core;
 using AeroGear.Mobile.Core.Configuration;
+using AeroGear.Mobile.Core.Storage;
 using static AeroGear.Mobile.Core.Utils.SanityCheck;
 
 namespace AeroGear.Mobile.Auth
 {
-    public class AuthService : IAuthService
+    public class AuthService : AbstractAuthService
     {
-        private readonly KeycloakConfig keycloakConfig;
-        private readonly ServiceConfiguration serviceConfiguration;
-        private readonly MobileCore core;
-
-        private AuthService(MobileCore core = null, ServiceConfiguration configuration = null)
+        private AuthService(MobileCore mobileCore = null, ServiceConfiguration serviceConfig = null) : base(mobileCore, serviceConfig)
         {
-            this.core = core ?? MobileCore.Instance;
-            this.serviceConfiguration = NonNull(configuration ?? core.GetServiceConfiguration(Type), "configuration");
-            this.keycloakConfig = new KeycloakConfig(serviceConfiguration);
+            var storageManager = new StorageManager("AeroGear.Mobile.Auth.Credentials");
+            CredentialManager = new CredentialManager(storageManager);
         }
 
-        public string Type => "keycloak";
-
-        public bool RequiresConfiguration => true;
-
-        public void Configure(MobileCore core, ServiceConfiguration serviceConfiguration)
+        public override void Configure(AuthenticationConfig authConfig)
         {
+            // TODO: Initialize the authenticator here.
         }
 
-        public void Destroy()
+        public override User CurrentUser()
         {
+            var serializedCredential = CredentialManager.LoadSerialized();
+            if (serializedCredential == null)
+            {
+                return null;
+            }
+            var parsedCredential = new OIDCCredential(serializedCredential);
+            return User.NewUser().FromUnverifiedCredential(parsedCredential, KeycloakConfig.ResourceId);
         }
 
         /// <summary>

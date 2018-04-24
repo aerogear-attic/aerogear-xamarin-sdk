@@ -17,13 +17,6 @@ namespace AeroGear.Mobile.Core
         }
 
         /// <summary>
-        /// A method how create/configure the singleThreadService
-        /// </summary>
-        /// <param name="core">MobileCore instance</param>
-        /// <param name="serviceConfiguration">the configuration for the singleThreadService</param>
-        void Configure(MobileCore core, ServiceConfiguration serviceConfiguration);
-
-        /// <summary>
         /// Whether the singleThreadService module requires its singleThreadService configuration to be
         /// defined or if it can be null. If this is <code>true</code> then an exception will be thrown
         /// if singleThreadService configuration cannot be found.

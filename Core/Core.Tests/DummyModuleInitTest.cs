@@ -24,12 +24,12 @@ namespace AeroGear.Mobile.Core.Tests
 
             public bool RequiresConfiguration => true;
 
-            public void Configure(MobileCore core, ServiceConfiguration serviceConfiguration)
+            public DummyModule(MobileCore core, ServiceConfiguration serviceConfiguration)
             {
-                Data1 = serviceConfiguration["data1"];
-                Data2 = int.Parse(serviceConfiguration["data2"]);
-                Data3 = bool.Parse(serviceConfiguration["data3"]);
-
+                var serviceConfig = core.GetServiceConfiguration(Type);
+                Data1 = serviceConfig["data1"];
+                Data2 = int.Parse(serviceConfig["data2"]);
+                Data3 = bool.Parse(serviceConfig["data3"]);
             }
 
             public void Destroy()
