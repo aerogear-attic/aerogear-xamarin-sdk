@@ -2,6 +2,7 @@
 using System.Threading.Tasks;
 using Aerogear.Mobile.Auth.User;
 using AeroGear.Mobile.Auth.Authenticator;
+using AeroGear.Mobile.Auth.Config;
 using AeroGear.Mobile.Core;
 
 namespace AeroGear.Mobile.Auth
@@ -16,6 +17,8 @@ namespace AeroGear.Mobile.Auth
         /// </summary>
         /// <returns>The current user.</returns>
         User CurrentUser();
+
+        void Configure(AuthenticationConfig config);
 
         /// <summary>
         /// Initiate an authentication flow.
