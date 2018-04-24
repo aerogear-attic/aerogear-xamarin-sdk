@@ -1,6 +1,9 @@
 ﻿using System;
 namespace AeroGear.Mobile.Core.Utils
 {
+    /// <summary>
+    /// Utility class to help with checking values
+    /// </summary>
     public class SanityCheck
     {
         private SanityCheck()

@@ -1,6 +1,6 @@
 ﻿using System;
 using UIKit;
-using Aerogear.Mobile.Auth.User;
+using AeroGear.Mobile.Auth;
 using Foundation;
 using AeroGear.Mobile.Auth.Credentials;
 

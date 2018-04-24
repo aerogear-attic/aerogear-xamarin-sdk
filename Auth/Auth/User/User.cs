@@ -7,7 +7,7 @@ using JWT.Builder;
 using Newtonsoft.Json;
 using static AeroGear.Mobile.Core.Utils.SanityCheck;
 
-namespace Aerogear.Mobile.Auth.User
+namespace AeroGear.Mobile.Auth
 {
     [JsonObject(MemberSerialization.OptIn)]
     internal class KeycloakProfile
@@ -216,31 +216,55 @@ namespace Aerogear.Mobile.Auth.User
         {
         }
 
+        /// <summary>
+        /// Specify the first name of the user
+        /// </summary>
+        /// <returns>a UserBuilder instance</returns>
+        /// <param name="firstName">First name.</param>
         public UserBuilder WithFirstName(string firstName)
         {
             this.Firstname = firstName;
             return this;
         }
 
+        /// <summary>
+        /// Specify the last name of the user
+        /// </summary>
+        /// <returns>a UserBuilder instance</returns>
+        /// <param name="lastName">Last name.</param>
         public UserBuilder WithLastName(string lastName)
         {
             this.Lastname = lastName;
             return this;
         }
 
+        /// <summary>
+        /// Specify the username of the user
+        /// </summary>
+        /// <returns>a UserBuilder instance</returns>
+        /// <param name="username">Username.</param>
         public UserBuilder WithUsername(string username)
         {
             this.Username = NonEmpty(username, "username");
             return this;
         }
 
-
+        /// <summary>
+        /// Specify the email of the user
+        /// </summary>
+        /// <returns>a UserBuilder instance</returns>
+        /// <param name="email">Email.</param>
         public UserBuilder WithEmail(string email)
         {
             this.Email = email;
             return this;
         }
 
+        /// <summary>
+        /// Specify the roles of the user
+        /// </summary>
+        /// <returns>a UserBuilder instance</returns>
+        /// <param name="roles">Roles.</param>
         public UserBuilder WithRoles(ISet<UserRole> roles)
         {
             if (roles != null)
@@ -250,18 +274,33 @@ namespace Aerogear.Mobile.Auth.User
             return this;
         }
 
+        /// <summary>
+        /// Specify the identity token
+        /// </summary>
+        /// <returns>a UserBuilder instance</returns>
+        /// <param name="idToken">Identifier token.</param>
         public UserBuilder WithIdentityToken(string idToken)
         {
             this.IdentityToken = idToken;
             return this;
         }
 
+        /// <summary>
+        /// Specify the access token
+        /// </summary>
+        /// <returns>a UserBuilder instance</returns>
+        /// <param name="accessToken">Access token.</param>
         public UserBuilder WithAccessToken(string accessToken)
         {
             this.AccessToken = accessToken;
             return this;
         }
 
+        /// <summary>
+        /// Specify the refresh token
+        /// </summary>
+        /// <returns>a UserBuilder instance</returns>
+        /// <param name="refreshToken">Refresh token.</param>
         public UserBuilder WithRefreshToken(string refreshToken)
         {
             this.RefreshToken = refreshToken;

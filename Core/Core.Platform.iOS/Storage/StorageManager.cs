@@ -3,6 +3,9 @@ using static AeroGear.Mobile.Core.Utils.SanityCheck;
 
 namespace AeroGear.Mobile.Core.Storage
 {
+    /// <summary>
+    /// iOS specific implementation of <see cref="IStorageManager"/> using <see cref="SecureKeyValueStore"/>
+    /// </summary>
     public class StorageManager : IStorageManager
     {
         private readonly SecureKeyValueStore KeyValStore;

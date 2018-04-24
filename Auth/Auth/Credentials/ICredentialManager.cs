@@ -3,6 +3,9 @@ using AeroGear.Mobile.Core.Storage;
 
 namespace AeroGear.Mobile.Auth.Credentials
 {
+    /// <summary>
+    /// Credential manager interface
+    /// </summary>
     public interface ICredentialManager
     {
         /// <summary>

@@ -4,6 +4,9 @@ using Java.Lang;
 
 namespace AeroGear.Mobile.Core.Storage
 {
+    /// <summary>
+    /// Android specific implementation of <see cref="IStorageManager"/> using <see cref="SharedPreferences"/>
+    /// </summary>
     public class StorageManager : IStorageManager
     {
         private readonly ISharedPreferences SharedPreferences;

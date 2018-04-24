@@ -3,6 +3,9 @@ using System.Reflection;
 
 namespace AeroGear.Mobile.Core
 {
+    /// <summary>
+    /// Entry class to initilaise the <see cref="MobileCore"/> on iOS
+    /// </summary>
     public sealed class MobileCoreIOS
     {
         /// <summary>
