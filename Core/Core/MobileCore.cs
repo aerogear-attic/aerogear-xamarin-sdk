@@ -7,6 +7,8 @@ using AeroGear.Mobile.Core.Exception;
 using AeroGear.Mobile.Core.Http;
 using System.Reflection;
 using System.Net.Http;
+using AeroGear.Mobile.Core.Utils;
+using System.Linq;
 
 namespace AeroGear.Mobile.Core
 {
@@ -15,6 +17,8 @@ namespace AeroGear.Mobile.Core
     /// </summary>
     public sealed class MobileCore
     {
+        private static Object coreLock = new Object();
+        static readonly List<Type> DependencyTypes = new List<Type>();
 
         public const String DEFAULT_CONFIG_FILE_NAME = "mobile-services.json";
 
@@ -68,9 +72,11 @@ namespace AeroGear.Mobile.Core
         {
 
             Logger = options.Logger ?? injector?.CreateLogger() ?? new NullLogger();
-
+           
             if (injector != null && options.ConfigFileName != null)
             {
+                RegisterAssemblies(injector);
+
                 try
                 {
                     using (var stream = injector.GetBundledFileStream(options.ConfigFileName))
@@ -116,6 +122,41 @@ namespace AeroGear.Mobile.Core
             else HttpLayer = options.HttpServiceModule;
         }
 
+        private void RegisterAssemblies(IPlatformInjector injector)
+        {
+            Assembly[] assemblies = injector.GetAssemblies();
+
+            Type targetAttrType = typeof(ServiceAttribute);
+
+            // Don't use LINQ for performance reasons
+            // Naive implementation can easily take over a second to run
+            foreach (Assembly assembly in assemblies)
+            {
+                Attribute[] attributes;
+                try
+                {
+                    attributes = assembly.GetCustomAttributes(targetAttrType).ToArray();
+                }
+                catch (System.IO.FileNotFoundException exception)
+                {
+                    // Sometimes the previewer doesn't actually have everything required for these loads to work
+                    Logger.Error($"Could not load assembly: {assembly.FullName} for Attibute {targetAttrType.FullName} | Some renderers may not be loaded", exception);
+                    continue;
+                }
+
+                if (attributes.Length == 0)
+                    continue;
+
+                foreach (ServiceAttribute attribute in attributes)
+                {
+                    if (!DependencyTypes.Contains(attribute.Implementor))
+                    {
+                        DependencyTypes.Add(attribute.Implementor);
+                    }
+                }
+            }
+        }
+
         /// <summary>
         /// Initializes MobileCore with defaults and without platform-specific injector. 
         /// </summary>
@@ -138,7 +179,13 @@ namespace AeroGear.Mobile.Core
         public static MobileCore Init(IPlatformInjector injector, Options options)
         {
             NonNull<Options>(options, "init options");
-            instance = new MobileCore(injector, options);
+            lock (coreLock) {
+                if (instance == null)
+                {
+                    instance = new MobileCore(injector, options);
+                }
+            }
+            
             return instance;
         }
 
@@ -192,10 +239,18 @@ namespace AeroGear.Mobile.Core
             where T : IServiceModule
         {
             NonNull<Type>(serviceClass, "serviceClass");
+            if (!services.ContainsKey(serviceClass))
+            {
+                var serviceClass2 = DependencyTypes.FirstOrDefault(t => serviceClass.GetTypeInfo().IsAssignableFrom(t.GetTypeInfo()));
+                if (serviceClass2 != null) {
+                    serviceClass = serviceClass2;
+                }
+            }
+
             if (services.ContainsKey(serviceClass))
             {
                 return (T)services[serviceClass];
-            }
+            } 
 
             IServiceModule serviceModule = Activator.CreateInstance(serviceClass, this, serviceConfiguration) as IServiceModule;
             services[serviceClass] = serviceModule;

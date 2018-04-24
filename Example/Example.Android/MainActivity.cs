@@ -1,5 +1,6 @@
 ﻿
 using Acr.UserDialogs;
+using AeroGear.Mobile.Auth;
 using AeroGear.Mobile.Core;
 using Android.App;
 using Android.Content.PM;
@@ -26,6 +27,7 @@ namespace Example.Android
             UserDialogs.Init(this);
             var app = new App();
             MobileCoreAndroid.Init(app.GetType().Assembly,ApplicationContext);
+            //AuthService.InitializeService(MobileCore.Instance, MobileCore.Instance.GetServiceConfiguration("keycloak"));
             LoadApplication(app);
         }
     }
