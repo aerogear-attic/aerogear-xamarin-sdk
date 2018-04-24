@@ -22,18 +22,10 @@ namespace AeroGear.Mobile.Auth
         /// </summary>
         /// <param name="mobileCore">Mobile core.</param>
         /// <param name="serviceConfig">Service configuration.</param>
-        public AuthService(MobileCore mobileCore, ServiceConfiguration serviceConfig) : base(mobileCore, serviceConfig)
+        public AuthService(AuthenticationConfig authConfig, MobileCore mobileCore, ServiceConfiguration serviceConfig) : base(mobileCore, serviceConfig)
         {
             var storageManager = new StorageManager("AeroGear.Mobile.Auth.Credentials", Android.App.Application.Context);
             CredentialManager = new CredentialManager(storageManager);
-        }
-
-        /// <summary>
-        /// Configure the Android auth service module.
-        /// </summary>
-        /// <param name="authConfig">Auth config.</param>
-        public override void Configure(AuthenticationConfig authConfig)
-        {
             Authenticator = new OIDCAuthenticator(authConfig, KeycloakConfig, CredentialManager, MobileCore.HttpLayer, MobileCore.Logger);
         }
 
@@ -59,9 +51,9 @@ namespace AeroGear.Mobile.Auth
         /// <returns>The initialized service.</returns>
         /// <param name="core">The Mobile core instance. If <code>null</code> then <code>MobileCore.Instance</code> is used.</param>
         /// <param name="configuration">The service configuration. If <code>null</code> then <code>MobileCore.GetServiceConfiguration(Type)</code> is used.</param>
-        public static IAuthService InitializeService(MobileCore core = null, ServiceConfiguration configuration = null)
+        public static IAuthService InitializeService(AuthenticationConfig authConfig, MobileCore core = null, ServiceConfiguration serviceConfig = null)
         {
-            return MobileCore.Instance.RegisterService<IAuthService>(new AuthService(core, configuration));
+            return MobileCore.Instance.RegisterService<IAuthService>(new AuthService(authConfig, core, serviceConfig));
         }
     }
 }

@@ -18,8 +18,6 @@ namespace AeroGear.Mobile.Auth
         /// <returns>The current user.</returns>
         User CurrentUser();
 
-        void Configure(AuthenticationConfig config);
-
         /// <summary>
         /// Initiate an authentication flow.
         /// </summary>
