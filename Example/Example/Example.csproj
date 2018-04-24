@@ -87,6 +87,7 @@
 
   <ItemGroup>
     <Folder Include="Utils\" />
+    <Folder Include="Auth\" />
   </ItemGroup>
   <ItemGroup>
     <None Remove="Resources\ic_auth.svg" />
