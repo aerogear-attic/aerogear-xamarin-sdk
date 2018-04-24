@@ -86,6 +86,15 @@
     <Reference Include="System.Core" />
     <Reference Include="Xamarin.iOS" />
     <Reference Include="MonoTouch.NUnitLite" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Threading.Tasks.Extensions">
+      <HintPath>..\..\packages\System.Threading.Tasks.Extensions.4.3.0\lib\portable-net45+win8+wp8+wpa81\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Core">
+      <HintPath>..\..\packages\Castle.Core.4.2.1\lib\netstandard1.3\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Json" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="LaunchScreen.storyboard" />
@@ -93,15 +102,25 @@
   <ItemGroup>
     <None Include="Info.plist" />
     <None Include="Entitlements.plist" />
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Main.cs" />
     <Compile Include="UnitTestAppDelegate.cs" />
     <Compile Include="Storage\KeychainWrapperTests.cs" />
     <Compile Include="Storage\StorageManagerTests.cs" />
+    <Compile Include="Auth\OIDCAuthenticatorTests.cs" />
+    <Compile Include="Mocks\CredentialManagerMock.cs" />
+    <Compile Include="Mocks\HttpServiceModuleMock.cs" />
+    <Compile Include="Mocks\HttpRequestMock.cs" />
+    <Compile Include="Mocks\HttpRequestToBeExecutedMock.cs" />
+    <Compile Include="Mocks\HttpResponseMock.cs" />
+    <Compile Include="Mocks\LoggerMock.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Storage\" />
+    <Folder Include="Auth\" />
+    <Folder Include="Mocks\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Auth\Auth\Auth.csproj">

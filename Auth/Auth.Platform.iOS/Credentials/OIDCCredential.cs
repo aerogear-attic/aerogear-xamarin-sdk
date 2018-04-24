@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Foundation;
 using OpenId.AppAuth;
 
@@ -7,7 +7,7 @@ namespace AeroGear.Mobile.Auth.Credentials
     public class OIDCCredential : ICredential
     {
         private AuthState AuthState;
-
+        
         /// <summary>
         /// Initializes a new instance of the <see cref="T:AeroGear.Mobile.Auth.Credentials.OIDCCredential"/> class.
         /// </summary>
@@ -16,10 +16,10 @@ namespace AeroGear.Mobile.Auth.Credentials
         {
             AuthState = authState;
         }
-
+        
         /// <summary>
         /// Initializes a new instance of the <see cref="T:AeroGear.Mobile.Auth.Credentials.OIDCCredential"/> class
-		/// using the specified serialized credential.
+        /// using the specified serialized credential.
         /// </summary>
         /// <param name="serializedCredential">Serialized credential.</param>
         public OIDCCredential(string serializedCredential)
@@ -27,31 +27,31 @@ namespace AeroGear.Mobile.Auth.Credentials
             NSData authData = new NSData(serializedCredential, NSDataBase64DecodingOptions.IgnoreUnknownCharacters);
             AuthState = (AuthState)NSKeyedUnarchiver.UnarchiveObject(authData);
         }
-
+        
         /// <summary>
         /// Retrieve the access token of the credential.
         /// </summary>
         /// <value>The access token.</value>
         public string AccessToken => AuthState.LastTokenResponse.AccessToken;
-
+        
         /// <summary>
         /// Retrieve the identity token of the credential.
         /// </summary>
         /// <value>The identity token.</value>
         public string IdentityToken => AuthState.LastTokenResponse.IdToken;
-
+        
         /// <summary>
         /// Retrieve the refresh token of the credential.
         /// </summary>
         /// <value>The refresh token.</value>
         public string RefreshToken => AuthState.LastTokenResponse.RefreshToken;
-
+        
         /// <summary>
         /// Whether the credential <see cref="T:AeroGear.Mobile.Auth.Credentials.OIDCCredential"/> is authorized.
         /// </summary>
         /// <value><c>true</c> if authorized. Else <c>false</c>.</value>
         public bool IsAuthorized => AuthState.IsAuthorized;
-
+        
         /// <summary>
         /// Whether the credential <see cref="T:AeroGear.Mobile.Auth.Credentials.OIDCCredential"/> is expired.
         /// </summary>
@@ -65,7 +65,7 @@ namespace AeroGear.Mobile.Auth.Credentials
                 return now.Compare(expirationDate) == NSComparisonResult.Ascending;
             }
         }
-
+        
         /// <summary>
         /// Retrieve a serialized string representation of the credential.
         /// </summary>
