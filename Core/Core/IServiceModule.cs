@@ -4,6 +4,9 @@ using AeroGear.Mobile.Core.Configuration;
 
 namespace AeroGear.Mobile.Core
 {
+    /// <summary>
+    /// Base interface of all service modules
+    /// </summary>
     public interface IServiceModule
     {
      

@@ -1,9 +1,20 @@
 ﻿using System;
 using static AeroGear.Mobile.Core.Utils.SanityCheck;
 
-namespace Aerogear.Mobile.Auth.User
+namespace AeroGear.Mobile.Auth
 {
-    public enum RoleType { REALM, RESOURCE };
+    /// <summary>
+    /// The types of user roles
+    /// </summary>
+    public enum RoleType { 
+        /// <summary>
+        /// Realm role type
+        /// </summary>
+        REALM, 
+        /// <summary>
+        /// Resource role type
+        /// </summary>
+        RESOURCE };
 
     /// <summary>
     /// Represents a user's keycloak roles information.

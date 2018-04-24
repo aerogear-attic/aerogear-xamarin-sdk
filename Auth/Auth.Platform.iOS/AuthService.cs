@@ -11,6 +11,9 @@ using AeroGear.Mobile.Auth;
 
 namespace AeroGear.Mobile.Auth
 {
+    /// <summary>
+    /// Auth service implementation for iOS platform
+    /// </summary>
     public class AuthService : AbstractAuthService
     {
         public AuthService(MobileCore mobileCore = null, ServiceConfiguration serviceConfig = null) : base(mobileCore, serviceConfig)
