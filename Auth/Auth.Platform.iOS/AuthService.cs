@@ -7,8 +7,9 @@ using AeroGear.Mobile.Auth.Credentials;
 using AeroGear.Mobile.Core;
 using AeroGear.Mobile.Core.Configuration;
 using AeroGear.Mobile.Core.Storage;
-using static AeroGear.Mobile.Core.Utils.SanityCheck;
+using AeroGear.Mobile.Auth;
 
+[assembly: AeroGear.Mobile.Core.Utils.Service(typeof(AuthService))]
 namespace AeroGear.Mobile.Auth
 {
     public class AuthService : AbstractAuthService

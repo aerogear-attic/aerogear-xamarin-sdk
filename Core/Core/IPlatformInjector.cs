@@ -34,6 +34,8 @@ namespace AeroGear.Mobile.Core
         String PlatformName {
             get;
         }
+
+        Assembly[] GetAssemblies();
       
     }
 }
