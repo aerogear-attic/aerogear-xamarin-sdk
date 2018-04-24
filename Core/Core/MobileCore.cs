@@ -162,7 +162,7 @@ namespace AeroGear.Mobile.Core
         /// <typeparam name="T">service module type.</typeparam>
         public T RegisterService<T>(T serviceModule) where T : IServiceModule 
         {
-            services[typeof(T)] = serviceModule;
+            services[typeof(T)] = NonNull(serviceModule, "serviceModule");
             return serviceModule;
         }
 
