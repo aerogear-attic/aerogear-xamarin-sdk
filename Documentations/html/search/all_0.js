@@ -1,6 +1,30 @@
 var searchData=
 [
-  ['aerogear',['Aerogear',['../namespace_aerogear.html',1,'']]],
-  ['core',['Core',['../namespace_aerogear_1_1_mobile_1_1_core.html',1,'Aerogear::Mobile']]],
-  ['mobile',['Mobile',['../namespace_aerogear_1_1_mobile.html',1,'Aerogear']]]
+  ['accesstoken',['AccessToken',['../interface_aero_gear_1_1_mobile_1_1_auth_1_1_credentials_1_1_i_credential.html#ae2e9a35dc3cc2071f64ac9435dbe66de',1,'AeroGear.Mobile.Auth.Credentials.ICredential.AccessToken()'],['../class_aero_gear_1_1_mobile_1_1_auth_1_1_user.html#a5fed3e2fbc47010b875ef71f431e9663',1,'AeroGear.Mobile.Auth.User.AccessToken()']]],
+  ['addheader',['AddHeader',['../interface_aero_gear_1_1_mobile_1_1_core_1_1_http_1_1_i_http_request.html#aec2543c2b3c44f26cf8ca847674e57f7',1,'AeroGear::Mobile::Core::Http::IHttpRequest']]],
+  ['aerogear',['AeroGear',['../namespace_aero_gear.html',1,'']]],
+  ['android',['Android',['../namespace_aero_gear_1_1_mobile_1_1_core_1_1_platform_1_1_android.html',1,'AeroGear::Mobile::Core::Platform']]],
+  ['androidlogger',['AndroidLogger',['../class_aero_gear_1_1_mobile_1_1_core_1_1_logging_1_1_android_logger.html',1,'AeroGear::Mobile::Core::Logging']]],
+  ['androidlogger_2ecs',['AndroidLogger.cs',['../_android_logger_8cs.html',1,'']]],
+  ['androidplatforminjector_2ecs',['AndroidPlatformInjector.cs',['../_android_platform_injector_8cs.html',1,'']]],
+  ['assemblyinfo_2ecs',['AssemblyInfo.cs',['../_properties_2_assembly_info_8cs.html',1,'(Global Namespace)'],['../_platform_8_android_2_properties_2_assembly_info_8cs.html',1,'(Global Namespace)'],['../_platform_8i_o_s_2_properties_2_assembly_info_8cs.html',1,'(Global Namespace)']]],
+  ['auth',['Auth',['../namespace_aero_gear_1_1_mobile_1_1_auth.html',1,'AeroGear::Mobile']]],
+  ['auth_2eassemblyinfo_2ecs',['Auth.AssemblyInfo.cs',['../netstandard1_83_2_auth_8_assembly_info_8cs.html',1,'(Global Namespace)'],['../netstandard1_84_2_auth_8_assembly_info_8cs.html',1,'(Global Namespace)'],['../netstandard2_80_2_auth_8_assembly_info_8cs.html',1,'(Global Namespace)']]],
+  ['authenticate',['Authenticate',['../interface_aero_gear_1_1_mobile_1_1_auth_1_1_authenticator_1_1_i_authenticator.html#a9218e4ad4e51664276765d22f311cf5b',1,'AeroGear::Mobile::Auth::Authenticator::IAuthenticator']]],
+  ['authenticationconfig',['AuthenticationConfig',['../class_aero_gear_1_1_mobile_1_1_auth_1_1_config_1_1_authentication_config.html',1,'AeroGear::Mobile::Auth::Config']]],
+  ['authenticationconfig_2ecs',['AuthenticationConfig.cs',['../_authentication_config_8cs.html',1,'']]],
+  ['authenticationconfigbuilder',['AuthenticationConfigBuilder',['../class_aero_gear_1_1_mobile_1_1_auth_1_1_config_1_1_authentication_config_1_1_authentication_config_builder.html',1,'AeroGear::Mobile::Auth::Config::AuthenticationConfig']]],
+  ['authenticationendpoint',['AuthenticationEndpoint',['../class_aero_gear_1_1_mobile_1_1_auth_1_1_config_1_1_keycloak_config.html#aa5c0c5379811d3fa29cb5295e915a521',1,'AeroGear::Mobile::Auth::Config::KeycloakConfig']]],
+  ['authenticator',['Authenticator',['../namespace_aero_gear_1_1_mobile_1_1_auth_1_1_authenticator.html',1,'AeroGear::Mobile::Auth']]],
+  ['config',['Config',['../namespace_aero_gear_1_1_mobile_1_1_auth_1_1_config.html',1,'AeroGear::Mobile::Auth']]],
+  ['configuration',['Configuration',['../namespace_aero_gear_1_1_mobile_1_1_core_1_1_configuration.html',1,'AeroGear::Mobile::Core']]],
+  ['core',['Core',['../namespace_aero_gear_1_1_mobile_1_1_core.html',1,'AeroGear::Mobile']]],
+  ['credentials',['Credentials',['../namespace_aero_gear_1_1_mobile_1_1_auth_1_1_credentials.html',1,'AeroGear::Mobile::Auth']]],
+  ['exception',['Exception',['../namespace_aero_gear_1_1_mobile_1_1_core_1_1_exception.html',1,'AeroGear::Mobile::Core']]],
+  ['http',['Http',['../namespace_aero_gear_1_1_mobile_1_1_core_1_1_http.html',1,'AeroGear::Mobile::Core']]],
+  ['logging',['Logging',['../namespace_aero_gear_1_1_mobile_1_1_core_1_1_logging.html',1,'AeroGear::Mobile::Core']]],
+  ['mobile',['Mobile',['../namespace_aero_gear_1_1_mobile.html',1,'AeroGear']]],
+  ['platform',['Platform',['../namespace_aero_gear_1_1_mobile_1_1_core_1_1_platform.html',1,'AeroGear::Mobile::Core']]],
+  ['storage',['Storage',['../namespace_aero_gear_1_1_mobile_1_1_core_1_1_storage.html',1,'AeroGear::Mobile::Core']]],
+  ['utils',['Utils',['../namespace_aero_gear_1_1_mobile_1_1_core_1_1_utils.html',1,'AeroGear::Mobile::Core']]]
 ];

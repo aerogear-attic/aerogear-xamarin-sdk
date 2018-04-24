@@ -1,4 +1,4 @@
 var annotated_dup =
 [
-    [ "Aerogear", "namespace_aerogear.html", "namespace_aerogear" ]
+    [ "AeroGear", "namespace_aero_gear.html", "namespace_aero_gear" ]
 ];
