@@ -155,6 +155,18 @@ namespace AeroGear.Mobile.Core
         }
 
         /// <summary>
+        /// Registers an instance of a service module.
+        /// </summary>
+        /// <returns>The registered service module.</returns>
+        /// <param name="serviceModule">The service module instance.</param>
+        /// <typeparam name="T">service module type.</typeparam>
+        public T RegisterService<T>(T serviceModule) where T : IServiceModule 
+        {
+            services[typeof(T)] = NonNull(serviceModule, "serviceModule");
+            return serviceModule;
+        }
+
+        /// <summary>
         /// Returns instance of a service module.
         /// </summary>
         /// <typeparam name="T">service module type</typeparam>

@@ -4,6 +4,7 @@ using System.Json;
 using System.Reflection;
 using System.Threading.Tasks;
 using AeroGear.Mobile.Core;
+using AeroGear.Mobile.Core.Configuration;
 using AeroGear.Mobile.Core.Exception;
 using AeroGear.Mobile.Core.Logging;
 using NUnit.Framework;
@@ -22,6 +23,25 @@ namespace Aerogear.Mobile.Core
         private const string HELLO_WORLD = "Hello World!";
         private const string GET_TEST_BODY = "{\"text\":\"" + HELLO_WORLD + "\"}";
         private const String GET_TEST_PATH = "/test";
+
+        public interface ITestService : IServiceModule { };
+
+        public class TestService : ITestService
+        {
+            public string Type => throw new NotImplementedException();
+
+            public bool RequiresConfiguration => false;
+
+            public void Configure(MobileCore core, ServiceConfiguration serviceConfiguration)
+            {
+                
+            }
+
+            public void Destroy()
+            {
+                throw new NotImplementedException();
+            }
+        }
 
         public class TestInjector : IPlatformInjector
         {
@@ -71,6 +91,20 @@ namespace Aerogear.Mobile.Core
         }
 
         [Test]
+        public void TestRegisterService()
+        {
+            var testInstance = new TestService();
+            MobileCore.Init(new TestInjector(Assembly.GetExecutingAssembly()));
+            MobileCore.Instance.RegisterService<ITestService>(testInstance);
+
+            var registeredInstance = MobileCore.Instance.GetInstance<ITestService>();
+
+            Assert.NotNull(registeredInstance);
+            Assert.AreSame(testInstance, registeredInstance);
+        }
+
+
+        [Test]
         public async Task TestCallHttpLayerAsync()
         {
             MobileCore.Init(new TestInjector(Assembly.GetExecutingAssembly()));
@@ -92,5 +126,6 @@ namespace Aerogear.Mobile.Core
             Assert.AreEqual(HELLO_WORLD, (string)jsonObject["text"]);
             MobileCore.Instance.Destroy();
         }
+
     }
 }

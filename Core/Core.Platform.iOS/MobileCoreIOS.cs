@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Reflection;
 
 namespace AeroGear.Mobile.Core
 {
@@ -7,18 +8,18 @@ namespace AeroGear.Mobile.Core
         /// <summary>
         /// Initializes Mobile core for iOS.
         /// </summary>
-        public static void Init()
+        public static MobileCore Init()
         {
-            Init(null, new Options());
+            return Init(null, new Options());
         }
 
         /// <summary>
         /// Initializes Mobile core for iOS.
         /// </summary>
         /// <param name="options">additional initialization options</param>
-        public static void Init(Options options)
+        public static MobileCore Init(Options options)
         {
-            Init(null, options);
+            return Init(null, options);
         }
 
         /// <summary>
@@ -26,9 +27,9 @@ namespace AeroGear.Mobile.Core
         /// Resources needs to be stored in ./Resources directory of Xamarin.Forms platform-independent project.
         /// </summary>
         /// <param name="assembly">Assembly of the platform-independent project</param>
-        public static void Init(Assembly assembly)
+        public static MobileCore Init(Assembly assembly)
         {
-            Init(assembly, new Options());
+            return Init(assembly, new Options());
         }
 
         /// <summary>
@@ -37,11 +38,11 @@ namespace AeroGear.Mobile.Core
         /// </summary>
         /// <param name="assembly">Assembly of the platform-independent project</param>
         /// <param name="options">additional initialization options</param>
-        public static void Init(Assembly assembly, Options options)
+        public static MobileCore Init(Assembly assembly, Options options)
         {
             IPlatformInjector platformInjector = new IOSPlatformInjector();
             platformInjector.ExecutingAssembly = assembly;
-            MobileCore.Init(platformInjector, options);
+            return MobileCore.Init(platformInjector, options);
         }
     }
 }
