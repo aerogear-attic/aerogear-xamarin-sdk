@@ -1,8 +1,13 @@
 version: 0.1.0-BUILD{build}
 image: Visual Studio 2017
+init:
+- ps: "$AndroidToolPath = \"${env:ProgramFiles(x86)}\\Android\\android-sdk\\tools\\android\" \n\nFunction Get-AndroidSDKs() { \n    $output = & $AndroidToolPath list sdk --all \n    $sdks = $output |% { \n        if ($_ -match '(?<index>\\d+)- (?<sdk>.+), revision (?<revision>[\\d\\.]+)') { \n            $sdk = New-Object PSObject \n            Add-Member -InputObject $sdk -MemberType NoteProperty -Name Index -Value $Matches.index \n            Add-Member -InputObject $sdk -MemberType NoteProperty -Name Name -Value $Matches.sdk \n            Add-Member -InputObject $sdk -MemberType NoteProperty -Name Revision -Value $Matches.revision \n            $sdk \n        } \n    } \n    $sdks \n}\n\nFunction Install-AndroidSDK() { \n    [CmdletBinding()] \n    Param( \n        [Parameter(Mandatory=$true, Position=0)] \n        [PSObject[]]$sdks \n    )\n\n    $sdkIndexes = $sdks |% { $_.Index } \n    $sdkIndexArgument = [string]::Join(',', $sdkIndexes) \n    Echo 'y' | & $AndroidToolPath update sdk -u -a -t $sdkIndexArgument \n}\n\n$sdks = Get-AndroidSDKs |? { $_.name -like 'sdk platform*API 27*' -or $_.name -like 'google apis*api 27' } \nInstall-AndroidSDK -sdks $sdks"
 before_build:
   - nuget restore
 build:
+  publish_nuget: true
+  publish_nuget_symbols: true
+  include_nuget_references: true
   verbosity: normal
   project: aerogear-xamarin-sdk.sln
 test: on
