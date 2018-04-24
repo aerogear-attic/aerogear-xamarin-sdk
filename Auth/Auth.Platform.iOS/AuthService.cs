@@ -10,16 +10,12 @@ namespace AeroGear.Mobile.Auth
     {
         private readonly KeycloakConfig keycloakConfig;
         private readonly ServiceConfiguration serviceConfiguration;
+        private readonly MobileCore core;
 
-        private AuthService()
+        private AuthService(MobileCore core = null, ServiceConfiguration configuration = null)
         {
-            this.serviceConfiguration = NonNull(MobileCore.Instance.GetServiceConfiguration(Type), "configuration");
-            this.keycloakConfig = new KeycloakConfig(serviceConfiguration);
-        }
-
-        private AuthService(ServiceConfiguration configuration)
-        {
-            this.serviceConfiguration = NonNull(configuration, "configuration");
+            this.core = core ?? MobileCore.Instance;
+            this.serviceConfiguration = NonNull(configuration ?? core.GetServiceConfiguration(Type), "configuration");
             this.keycloakConfig = new KeycloakConfig(serviceConfiguration);
         }
 
@@ -39,19 +35,11 @@ namespace AeroGear.Mobile.Auth
         /// Initializes the service and pass the configuration to be used to configure it
         /// </summary>
         /// <returns>The initialized service.</returns>
-        /// <param name="configuration">The service configuration.</param>
-        public static IAuthService InitializeService(ServiceConfiguration configuration)
+        /// <param name="core">The Mobile core instance. If <code>null</code> then <code>MobileCore.Instance</code> is used.</param>
+        /// <param name="configuration">The service configuration. If <code>null</code> then <code>MobileCore.GetServiceConfiguration(Type)</code> is used.</param>
+        public static IAuthService InitializeService(MobileCore core = null, ServiceConfiguration configuration = null)
         {
-            return MobileCore.Instance.RegisterService<IAuthService>(new AuthService(configuration));
-        }
-
-        /// <summary>
-        /// Initializes the service demanding to the SDK to retrieve the service configuration.
-        /// </summary>
-        /// <returns>The initialized service.</returns>
-        public static IAuthService InitializeService()
-        {
-            return MobileCore.Instance.RegisterService<IAuthService>(new AuthService());
+            return MobileCore.Instance.RegisterService<IAuthService>(new AuthService(core, configuration));
         }
     }
 }
