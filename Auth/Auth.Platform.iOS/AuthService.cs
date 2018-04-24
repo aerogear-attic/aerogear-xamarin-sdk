@@ -6,6 +6,9 @@ using static AeroGear.Mobile.Core.Utils.SanityCheck;
 
 namespace AeroGear.Mobile.Auth
 {
+    /// <summary>
+    /// Auth service implementation for iOS platform
+    /// </summary>
     public class AuthService : IAuthService
     {
         private readonly KeycloakConfig keycloakConfig;

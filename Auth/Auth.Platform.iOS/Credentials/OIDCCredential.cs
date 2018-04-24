@@ -4,6 +4,10 @@ using OpenId.AppAuth;
 
 namespace AeroGear.Mobile.Auth.Credentials
 {
+    /// <summary>
+    /// Credential for OpenID Connect. This contains the access, identity and
+    /// refresh tokens and other metadata for the credential.
+    /// </summary>
     public class OIDCCredential : ICredential
     {
         private AuthState AuthState;

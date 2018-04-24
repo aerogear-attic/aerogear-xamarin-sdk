@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Aerogear.Mobile.Auth.User;
+using AeroGear.Mobile.Auth;
 using Android.App;
 using static AeroGear.Mobile.Core.Utils.SanityCheck;
 using AeroGear.Mobile.Core.Configuration;
@@ -17,6 +17,9 @@ using System.Net;
 
 namespace AeroGear.Mobile.Auth.Authenticator
 {
+    /// <summary>
+    /// An authenticator that implements the OpenID connect protocol
+    /// </summary>
     public class OIDCAuthenticator : IAuthenticator
     {
         private AuthenticationConfig authenticationConfig;
