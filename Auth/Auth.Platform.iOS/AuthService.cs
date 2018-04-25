@@ -14,7 +14,7 @@ namespace AeroGear.Mobile.Auth
 {
     public class AuthService : AbstractAuthService
     {
-        private AuthService(MobileCore mobileCore = null, ServiceConfiguration serviceConfig = null) : base(mobileCore, serviceConfig)
+        public AuthService(MobileCore mobileCore = null, ServiceConfiguration serviceConfig = null) : base(mobileCore, serviceConfig)
         {
             var storageManager = new StorageManager("AeroGear.Mobile.Auth.Credentials");
             CredentialManager = new CredentialManager(storageManager);
