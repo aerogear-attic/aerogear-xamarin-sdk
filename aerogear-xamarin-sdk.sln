@@ -31,6 +31,21 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Android.Tests", "Tests\Andr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iOS.Tests", "Tests\iOS.Tests\iOS.Tests.csproj", "{5AA00B29-4CF4-4356-A453-AFCBBEE26114}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A285E378-F426-4442-84D2-E1560EC62D31}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentations", "Documentations", "{5E5A91D6-B099-42B8-99E8-36B90500C547}"
+	ProjectSection(SolutionItems) = preProject
+		Documentations\Core.md = Documentations\Core.md
+		Documentations\GettingStarted.md = Documentations\GettingStarted.md
+		README.md = README.md
+		Documentations\SDKArch.md = Documentations\SDKArch.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dist", "Dist", "{19494A1B-871E-4ED5-BEFF-1F4C08851BDA}"
+	ProjectSection(SolutionItems) = preProject
+		Core\Core\Dist\make-dist.md = Core\Core\Dist\make-dist.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Ad-Hoc|Any CPU = Ad-Hoc|Any CPU
@@ -394,6 +409,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5E5A91D6-B099-42B8-99E8-36B90500C547} = {A285E378-F426-4442-84D2-E1560EC62D31}
+		{19494A1B-871E-4ED5-BEFF-1F4C08851BDA} = {5E5A91D6-B099-42B8-99E8-36B90500C547}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {79D6396E-B928-4EA0-B8E9-3256255869BB}
