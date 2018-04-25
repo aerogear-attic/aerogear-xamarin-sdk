@@ -1,45 +1,57 @@
 ﻿using System;
+using System.Threading.Tasks;
+using Aerogear.Mobile.Auth.User;
+using AeroGear.Mobile.Auth.Authenticator;
 using AeroGear.Mobile.Auth.Config;
+using AeroGear.Mobile.Auth.Credentials;
 using AeroGear.Mobile.Core;
 using AeroGear.Mobile.Core.Configuration;
-using static AeroGear.Mobile.Core.Utils.SanityCheck;
+using AeroGear.Mobile.Core.Storage;
+using AeroGear.Mobile.Auth;
 
 namespace AeroGear.Mobile.Auth
 {
-    public class AuthService : IAuthService
+    public class AuthService : AbstractAuthService
     {
-        private readonly KeycloakConfig keycloakConfig;
-        private readonly ServiceConfiguration serviceConfiguration;
-        private readonly MobileCore core;
-
-        private AuthService(MobileCore core = null, ServiceConfiguration configuration = null)
+        public AuthService(MobileCore mobileCore = null, ServiceConfiguration serviceConfig = null) : base(mobileCore, serviceConfig)
         {
-            this.core = core ?? MobileCore.Instance;
-            this.serviceConfiguration = NonNull(configuration ?? core.GetServiceConfiguration(Type), "configuration");
-            this.keycloakConfig = new KeycloakConfig(serviceConfiguration);
+            var storageManager = new StorageManager("AeroGear.Mobile.Auth.Credentials");
+            CredentialManager = new CredentialManager(storageManager);
         }
 
-        public string Type => "keycloak";
-
-        public bool RequiresConfiguration => true;
-
-        public void Configure(MobileCore core, ServiceConfiguration serviceConfiguration)
+        /// <summary>
+        /// Provide authentication configuration to the service.
+        /// </summary>
+        /// <param name="authConfig">Authentication config.</param>
+        public override void Configure(AuthenticationConfig authConfig)
         {
+            Authenticator = new OIDCAuthenticator(authConfig, KeycloakConfig, CredentialManager, MobileCore.HttpLayer, MobileCore.Logger);
         }
 
-        public void Destroy()
+        /// <summary>
+        /// Retrieve the current user.
+        /// </summary>
+        /// <returns>The current user.</returns>
+        public override User CurrentUser()
         {
+            var serializedCredential = CredentialManager.LoadSerialized();
+            if (serializedCredential == null)
+            {
+                return null;
+            }
+            var parsedCredential = new OIDCCredential(serializedCredential);
+            return User.NewUser().FromUnverifiedCredential(parsedCredential, KeycloakConfig.ResourceId);
         }
-
+       
         /// <summary>
         /// Initializes the service and pass the configuration to be used to configure it
         /// </summary>
         /// <returns>The initialized service.</returns>
         /// <param name="core">The Mobile core instance. If <code>null</code> then <code>MobileCore.Instance</code> is used.</param>
-        /// <param name="configuration">The service configuration. If <code>null</code> then <code>MobileCore.GetServiceConfiguration(Type)</code> is used.</param>
-        public static IAuthService InitializeService(MobileCore core = null, ServiceConfiguration configuration = null)
+        /// <param name="config">The service configuration. If <code>null</code> then <code>MobileCore.GetServiceConfiguration(Type)</code> is used.</param>
+        public static IAuthService InitializeService(MobileCore core = null, ServiceConfiguration config = null)
         {
-            return MobileCore.Instance.RegisterService<IAuthService>(new AuthService(core, configuration));
+            return MobileCore.Instance.RegisterService<IAuthService>(new AuthService(core, config));
         }
     }
 }

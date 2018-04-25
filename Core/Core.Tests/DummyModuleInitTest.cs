@@ -10,10 +10,18 @@ using static Aerogear.Mobile.Core.MobileCoreTests;
 
 namespace AeroGear.Mobile.Core.Tests
 {
+
     [TestFixture(Category="Core")]
     class DummyModuleInitTest
     {
-        class DummyModule : IServiceModule
+        interface IDummyModule : IServiceModule
+        {
+            string Data1 { get; }
+            int Data2 { get; }
+            bool Data3 { get; }
+        }
+
+        class DummyModule : IDummyModule
         {
             public string Type => "dummy";
 
@@ -24,17 +32,22 @@ namespace AeroGear.Mobile.Core.Tests
 
             public bool RequiresConfiguration => true;
 
-            public void Configure(MobileCore core, ServiceConfiguration serviceConfiguration)
+            public DummyModule(ServiceConfiguration serviceConfig)
             {
-                Data1 = serviceConfiguration["data1"];
-                Data2 = int.Parse(serviceConfiguration["data2"]);
-                Data3 = bool.Parse(serviceConfiguration["data3"]);
-
+                Data1 = serviceConfig["data1"];
+                Data2 = int.Parse(serviceConfig["data2"]);
+                Data3 = bool.Parse(serviceConfig["data3"]);
             }
 
             public void Destroy()
             {
 
+            }
+
+            public static void InitializeService()
+            {
+                var serviceConfig = MobileCore.Instance.GetServiceConfiguration("dummy");
+                MobileCore.Instance.RegisterService<IDummyModule>(new DummyModule(serviceConfig));
             }
         }
 
@@ -53,7 +66,8 @@ namespace AeroGear.Mobile.Core.Tests
         [Test]
         public void TestModuleInitialized()
         {
-            var module = MobileCore.Instance.GetInstance<DummyModule>();
+            DummyModule.InitializeService();
+            var module = MobileCore.Instance.GetInstance<IDummyModule>();
             Assert.IsNotNull(module);
             Assert.AreEqual("dummy", module.Type);
             Assert.AreEqual("Hello world!", module.Data1);

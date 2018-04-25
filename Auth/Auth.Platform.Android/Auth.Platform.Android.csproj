@@ -72,6 +72,7 @@
     <Compile Include="Credentials\OIDCCredential.cs" />
     <Compile Include="Authenticator\OIDCAuthenticator.cs" />
     <Compile Include="Authenticator\AndroidAuthenticateOptions.cs" />
+    <Compile Include="AuthService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -85,6 +86,10 @@
     <ProjectReference Include="..\..\Core\Core\Core.csproj">
       <Project>{F1EA4BBA-D775-45C0-99DA-DB0590BEE87E}</Project>
       <Name>Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Core\Core.Platform.Android\Core.Platform.Android.csproj">
+      <Project>{E30A4499-8EF8-4542-AAF9-C9D30A543752}</Project>
+      <Name>Core.Platform.Android</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />

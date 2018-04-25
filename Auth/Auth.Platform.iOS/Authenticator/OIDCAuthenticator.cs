@@ -57,7 +57,9 @@ namespace AeroGear.Mobile.Auth.Authenticator
             this.currentAuthorizationFlow = startAuthorizationFlow(oidAuthRequest, options.PresentingViewController, (OIDCCredential credential, NSError error) =>
             {
                 if (credential != null) {
-                    authenticateTaskComplete.TrySetResult(User.NewUser().FromUnverifiedCredential(credential, this.keycloakConfig.ResourceId));
+                    credentialManager.Store(credential);
+                    var user = User.NewUser().FromUnverifiedCredential(credential, this.keycloakConfig.ResourceId);
+                    authenticateTaskComplete.TrySetResult(user);
                 } else {
                     authenticateTaskComplete.TrySetException(new Exception(error.LocalizedDescription));
                 }

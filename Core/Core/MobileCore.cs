@@ -196,14 +196,8 @@ namespace AeroGear.Mobile.Core
             {
                 return (T)services[serviceClass];
             }
-
-            IServiceModule serviceModule = Activator.CreateInstance(serviceClass) as IServiceModule;
-            var serviceCfg = serviceConfiguration;
-            if (serviceCfg == null) serviceCfg = GetServiceConfiguration(serviceModule.Type);
-            if (serviceCfg == null && serviceModule.RequiresConfiguration) throw new ConfigurationNotFoundException($"{serviceModule.Type} not found on " + ConfigFileName);
-            serviceModule.Configure(this, serviceCfg);
-            services[serviceClass] = serviceModule;
-            return (T)serviceModule;
+            // There are no services registered for this interface.
+            throw new ServiceModuleInstanceNotFoundException(serviceClass.Name);
         }
 
         public ServiceConfiguration GetServiceConfiguration(String type)
