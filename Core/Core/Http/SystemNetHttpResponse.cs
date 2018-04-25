@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace AeroGear.Mobile.Core.Http
 {
+    /// <summary>
+    /// Implementation of <see cref="IHttpResponse"/>
+    /// </summary>
     internal class SystemNetHttpResponse : IHttpResponse
     {
         public SystemNetHttpResponse(bool successful, int statusCode,string body, System.Exception error) {

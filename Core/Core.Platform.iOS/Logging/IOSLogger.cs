@@ -3,6 +3,9 @@ using System;
 
 namespace AeroGear.Mobile.Core.Logging
 {
+    /// <summary>
+    /// iOS specific implementation of <see cref="ILogger"/> using <see cref="System.Console"/>
+    /// </summary>
     public class IOSLogger : ILogger
     {
         public const string DEFAULT_TAG = "AeroGear";

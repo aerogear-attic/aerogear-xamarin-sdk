@@ -4,31 +4,57 @@ using AeroGear.Mobile.Core.Http;
 
 namespace AeroGear.Mobile.Core
 {
-
+    /// <summary>
+    /// Specify the options for the Core module
+    /// </summary>
     public sealed class Options
     {
-
+        /// <summary>
+        /// Gets the name of the config file.
+        /// </summary>
+        /// <value>The name of the config file.</value>
         public String ConfigFileName {
             get; private set;
         }
 
-        //  Don't have a default implementation because it should use configuration
+        /// <summary>
+        /// Gets the http service module.
+        /// </summary>
+        /// <value>The http service module.</value>
         public IHttpServiceModule HttpServiceModule {get; private set;}
 
+        /// <summary>
+        /// Gets the logger.
+        /// </summary>
+        /// <value>The logger.</value>
         public ILogger Logger { get; private set; }
 
+        /// <summary>
+        /// Gets the builder to create a new instance of <see cref="Options"/>
+        /// </summary>
+        /// <value>an instance of <see cref="OptionsBuilder"/></value>
         public static OptionsBuilder Builder
         {
             get => new OptionsBuilder();
         }
 
+        /// <summary>
+        /// Gets the json object from the config file.
+        /// </summary>
+        /// <value>The config json.</value>
         public string ConfigJson { get; private set; }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:AeroGear.Mobile.Core.Options"/> class.
+        /// </summary>
         public Options()
         {
             ConfigFileName = MobileCore.DEFAULT_CONFIG_FILE_NAME;            
         }
 
+        /// <summary>
+        /// Builder class to create a new instance of the <see cref="T:AeroGear.Mobile.Core.Options"/> class.
+        /// </summary>
         public sealed class OptionsBuilder
         {
             private ILogger logger;

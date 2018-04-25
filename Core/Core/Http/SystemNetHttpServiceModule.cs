@@ -8,6 +8,9 @@ using AeroGear.Mobile.Core.Configuration;
 
 namespace AeroGear.Mobile.Core.Http
 {
+    /// <summary>
+    /// Implementation of <see cref="SystemNetHttpServiceModule"/>
+    /// </summary>
     internal class SystemNetHttpServiceModule : IHttpServiceModule
     {
         public string Type => "http";

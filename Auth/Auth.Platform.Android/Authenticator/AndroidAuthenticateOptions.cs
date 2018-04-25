@@ -4,6 +4,9 @@ using static AeroGear.Mobile.Core.Utils.SanityCheck;
 
 namespace AeroGear.Mobile.Auth.Authenticator
 {
+    /// <summary>
+    /// Options of an authentication request for Android platform
+    /// </summary>
     public class AndroidAuthenticateOptions : IAuthenticateOptions
     {
         /// <summary>

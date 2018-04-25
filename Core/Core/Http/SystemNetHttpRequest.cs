@@ -83,7 +83,10 @@ namespace AeroGear.Mobile.Core.Http
             this.httpClient = httpClient;
         }
 
-              
+        /// <summary>
+        /// Execute the request and return the response
+        /// </summary>
+        /// <returns>the http response.</returns>
         public async Task<IHttpResponse> Execute()
         {
             SystemNetHttpResponse httpResponse = null;

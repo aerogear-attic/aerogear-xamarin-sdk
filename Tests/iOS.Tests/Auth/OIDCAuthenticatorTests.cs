@@ -5,7 +5,7 @@ using AeroGear.Mobile.Auth.Credentials;
 using AeroGear.Mobile.Core.Http;
 using AeroGear.Mobile.Auth.Authenticator;
 using System.Threading.Tasks;
-using Aerogear.Mobile.Auth.User;
+using AeroGear.Mobile.Auth;
 using AeroGear.Mobile.Core.Configuration;
 using AeroGear.Mobile.Core.Logging;
 using AeroGear.Mobile.iOS.Tests.Mocks;
