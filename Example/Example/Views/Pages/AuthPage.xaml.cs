@@ -23,18 +23,10 @@ namespace Example.Views.Pages
 
         public void OnAuthenticateClicked(object sender, EventArgs args)
         {
-            
-            
             var authOptions = DependencyService.Get<IAuthenticateOptionsProvider>().GetOptions();
-            IAuthService service = MobileCore.Instance.GetInstance<IAuthService>();
-            
-            Console.WriteLine("=== WOOP ===");
-            Console.WriteLine(authOptions);
-
+            IAuthService service = MobileCore.Instance.GetInstance<IAuthService>();         
             service.Authenticate(authOptions);
             Navigation.PopToRootAsync();
-
-
         }
     }
 }
