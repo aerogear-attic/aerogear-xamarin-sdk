@@ -10,8 +10,8 @@
                 RelativeLayout.YConstraint="{ConstraintExpression Type=RelativeToParent, ElementName=SearchControlsGrid,Property=Height, Factor=0, Constant=56 }" 
                 Padding="0,50,0,0">
                 <StackLayout BackgroundColor="{DynamicResource Primary}" VerticalOptions="End" HorizontalOptions="FillAndExpand">
-                    <Label Text="user1" FontAttributes="Bold" FontSize="14" TextColor="{DynamicResource InversePrimaryTextColor}" XAlign="Center" />
-                    <Label Text="user1@feedhenry.org" FontSize="10" TextColor="{DynamicResource InversePrimaryTextColor}" XAlign="Center" />
+                    <Label x:Name="username"  Text="user1" FontAttributes="Bold" FontSize="14" TextColor="{DynamicResource InversePrimaryTextColor}" XAlign="Center" />
+                    <Label  x:Name="email" Text="user1@feedhenry.org" FontSize="10" TextColor="{DynamicResource InversePrimaryTextColor}" XAlign="Center" />
                 </StackLayout>
                 <StackLayout 
                     VerticalOptions="FillAndExpand"

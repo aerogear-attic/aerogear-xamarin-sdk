@@ -8,6 +8,7 @@ using AeroGear.Mobile.Core;
 using AeroGear.Mobile.Core.Configuration;
 using AeroGear.Mobile.Core.Storage;
 using AeroGear.Mobile.Auth;
+using Android.Content;
 
 [assembly: AeroGear.Mobile.Core.Utils.Service(typeof(AuthService))]
 namespace AeroGear.Mobile.Auth
@@ -22,12 +23,17 @@ namespace AeroGear.Mobile.Auth
         /// </summary>
         /// <param name="mobileCore">Mobile core.</param>
         /// <param name="serviceConfig">Service configuration.</param>
-        public AuthService(AuthenticationConfig authConfig, MobileCore mobileCore, ServiceConfiguration serviceConfig) : base(mobileCore, serviceConfig)
+        public AuthService(MobileCore mobileCore, ServiceConfiguration serviceConfig) : base(mobileCore, serviceConfig)
         {
             var storageManager = new StorageManager("AeroGear.Mobile.Auth.Credentials", Android.App.Application.Context);
             CredentialManager = new CredentialManager(storageManager);
+        }
+
+        public override void Configure(AuthenticationConfig authConfig)
+        {
             Authenticator = new OIDCAuthenticator(authConfig, KeycloakConfig, CredentialManager, MobileCore.HttpLayer, MobileCore.Logger);
         }
+
 
         /// <summary>
         /// Retrieves the current authenticated user. If there is no currently
@@ -45,15 +51,9 @@ namespace AeroGear.Mobile.Auth
             return User.NewUser().FromUnverifiedCredential(parsedCredential, KeycloakConfig.ResourceId);
         }
 
-        /// <summary>
-        /// Initializes the service and pass the configuration to be used to configure it
-        /// </summary>
-        /// <returns>The initialized service.</returns>
-        /// <param name="core">The Mobile core instance. If <code>null</code> then <code>MobileCore.Instance</code> is used.</param>
-        /// <param name="configuration">The service configuration. If <code>null</code> then <code>MobileCore.GetServiceConfiguration(Type)</code> is used.</param>
-        public static IAuthService InitializeService(AuthenticationConfig authConfig, MobileCore core = null, ServiceConfiguration serviceConfig = null)
+        public Task HandleAuthResult(Intent data)
         {
-            return MobileCore.Instance.RegisterService<IAuthService>(new AuthService(authConfig, core, serviceConfig));
+            return ((OIDCAuthenticator)Authenticator).HandleAuthResult(data);
         }
     }
 }

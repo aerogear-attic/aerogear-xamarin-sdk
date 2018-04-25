@@ -108,7 +108,10 @@ namespace AeroGear.Mobile.Core
 
             if (options.HttpServiceModule == null)
             {
-                HttpClient httpClient = new HttpClient();
+                HttpClientHandler handler = new HttpClientHandler();
+                handler.AllowAutoRedirect = false;
+
+                HttpClient httpClient = new HttpClient(handler);
                 httpClient.Timeout = TimeSpan.FromSeconds(DEFAULT_TIMEOUT);
                 var httpServiceModule = new SystemNetHttpServiceModule(httpClient);
                 var configuration = GetServiceConfiguration(httpServiceModule.Type);

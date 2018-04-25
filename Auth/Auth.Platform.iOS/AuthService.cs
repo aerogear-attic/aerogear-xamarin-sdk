@@ -14,12 +14,18 @@ namespace AeroGear.Mobile.Auth
 {
     public class AuthService : AbstractAuthService
     {
-        private AuthService(AuthenticationConfig authConfig, MobileCore mobileCore = null, ServiceConfiguration serviceConfig = null) : base(mobileCore, serviceConfig)
+        private AuthService(MobileCore mobileCore = null, ServiceConfiguration serviceConfig = null) : base(mobileCore, serviceConfig)
         {
             var storageManager = new StorageManager("AeroGear.Mobile.Auth.Credentials");
             CredentialManager = new CredentialManager(storageManager);
+        }
+
+
+        public override void Configure(AuthenticationConfig authConfig)
+        {
             Authenticator = new OIDCAuthenticator(authConfig, KeycloakConfig, CredentialManager, MobileCore.HttpLayer, MobileCore.Logger);
         }
+
 
         public override User CurrentUser()
         {
@@ -32,15 +38,5 @@ namespace AeroGear.Mobile.Auth
             return User.NewUser().FromUnverifiedCredential(parsedCredential, KeycloakConfig.ResourceId);
         }
 
-        /// <summary>
-        /// Initializes the service and pass the configuration to be used to configure it
-        /// </summary>
-        /// <returns>The initialized service.</returns>
-        /// <param name="core">The Mobile core instance. If <code>null</code> then <code>MobileCore.Instance</code> is used.</param>
-        /// <param name="configuration">The service configuration. If <code>null</code> then <code>MobileCore.GetServiceConfiguration(Type)</code> is used.</param>
-        public static IAuthService InitializeService(AuthenticationConfig authConfig, MobileCore core = null, ServiceConfiguration serviceConfig = null)
-        {
-            return MobileCore.Instance.RegisterService<IAuthService>(new AuthService(authConfig, core, serviceConfig));
-        }
     }
 }
