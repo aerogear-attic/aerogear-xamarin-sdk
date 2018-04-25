@@ -32,9 +32,15 @@ namespace Example.Views.Pages
 
         void onLogoutClicked(object sender, System.EventArgs e)
         {
-            MobileCore.Instance.GetInstance<IAuthService>().Logout(
-                MobileCore.Instance.GetInstance<IAuthService>().CurrentUser()
-            );
+			MobileCore.Instance.GetInstance<IAuthService>().Logout(
+				MobileCore.Instance.GetInstance<IAuthService>().CurrentUser()
+			).ContinueWith(result =>
+			{
+				Device.BeginInvokeOnMainThread(() =>
+				{
+					Navigation.PushAsync(new AuthPage());
+				});
+			});
             
         }
     }
