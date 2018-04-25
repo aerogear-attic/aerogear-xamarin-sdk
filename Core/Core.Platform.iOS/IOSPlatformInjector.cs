@@ -29,5 +29,10 @@ namespace AeroGear.Mobile.Core
                 return System.IO.File.OpenRead(fileName);
             }
         }
+
+        public Assembly[] GetAssemblies()
+        {
+            return AppDomain.CurrentDomain.GetAssemblies();
+        }
     }
 }

@@ -39,7 +39,7 @@ namespace Aerogear.Mobile.Core
 
             public void Destroy()
             {
-                throw new NotImplementedException();
+                
             }
         }
 
@@ -58,10 +58,16 @@ namespace Aerogear.Mobile.Core
                 return ExecutingAssembly.GetManifestResourceStream($"{DefaultResources}.{fileName}");
             }
 
+            public Assembly[] GetAssemblies()
+            {
+                return AppDomain.CurrentDomain.GetAssemblies();
+            }
+
             public TestInjector(Assembly assembly)
             {
                 ExecutingAssembly = assembly;
             }
+            
         }
         
 
@@ -126,6 +132,7 @@ namespace Aerogear.Mobile.Core
             Assert.AreEqual(HELLO_WORLD, (string)jsonObject["text"]);
             MobileCore.Instance.Destroy();
         }
+
 
     }
 }

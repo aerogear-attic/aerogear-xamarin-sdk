@@ -89,6 +89,7 @@ namespace AeroGear.Mobile.Core.Http
             SystemNetHttpResponse httpResponse = null;
             try
             {
+                
                 var response = await httpClient.SendAsync(message);
                 int statusCode = (int)response.StatusCode;
                 var successful = !(statusCode >= 400 && statusCode <= 599);

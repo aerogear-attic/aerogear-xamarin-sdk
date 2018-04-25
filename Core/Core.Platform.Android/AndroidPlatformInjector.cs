@@ -37,5 +37,10 @@ namespace AeroGear.Mobile.Core.Platform.Android
                 return context.Assets.Open(fileName);
             }
         }
+
+        public Assembly[] GetAssemblies() {
+                return AppDomain.CurrentDomain.GetAssemblies();
+        }
+
     }
 }
