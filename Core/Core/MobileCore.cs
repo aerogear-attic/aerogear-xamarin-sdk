@@ -103,7 +103,7 @@ namespace AeroGear.Mobile.Core
             if (options.HttpServiceModule == null)
             {
                 HttpClientHandler httpClientHandler = new HttpClientHandler();
-                httpClientHandler.AllowAutoRedirect = false;
+                httpClientHandler.AllowAutoRedirect = options.HttpAllowAutoRedirect;
 
                 HttpClient httpClient = new HttpClient(httpClientHandler);
                 httpClient.Timeout = TimeSpan.FromSeconds(DEFAULT_TIMEOUT);
