@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Aerogear.Mobile.Auth.User;
 using AeroGear.Mobile.Auth.Authenticator;
 using AeroGear.Mobile.Auth.Config;
 using AeroGear.Mobile.Core;
