@@ -14,6 +14,11 @@ namespace Example.Views.Pages
         public AuthPage()
         {
             InitializeComponent();
+            IAuthService service = MobileCore.Instance.GetInstance<IAuthService>();
+            if (service.CurrentUser() != null)
+            {
+                Navigation.PushAsync(new UserDetails());
+            }
         }
 
         public void OnAuthenticateClicked(object sender, EventArgs args)

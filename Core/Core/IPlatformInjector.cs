@@ -20,7 +20,13 @@ namespace AeroGear.Mobile.Core
         /// Returns executing assembly. For accessing resources, etc.
         /// </summary>
         Assembly ExecutingAssembly { get; set; }
-        
+
+        /// <summary>
+        /// Gets all of the Assemblies for the application
+        /// </summary>
+        /// <returns>all linked assemblies</returns>
+        Assembly[] GetAssemblies();
+
         /// <summary>
         /// Returns stream of file budled withhin your application.
         /// </summary>

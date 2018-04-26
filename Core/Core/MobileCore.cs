@@ -7,6 +7,7 @@ using AeroGear.Mobile.Core.Exception;
 using AeroGear.Mobile.Core.Http;
 using System.Reflection;
 using System.Net.Http;
+using AeroGear.Mobile.Core.Utils;
 
 namespace AeroGear.Mobile.Core
 {
@@ -15,7 +16,8 @@ namespace AeroGear.Mobile.Core
     /// </summary>
     public sealed class MobileCore
     {
-
+        private static Object coreLock = new Object();
+        private readonly ServiceRegistry registry;
         public const String DEFAULT_CONFIG_FILE_NAME = "mobile-services.json";
 
         private static String TAG = "AEROGEAR/CORE";
@@ -71,6 +73,8 @@ namespace AeroGear.Mobile.Core
 
             if (injector != null && options.ConfigFileName != null)
             {
+                registry = new ServiceRegistry(Logger, injector);
+
                 try
                 {
                     using (var stream = injector.GetBundledFileStream(options.ConfigFileName))
@@ -138,7 +142,13 @@ namespace AeroGear.Mobile.Core
         public static MobileCore Init(IPlatformInjector injector, Options options)
         {
             NonNull<Options>(options, "init options");
-            instance = new MobileCore(injector, options);
+            lock (coreLock)
+            {
+                if (instance == null)
+                {
+                    instance = new MobileCore(injector, options);
+                }
+            }
             return instance;
         }
 
@@ -192,12 +202,27 @@ namespace AeroGear.Mobile.Core
             where T : IServiceModule
         {
             NonNull<Type>(serviceClass, "serviceClass");
+            
             if (services.ContainsKey(serviceClass))
             {
                 return (T)services[serviceClass];
             }
-            // There are no services registered for this interface.
-            throw new ServiceModuleInstanceNotFoundException(String.Format("No instance has been registered for interface {0}", serviceClass.Name));
+            else
+            {
+
+                var resolvedServiceClass = registry.FindImplementation(serviceClass);
+                if (resolvedServiceClass == null)
+                {
+                    // There are no services registered for this interface.
+                    throw new ServiceModuleInstanceNotFoundException(String.Format("No instance has been registered for interface {0}", serviceClass.Name));
+                }
+
+                IServiceModule serviceModule = Activator.CreateInstance(resolvedServiceClass, this, serviceConfiguration) as IServiceModule;
+
+                services[serviceClass] = serviceModule;
+                return (T)serviceModule;
+            }
+            
         }
 
         public ServiceConfiguration GetServiceConfiguration(String type)

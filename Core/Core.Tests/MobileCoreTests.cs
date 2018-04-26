@@ -39,7 +39,7 @@ namespace Aerogear.Mobile.Core
 
             public void Destroy()
             {
-                throw new NotImplementedException();
+                
             }
         }
 
@@ -62,6 +62,13 @@ namespace Aerogear.Mobile.Core
             {
                 ExecutingAssembly = assembly;
             }
+
+            public Assembly[] GetAssemblies()
+            {
+                return AppDomain.CurrentDomain.GetAssemblies();
+            }
+
+
         }
         
 

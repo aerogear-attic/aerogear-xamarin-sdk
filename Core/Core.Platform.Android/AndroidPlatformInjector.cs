@@ -25,6 +25,11 @@ namespace AeroGear.Mobile.Core.Platform.Android
             this.context = ctx;
         }
 
+        public Assembly[] GetAssemblies()
+        {
+            return AppDomain.CurrentDomain.GetAssemblies();
+        }
+
         public Stream GetBundledFileStream(string fileName)
         {
             if (ExecutingAssembly != null)

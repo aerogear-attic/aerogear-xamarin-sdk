@@ -16,6 +16,11 @@ namespace AeroGear.Mobile.Core
         public String PlatformName => "iOS";
 
         public Assembly ExecutingAssembly { get;  set; }
+        
+        public Assembly[] GetAssemblies()
+        {
+            return AppDomain.CurrentDomain.GetAssemblies();
+        }
 
         public Stream GetBundledFileStream(string fileName)
         {

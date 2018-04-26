@@ -33,7 +33,7 @@ namespace Example.Android
             Instance = this;
             var app = new App();
             MobileCoreAndroid.Init(app.GetType().Assembly,ApplicationContext);
-            var authService = AuthService.InitializeService();
+            var authService = MobileCore.Instance.GetInstance<IAuthService>();
             var authConfig = AuthenticationConfig.Builder.RedirectUri("org.aerogear.mobile.example:/callback").Build();
             authService.Configure(authConfig);
             LoadApplication(app);

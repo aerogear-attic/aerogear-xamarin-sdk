@@ -29,7 +29,7 @@ namespace Example.iOS
             global::Xamarin.Forms.Forms.Init();
             var xamApp = new App();
             MobileCore core = MobileCoreIOS.Init(xamApp.GetType().Assembly);
-            var authService = AuthService.InitializeService();
+            var authService = core.GetInstance<IAuthService>();
             var authConfig = AuthenticationConfig.Builder.RedirectUri("org.aerogear.mobile.example:/callback").Build();
             authService.Configure(authConfig);
             LoadApplication(xamApp);
