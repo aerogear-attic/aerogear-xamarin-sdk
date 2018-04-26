@@ -16,9 +16,9 @@ namespace AeroGear.Mobile.Auth
     public abstract class AbstractAuthService : IAuthService
     {
         protected CredentialManager CredentialManager { get; set; }
-        protected KeycloakConfig KeycloakConfig { get; set; }
+        protected readonly KeycloakConfig KeycloakConfig;
         protected AuthenticationConfig AuthenticationConfig { get; private set; }
-        protected MobileCore MobileCore { get; set; }
+        protected readonly MobileCore MobileCore;
         protected IAuthenticator Authenticator { get; set; }
         public string Type => "keycloak";
         public bool RequiresConfiguration => true;
