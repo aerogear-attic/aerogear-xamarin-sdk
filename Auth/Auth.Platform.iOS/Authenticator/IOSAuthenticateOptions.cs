@@ -8,7 +8,7 @@ namespace AeroGear.Mobile.Auth.Authenticator
 {
     public delegate void OIDAuthenticatorCallback(User  user, NSError error);
 
-    public class IOSAuthenticateOptions
+    public class IOSAuthenticateOptions : IAuthenticateOptions
     {
         /// <summary>
         /// Gets the view controller from which to present the SafariViewController.

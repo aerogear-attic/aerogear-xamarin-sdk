@@ -8,14 +8,23 @@ using AeroGear.Mobile.Core;
 using AeroGear.Mobile.Core.Configuration;
 using AeroGear.Mobile.Core.Storage;
 using AeroGear.Mobile.Auth;
+using Android.Content;
 
 namespace AeroGear.Mobile.Auth
 {
+    /// <summary>
+    /// <see cref="IAuthService"/> implementation for the Android platform.
+    /// </summary>
     public class AuthService : AbstractAuthService
     {
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:AeroGear.Mobile.Auth.AuthService"/> class.
+        /// </summary>
+        /// <param name="mobileCore">Mobile core.</param>
+        /// <param name="serviceConfig">Service configuration.</param>
         public AuthService(MobileCore mobileCore = null, ServiceConfiguration serviceConfig = null) : base(mobileCore, serviceConfig)
         {
-            var storageManager = new StorageManager("AeroGear.Mobile.Auth.Credentials");
+            var storageManager = new StorageManager("AeroGear.Mobile.Auth.Credentials", Android.App.Application.Context);
             CredentialManager = new CredentialManager(storageManager);
         }
 
@@ -28,10 +37,12 @@ namespace AeroGear.Mobile.Auth
             Authenticator = new OIDCAuthenticator(authConfig, KeycloakConfig, CredentialManager, MobileCore.HttpLayer, MobileCore.Logger);
         }
 
+
         /// <summary>
-        /// Retrieve the current user.
+        /// Retrieves the current authenticated user. If there is no currently
+        /// authenticated user then <c>null</c> is returned.
         /// </summary>
-        /// <returns>The current user.</returns>
+        /// <returns>The current user if authenticated. Else <c>null</c>.</returns>
         public override User CurrentUser()
         {
             var serializedCredential = CredentialManager.LoadSerialized();
@@ -42,7 +53,17 @@ namespace AeroGear.Mobile.Auth
             var parsedCredential = new OIDCCredential(serializedCredential);
             return User.NewUser().FromUnverifiedCredential(parsedCredential, KeycloakConfig.ResourceId);
         }
-       
+
+        /// <summary>
+        /// Handles the auth result.
+        /// </summary>
+        /// <returns><see cref="Task"/></returns>
+        /// <param name="data">Intent.</param>
+        public Task HandleAuthResult(Intent data)
+        {
+            return ((OIDCAuthenticator)Authenticator).HandleAuthResult(data);
+        }
+
         /// <summary>
         /// Initializes the service and pass the configuration to be used to configure it
         /// </summary>
