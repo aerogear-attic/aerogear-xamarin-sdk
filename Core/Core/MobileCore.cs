@@ -197,7 +197,7 @@ namespace AeroGear.Mobile.Core
                 return (T)services[serviceClass];
             }
             // There are no services registered for this interface.
-            throw new ServiceModuleInstanceNotFoundException(serviceClass.Name);
+            throw new ServiceModuleInstanceNotFoundException(String.Format("No instance has been registered for interface {0}", serviceClass.Name));
         }
 
         public ServiceConfiguration GetServiceConfiguration(String type)
