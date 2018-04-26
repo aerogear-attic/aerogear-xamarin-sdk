@@ -1,0 +1,32 @@
+= AeroGear Xamarin Auth SDK
+
+Mobile authentication SDK based on link:http://www.keycloak.org/[Keycloak] using link:http://openid.net/connect/[OpenID Connect].
+
+Provides authentication features like access control and two factor authentication through Keycloak.
+
+== Usage
+
+To use the Auth SDK you'll first need to:
+
+* Have a Keycloak instance.
+* Import the Core module.
+
+=== Configuring
+
+Before using the Auth SDK it must first be initialized and configured. During
+configuration an `AuthenticationConfig` must be provided to the SDK.
+
+An example of initializing and configuring the
+SDK is:
+
+[source,csharp]
+----
+MobileCoreAndroid.Init(app.GetType().Assembly,ApplicationContext);
+var authService = AuthService.InitializeService();
+var authConfig = AuthenticationConfig.Builder.RedirectUri("org.aerogear.mobile.example:/callback").Build();
+authService.Configure(authConfig);
+----
+
+NOTE: For Android an link:https://developer.android.com/guide/topics/manifest/intent-filter-element[intent-filter]
+should be configured with the callback URL specified in `AuthenticateOptions` in
+the apps `AndroidManifest.xml`. See link:https://github.com/aerogear/aerogear-xamarin-sdk/blob/master/Example/Example.Android/Properties/AndroidManifest.xml[the example app].
