@@ -7,6 +7,7 @@ using AeroGear.Mobile.Core.Exception;
 using AeroGear.Mobile.Core.Http;
 using System.Reflection;
 using System.Net.Http;
+using AeroGear.Mobile.Core.Utils;
 
 namespace AeroGear.Mobile.Core
 {
@@ -198,6 +199,22 @@ namespace AeroGear.Mobile.Core
             if (services.ContainsKey(serviceClass))
             {
                 return (T)services[serviceClass];
+            }
+
+            if (ServiceFinder.IsRegistered<T>())
+            {
+                IServiceModule serviceModule = ServiceFinder.Resolve<T>() as IServiceModule;
+
+                ServiceConfiguration conf = serviceConfiguration ?? GetServiceConfiguration(serviceModule.Type);
+
+                if (conf == null && serviceModule.RequiresConfiguration) {
+                    throw new System.Exception("No configuraton found for service");
+                }
+
+                serviceModule.Configure(this, conf);
+
+                services[serviceClass] = serviceModule;
+                return (T)serviceModule;
             }
             // There are no services registered for this interface.
             throw new ServiceModuleInstanceNotFoundException(String.Format("No instance has been registered for interface {0}", serviceClass.Name));

@@ -74,10 +74,6 @@
       <Project>{F1EA4BBA-D775-45C0-99DA-DB0590BEE87E}</Project>
       <Name>Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Core\Core.Platform.iOS\Core.Platform.iOS.csproj">
-      <Project>{C5B8A6AF-90D0-43DC-B097-A5F3CEB01E9F}</Project>
-      <Name>Core.Platform.iOS</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\..\packages\NuGet.Build.Packaging.0.2.0\build\NuGet.Build.Packaging.targets" Condition="Exists('..\..\packages\NuGet.Build.Packaging.0.2.0\build\NuGet.Build.Packaging.targets')" />

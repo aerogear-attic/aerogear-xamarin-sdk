@@ -24,16 +24,13 @@ namespace AeroGear.Mobile.Auth
         /// <returns><see cref="Task"/></returns>
         Task<User> Authenticate(IAuthenticateOptions authenticateOptions);
 
-        /// <summary>
-        /// Configure the service module.
-        /// </summary>
-        /// <param name="authConfig">Authentication configuration.</param>
-        void Configure(AuthenticationConfig authConfig);
 
         /// <summary>
         /// Logout the specified user.
         /// </summary>
         /// <returns><see cref="Task"/></returns>
         Task<bool> Logout(User user);
+
+        void Init(AuthenticationConfig authConfig);
     }
 }

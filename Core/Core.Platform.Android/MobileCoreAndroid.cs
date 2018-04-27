@@ -1,4 +1,9 @@
-﻿using AeroGear.Mobile.Core.Platform.Android;
+﻿using AeroGear.Mobile.Auth;
+using AeroGear.Mobile.Core.Logging;
+using AeroGear.Mobile.Core.Platform.Android;
+using AeroGear.Mobile.Core.Storage;
+using AeroGear.Mobile.Core.Utils;
+using Android.App;
 using Android.Content;
 using System.Reflection;
 
@@ -47,9 +52,18 @@ namespace AeroGear.Mobile.Core
         /// <param name="options">additional initialization options</param>
         public static void Init(Assembly assembly, Context appContext, Options options)
         {
+            // TODO: check if already initialized
+            RegisterServices();
             IPlatformInjector platformInjector = new AndroidPlatformInjector(appContext);
             platformInjector.ExecutingAssembly = assembly;
             MobileCore.Init(platformInjector, options);
+        }
+
+        private static void RegisterServices()
+        {
+            ServiceFinder.RegisterType<IAuthService, AuthService>();
+            ServiceFinder.RegisterType<ILogger, AndroidLogger>();
+            ServiceFinder.RegisterInstance<IStorageManager>(new StorageManager("AeroGear.Mobile.Auth.Credentials", Application.Context.ApplicationContext));
         }
     }
 }

@@ -18,6 +18,7 @@
   <ItemGroup>
     <PackageReference Include="System.Json" Version="4.4.0" />
     <PackageReference Include="NuGet.Build.Packaging" Version="0.2.0" />
+    <PackageReference Include="Unity" Version="5.8.6" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Storage\" />

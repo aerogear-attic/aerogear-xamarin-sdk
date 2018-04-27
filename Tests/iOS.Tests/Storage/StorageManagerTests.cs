@@ -12,7 +12,8 @@ namespace iOS.Tests.Storage
         [SetUp]
         public void Setup()
         {
-            Store = new StorageManager("org.aerogear.Core-Platform-iOS-Tests");
+            //Store = new StorageManager("org.aerogear.Core-Platform-iOS-Tests");
+            Store = new StorageManager();
         }
 
         [Test]

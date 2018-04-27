@@ -5,9 +5,6 @@ using AeroGear.Mobile.Auth.Authenticator;
 using AeroGear.Mobile.Auth.Config;
 using AeroGear.Mobile.Auth.Credentials;
 using AeroGear.Mobile.Core;
-using AeroGear.Mobile.Core.Configuration;
-using AeroGear.Mobile.Core.Storage;
-using AeroGear.Mobile.Auth;
 using Android.Content;
 
 namespace AeroGear.Mobile.Auth
@@ -17,26 +14,9 @@ namespace AeroGear.Mobile.Auth
     /// </summary>
     public class AuthService : AbstractAuthService
     {
-        /// <summary>
-        /// Initializes a new instance of the <see cref="T:AeroGear.Mobile.Auth.AuthService"/> class.
-        /// </summary>
-        /// <param name="mobileCore">Mobile core.</param>
-        /// <param name="serviceConfig">Service configuration.</param>
-        public AuthService(MobileCore mobileCore = null, ServiceConfiguration serviceConfig = null) : base(mobileCore, serviceConfig)
+        public AuthService()
         {
-            var storageManager = new StorageManager("AeroGear.Mobile.Auth.Credentials", Android.App.Application.Context);
-            CredentialManager = new CredentialManager(storageManager);
         }
-
-        /// <summary>
-        /// Provide authentication configuration to the service.
-        /// </summary>
-        /// <param name="authConfig">Authentication config.</param>
-        public override void Configure(AuthenticationConfig authConfig)
-        {
-            Authenticator = new OIDCAuthenticator(authConfig, KeycloakConfig, CredentialManager, MobileCore.HttpLayer, MobileCore.Logger);
-        }
-
 
         /// <summary>
         /// Retrieves the current authenticated user. If there is no currently
@@ -65,14 +45,13 @@ namespace AeroGear.Mobile.Auth
         }
 
         /// <summary>
-        /// Initializes the service and pass the configuration to be used to configure it
+        /// Initializes the service with the provided authentication configuration.
         /// </summary>
-        /// <returns>The initialized service.</returns>
-        /// <param name="core">The Mobile core instance. If <code>null</code> then <code>MobileCore.Instance</code> is used.</param>
-        /// <param name="config">The service configuration. If <code>null</code> then <code>MobileCore.GetServiceConfiguration(Type)</code> is used.</param>
-        public static IAuthService InitializeService(MobileCore core = null, ServiceConfiguration config = null)
+        /// <returns>The init.</returns>
+        /// <param name="authConfig">Auth config.</param>
+        public override void Init(AuthenticationConfig authConfig)
         {
-            return MobileCore.Instance.RegisterService<IAuthService>(new AuthService(core, config));
+            Authenticator = new OIDCAuthenticator(authConfig, KeycloakConfig, CredentialManager, MobileCore.HttpLayer, MobileCore.Logger);
         }
     }
 }

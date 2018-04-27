@@ -1,13 +1,8 @@
-﻿using System;
-using AeroGear.Mobile.Auth;
-using AeroGear.Mobile.Auth.Config;
-using AeroGear.Mobile.Core;
-using AeroGear.Mobile.Core.Configuration;
+﻿using AeroGear.Mobile.Core;
 using FFImageLoading.Forms.Touch;
 using Foundation;
 using ImageCircle.Forms.Plugin.iOS;
 using UIKit;
-using static AeroGear.Mobile.Core.Configuration.ServiceConfiguration;
 
 namespace Example.iOS
 {
@@ -29,9 +24,6 @@ namespace Example.iOS
             global::Xamarin.Forms.Forms.Init();
             var xamApp = new App();
             MobileCore core = MobileCoreIOS.Init(xamApp.GetType().Assembly);
-            var authService = AuthService.InitializeService();
-            var authConfig = AuthenticationConfig.Builder.RedirectUri("org.aerogear.mobile.example:/callback").Build();
-            authService.Configure(authConfig);
             LoadApplication(xamApp);
             CachedImageRenderer.Init();
             ImageCircleRenderer.Init();

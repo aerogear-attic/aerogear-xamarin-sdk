@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using AeroGear.Mobile.Auth;
+using AeroGear.Mobile.Auth.Config;
 using AeroGear.Mobile.Core;
 using Example.Auth;
 using Xamarin.Forms;
@@ -19,6 +20,8 @@ namespace Example.Views.Pages
         public void OnAuthenticateClicked(object sender, EventArgs args)
         {
             IAuthService service = MobileCore.Instance.GetInstance<IAuthService>();
+            var authConfig = AuthenticationConfig.Builder.RedirectUri("org.aerogear.mobile.example:/callback").Build();
+            service.Init(authConfig);
             var authOptions = DependencyService.Get<IAuthenticateOptionsProvider>().GetOptions();
             service.Authenticate(authOptions).ContinueWith(result =>
             {

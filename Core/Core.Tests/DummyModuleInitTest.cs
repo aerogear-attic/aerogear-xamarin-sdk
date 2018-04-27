@@ -49,6 +49,11 @@ namespace AeroGear.Mobile.Core.Tests
                 var serviceConfig = MobileCore.Instance.GetServiceConfiguration("dummy");
                 MobileCore.Instance.RegisterService<IDummyModule>(new DummyModule(serviceConfig));
             }
+
+            public void Configure(MobileCore core, ServiceConfiguration authConfig)
+            {
+                
+            }
         }
 
         [SetUp]
