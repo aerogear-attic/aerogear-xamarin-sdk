@@ -1,5 +1,9 @@
 ﻿using System;
 using System.Reflection;
+using AeroGear.Mobile.Auth;
+using AeroGear.Mobile.Core.Logging;
+using AeroGear.Mobile.Core.Storage;
+using AeroGear.Mobile.Core.Utils;
 
 namespace AeroGear.Mobile.Core
 {
@@ -43,9 +47,17 @@ namespace AeroGear.Mobile.Core
         /// <param name="options">additional initialization options</param>
         public static MobileCore Init(Assembly assembly, Options options)
         {
+            RegisterServices();
             IPlatformInjector platformInjector = new IOSPlatformInjector();
             platformInjector.ExecutingAssembly = assembly;
             return MobileCore.Init(platformInjector, options);
+        }
+
+        private static void RegisterServices()
+        {
+            ServiceFinder.RegisterType<IAuthService, AuthService>();
+            ServiceFinder.RegisterType<ILogger, IOSLogger>();
+            ServiceFinder.RegisterType<IStorageManager, StorageManager>();
         }
     }
 }

@@ -48,6 +48,14 @@
       <Project>{f1ea4bba-d775-45c0-99da-db0590bee87e}</Project>
       <Name>Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Auth\Auth\Auth.csproj">
+      <Project>{55FF3B02-07D1-46F3-B0D5-584D3B98467E}</Project>
+      <Name>Auth</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Auth\Auth.Platform.Android\Auth.Platform.Android.csproj">
+      <Project>{ACEB8935-989F-46CA-8F0F-FBA3B358C70C}</Project>
+      <Name>Auth.Platform.Android</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">
@@ -63,6 +71,18 @@
     </Reference>
     <Reference Include="System.Xml">
       <HintPath>..\..\..\..\..\..\..\..\..\..\..\..\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\ReferenceAssemblies\Microsoft\Framework\MonoAndroid\v1.0\System.Xml.dll</HintPath>
+    </Reference>
+    <Reference Include="CommonServiceLocator">
+      <HintPath>..\..\packages\Unity.5.8.6\lib\netstandard2.0\CommonServiceLocator.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Abstractions">
+      <HintPath>..\..\packages\Unity.5.8.6\lib\netstandard2.0\Unity.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Container">
+      <HintPath>..\..\packages\Unity.5.8.6\lib\netstandard2.0\Unity.Container.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.ServiceLocation">
+      <HintPath>..\..\packages\Unity.5.8.6\lib\netstandard2.0\Unity.ServiceLocation.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup />

@@ -5,6 +5,8 @@ using AeroGear.Mobile.Auth.Config;
 using AeroGear.Mobile.Auth.Credentials;
 using AeroGear.Mobile.Core;
 using AeroGear.Mobile.Core.Configuration;
+using AeroGear.Mobile.Core.Storage;
+using AeroGear.Mobile.Core.Utils;
 using static AeroGear.Mobile.Core.Utils.SanityCheck;
 
 namespace AeroGear.Mobile.Auth
@@ -15,32 +17,31 @@ namespace AeroGear.Mobile.Auth
     public abstract class AbstractAuthService : IAuthService
     {
         protected CredentialManager CredentialManager { get; set; }
-        protected readonly KeycloakConfig KeycloakConfig;
+        protected KeycloakConfig KeycloakConfig;
         protected AuthenticationConfig AuthenticationConfig { get; private set; }
-        protected readonly MobileCore MobileCore;
+        protected MobileCore MobileCore;
         protected IAuthenticator Authenticator { get; set; }
         public string Type => "keycloak";
         public bool RequiresConfiguration => true;
 
         public abstract User CurrentUser();
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="T:AeroGear.Mobile.Auth.AbstractAuthService"/> class.
-        /// </summary>
-        /// <param name="mobileCore">Mobile core.</param>
-        /// <param name="serviceConfig">Service config.</param>
-        public AbstractAuthService(MobileCore mobileCore = null, ServiceConfiguration serviceConfig = null)
+        public AbstractAuthService() 
         {
-            MobileCore = mobileCore ?? MobileCore.Instance;
-            var serviceConfiguration = NonNull(serviceConfig ?? MobileCore.GetServiceConfiguration(Type), "serviceConfig");
-            KeycloakConfig = new KeycloakConfig(serviceConfiguration);
+            var storageManager = ServiceFinder.Resolve<IStorageManager>();
+            CredentialManager = new CredentialManager(storageManager);
         }
 
         /// <summary>
         /// Configure the service module.
         /// </summary>
-        /// <param name="authConfig">Authentication configuration.</param>
-        public abstract void Configure(AuthenticationConfig authConfig);
+        /// <param name="serviceConfig">Service configuration.</param>
+        public void Configure(MobileCore mobileCore, ServiceConfiguration serviceConfig) 
+        {
+            MobileCore = mobileCore ?? MobileCore.Instance;
+            var serviceConfiguration = NonNull(serviceConfig ?? MobileCore.GetServiceConfiguration(Type), "serviceConfig");
+            KeycloakConfig = new KeycloakConfig(serviceConfiguration);    
+        }
 
         /// <summary>
         /// Initiate an authentication flow.
@@ -68,5 +69,7 @@ namespace AeroGear.Mobile.Auth
         {
             return Authenticator.Logout(user);
         }
+
+        public abstract void Init(AuthenticationConfig authConfig);
     }
 }

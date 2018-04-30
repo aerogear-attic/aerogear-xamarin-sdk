@@ -33,5 +33,7 @@ namespace AeroGear.Mobile.Core
         /// Called when singleThreadService destroyed.
         /// </summary>
         void Destroy();
+
+        void Configure(MobileCore core, ServiceConfiguration authConfig);
     }
 }

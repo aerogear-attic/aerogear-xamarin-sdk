@@ -8,16 +8,12 @@ namespace AeroGear.Mobile.Core.Storage
     /// </summary>
     public class StorageManager : IStorageManager
     {
+        private const string DEFAULT_STORAGE = "AeroGear.Mobile.Auth.Credentials";
         private readonly SecureKeyValueStore KeyValStore;
 
-        /// <summary>
-        /// Initializes a new instance of the <see cref="T:AeroGear.Mobile.Core.Storage.StorageManager"/> class.
-        /// </summary>
-        /// <param name="storeName">Store name.</param>
-        /// <param name="context">Context.</param>
-        public StorageManager(string storeName)
+        public StorageManager()
         {
-            KeyValStore = new SecureKeyValueStore(storeName);
+            KeyValStore = new SecureKeyValueStore(DEFAULT_STORAGE);
         }
 
         /// <summary>
