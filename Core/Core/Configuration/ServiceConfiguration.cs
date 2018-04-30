@@ -40,19 +40,19 @@ namespace AeroGear.Mobile.Core.Configuration
         }
 
         /// <summary>
-        /// Gets the keys.
+        /// Gets the keys of all the properties of the configuration
         /// </summary>
         /// <value>The keys.</value>
         public IEnumerable<string> Keys => properties.Keys;
 
         /// <summary>
-        /// Gets the values.
+        /// Gets the values of all the properties of the configuration
         /// </summary>
         /// <value>The values.</value>
         public IEnumerable<string> Values => properties.Values;
 
         /// <summary>
-        /// Gets the count.
+        /// Gets the count of all the properties of the configuration
         /// </summary>
         /// <value>The count.</value>
         public int Count => properties.Count;

@@ -4,7 +4,7 @@ using AeroGear.Mobile.Core.Storage;
 namespace AeroGear.Mobile.Auth.Credentials
 {
     /// <summary>
-    /// A class to persist/remove the credential data on device.
+    /// A class to persist/remove the credential data on a device.
     /// </summary>
     public class CredentialManager : ICredentialManager
     {
