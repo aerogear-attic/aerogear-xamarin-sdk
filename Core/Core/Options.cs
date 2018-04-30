@@ -14,6 +14,7 @@ namespace AeroGear.Mobile.Core
 
         //  Don't have a default implementation because it should use configuration
         public IHttpServiceModule HttpServiceModule {get; private set;}
+        public bool HttpAllowAutoRedirect { get; private set; }
 
         public ILogger Logger { get; private set; }
 
@@ -26,6 +27,7 @@ namespace AeroGear.Mobile.Core
 
         public Options()
         {
+            HttpAllowAutoRedirect = false;
             ConfigFileName = MobileCore.DEFAULT_CONFIG_FILE_NAME;            
         }
 
@@ -35,6 +37,7 @@ namespace AeroGear.Mobile.Core
             private String configFileName;
             private string configJSON;
             private IHttpServiceModule httpServiceModule;
+            private bool httpAllowAutoRedirect = false;
 
             internal OptionsBuilder() { }
 
@@ -84,6 +87,19 @@ namespace AeroGear.Mobile.Core
             }
 
             /// <summary>
+            /// Set whether the default HTTP Client should allow redirects.
+            /// This does not apply when specifying a custom HTTP Client using
+            /// <see cref="HttpServiceModule(IHttpServiceModule)"/>.
+            /// </summary>
+            /// <returns>itself</returns>
+            /// <param name="allowAutoRedirect">If set to <c>true</c> allow auto redirect.</param>
+            public OptionsBuilder HttpAllowAutoRedirect(bool allowAutoRedirect)
+            {
+                this.httpAllowAutoRedirect = allowAutoRedirect;
+                return this;
+            }
+
+            /// <summary>
             /// Creates options to be used to initialize the core.
             /// </summary>
             /// <returns>initialization options</returns>
@@ -94,6 +110,7 @@ namespace AeroGear.Mobile.Core
                 options.HttpServiceModule = httpServiceModule;
                 options.Logger = logger;
                 options.ConfigJson = configJSON;
+                options.HttpAllowAutoRedirect = httpAllowAutoRedirect;
                 return options;
             }
         }
