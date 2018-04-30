@@ -5,6 +5,9 @@ using static AeroGear.Mobile.Core.Utils.SanityCheck;
 
 namespace AeroGear.Mobile.Core.Storage
 {
+    /// <summary>
+    /// Key/value store using the <see cref="KeychainService"/>
+    /// </summary>
     public class SecureKeyValueStore
     {
         private readonly string KeychainService;

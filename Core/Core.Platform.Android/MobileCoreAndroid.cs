@@ -4,6 +4,9 @@ using System.Reflection;
 
 namespace AeroGear.Mobile.Core
 {
+    /// <summary>
+    /// Entry class to initialize the <see cref="MobileCore"/> for Android
+    /// </summary>
     public sealed class MobileCoreAndroid
     {
         /// <summary>

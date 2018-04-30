@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Aerogear.Mobile.Auth.User;
 using AeroGear.Mobile.Auth.Authenticator;
 using AeroGear.Mobile.Auth.Config;
 using AeroGear.Mobile.Auth.Credentials;
@@ -11,6 +10,9 @@ using AeroGear.Mobile.Auth;
 
 namespace AeroGear.Mobile.Auth
 {
+    /// <summary>
+    /// Auth service implementation for iOS platform
+    /// </summary>
     public class AuthService : AbstractAuthService
     {
         public AuthService(MobileCore mobileCore = null, ServiceConfiguration serviceConfig = null) : base(mobileCore, serviceConfig)

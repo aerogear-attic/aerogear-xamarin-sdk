@@ -15,19 +15,29 @@ namespace AeroGear.Mobile.Core
     /// </summary>
     public sealed class MobileCore
     {
-
+        /// <summary>
+        /// The default name of the config file.
+        /// </summary>
         public const String DEFAULT_CONFIG_FILE_NAME = "mobile-services.json";
 
         private static String TAG = "AEROGEAR/CORE";
 
         private static int DEFAULT_TIMEOUT = 20;
 
+        /// <summary>
+        /// Gets the logger for the current platform
+        /// </summary>
+        /// <value>The logger.</value>
         public ILogger Logger
         {
             get;
             private set;
         }
 
+        /// <summary>
+        /// Gets the name of the config file.
+        /// </summary>
+        /// <value>The name of the config file.</value>
         public String ConfigFileName
         {
             get;

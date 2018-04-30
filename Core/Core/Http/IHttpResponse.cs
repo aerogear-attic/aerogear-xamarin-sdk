@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace AeroGear.Mobile.Core.Http
 {
+    /// <summary>
+    /// Interface for the http response
+    /// </summary>
     public interface IHttpResponse
     {
 
