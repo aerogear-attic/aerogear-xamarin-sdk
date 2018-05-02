@@ -6,7 +6,7 @@
 # Using yum: yum -y install doxygen
 
 # Confirm that Doxygen is installed. If it's not exit and provide an error.
-command -v foo >/dev/null 2>&1 || { echo >&2 "Doxygen is not found. To install, run: (yum) yum -y install doxygen | (Homebrew) brew install doxygen."; exit 1; }
+command -v doxygen >/dev/null 2>&1 || { echo >&2 "Doxygen is not found. To install, run: (yum) yum -y install doxygen | (Homebrew) brew install doxygen."; exit 1; }
 
 echo "Creating documentation for the Xamarin SDK."
 doxygen Documentations/Doxyfile
