@@ -14,18 +14,14 @@ Underlying SDK architecture
 == Adding NuGet
 
 
-Core platfom-independent module:
+In the Xamarin.Forms shared project add this package:
+[AeroGear.Mobile.Core](https://www.nuget.org/packages/AeroGear.Mobile.Core/)
 
-```
-TODO
-```
+Add following NuGet package in your Android project:
+https://www.nuget.org/packages/AeroGear.Mobile.Core.Platform.Android/[AeroGear.Mobile.Core.Platform.Android]
 
-Core platform module:
-
-
-```
-TODO Android, iOS
-```
+Add following NuGet package in your iOS project:
+https://www.nuget.org/packages/AeroGear.Mobile.Core.Platform.iOS/[AeroGear.Mobile.Core.Platform.iOS]
 
 
 == Usage
