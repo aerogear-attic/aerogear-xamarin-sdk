@@ -8,6 +8,8 @@
     <Authors>AeroGear</Authors>
     <Owners>AeroGear</Owners>
     <Description>AeroGear auth service</Description>
+    <AssemblyName>AeroGear.Mobile.Auth</AssemblyName>
+    <RootNamespace>AeroGear.Mobile.Auth</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

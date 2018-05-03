@@ -1,29 +1,30 @@
 <?xml version="1.0"?>
 <package >
   <metadata>
-    <id>AeroGear.Mobile.Core.Platform.iOS</id>
-    <version>0.0.4</version>
-    <title>AeroGear Xamarin SDK Core (iOS)</title>
+    <id>AeroGear.Mobile.Auth</id>
+    <version>0.0.2</version>
+    <title>AeroGear SDK Auth module</title>
     <authors>AeroGear Community</authors>
     <owners>AeroGear Community</owners>
     <licenseUrl>https://github.com/aerogear/aerogear-xamarin-sdk/blob/master/LICENSE</licenseUrl>
     <projectUrl>https://github.com/aerogear/aerogear-xamarin-sdk</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <description>.NET and Xamarin libraries for the AeroGear Mobile Core</description>
+    <description>.NET and Xamarin libraries for authentication through the AeroGear mobile services</description>
     <copyright>Copyright 2018</copyright>
     <tags>aerogear security sso openid xamarin iOS android mobile</tags>
     <iconUrl>https://avatars1.githubusercontent.com/u/954205</iconUrl>
     <dependencies>
       <dependency id="AeroGear.Mobile.Core" version="0.0.3"/>
+      <dependency id="JWT" version="4.0.0"/>      
     </dependencies>
     <references>
       <group>
-        <reference file="AeroGear.Mobile.Core.Platform.iOS.dll" />
+        <reference file="AeroGear.Mobile.Auth.dll" />
       </group>
     </references>
   </metadata>
   <files>
-    <file src="bin\Debug\AeroGear.Mobile.Core.Platform.iOS.dll" target="lib\xamarinios10" />
+    <file src="bin\Debug\netstandard1.4\AeroGear.Mobile.Auth.dll" target="lib\netstandard1.4" />
     <file src="../../README.md" target="" />
   </files>
 </package>
