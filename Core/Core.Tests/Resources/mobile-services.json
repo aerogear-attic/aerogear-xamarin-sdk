@@ -42,6 +42,17 @@
         "data2": 42,
         "data3":  true
       }
+    },
+    {
+      "id": "anotherdummy",
+      "name": "anotherdummy",
+      "type": "dummy",
+      "url": "http://localhost",
+      "config": {
+        "data1": "Hello world, from anotherdummy!",
+        "data2": 420,
+        "data3": false
+      }
     }
   ]
 }

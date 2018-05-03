@@ -32,7 +32,7 @@ namespace AeroGear.Mobile.Auth
         public AbstractAuthService(MobileCore mobileCore = null, ServiceConfiguration serviceConfig = null)
         {
             MobileCore = mobileCore ?? MobileCore.Instance;
-            var serviceConfiguration = NonNull(serviceConfig ?? MobileCore.GetServiceConfiguration(Type), "serviceConfig");
+            var serviceConfiguration = NonNull(serviceConfig ?? MobileCore.GetFirstServiceConfigurationByType(Type), "serviceConfig");
             KeycloakConfig = new KeycloakConfig(serviceConfiguration);
         }
 

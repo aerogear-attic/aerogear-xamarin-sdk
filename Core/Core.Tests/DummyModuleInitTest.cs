@@ -46,8 +46,9 @@ namespace AeroGear.Mobile.Core.Tests
 
             public static void InitializeService()
             {
-                var serviceConfig = MobileCore.Instance.GetServiceConfiguration("dummy");
+                var serviceConfig = MobileCore.Instance.GetFirstServiceConfigurationByType("dummy");
                 MobileCore.Instance.RegisterService<IDummyModule>(new DummyModule(serviceConfig));
+
             }
         }
 
@@ -76,9 +77,9 @@ namespace AeroGear.Mobile.Core.Tests
 
         }
 
-
     }
 
    
+
 
 }

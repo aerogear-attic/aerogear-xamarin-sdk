@@ -74,7 +74,7 @@ namespace AeroGear.Mobile.Core
 
         private Dictionary<Type, IServiceModule> services = new Dictionary<Type, IServiceModule>();
 
-        private MobileCore(IPlatformInjector injector, Options options)
+        protected MobileCore(IPlatformInjector injector, Options options)
         {
             
             Logger = options.Logger ?? injector?.CreateLogger() ?? new NullLogger();
@@ -109,7 +109,6 @@ namespace AeroGear.Mobile.Core
                 else
                     throw new InitializationException("Must provide either filename or JSON configuration in Init() options");
             }
-
             if (options.HttpServiceModule == null)
             {
                 HttpClientHandler httpClientHandler = new HttpClientHandler();
@@ -118,7 +117,7 @@ namespace AeroGear.Mobile.Core
                 HttpClient httpClient = new HttpClient(httpClientHandler);
                 httpClient.Timeout = TimeSpan.FromSeconds(DEFAULT_TIMEOUT);
                 var httpServiceModule = new SystemNetHttpServiceModule(httpClient);
-                var configuration = GetServiceConfiguration(httpServiceModule.Type);
+                var configuration = GetFirstServiceConfigurationByType(httpServiceModule.Type);
                 if (configuration == null)
                 {
                     configuration = ServiceConfiguration.Builder.Build();
@@ -213,9 +212,43 @@ namespace AeroGear.Mobile.Core
             throw new ServiceModuleInstanceNotFoundException(String.Format("No instance has been registered for interface {0}", serviceClass.Name));
         }
 
-        public ServiceConfiguration GetServiceConfiguration(String type)
+        /// <summary>
+        /// Returns array of ServiceConfiguration, filtered by type
+        /// </summary>
+        /// <param name="type">type field of the configuration</param>
+        /// <returns>array of ServiceConfiguration</returns>
+        public ServiceConfiguration[] GetServiceConfigurationByType(String type)
+        {
+            List<ServiceConfiguration> listOfConfigs = new List<ServiceConfiguration>();
+            foreach (var item in servicesConfig)
+            {
+                if (item.Value.Type == type)
+                {
+                    listOfConfigs.Add(item.Value);
+                }
+            }
+            ServiceConfiguration[] arrayOfConfigs = listOfConfigs.ToArray();
+            return arrayOfConfigs;
+        }
+
+        /// <summary>
+        /// Returns the first instance of a ServiceConfiguration based on the type key
+        /// </summary>
+        /// <param name="type">type field of the configuration</param>
+        /// <returns>a single ServiceConfiguration</returns>
+        public ServiceConfiguration GetFirstServiceConfigurationByType(String type)
         {
             return servicesConfig.ContainsKey(type) ? servicesConfig[type] : null;
+        }
+
+        /// <summary>
+        /// Returns a ServiceConfiguration based on the id key
+        /// </summary>
+        /// <param name="id">id field of the configuration</param>
+        /// <returns>a single ServiceConfiguration</returns>
+        public ServiceConfiguration GetServiceConfigurationById(String id)
+        {
+            return servicesConfig.ContainsKey(id) ? servicesConfig[id] : null;
         }
     }
 }
