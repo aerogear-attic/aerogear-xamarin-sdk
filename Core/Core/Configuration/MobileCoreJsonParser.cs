@@ -64,7 +64,7 @@ namespace AeroGear.Mobile.Core.Configuration
             }
 
             ServiceConfiguration serviceConfig = serviceConfigBuilder.Build();
-            values[serviceConfig.Id] = serviceConfig;
+            values[serviceConfig.Type] = serviceConfig;
         }
 
         /// <summary>
