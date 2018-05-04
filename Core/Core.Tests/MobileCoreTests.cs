@@ -26,6 +26,38 @@ namespace Aerogear.Mobile.Core
 
         public interface ITestService : IServiceModule { };
 
+        interface IDummyModule : IServiceModule
+        {
+            string Data1 { get; }
+            int Data2 { get; }
+            bool Data3 { get; }
+        }
+
+        class DummyModule : IDummyModule
+        {
+            public string Type => "dummy";
+
+            public String Data1 { get; private set; }
+            public int Data2 { get; private set; }
+
+            public bool Data3 { get; private set; }
+
+            public bool RequiresConfiguration => true;
+
+            public DummyModule(ServiceConfiguration serviceConfig)
+            {
+                Data1 = serviceConfig["data1"];
+                Data2 = int.Parse(serviceConfig["data2"]);
+                Data3 = bool.Parse(serviceConfig["data3"]);
+            }
+
+            public void Destroy()
+            {
+
+            }
+
+        }
+
         public class TestService : ITestService
         {
             public string Type => throw new NotImplementedException();
@@ -124,6 +156,40 @@ namespace Aerogear.Mobile.Core
             Assert.AreEqual(GET_TEST_BODY, response.Body);
             var jsonObject = JsonObject.Parse(response.Body);
             Assert.AreEqual(HELLO_WORLD, (string)jsonObject["text"]);
+            MobileCore.Instance.Destroy();
+        }
+
+        [Test]
+        public void TestFirstServiceConfigByType()
+        {
+            MobileCore.Init(new TestInjector(Assembly.GetExecutingAssembly()));
+            var serviceConfig = MobileCore.Instance.GetFirstServiceConfigurationByType("dummy");
+            MobileCore.Instance.RegisterService<IDummyModule>(new DummyModule(serviceConfig));
+
+            var module = MobileCore.Instance.GetInstance<IDummyModule>();
+            Assert.IsNotNull(module);
+            Assert.AreEqual("dummy", module.Type);
+            Assert.AreEqual("Hello world!", module.Data1);
+            Assert.AreEqual(42, module.Data2);
+            Assert.IsTrue(module.Data3);
+
+            MobileCore.Instance.Destroy();
+        }
+
+        [Test]
+        public void TestServiceConfigByType()
+        {
+            MobileCore.Init(new TestInjector(Assembly.GetExecutingAssembly()));
+            var serviceConfigByType = MobileCore.Instance.GetServiceConfigurationByType("dummy");
+            MobileCore.Instance.RegisterService<IDummyModule>(new DummyModule(serviceConfigByType[1]));
+
+            var module = MobileCore.Instance.GetInstance<IDummyModule>();
+            Assert.IsNotNull(module);
+            Assert.AreEqual("dummy", module.Type);
+            Assert.AreEqual("Hello world, from anotherdummy!", module.Data1);
+            Assert.AreEqual(420, module.Data2);
+            Assert.IsFalse(module.Data3);
+
             MobileCore.Instance.Destroy();
         }
 
