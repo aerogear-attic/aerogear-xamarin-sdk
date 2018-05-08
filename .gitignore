@@ -326,3 +326,9 @@ ASALocalRun/
 # Backup files
 *.bak
 .DS_Store
+
+# Antora
+/docs/build/
+/docs/node_modules/
+/docs/.cache/
+
