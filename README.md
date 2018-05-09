@@ -46,11 +46,11 @@ The API docs are generated using [Doxygen](http://www.stack.nl/~dimitri/doxygen/
 	```bash
 	cd aerogear-xamarin-sdk
 	# on Mac, run this command
-	/Applications/Doxygen.app/Contents/Resources/doxygen Documentations/Doxyfile
+	/Applications/Doxygen.app/Contents/Resources/doxygen docs/Doxyfile
 	```
 
 	The generated files can be found in the [Documentations](./Documentations) directory.
-4. To add more directories for API doc generation, update the `INPUT` configuration in the [Doxygen configuration file](./Documentations/Doxyfile). Use spaces to separate the files or directories.
+4. To add more directories for API doc generation, update the `INPUT` configuration in the [Doxygen configuration file](./docs/Doxyfile). Use spaces to separate the files or directories.
 
 ## Testing
 
