@@ -23,8 +23,11 @@ namespace AeroGear.Mobile.Auth
         /// <param name="serviceConfig">Service configuration.</param>
         public AuthService(MobileCore mobileCore = null, ServiceConfiguration serviceConfig = null) : base(mobileCore, serviceConfig)
         {
+            mobileCore.Logger.Info("AuthService construct start");
             var storageManager = new StorageManager("AeroGear.Mobile.Auth.Credentials", Android.App.Application.Context);
+            mobileCore.Logger.Info("AuthService construct storage");
             CredentialManager = new CredentialManager(storageManager);
+            mobileCore.Logger.Info("AuthService construct credential manager");
         }
 
         /// <summary>

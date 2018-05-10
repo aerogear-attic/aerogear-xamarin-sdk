@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <package >
   <metadata>
-    <id>AeroGear.Mobile.Core</id>
-    <version>0.0.3</version>
-    <title>AeroGear SDK Core</title>
+    <id>AeroGear.Mobile.Core.Platform.iOS</id>
+    <version>0.0.4</version>
+    <title>AeroGear Xamarin SDK Core (iOS)</title>
     <authors>AeroGear Community</authors>
     <owners>AeroGear Community</owners>
     <licenseUrl>https://github.com/aerogear/aerogear-xamarin-sdk/blob/master/LICENSE</licenseUrl>
@@ -14,16 +14,16 @@
     <tags>aerogear security sso openid xamarin iOS android mobile</tags>
     <iconUrl>https://avatars1.githubusercontent.com/u/954205</iconUrl>
     <dependencies>
-      <dependency id="System.Json" version="4.4.0"/>      
+      <dependency id="AeroGear.Mobile.Core" version="0.0.3"/>
     </dependencies>
     <references>
       <group>
-        <reference file="AeroGear.Mobile.Core.dll" />
+        <reference file="AeroGear.Mobile.Core.Platform.iOS.dll" />
       </group>
     </references>
   </metadata>
   <files>
-    <file src="bin\Release\netstandard1.4\AeroGear.Mobile.Core.dll" target="lib\netstandard1.4" />
+    <file src="bin\Release\AeroGear.Mobile.Core.Platform.iOS.dll" target="lib\xamarinios10" />
     <file src="../../README.md" target="" />
   </files>
 </package>

@@ -18,7 +18,7 @@ Current Build : [![Build status](https://ci.appveyor.com/api/projects/status/ja8
 
 1. [End User Getting Started Guide](./Documentations/GettingStarted.md)
 2. [SDK architecture](./Documentations/SDKArch.md)
-
+3. [NuGet distributing](./Core/Core/Dist\make-dist.md)
 
 ## List of SDKs
 

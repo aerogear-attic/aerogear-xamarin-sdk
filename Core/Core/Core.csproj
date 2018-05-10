@@ -5,8 +5,8 @@
     <RootNamespace>AeroGear.Mobile.Core</RootNamespace>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <PackOnBuild>true</PackOnBuild>
-    <PackageId>aerogear-xamarin-core</PackageId>
-    <PackageVersion>0.0.0.1</PackageVersion>
+    <PackageId>AeroGear.Mobile.Core</PackageId>
+    <PackageVersion>0.0.3</PackageVersion>
     <Authors>AeroGear</Authors>
     <Description>AeroGear core services</Description>
   </PropertyGroup>
