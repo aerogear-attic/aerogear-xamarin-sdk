@@ -24,7 +24,7 @@
     </references>
   </metadata>
   <files>
-    <file src="bin\Debug\netstandard1.4\AeroGear.Mobile.Auth.dll" target="lib\netstandard1.4" />
+    <file src="bin\Release\netstandard1.4\AeroGear.Mobile.Auth.dll" target="lib\netstandard1.4" />
     <file src="../../README.md" target="" />
   </files>
 </package>

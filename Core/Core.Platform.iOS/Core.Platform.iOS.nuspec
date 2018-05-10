@@ -23,7 +23,7 @@
     </references>
   </metadata>
   <files>
-    <file src="bin\Debug\AeroGear.Mobile.Core.Platform.iOS.dll" target="lib\xamarinios10" />
+    <file src="bin\Release\AeroGear.Mobile.Core.Platform.iOS.dll" target="lib\xamarinios10" />
     <file src="../../README.md" target="" />
   </files>
 </package>
