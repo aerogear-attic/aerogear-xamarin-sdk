@@ -33,10 +33,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentations", "Documentations", "{5E5A91D6-B099-42B8-99E8-36B90500C547}"
 	ProjectSection(SolutionItems) = preProject
-		Documentations\Core.md = Documentations\Core.md
-		Documentations\GettingStarted.md = Documentations\GettingStarted.md
 		README.md = README.md
-		Documentations\SDKArch.md = Documentations\SDKArch.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dist", "Dist", "{19494A1B-871E-4ED5-BEFF-1F4C08851BDA}"
