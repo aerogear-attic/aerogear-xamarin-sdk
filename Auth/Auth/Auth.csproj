@@ -3,8 +3,8 @@
   <PropertyGroup>
     <TargetFramework>netstandard1.4</TargetFramework>
     <PackOnBuild>true</PackOnBuild>
-    <PackageId>aerogear-xamarin-auth</PackageId>
-    <PackageVersion>0.0.0.1</PackageVersion>
+    <PackageId>AeroGear.Mobile.Auth</PackageId>
+    <PackageVersion>0.0.2</PackageVersion>
     <Authors>AeroGear</Authors>
     <Owners>AeroGear</Owners>
     <Description>AeroGear auth service</Description>
