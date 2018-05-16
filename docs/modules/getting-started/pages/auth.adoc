@@ -69,8 +69,8 @@ the apps `AndroidManifest.xml`. See link:https://github.com/aerogear/aerogear-xa
 .AppDelegate.cs
 [source,C#]
 ----
-var xamApp = new App();
-MobileCore core = MobileCoreIOS.Init(xamApp.GetType().Assembly);
+var app = new App();
+MobileCore core = MobileCoreIOS.Init(app.GetType().Assembly);
 var authService = AuthService.InitializeService();
 var authConfig = AuthenticationConfig.Builder.RedirectUri("org.aerogear.mobile.example:/callback").Build();
 authService.Configure(authConfig);
