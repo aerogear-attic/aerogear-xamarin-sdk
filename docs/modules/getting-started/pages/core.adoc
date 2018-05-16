@@ -15,7 +15,7 @@ Underlying SDK architecture
 
 
 In the Xamarin.Forms shared project add this package:
-[AeroGear.Mobile.Core](https://www.nuget.org/packages/AeroGear.Mobile.Core/)
+https://www.nuget.org/packages/AeroGear.Mobile.Core/[AeroGear.Mobile.Core]
 
 Add following NuGet package in your Android project:
 https://www.nuget.org/packages/AeroGear.Mobile.Core.Platform.Android/[AeroGear.Mobile.Core.Platform.Android]
@@ -41,9 +41,9 @@ If you use Xamarin.Forms on iOS:
 
 [source,C#]
 ---- 
-var xamApp = new App();
-MobileCoreIOS.Init(xamApp.GetType().Assembly);
-LoadApplication(xamApp);
+var app = new App();
+MobileCoreIOS.Init(app.GetType().Assembly);
+LoadApplication(app);
 ----
 
 Legacy Xamarin for Android:
