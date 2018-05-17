@@ -1,0 +1,3 @@
+[submodule "Example"]
+	path = Example
+	url = git@github.com:wojta/xamarin-showcase-template.git

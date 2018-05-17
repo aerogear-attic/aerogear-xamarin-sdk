@@ -1,0 +1,16 @@
+{
+  "name": "update_xamarin_showcase",
+  "version": "1.0.0",
+  "description": "Updates Xamarin Showcase Template from SDK Example app",
+  "main": "update_app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "fs-extra": "^6.0.1",
+    "xmldom": "^0.1.27",
+    "yargs": "^11.0.0"
+  }
+}
