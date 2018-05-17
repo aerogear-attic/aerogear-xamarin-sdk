@@ -49,14 +49,14 @@ $ nuget
 
 #### Creating the local repo
 
-1. Compile the sources of the aerogear-xamarin-sdk as debug
+1. Compile the sources of the `aerogear-xamarin-sdk` as `debug`
 2. Create 2 environment variables called `SOLUTION_DIR` and `REPO_DIR`. The first one will point to the folder containing the `aerogear-xamarin-sdk` Visual Studio solution, the second one will be the path of the repository.
 If the repository already exists it will be updated, otherwise it will be created.
 ```
 export SOLUTION_DIR=$HOME/work/aerogear-xamarin-sdk
 export REPO_DIR=$HOME/nuget
 ```
-3. Run the [[updaterepo.sh](./updaterepo.sh)]` script
+3. Run the [[updaterepo.sh](./updaterepo.sh)] script
 If everything worked, it should end with something like:
 `
 Repository successfully created/updated in /home/username/nuget
@@ -69,4 +69,33 @@ That's all. Now your project will search for libraries locally and will fall bac
 
 ## Windows
 
+### Environment setup
 
+Before you can create your own local repository, you have to install `nuget` on your machine and enable powershell script execution.
+
+#### Installing nuget
+
+1. Download [[nuget](https://www.nuget.org/downloads)] and save it somewhere in yout `PATH`
+2. Ensure that `nuget` works by running `nuget` from a command prompt
+
+#### Enable powershell execution
+
+1. Open a command prompt
+2. Run the `powershell` command
+3. In the `powershell` prompt, issue this command:
+```
+Set-ExecutionPolicy -Scope CurrentUser Unrestricted
+```
+
+### Creating the local repo
+
+1. Compile the sources of the `aerogear-xamarin-sdk` as `debug`
+2. Create 2 environment variables called `SOLUTION_DIR` and `REPO_DIR`. The first one will point to the folder containing the `aerogear-xamarin-sdk` Visual Studio solution, the second one will be the path of the repository.
+If the repository already exists it will be updated, otherwise it will be created.
+```
+SET SOLUTION_DIR=c:\path\to\aerogear-xamarin-sdk
+SET REPO_DIR=c:\path\to\repo
+```
+3. Run the `powershell` command
+4. Move to the folder containing the [[updaterepo.ps1](./updaterepo.ps1)] script
+5. Run the [[updaterepo.ps1](./updaterepo.ps1)] script
