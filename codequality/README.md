@@ -49,7 +49,7 @@ $ nuget
 
 #### Creating the local repo
 
-1. Compile the sources of the `aerogear-xamarin-sdk` as `debug`
+1. Compile the sources of the `aerogear-xamarin-sdk` as `debug` in VisualStudio
 2. Create 2 environment variables called `SOLUTION_DIR` and `REPO_DIR`. The first one will point to the folder containing the `aerogear-xamarin-sdk` Visual Studio solution, the second one will be the path of the repository.
 If the repository already exists it will be updated, otherwise it will be created.
 ```
@@ -89,7 +89,7 @@ Set-ExecutionPolicy -Scope CurrentUser Unrestricted
 
 ### Creating the local repo
 
-1. Compile the sources of the `aerogear-xamarin-sdk` as `debug`
+1. Compile the sources of the `aerogear-xamarin-sdk` as `debug` in VisualStudio
 2. Create 2 environment variables called `SOLUTION_DIR` and `REPO_DIR`. The first one will point to the folder containing the `aerogear-xamarin-sdk` Visual Studio solution, the second one will be the path of the repository.
 If the repository already exists it will be updated, otherwise it will be created.
 ```
