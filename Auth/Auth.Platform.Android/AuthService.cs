@@ -8,6 +8,7 @@ using AeroGear.Mobile.Core.Configuration;
 using AeroGear.Mobile.Core.Storage;
 using AeroGear.Mobile.Auth;
 using Android.Content;
+using AeroGear.Mobile.Core.Utils;
 
 namespace AeroGear.Mobile.Auth
 {
@@ -74,7 +75,7 @@ namespace AeroGear.Mobile.Auth
         /// <param name="config">The service configuration. If <code>null</code> then <code>MobileCore.GetServiceConfiguration(Type)</code> is used.</param>
         public static IAuthService InitializeService(MobileCore core = null, ServiceConfiguration config = null)
         {
-            return MobileCore.Instance.RegisterService<IAuthService>(new AuthService(core, config));
+            return (core ?? MobileCore.Instance).RegisterService<IAuthService>(new AuthService(core, config));
         }
     }
 }
