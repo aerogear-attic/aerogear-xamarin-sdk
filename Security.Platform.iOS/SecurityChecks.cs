@@ -5,6 +5,13 @@ namespace AeroGear.Mobile.Security
 {
     /// <summary>
     /// This class enums all the provided security checks.
+    /// 
+    /// To get an instance of the check, use the following code:
+    /// <code>
+    /// <![CDATA[
+    /// var securityChek = ServiceFinder.Resolve<ISecurityCheckFactory>().create(SecurityChecks.NOT_ROOTED);
+    /// ]]>
+    /// </code>
     /// </summary>
     public class SecurityChecks : ISecurityCheckType
     {

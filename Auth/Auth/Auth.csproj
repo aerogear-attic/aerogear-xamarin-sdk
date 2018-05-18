@@ -22,6 +22,5 @@
   <ItemGroup>
     <Folder Include="Credentials\" />
     <Folder Include="Authenticator\" />
-    <Folder Include="Security\" />
   </ItemGroup>
 </Project>

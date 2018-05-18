@@ -22,7 +22,7 @@ namespace AeroGear.Mobile.Security.Checks
             return NAME;
         }
 
-        public SecurityCheckResult Test()
+        public SecurityCheckResult Check()
         {
             throw new NotImplementedException();
         }

@@ -10,7 +10,7 @@ namespace AeroGear.Mobile.Security
         /// Perform the check and return a result.
         /// </summary>
         /// <returns>The result of the test</returns>
-        SecurityCheckResult Test();
+        SecurityCheckResult Check();
 
         /// <summary>
         /// Gets the name of the check to be used for display purposes in reports. This value should
