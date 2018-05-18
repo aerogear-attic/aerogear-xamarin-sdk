@@ -4,9 +4,9 @@ using AeroGear.Mobile.Security;
 
 namespace Security.Platform
 {
-    public class AgsSec
+    public class SecurityService
     {
-        public AgsSec()
+        public SecurityService()
         {
             ServiceFinder.RegisterInstance<ISecurityCheckFactory>(new IOSSecurityCheckFactory());
         }

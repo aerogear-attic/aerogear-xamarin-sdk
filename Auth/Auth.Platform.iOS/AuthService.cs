@@ -1,13 +1,9 @@
-﻿using System;
-using System.Threading.Tasks;
-using AeroGear.Mobile.Auth.Authenticator;
+﻿using AeroGear.Mobile.Auth.Authenticator;
 using AeroGear.Mobile.Auth.Config;
 using AeroGear.Mobile.Auth.Credentials;
 using AeroGear.Mobile.Core;
 using AeroGear.Mobile.Core.Configuration;
 using AeroGear.Mobile.Core.Storage;
-using AeroGear.Mobile.Auth;
-using AeroGear.Mobile.Core.Utils;
 
 namespace AeroGear.Mobile.Auth
 {

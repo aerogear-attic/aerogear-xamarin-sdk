@@ -53,7 +53,7 @@
     <Compile Include="Checks\NonJailbrokenCheck.cs" />
     <Compile Include="IOSSecurityCheckFactory.cs" />
     <Compile Include="SecurityChecks.cs" />
-    <Compile Include="AgsSec.cs" />
+    <Compile Include="SecurityService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

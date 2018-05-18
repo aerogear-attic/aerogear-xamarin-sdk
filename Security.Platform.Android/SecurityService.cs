@@ -3,9 +3,9 @@ using AeroGear.Mobile.Core.Utils;
 
 namespace AeroGear.Mobile.Security
 {
-    public class AgsSec
+    public class SecurityService
     {
-        public AgsSec()
+        public SecurityService()
         {
             ServiceFinder.RegisterInstance<ISecurityCheckFactory>(new AndroidSecurityCheckFactory(Android.App.Application.Context));
         }
