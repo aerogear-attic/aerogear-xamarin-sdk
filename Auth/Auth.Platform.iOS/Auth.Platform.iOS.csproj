@@ -63,6 +63,9 @@
     <Compile Include="Authenticator\OIDCAuthenticator.cs" />
     <Compile Include="Authenticator\IOSAuthenticateOptions.cs" />
     <Compile Include="Credentials\OIDCCredential.cs" />
+    <Compile Include="Security\NonJailbrokenCheck.cs" />
+    <Compile Include="Security\IOSSecurityCheckFactory.cs" />
+    <Compile Include="Security\SecurityChecks.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Auth.Platform.iOS.nuspec">
@@ -84,6 +87,9 @@
       <Project>{C5B8A6AF-90D0-43DC-B097-A5F3CEB01E9F}</Project>
       <Name>Core.Platform.iOS</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Security\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\..\packages\NuGet.Build.Packaging.0.2.0\build\NuGet.Build.Packaging.targets" Condition="Exists('..\..\packages\NuGet.Build.Packaging.0.2.0\build\NuGet.Build.Packaging.targets')" />

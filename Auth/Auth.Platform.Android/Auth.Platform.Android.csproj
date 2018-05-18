@@ -66,6 +66,9 @@
     <Compile Include="Authenticator\OIDCAuthenticator.cs" />
     <Compile Include="Authenticator\AndroidAuthenticateOptions.cs" />
     <Compile Include="AuthService.cs" />
+    <Compile Include="Security\SecurityChecks.cs" />
+    <Compile Include="Security\AndroidSecurityCheckFactory.cs" />
+    <Compile Include="Security\Checks\NonRootedCheck.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Auth.Platform.Android.nuspec">
@@ -87,6 +90,10 @@
       <Project>{55ff3b02-07d1-46f3-b0d5-584d3b98467e}</Project>
       <Name>Auth</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Security\" />
+    <Folder Include="Security\Checks\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\..\packages\NuGet.Build.Packaging.0.2.0\build\NuGet.Build.Packaging.targets" Condition="Exists('..\..\packages\NuGet.Build.Packaging.0.2.0\build\NuGet.Build.Packaging.targets')" />
