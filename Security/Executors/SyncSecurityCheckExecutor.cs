@@ -23,7 +23,7 @@ namespace AeroGear.Mobile.Security.Executors.Sync
         /// <returns>A Dictionary containing the results of each executed test. 
         /// The key of the Dictionary will be the output of SecurityCheck.getId(), 
         /// while the value will be the SecurityCheckResult of the check.</returns>
-        public Dictionary<string, SecurityCheckResult> execute()
+        public Dictionary<string, SecurityCheckResult> Execute()
         {
             var results = new Dictionary<string, SecurityCheckResult>();
 
