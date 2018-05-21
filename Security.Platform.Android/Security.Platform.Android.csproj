@@ -48,6 +48,7 @@
     <Compile Include="AndroidSecurityCheckFactory.cs" />
     <Compile Include="SecurityChecks.cs" />
     <Compile Include="SecurityService.cs" />
+    <Compile Include="Checks\DeveloperModeCheck.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
