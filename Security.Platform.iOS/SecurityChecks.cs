@@ -1,4 +1,5 @@
 ﻿using System;
+using AeroGear.Mobile.Core.Utils;
 using AeroGear.Mobile.Security.Checks;
 
 namespace AeroGear.Mobile.Security
@@ -32,6 +33,11 @@ namespace AeroGear.Mobile.Security
         /// <param name="checkType">The class type of the check represented by this instance.</param>
         private SecurityChecks(Type checkType)
         {
+            if (!ServiceFinder.IsRegistered<ISecurityCheckFactory>()) 
+            {
+                ServiceFinder.RegisterInstance<ISecurityCheckFactory>(new IOSSecurityCheckFactory());    
+            }
+
             this.CheckType = checkType;
         }
     }

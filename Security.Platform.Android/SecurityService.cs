@@ -7,7 +7,7 @@ namespace AeroGear.Mobile.Security
     {
         public SecurityService()
         {
-            ServiceFinder.RegisterInstance<ISecurityCheckFactory>(new AndroidSecurityCheckFactory(Android.App.Application.Context));
+            
         }
 
         // TODO: add code to access the security check executors
