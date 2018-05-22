@@ -17,6 +17,9 @@ namespace AeroGear.Mobile.Security
     public class SecurityChecks : ISecurityCheckType
     {
         public static readonly SecurityChecks NOT_JAILBROKEN = new SecurityChecks(typeof(NonJailbrokenCheck));
+        public static readonly SecurityChecks NOT_IN_EMULATOR = new SecurityChecks(typeof(NotInEmulatorCheck));
+        public static readonly SecurityChecks NO_DEBUGGER = new SecurityChecks(typeof(NoDebuggerCheck));
+        public static readonly SecurityChecks DEVICE_LOCK = new SecurityChecks(typeof(DeviceLockCheck));
         // add others checks here
         // i.e. 
         // public static readonly SecurityChecks NO_DEBUGGER = new SecurityChecks(typeof(NoDebuggerCheck));

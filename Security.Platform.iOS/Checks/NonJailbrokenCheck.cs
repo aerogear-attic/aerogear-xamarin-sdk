@@ -1,30 +1,50 @@
 ﻿using System;
+using System.IO;
+using UIKit;
+using Foundation;
+
 namespace AeroGear.Mobile.Security.Checks
 {
     /// <summary>
-    /// This is just a stub implementation. Fill with the real implementation.
+    /// Check if the device is Jailbroken.
     /// </summary>
-    public class NonJailbrokenCheck : ISecurityCheck
+    public class NonJailbrokenCheck : AbstractSecurityCheck
     {
-        private const string NAME = "Jailbreak Check";
+        protected override string Name { get { return "Jailbreak Check"; } }
 
         public NonJailbrokenCheck()
         {
         }
 
-        public string GetId()
+        public override SecurityCheckResult Check()
         {
-            return typeof(NonJailbrokenCheck).FullName;
-        }
+            if (ObjCRuntime.Runtime.Arch == ObjCRuntime.Arch.DEVICE)
+            {
+                if (File.Exists("/Applications/Cydia.app")
+                    || File.Exists("/Library/MobileSubstrate/MobileSubstrate.dylib")
+                    || File.Exists("/bin/bash")
+                    || File.Exists("/usr/sbin/sshd")
+                    || File.Exists("/etc/apt")
+                    || File.Exists("/private/var/lib/apt/")
+                    || UIApplication.SharedApplication.CanOpenUrl(new NSUrl("cydia://package/com.example.package")))
+                {
+                    return new SecurityCheckResult(this, true);
+                }
 
-        public string GetName()
-        {
-            return NAME;
-        }
-
-        public SecurityCheckResult Check()
-        {
-            throw new NotImplementedException();
+                try
+                {
+                    File.WriteAllText("/private/JailbreakTest.txt", "Jailbreak Test", System.Text.Encoding.UTF8);
+                    return new SecurityCheckResult(this, true);
+                }
+                catch
+                {
+                    return new SecurityCheckResult(this, false);
+                }
+            }
+            else
+            {
+                return new SecurityCheckResult(this, false);
+            }
         }
     }
 }
