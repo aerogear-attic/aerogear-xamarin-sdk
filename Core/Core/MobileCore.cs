@@ -334,8 +334,12 @@ namespace AeroGear.Mobile.Core
             {
                 cacheById[serviceModule.Id] = serviceModule;
             }
-            else{
-                cacheByType[typeof(T)] = serviceModule;
+
+            Type type = typeof(T);
+            if (!cacheByType.ContainsKey(type))
+            {
+                // We always cache the first instance of a service by type
+                cacheByType[typeof(T)] = serviceModule;    
             }
         }
 
