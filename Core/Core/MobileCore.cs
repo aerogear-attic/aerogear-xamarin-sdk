@@ -178,44 +178,9 @@ namespace AeroGear.Mobile.Core
             return serviceModule;
         }
 
-        /// <summary>
-        /// Returns instance of a service module.
-        /// </summary>
-        /// <typeparam name="T">service module type</typeparam>
-        /// <returns></returns>
-        public T GetInstance<T>() where T : IServiceModule => GetInstance<T>(typeof(T), null);
-
-        /// <summary>
-        /// Returns instance of a service module.
-        /// </summary>
-        /// <typeparam name="T">service module type</typeparam>
-        /// <param name="serviceConfiguration">service configuration</param>
-        /// <returns></returns>
-        public T GetInstance<T>(ServiceConfiguration serviceConfiguration) where T : IServiceModule => GetInstance<T>(typeof(T), serviceConfiguration);
-
-        /// <summary>
-        /// Returns instance of a service module.
-        /// </summary>
-        /// <typeparam name="T">service module type</typeparam>
-        /// <param name="serviceClass">service module class type</param>
-        /// <param name="serviceConfiguration">service configuration</param>
-        /// <returns></returns>
-        private T GetInstance<T>(Type serviceClass, ServiceConfiguration serviceConfiguration)
-            where T : IServiceModule
-        {
-            NonNull<Type>(serviceClass, "serviceClass");
-
-            if (serviceInstanceCache.IsCached(serviceClass))
-            {
-                return (T)serviceInstanceCache.GetCachedInstance(serviceClass);
-            }
-            // There are no services registered for this interface.
-            throw new ServiceModuleInstanceNotFoundException(String.Format("No instance has been registered for interface {0}", serviceClass.Name));
-        }
-
         public T GetService<T>() where T : IServiceModule => GetService<T>(typeof(T));
 
-        public T GetService<T>(string serviceId) where T : IServiceModule => GetInstance<T>(typeof(T), GetServiceConfigurationById(serviceId));
+        public T GetService<T>(string serviceId) where T : IServiceModule => GetService<T>(typeof(T), GetServiceConfigurationById(serviceId));
 
         private T GetService<T>(Type serviceClass, ServiceConfiguration serviceConfiguration = null)
             where T : IServiceModule

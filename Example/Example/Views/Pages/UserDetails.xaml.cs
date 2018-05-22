@@ -15,7 +15,7 @@ namespace Example.Views.Pages
         }
 
         private void InitListView() {
-            var user = MobileCore.Instance.GetInstance<IAuthService>().CurrentUser();
+            var user = MobileCore.Instance.GetService<IAuthService>().CurrentUser();
             var roleItems = new List<string> { };
             foreach(var role in user.getRoles())
             {
@@ -29,7 +29,7 @@ namespace Example.Views.Pages
 
         void onLogoutClicked(object sender, System.EventArgs e)
         {
-            var authService = MobileCore.Instance.GetInstance<IAuthService>();
+            var authService = MobileCore.Instance.GetService<IAuthService>();
             authService.Logout(authService.CurrentUser()).ContinueWith(result =>
             {
                 Device.BeginInvokeOnMainThread(() => Navigation.PushAsync(new AuthPage()));

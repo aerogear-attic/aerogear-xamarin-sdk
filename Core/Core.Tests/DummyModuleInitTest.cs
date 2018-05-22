@@ -75,7 +75,7 @@ namespace AeroGear.Mobile.Core.Tests
         public void TestModuleInitialized()
         {
             DummyModule.InitializeService();
-            var module = MobileCore.Instance.GetInstance<IDummyModule>();
+            var module = MobileCore.Instance.GetService<IDummyModule>();
             Assert.IsNotNull(module);
             Assert.AreEqual("dummy", module.Type);
             Assert.AreEqual("Hello world!", module.Data1);

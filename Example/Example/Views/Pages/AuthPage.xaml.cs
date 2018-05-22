@@ -18,7 +18,7 @@ namespace Example.Views.Pages
 
         public void OnAuthenticateClicked(object sender, EventArgs args)
         {
-            IAuthService service = MobileCore.Instance.GetInstance<IAuthService>();
+            IAuthService service = MobileCore.Instance.GetService<IAuthService>();
             var authOptions = DependencyService.Get<IAuthenticateOptionsProvider>().GetOptions();
             service.Authenticate(authOptions).ContinueWith(result =>
             {
