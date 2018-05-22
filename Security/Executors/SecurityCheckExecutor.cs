@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using AeroGear.Mobile.Core.Utils;
 using AeroGear.Mobile.Security.Executors.Sync;
 
+using static AeroGear.Mobile.Core.Utils.SanityCheck;
+
 namespace AeroGear.Mobile.Security.Executors
 {
     /// <summary>
@@ -10,7 +12,7 @@ namespace AeroGear.Mobile.Security.Executors
     /// </summary>
     public class SecurityCheckExecutor
     {
-        public SecurityCheckExecutor()
+        private SecurityCheckExecutor()
         {
         }
 
@@ -30,13 +32,13 @@ namespace AeroGear.Mobile.Security.Executors
 
         public T WithSecurityCheck(ISecurityCheck check)
         {
-            Checks.Add(check);
+            Checks.Add(NonNull(check, "check"));
             return (T)this;
         }
 
         public T WithSecurityCheck(ISecurityCheckType checkType)
         {
-            ISecurityCheck check = ServiceFinder.Resolve<ISecurityCheckFactory>().create(checkType);
+            ISecurityCheck check = ServiceFinder.Resolve<ISecurityCheckFactory>().create(NonNull(checkType, "checkType"));
             Checks.Add(check);
             return (T)this;
         }

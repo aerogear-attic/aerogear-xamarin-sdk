@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using static AeroGear.Mobile.Core.Utils.SanityCheck;
 
 namespace AeroGear.Mobile.Security.Executors
 {
@@ -28,7 +29,7 @@ namespace AeroGear.Mobile.Security.Executors
         /// <param name="checks">A list of checks to be executed.</param>
         public AbstractSecurityCheckExecutor(List<ISecurityCheck> checks)
         {
-            this.checks.AddRange(checks);
+            this.checks.AddRange(NonNull(checks, "checks"));
         }
 
         /// <summary>
