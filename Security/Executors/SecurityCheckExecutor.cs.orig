@@ -32,21 +32,30 @@ namespace AeroGear.Mobile.Security.Executors
 
         public T WithSecurityCheck(params ISecurityCheck[] checks)
         {
+<<<<<<< HEAD
+            Checks.Add(NonNull(check, "check"));
+=======
             foreach (var check in checks)
             {
                 CheckList.Add(check);
             }
 
+>>>>>>> Added the SecurityService
             return (T)this;
         }
 
         public T WithSecurityCheck(params ISecurityCheckType[] checkType)
         {
+<<<<<<< HEAD
+            ISecurityCheck check = ServiceFinder.Resolve<ISecurityCheckFactory>().create(NonNull(checkType, "checkType"));
+            Checks.Add(check);
+=======
             foreach (var checkEnum in checkType)
             {
                 ISecurityCheck check = ServiceFinder.Resolve<ISecurityCheckFactory>().create(checkEnum);
                 CheckList.Add(check);
             }
+>>>>>>> Added the SecurityService
             return (T)this;
         }
 

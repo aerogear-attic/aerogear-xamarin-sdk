@@ -1,6 +1,7 @@
 ﻿using System;
 using AeroGear.Mobile.Core;
 using AeroGear.Mobile.Core.Configuration;
+using AeroGear.Mobile.Security.Executors.Sync;
 
 namespace AeroGear.Mobile.Security
 {
@@ -12,7 +13,7 @@ namespace AeroGear.Mobile.Security
 
         public string Type => "security";
 
-        public bool RequiresConfiguration => false; // this is useless
+        public bool RequiresConfiguration => false;
 
         public string Id => null;
 
@@ -20,9 +21,25 @@ namespace AeroGear.Mobile.Security
         {
         }
 
-        // If the lifecycle is not managed by MobileCore, who will invoke this?
         public void Destroy() 
         {
+        }
+
+        public Builder GetSyncExecutor()
+        {
+            return new Builder();
+        }
+
+        public SecurityCheckResult Check(ISecurityCheckType securityCheckType)
+        {
+            SecurityCheckResult[] results = new SecurityCheckResult[1];
+            GetSyncExecutor().WithSecurityCheck(securityCheckType).Build().Execute().Values.CopyTo(results, 0);
+            return results[0];
+        }
+
+        public SecurityCheckResult Check(ISecurityCheck securityCheck)
+        {
+            return securityCheck.Check();
         }
     }
 }
