@@ -44,7 +44,7 @@ namespace AeroGear.Mobile.Security.Executors.Sync
     {
         public override SyncSecurityCheckExecutor Build()
         {
-            return new SyncSecurityCheckExecutor(Checks);
+            return new SyncSecurityCheckExecutor(CheckList);
         }
     }
 }

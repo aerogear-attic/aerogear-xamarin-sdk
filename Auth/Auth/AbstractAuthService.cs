@@ -17,10 +17,12 @@ namespace AeroGear.Mobile.Auth
         protected CredentialManager CredentialManager { get; set; }
         protected readonly KeycloakConfig KeycloakConfig;
         protected AuthenticationConfig AuthenticationConfig { get; private set; }
-        protected readonly MobileCore MobileCore;
+        protected readonly MobileCore Core;
         protected IAuthenticator Authenticator { get; set; }
         public string Type => "keycloak";
-        public bool RequiresConfiguration => true;
+        public bool RequiresConfiguration => false;
+
+        public string Id => null;
 
         public abstract User CurrentUser();
 
@@ -31,8 +33,8 @@ namespace AeroGear.Mobile.Auth
         /// <param name="serviceConfig">Service config.</param>
         public AbstractAuthService(MobileCore mobileCore = null, ServiceConfiguration serviceConfig = null)
         {
-            MobileCore = mobileCore ?? MobileCore.Instance;
-            var serviceConfiguration = NonNull(serviceConfig ?? MobileCore.GetFirstServiceConfigurationByType(Type), "serviceConfig");
+            Core = mobileCore ?? MobileCore.Instance;
+            var serviceConfiguration = NonNull(serviceConfig ?? Core.GetFirstServiceConfigurationByType(Type), "serviceConfig");
             KeycloakConfig = new KeycloakConfig(serviceConfiguration);
         }
 
@@ -67,6 +69,10 @@ namespace AeroGear.Mobile.Auth
         public Task<bool> Logout(User user)
         {
             return Authenticator.Logout(user);
+        }
+
+        public void Configure(MobileCore core, ServiceConfiguration config)
+        {
         }
     }
 }

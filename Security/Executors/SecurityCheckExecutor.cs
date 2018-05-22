@@ -28,18 +28,25 @@ namespace AeroGear.Mobile.Security.Executors
 
     public abstract class AbstractExecutorBuilder<T,K> where T : AbstractExecutorBuilder<T,K>
     {
-        protected readonly List<ISecurityCheck> Checks = new List<ISecurityCheck>();
+        protected readonly List<ISecurityCheck> CheckList = new List<ISecurityCheck>();
 
-        public T WithSecurityCheck(ISecurityCheck check)
+        public T WithSecurityCheck(params ISecurityCheck[] checks)
         {
-            Checks.Add(NonNull(check, "check"));
+            foreach (var check in NonNull(checks, "checks"))
+            {
+                CheckList.Add(check);
+            }
+
             return (T)this;
         }
 
-        public T WithSecurityCheck(ISecurityCheckType checkType)
+        public T WithSecurityCheck(params ISecurityCheckType[] checkTypes)
         {
-            ISecurityCheck check = ServiceFinder.Resolve<ISecurityCheckFactory>().create(NonNull(checkType, "checkType"));
-            Checks.Add(check);
+            foreach (var checkType in NonNull(checkTypes, "checkTypes"))
+            {
+                ISecurityCheck check = ServiceFinder.Resolve<ISecurityCheckFactory>().create(checkType);
+                CheckList.Add(check);
+            }
             return (T)this;
         }
 

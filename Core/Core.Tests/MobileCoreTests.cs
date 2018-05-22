@@ -41,8 +41,10 @@ namespace Aerogear.Mobile.Core
             public int Data2 { get; private set; }
 
             public bool Data3 { get; private set; }
-
+                
             public bool RequiresConfiguration => true;
+
+            public string Id => null;
 
             public DummyModule(ServiceConfiguration serviceConfig)
             {
@@ -56,6 +58,10 @@ namespace Aerogear.Mobile.Core
 
             }
 
+            public void Configure(MobileCore core, ServiceConfiguration config)
+            {
+                throw new NotImplementedException();
+            }
         }
 
         public class TestService : ITestService
@@ -63,6 +69,8 @@ namespace Aerogear.Mobile.Core
             public string Type => throw new NotImplementedException();
 
             public bool RequiresConfiguration => false;
+
+            public string Id => null;
 
             public void Configure(MobileCore core, ServiceConfiguration serviceConfiguration)
             {
@@ -129,7 +137,7 @@ namespace Aerogear.Mobile.Core
             MobileCore.Init(new TestInjector(Assembly.GetExecutingAssembly()));
             MobileCore.Instance.RegisterService<ITestService>(testInstance);
 
-            var registeredInstance = MobileCore.Instance.GetInstance<ITestService>();
+            var registeredInstance = MobileCore.Instance.GetService<ITestService>();
 
             Assert.NotNull(registeredInstance);
             Assert.AreSame(testInstance, registeredInstance);
@@ -166,7 +174,7 @@ namespace Aerogear.Mobile.Core
             var serviceConfig = MobileCore.Instance.GetFirstServiceConfigurationByType("dummy");
             MobileCore.Instance.RegisterService<IDummyModule>(new DummyModule(serviceConfig));
 
-            var module = MobileCore.Instance.GetInstance<IDummyModule>();
+            var module = MobileCore.Instance.GetService<IDummyModule>();
             Assert.IsNotNull(module);
             Assert.AreEqual("dummy", module.Type);
             Assert.AreEqual("Hello world!", module.Data1);
@@ -183,7 +191,7 @@ namespace Aerogear.Mobile.Core
             var serviceConfigByType = MobileCore.Instance.GetServiceConfigurationByType("dummy");
             MobileCore.Instance.RegisterService<IDummyModule>(new DummyModule(serviceConfigByType[1]));
 
-            var module = MobileCore.Instance.GetInstance<IDummyModule>();
+            var module = MobileCore.Instance.GetService<IDummyModule>();
             Assert.IsNotNull(module);
             Assert.AreEqual("dummy", module.Type);
             Assert.AreEqual("Hello world, from anotherdummy!", module.Data1);

@@ -24,11 +24,11 @@ namespace AeroGear.Mobile.Auth
         /// <param name="serviceConfig">Service configuration.</param>
         public AuthService(MobileCore mobileCore = null, ServiceConfiguration serviceConfig = null) : base(mobileCore, serviceConfig)
         {
-            mobileCore.Logger.Info("AuthService construct start");
+            Core.Logger.Info("AuthService construct start");
             var storageManager = new StorageManager("AeroGear.Mobile.Auth.Credentials", Android.App.Application.Context);
-            mobileCore.Logger.Info("AuthService construct storage");
+            Core.Logger.Info("AuthService construct storage");
             CredentialManager = new CredentialManager(storageManager);
-            mobileCore.Logger.Info("AuthService construct credential manager");
+            Core.Logger.Info("AuthService construct credential manager");
         }
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace AeroGear.Mobile.Auth
         /// <param name="authConfig">Authentication config.</param>
         public override void Configure(AuthenticationConfig authConfig)
         {
-            Authenticator = new OIDCAuthenticator(authConfig, KeycloakConfig, CredentialManager, MobileCore.HttpLayer, MobileCore.Logger);
+            Authenticator = new OIDCAuthenticator(authConfig, KeycloakConfig, CredentialManager, Core.HttpLayer, Core.Logger);
         }
 
 

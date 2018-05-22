@@ -22,6 +22,8 @@ namespace AeroGear.Mobile.iOS.Tests.Mocks
 
         public bool RequiresConfiguration => RequiresConfigurationResult;
 
+        public string Id => null;
+
         public void Configure(MobileCore core, ServiceConfiguration serviceConfiguration)
         {
         }

@@ -72,11 +72,11 @@ namespace AeroGear.Mobile.Core
 
         private Dictionary<String, ServiceConfiguration> servicesConfig;
 
-        private Dictionary<Type, IServiceModule> services = new Dictionary<Type, IServiceModule>();
+        private ServiceInstanceCache serviceInstanceCache = new ServiceInstanceCache();
 
         protected MobileCore(IPlatformInjector injector, Options options)
         {
-            
+
             Logger = options.Logger ?? injector?.CreateLogger() ?? new NullLogger();
 
             if (injector != null && options.ConfigFileName != null)
@@ -159,7 +159,7 @@ namespace AeroGear.Mobile.Core
         /// </summary>
         public void Destroy()
         {
-            foreach (var serviceModule in services.Values)
+            foreach (var serviceModule in serviceInstanceCache.GetAllCachedServices())
             {
                 serviceModule.Destroy();
             }
@@ -172,44 +172,73 @@ namespace AeroGear.Mobile.Core
         /// <returns>The registered service module.</returns>
         /// <param name="serviceModule">The service module instance.</param>
         /// <typeparam name="T">service module type.</typeparam>
-        public T RegisterService<T>(T serviceModule) where T : IServiceModule 
+        public T RegisterService<T>(T serviceModule) where T : IServiceModule
         {
-            services[typeof(T)] = NonNull(serviceModule, "serviceModule");
+            serviceInstanceCache.Add<T>(NonNull(serviceModule, "serviceModule"));
             return serviceModule;
         }
 
-        /// <summary>
-        /// Returns instance of a service module.
-        /// </summary>
-        /// <typeparam name="T">service module type</typeparam>
-        /// <returns></returns>
-        public T GetInstance<T>() where T : IServiceModule => GetInstance<T>(typeof(T), null);
+        public T GetService<T>() where T : IServiceModule => GetService<T>(typeof(T));
 
-        /// <summary>
-        /// Returns instance of a service module.
-        /// </summary>
-        /// <typeparam name="T">service module type</typeparam>
-        /// <param name="serviceConfiguration">service configuration</param>
-        /// <returns></returns>
-        public T GetInstance<T>(ServiceConfiguration serviceConfiguration) where T : IServiceModule => GetInstance<T>(typeof(T), serviceConfiguration);
+        public T GetService<T>(string serviceId) where T : IServiceModule => GetService<T>(typeof(T), GetServiceConfigurationById(serviceId));
 
-        /// <summary>
-        /// Returns instance of a service module.
-        /// </summary>
-        /// <typeparam name="T">service module type</typeparam>
-        /// <param name="serviceClass">service module class type</param>
-        /// <param name="serviceConfiguration">service configuration</param>
-        /// <returns></returns>
-        private T GetInstance<T>(Type serviceClass, ServiceConfiguration serviceConfiguration)
+        private T GetService<T>(Type serviceClass, ServiceConfiguration serviceConfiguration = null)
             where T : IServiceModule
         {
             NonNull<Type>(serviceClass, "serviceClass");
-            if (services.ContainsKey(serviceClass))
+
+            if (serviceInstanceCache.IsCached(serviceClass))
             {
-                return (T)services[serviceClass];
+                return (T)serviceInstanceCache.GetCachedInstance(serviceClass);
             }
-            // There are no services registered for this interface.
-            throw new ServiceModuleInstanceNotFoundException(String.Format("No instance has been registered for interface {0}", serviceClass.Name));
+
+            // Try to instantiate it
+            IServiceModule service = TryToInstantiate(serviceClass);
+
+            if (service == null)
+            {
+                // There are no services registered for this interface.
+                throw new ServiceModuleInstanceNotFoundException(String.Format("No instance has been registered for interface {0}", serviceClass.Name));
+            }
+
+            serviceConfiguration = ResolveServiceConfiguration(service, serviceConfiguration);
+
+            if (service.RequiresConfiguration && serviceConfiguration == null)
+            {
+                throw new ConfigurationNotFoundException(String.Format("No configuration has been found for service {0}", service.Type));
+            }
+
+            service.Configure(this, serviceConfiguration);
+
+            serviceInstanceCache.Add<T>(service);
+
+            return (T)service;
+        }
+
+        private ServiceConfiguration ResolveServiceConfiguration(IServiceModule serviceModule, ServiceConfiguration conf)
+        {
+            ServiceConfiguration result = conf;
+            if (conf == null)
+            {
+                ServiceConfiguration[] confs = GetServiceConfigurationByType(serviceModule.Type);
+                if (confs != null)
+                {
+                    result = confs[0];
+                }
+            }
+
+            return result;
+        }
+
+        private IServiceModule TryToInstantiate(Type serviceClass) {
+            try
+            {
+                return (IServiceModule)Activator.CreateInstance(serviceClass);
+            } 
+            catch
+            {
+                return null;
+            }
         }
 
         /// <summary>
@@ -249,6 +278,50 @@ namespace AeroGear.Mobile.Core
         public ServiceConfiguration GetServiceConfigurationById(String id)
         {
             return servicesConfig.ContainsKey(id) ? servicesConfig[id] : null;
+        }
+    }
+
+    class ServiceInstanceCache
+    {
+        /// <summary>
+        /// The cache by identifier.
+        /// </summary>
+        private Dictionary<String, IServiceModule> cacheById = new Dictionary<String, IServiceModule>();
+
+        /// <summary>
+        /// The cache by type. This is used only if the service has no configuration (hence, it has no id).
+        /// </summary>
+        private Dictionary<Type, IServiceModule> cacheByType = new Dictionary<Type, IServiceModule>();
+
+        public void Add<T>(IServiceModule serviceModule)
+        {
+            if (serviceModule.Id != null)
+            {
+                cacheById[serviceModule.Id] = serviceModule;
+            }
+
+            Type type = typeof(T);
+            if (!cacheByType.ContainsKey(type))
+            {
+                // We always cache the first instance of a service by type
+                cacheByType[typeof(T)] = serviceModule;    
+            }
+        }
+
+        public IServiceModule GetCachedInstance(Type type) => cacheByType[type];
+
+        public IServiceModule GetCachedInstance(string id) => cacheById[id];
+
+        public bool IsCached(Type type) => cacheByType.ContainsKey(type);
+
+        public bool IsCached(string id) => cacheById.ContainsKey(id);
+
+        public List<IServiceModule> GetAllCachedServices()
+        {
+            List<IServiceModule> result = new List<IServiceModule>();
+            result.AddRange(cacheById.Values);
+            result.AddRange(cacheByType.Values);
+            return result;
         }
     }
 }

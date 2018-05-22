@@ -45,7 +45,7 @@ namespace Example.Android
 
             if (requestCode == AuthenticateOptionsProvider.RequestCode)
             {
-                ((AuthService)MobileCore.Instance.GetInstance<IAuthService>()).HandleAuthResult(data);
+                ((AuthService)MobileCore.Instance.GetService<IAuthService>()).HandleAuthResult(data);
             }		
         }
     }
