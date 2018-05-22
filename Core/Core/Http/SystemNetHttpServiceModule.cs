@@ -20,6 +20,8 @@ namespace AeroGear.Mobile.Core.Http
         private ServiceConfiguration serviceConfiguration;
         private HttpClient httpClient;
 
+        public string Id => serviceConfiguration.Id;
+
         public SystemNetHttpServiceModule() : this(new HttpClient()) { }
 
         internal SystemNetHttpServiceModule(HttpClient httpClient) : this(httpClient, ServiceConfiguration.Builder.Build()) { }

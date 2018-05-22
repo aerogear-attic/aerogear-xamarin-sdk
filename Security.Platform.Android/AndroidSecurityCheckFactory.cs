@@ -12,12 +12,10 @@ namespace AeroGear.Mobile.Security
 
         /// <summary>
         /// Initializes a new instance of the <see cref="T:AeroGear.Mobile.Security.AndroidSecurityCheckFactory"/> class.
-        /// On Android, checks needs to have a reference to the context.
         /// </summary>
-        /// <param name="ctx">The application context.</param>
-        public AndroidSecurityCheckFactory(Context ctx)
+        public AndroidSecurityCheckFactory(Context ctx = null)
         {
-            this.context = ctx;
+            this.context = ctx != null ? ctx.ApplicationContext : Android.App.Application.Context;
         }
 
         /// <summary>
@@ -29,11 +27,12 @@ namespace AeroGear.Mobile.Security
         {
             SecurityChecks checkType = type as SecurityChecks;
 
-            if (checkType == null) {
+            if (checkType == null) 
+            {
                 throw new Exception("Passed in security check type is not supported");
             }
 
-            return Activator.CreateInstance(checkType.CheckType, context) as ISecurityCheck;
+            return Activator.CreateInstance(checkType.CheckType, this.context) as ISecurityCheck;
         }
     }
 }

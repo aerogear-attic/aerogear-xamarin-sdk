@@ -8,7 +8,6 @@ namespace Security.Platform
     {
         public SecurityService()
         {
-            ServiceFinder.RegisterInstance<ISecurityCheckFactory>(new IOSSecurityCheckFactory());
         }
 
         // TODO: add code to access the security check executors
