@@ -32,6 +32,8 @@ namespace AeroGear.Mobile.Core.Tests
 
             public bool RequiresConfiguration => true;
 
+            public string Id => null;
+
             public DummyModule(ServiceConfiguration serviceConfig)
             {
                 Data1 = serviceConfig["data1"];
@@ -49,6 +51,11 @@ namespace AeroGear.Mobile.Core.Tests
                 var serviceConfig = MobileCore.Instance.GetFirstServiceConfigurationByType("dummy");
                 MobileCore.Instance.RegisterService<IDummyModule>(new DummyModule(serviceConfig));
 
+            }
+
+            public void Configure(MobileCore core, ServiceConfiguration config)
+            {
+                throw new NotImplementedException();
             }
         }
 

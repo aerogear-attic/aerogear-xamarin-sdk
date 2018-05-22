@@ -9,6 +9,7 @@ namespace AeroGear.Mobile.Core
     /// </summary>
     public interface IServiceModule
     {
+        String Id { get; }
      
         /// <summary>
         /// Type/name used in the mobile-singleThreadService.json
@@ -33,5 +34,7 @@ namespace AeroGear.Mobile.Core
         /// Called when singleThreadService destroyed.
         /// </summary>
         void Destroy();
+
+        void Configure(MobileCore core, ServiceConfiguration config);
     }
 }

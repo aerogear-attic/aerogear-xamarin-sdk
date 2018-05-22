@@ -41,8 +41,10 @@ namespace Aerogear.Mobile.Core
             public int Data2 { get; private set; }
 
             public bool Data3 { get; private set; }
-
+                
             public bool RequiresConfiguration => true;
+
+            public string Id => null;
 
             public DummyModule(ServiceConfiguration serviceConfig)
             {
@@ -56,6 +58,10 @@ namespace Aerogear.Mobile.Core
 
             }
 
+            public void Configure(MobileCore core, ServiceConfiguration config)
+            {
+                throw new NotImplementedException();
+            }
         }
 
         public class TestService : ITestService
@@ -63,6 +69,8 @@ namespace Aerogear.Mobile.Core
             public string Type => throw new NotImplementedException();
 
             public bool RequiresConfiguration => false;
+
+            public string Id => null;
 
             public void Configure(MobileCore core, ServiceConfiguration serviceConfiguration)
             {
