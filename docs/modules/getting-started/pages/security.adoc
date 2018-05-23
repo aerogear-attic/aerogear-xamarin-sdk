@@ -11,14 +11,14 @@ endif::[]
 
 toc::[]
 
-The security SDK provides security features such self defence check to ensure that the device where the application is running is trusted.
+The security SDK provides security features such as self defence checks to ensure that the device where the application is running is trusted.
 
 == Prerequisites
 
 To use the Security SDK you will first need to:
 
-* Import the Core module
-* Import your platform specific Security module (Security.iOS ot Security.Android)
+* Import the link:https://github.com/aerogear/aerogear-xamarin-sdk/blob/master/docs/modules/getting-started/pages/core.adoc[Core module]
+* Import your platform specific Security module (`Security.iOS` or `Security.Android`)
 
 == Self Defence Checks
 
@@ -34,24 +34,25 @@ var SecurityService = MobileCore.GetService<SecurityService>();
 ----
 
 Any subsequent `MobileCore#GetService` method will return the same instance of `SecurityService`. +
-There are two ways to run self defence checks: <<Provided Self Defence Checks>> and <<Custom Self Defence Checks>>.
+Self defense checks can either be <<Provided Self Defence Checks,provided>> by the SDK or <<Custom Self Defence Checks,custom>>.
 
 === Provided Self Defence Checks
 
 The Security SDK provides a set of common self defence checks enlisted into the `SecurityChecks` class.
 
-A successful Check means that the environment the application is running in is secure and no action is required, as opposed to signalling if a certain feature is enabled.
+A successful check means that the environment the application is running in is secure and no action is required, as opposed to signalling if a certain feature is enabled.
 
 For example, the Emulator Detection Check `NOT_IN_EMULATOR` will return `true` when the app is *not* running in an emulator, since this would be the more secure condition.
 
-Many of the checks are cross platform, however some of them is platform specific (for example, NOT_ROOTED is for android, while NOT_JAILBROKEN is for iOS).
+Many of the checks are cross platform, however some of them are platform specific (for example, NOT_ROOTED is for android, while NOT_JAILBROKEN is for iOS).
 
 ==== Root Access Detection (NOT_ROOTED)
 
 IMPORTANT: This check is available for Android only
 
 To help prevent your app running in a device that has been rooted the `SecurityChecks#NOT_ROOTED` check can be used.
-A device is considered rooted if *any* of the following is true:
+A device is considered rooted if *any* of the following are true:
+
 * A custom key has been used to sign the kernel
 * The `su` binaries are present
 
@@ -60,7 +61,8 @@ A device is considered rooted if *any* of the following is true:
 IMPORTANT: This check is available for iOS only
 
 To help prevent your app running in a device that has been rooted the `SecurityChecks#NOT_JAILBROKEN` check can be used.
-A devide is considered JAILBROKEN if *any* of the following is true:
+A device is considered JAILBROKEN if *any* of the following are true:
+
 * /Applications/Cydia.app exists
 * /Library/MobileSubstrate/MobileSubstrate.dylib exists
 * /bin/bash exists
@@ -82,7 +84,6 @@ To detect if the application is running in Debug Mode, `SecurityChecks#NO_DEBUGG
 
 [NOTE]
 ====
-The check uses different approaches on Android and iOS to detect if the app is running into an emulator
 [horizontal]
 ANDROID:: Uses the Android's link:https://developer.xamarin.com/api/type/Android.OS.Debug/[Debug] class.
 iOS:: Uses the iOS link:https://docs.microsoft.com/en-us/dotnet/api/System.Diagnostics.Debugger/[Debugger] class
@@ -90,11 +91,10 @@ iOS:: Uses the iOS link:https://docs.microsoft.com/en-us/dotnet/api/System.Diagn
 
 ==== Emulator Detection (NOT_IN_EMULATOR)
 
-To detect if the app is being run on an emulator the `SecurityChecks#NOT_IN_EMULATOR` function can be used.
+To detect if the app is being run in an emulator the `SecurityChecks#NOT_IN_EMULATOR` function can be used.
 
 [NOTE]
 ====
-The check uses different approaches on Android and iOS to detect if the app is running into an emulator
 [horizontal]
 ANDROID:: Uses the Android's link:https://developer.xamarin.com/api/type/Android.OS.Build/[Build] class.
 iOS:: Uses the iOS link:https://developer.xamarin.com/api/field/ObjCRuntime.Runtime.Arch/[Arch] class
@@ -106,7 +106,6 @@ To detect if a device has a lock screen set (with pin, fingerprint, pattern) the
 
 [NOTE]
 ====
-The check uses different approaches on Android and iOS to detect if the app is running into an emulator
 [horizontal]
 ANDROID:: Uses the Android's link:https://developer.xamarin.com/api/type/Android.App.KeyguardManager[KeyguardManager] class.
 iOS:: Uses the iOS link:https://developer.xamarin.com/api/type/MonoTouch.LocalAuthentication.LAContext/[LAContext] class
@@ -128,7 +127,7 @@ This function uses Android’s link:https://developer.xamarin.com/api/type/Andro
 
 === Custom Self Defence Checks
 
-These are self defence checks that you can define to be used by the SDK. Custom self defence checks must implement the link:javadoc[`ISecurityCheck`] interface.
+These are self defence checks that you can define to be used by the SDK. Custom self defence checks must implement the `ISecurityCheck` interface.
 
 [source, c#]
 ----
@@ -153,9 +152,8 @@ class CustomSecurityCheck : ISecurityCheck
 ----
 
 === Invoking a Single Self Defence Check
-The `SecurityService#Check` method can be used to run a single self defence check.  It expects either `SecurityChecks` (see <<Provided Self Defence Checks
->>)  or `ISecurityCheck` (see <<Custom Self Defence Checks
->>) as a parameter and returns `SecurityCheckResult`.
+The `SecurityService#Check` method can be used to run a single self defence check.  It expects either `SecurityChecks` (see <<Provided Self Defence Checks>>)
+or `ISecurityCheck` (see <<Custom Self Defence Checks>>) as a parameter and returns `SecurityCheckResult`.
 
 [source, c#]
 ----
@@ -169,7 +167,7 @@ SecurityCheckResult result = securityService.Check(customSecurityCheck);
 
 === Invoking Multiple Self Defence Checks
 
-To invoke multiple self defence checks a security check executor, by calling the `SecurityService.GetSyncExecutor`.
+To invoke multiple self defence checks a security check executor must be used. To run multiple self defence checks synchronously, you'll need to invoke `SecurityService#GetSyncExecutor`.
 The returned object will be a builder that will allow to configure the list of checks to be executed. That list can be a mix of checks provided by the SDK and
 custom checks.
 
