@@ -9,7 +9,7 @@ namespace AeroGear.Mobile.Security.Checks
     /// </summary>
     public class BackupDisallowedCheck : AbstractSecurityCheck
     {
-        protected override string Name { get { return "Backup Flag Check"; } }
+        protected override string Name => "Backup Flag Check";
 
         private readonly Context context;
 

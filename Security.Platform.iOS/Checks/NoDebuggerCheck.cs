@@ -7,7 +7,7 @@ namespace AeroGear.Mobile.Security.Checks
     /// </summary>
     public class NoDebuggerCheck : AbstractSecurityCheck
     {
-        protected override string Name { get { return "Debugger Check"; } }
+        protected override string Name => "Debugger Check";
 
         public NoDebuggerCheck()
         {

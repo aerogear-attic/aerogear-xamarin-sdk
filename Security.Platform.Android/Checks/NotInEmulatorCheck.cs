@@ -9,7 +9,7 @@ namespace AeroGear.Mobile.Security.Checks
     /// </summary>
     public class NotInEmulatorCheck : AbstractSecurityCheck
     {
-        protected override string Name { get { return "Emulator Check"; } }
+        protected override string Name => "Emulator Check";
 
         private readonly Context context;
 

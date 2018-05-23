@@ -9,7 +9,7 @@ namespace AeroGear.Mobile.Security.Checks
     /// </summary>
     public class DeviceLockCheck : AbstractSecurityCheck
     {
-        protected override string Name { get { return "Device Lock Check"; } }
+        protected override string Name => "Device Lock Check";
 
         public DeviceLockCheck()
         {

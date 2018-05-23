@@ -9,7 +9,7 @@ namespace AeroGear.Mobile.Security.Checks
     /// </summary>
     public class EncryptionCheck : AbstractSecurityCheck
     {
-        protected override string Name { get { return "Encryption Check"; } }
+        protected override string Name => "Encryption Check";
 
         private readonly Context context;
 

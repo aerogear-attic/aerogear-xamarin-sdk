@@ -10,7 +10,7 @@ namespace AeroGear.Mobile.Security.Checks
     /// </summary>
     public class NonJailbrokenCheck : AbstractSecurityCheck
     {
-        protected override string Name { get { return "Jailbreak Check"; } }
+        protected override string Name => "Jailbreak Check";
 
         public NonJailbrokenCheck()
         {

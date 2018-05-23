@@ -9,7 +9,7 @@ namespace AeroGear.Mobile.Security.Checks
     /// </summary>
     public class ScreenLockCheck : AbstractSecurityCheck
     {
-        protected override string Name { get { return "Screen Lock Check"; } }
+        protected override string Name => "Screen Lock Check";
 
         private readonly Context context;
 

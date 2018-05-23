@@ -9,7 +9,7 @@ namespace AeroGear.Mobile.Security.Checks
     /// </summary>
     public class DeveloperModeDisabledCheck : AbstractSecurityCheck
     {
-        protected override string Name { get { return "Developer Mode Check"; } }
+        protected override string Name => "Developer Mode Check";
 
         private readonly Context context;
 

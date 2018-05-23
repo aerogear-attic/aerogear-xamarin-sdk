@@ -11,7 +11,7 @@ namespace AeroGear.Mobile.Security.Checks
     /// </summary>
     public class NonRootedCheck : AbstractSecurityCheck
     {
-        protected override string Name { get { return "Rooted Check"; } }
+        protected override string Name => "Rooted Check";
 
         private readonly Context context;
 
