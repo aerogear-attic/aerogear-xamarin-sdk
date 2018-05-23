@@ -1,5 +1,7 @@
 version: 0.1.0-BUILD{build}
 image: Visual Studio 2017
+install:
+  - git submodule update --init --recursive
 before_build:
   - nuget restore
 configuration:
