@@ -20,7 +20,8 @@ namespace AeroGear.Mobile.Security.Checks
 
         public override SecurityCheckResult Check()
         {
-            KeyguardManager manager = (KeyguardManager)context.GetSystemService(Context.KeyguardService);             return new SecurityCheckResult(this, manager.IsDeviceSecure);
+            KeyguardManager manager = (KeyguardManager)context.GetSystemService(Context.KeyguardService);
+            return new SecurityCheckResult(this, manager.IsDeviceSecure);
         }
     }
 }
