@@ -47,7 +47,6 @@
     <Compile Include="Checks\NonRootedCheck.cs" />
     <Compile Include="AndroidSecurityCheckFactory.cs" />
     <Compile Include="SecurityChecks.cs" />
-    <Compile Include="SecurityService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
