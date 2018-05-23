@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 
 namespace AeroGear.Mobile.Security.Checks
 {
@@ -15,11 +16,7 @@ namespace AeroGear.Mobile.Security.Checks
 
         public override SecurityCheckResult Check()
         {
-#if DEBUG
-            return new SecurityCheckResult(this, false);
-#else
-            return new SecurityCheckResult(this, true);
-#endif
+            return new SecurityCheckResult(this, !Debugger.IsAttached);
         }
     }
 }
