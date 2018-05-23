@@ -1,0 +1,33 @@
+{
+    "showcase-repo":"https://github.com/wojta/aerogear-xamarin-sdk.git",
+    "showcase-dir":"../Example",
+    "proj-refs": {
+        "Example/Example/Example.csproj": [
+            "..\\..\\Core\\Core\\Core.csproj",
+            "..\\..\\Auth\\Auth\\Auth.csproj"
+        ],
+        "Example/Example.Android/Example.Android.csproj": [
+            "..\\..\\Core\\Core.Platform.Android\\Core.Platform.Android.csproj",
+            "..\\..\\Core\\Core\\Core.csproj",
+            "..\\..\\Auth\\Auth\\Auth.csproj",
+            "..\\..\\Auth\\Auth.Platform.Android\\Auth.Platform.Android.csproj"
+        ],
+        "Example/Example.iOS/Example.iOS.csproj": [
+            "..\\..\\Core\\Core.Platform.iOS\\Core.Platform.iOS.csproj",
+            "..\\..\\Core\\Core\\Core.csproj",
+            "..\\..\\Auth\\Auth\\Auth.csproj",
+            "..\\..\\Auth\\Auth.Platform.iOS\\Auth.Platform.iOS.csproj"]
+    },
+    "nuget-deps": {
+        "Example/Example/Example.csproj": {
+            "AeroGear.Mobile.Core": "0.0.6",
+            "AeroGear.Mobile.Auth": "0.0.6"
+        },
+        "Example/Example.Android/Example.Android.csproj": {
+            "AeroGear.Mobile.Auth.Platform.Android": "0.0.6"
+        },
+        "Example/Example.iOS/Example.iOS.csproj": {
+            "AeroGear.Mobile.Auth.Platform.iOS": "0.0.6"
+        }
+    }
+}
