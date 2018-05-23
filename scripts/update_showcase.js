@@ -12,11 +12,10 @@ const promisify = require("util").promisify
 const csprojeditor = require("./modules/csproj_editor")
 const xmlop = require('./modules/xml_operations')
 const readFile = promisify(fs.readFile)
-const showcaseSync=require("./modules/showcase_sync");
 
 const argv = yargs.usage("Usage: $0 <command> [options]'")
     .command("removeProjDeps", "Removes project dependencies").command("addNuGets", "Adds NuGet dependencies to project")
-    .command("pullShowcase", "Pulls Showcase Template from its repo to the local project").demandCommand(1)
+    .command("addProjDeps", "Adds project dependencies").command("removeNuGets", "Removes NuGet dependencies from project").demandCommand(1)
     .option("write", {
         default: false, desc:
             "Writes changes to .csproj files (it's a dry-run by default)"
@@ -28,13 +27,12 @@ readFile(`${__dirname}/showcase_config.json`).then(data =>
 /**
  * Adds project dependencies in csproj xml.
  * @param {Document} XML document
- * @param {Object} config configuration
+ * @param {Object} nuGets  nugets to add
  * @param {string} projPath .csproj path
  */
-async function addNuGetDeps(doc, config, projPath) {
-    const nuGetDeps = config["nuget-deps"]
-    await Object.keys(nuGetDeps[projPath]).forEach(async dependency => {
-        const dependencyVersion = nuGetDeps[projPath][dependency]
+async function addNuGets(doc, nuGets, projPath) {
+    await Object.keys(nuGets).forEach(async dependency => {
+        const dependencyVersion = nuGets[dependency]
         const result = await csprojeditor.addNuGetDependency(doc, dependency, dependencyVersion)
         console.log(`Project "${projPath}" added dependency "${dependency}" version ${dependencyVersion}.`);
     })
@@ -42,25 +40,55 @@ async function addNuGetDeps(doc, config, projPath) {
 }
 
 /**
- * Removes project dependencies in csproj xml.
+ * Removes project's NuGet dependencies in csproj xml.
  * @param {Document} XML document
- * @param {Object} config configuration
+ * @param {Object} nuGets NuGets to remove
  * @param {string} projPath .csproj path
  */
-async function removeDeps(doc, config, projPath) {
-    const projRefs = config["proj-refs"]
-    await projRefs[projPath].forEach(async dependency => {
-        const result = await csprojeditor.removeProjectDep(doc, dependency)
+async function removeNuGets(doc, nuGets, projPath) {
+    await Object.keys(nuGets).forEach(async dependency => {
+        const result = await csprojeditor.removeNuGetDependency(doc, dependency)
+        console.log(`NuGet "${projPath}" dependency "${dependency}" ${result ? "removed" : "not found"}.`);
+    })
+    return doc;
+}
+
+/**
+ * Adds project dependencies to csproj xml.
+ * @param {Document} XML document
+ * @param {Object} projDeps project dependencies
+ * @param {string} projPath .csproj path
+ */
+async function removeProjDeps(doc, projDeps, projPath) {
+    await projDeps.forEach(async dependency => {
+        const result = await csprojeditor.removeProjectDependency(doc, dependency)
         console.log(`Project "${projPath}" dependency "${dependency}" ${result ? "removed" : "not found"}.`);
     })
     return doc;
 }
 
-async function processProject(config, projPath, operation, dryrun) {
+
+/**
+ * Adds project dependencies to csproj xml.
+ * @param {Document} XML document
+ * @param {Object} projDeps project dependencies
+ * @param {string} projPath .csproj path
+ */
+async function addProjDeps(doc, projDeps, projPath) {
+    await projDeps.forEach(async dependency => {
+        const result = await csprojeditor.addProjectDependency(doc, dependency)
+        console.log(`Project "${projPath}" dependency "${dependency}" added.`);
+    })
+    return doc;
+}
+
+
+
+async function processProject(config, projPath, projConfig, operation, dryrun) {
     const dir = `${__dirname}/../`;
     try {
         const doc = await xmlop.openXML(dir, projPath)
-        await operation(doc, config, projPath)
+        await operation(doc, projConfig, projPath)
         if (!dryrun) {
             await xmlop.saveXML(dir, projPath, doc)
             console.log(`Saved project ${projPath}`)
@@ -73,17 +101,25 @@ async function processProject(config, projPath, operation, dryrun) {
 }
 
 function configLoaded(config) {
-    if (argv._.includes("removeDeps")) {
-        console.log("Removing project dependencies:")
-        Object.keys(config["proj-refs-remove"]).forEach(async project => await processProject(config, project, removeDeps, !argv.write))
+    const projRefs = config["proj-refs"];
+    const nuGetDeps = config["nuget-deps"];
+
+    if (argv._.includes("removeProjDeps")) {
+        console.log("Removing project's project dependencies:")
+        Object.keys(projRefs).forEach(async project => await processProject(config, project, projRefs[project], removeProjDeps, !argv.write))
     } else if (argv._.includes("addNuGets")) {
-        console.log("Adding project NuGet dependencies:")
-        Object.keys(config["deps-add"]).forEach(async project => await processProject(config, project, addNuGetDeps, !argv.write))
-    } else if (argv._.includes('pullShowcase')) {
-        showcaseSync.pullShowcase(config['showcase-repo'],`${__dirname}/${config['showcase-dir']}`)
+        console.log("Adding project's NuGet dependencies:")
+        Object.keys(nuGetDeps).forEach(async project => await processProject(config, project, nuGetDeps[project], addNuGets, !argv.write))
+    } else if (argv._.includes('removeNuGets')) {
+        console.log("Removing project's NuGet dependencies:")
+        Object.keys(nuGetDeps).forEach(async project => await processProject(config, project, nuGetDeps[project], removeNuGets, !argv.write))
+    } else if (argv._.includes("addProjDeps")) {
+        console.log("Adding project's project dependencies:")
+        Object.keys(nuGetDeps).forEach(async project => await processProject(config, project, projRefs[project], addProjDeps, !argv.write))
     } else {
         console.log(`Invalid command "${argv._[0]}" specified\n`);
         yargs.showHelp()
     }
 }
+
 
