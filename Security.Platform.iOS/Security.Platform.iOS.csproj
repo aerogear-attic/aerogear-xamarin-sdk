@@ -53,7 +53,6 @@
     <Compile Include="Checks\NonJailbrokenCheck.cs" />
     <Compile Include="IOSSecurityCheckFactory.cs" />
     <Compile Include="SecurityChecks.cs" />
-    <Compile Include="SecurityService.cs" />
     <Compile Include="Checks\NotInEmulatorCheck.cs" />
     <Compile Include="Checks\NoDebuggerCheck.cs" />
     <Compile Include="Checks\DeviceLockCheck.cs" />
