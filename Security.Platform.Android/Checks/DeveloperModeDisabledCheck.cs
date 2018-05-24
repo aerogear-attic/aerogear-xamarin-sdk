@@ -22,7 +22,7 @@ namespace AeroGear.Mobile.Security.Checks
         {
             bool devModeEnabled = Settings.Secure.GetInt(
                 context.ContentResolver,
-                Settings.Global.DevelopmentSettingsEnabled) != 0;
+                Settings.Global.DevelopmentSettingsEnabled, 0) != 0;
             return new SecurityCheckResult(this, !devModeEnabled);
         }
     }
