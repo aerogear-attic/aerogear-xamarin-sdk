@@ -30,6 +30,23 @@ namespace AeroGear.Mobile.Security.Executors
     {
         protected readonly List<ISecurityCheck> CheckList = new List<ISecurityCheck>();
 
+        /// <summary>
+        /// Adds a security check by name. This method requires that the Security Check Factory is registered.
+        /// Registering a Service Factory happens when you initialize the SecurityService class.
+        /// </summary>
+        /// <returns>The security check.</returns>
+        /// <param name="checksNames">Checks names.</param>
+        public T WithSecurityCheck(params string[] checksNames)
+        {
+            foreach (var checkName in NonNull(checksNames, "checksNames"))
+            {
+                ISecurityCheck check = ServiceFinder.Resolve<ISecurityCheckFactory>().create(checkName);
+                CheckList.Add(check);
+            }
+
+            return (T)this;
+        }
+
         public T WithSecurityCheck(params ISecurityCheck[] checks)
         {
             foreach (var check in NonNull(checks, "checks"))
@@ -48,6 +65,18 @@ namespace AeroGear.Mobile.Security.Executors
                 CheckList.Add(check);
             }
             return (T)this;
+        }
+
+        private ISecurityCheckFactory GetSecurityCheckFactory()
+        {
+            ISecurityCheckFactory factory = ServiceFinder.Resolve<ISecurityCheckFactory>();
+
+            if (factory == null) 
+            {
+                throw new Exception("Security check factory has not been registered");
+            }
+
+            return factory;
         }
 
         /// <summary>

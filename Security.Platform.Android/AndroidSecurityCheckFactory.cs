@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Android.Content;
 
 namespace AeroGear.Mobile.Security
@@ -8,6 +9,8 @@ namespace AeroGear.Mobile.Security
     /// </summary>
     internal class AndroidSecurityCheckFactory : ISecurityCheckFactory
     {
+        public static readonly AndroidSecurityCheckFactory INSTANCE = new AndroidSecurityCheckFactory();
+
         private readonly Context context;
 
         /// <summary>
@@ -33,6 +36,23 @@ namespace AeroGear.Mobile.Security
             }
 
             return Activator.CreateInstance(checkType.CheckType, this.context) as ISecurityCheck;
+        }
+
+        /// <summary>
+        /// Returns an initialized instance of the check identified by the passed in pseudo enumeration.
+        /// An exception is thrown if no check with the given name exists.
+        /// </summary>
+        /// <returns>The initialized instance of the check.</returns>
+        /// <param name="typeName">The name of the check to be instantiated.</param>
+        public ISecurityCheck create(string typeName)
+        {
+            ISecurityCheckType securityCheckType = SecurityChecks.GetSecurityCheck(typeName);
+            if (securityCheckType == null)
+            {
+                throw new Exception(String.Format("No security check with name {0} is known", typeName));
+            }
+
+            return create(securityCheckType);
         }
     }
 }
