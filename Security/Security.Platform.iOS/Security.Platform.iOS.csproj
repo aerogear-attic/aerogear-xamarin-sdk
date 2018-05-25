@@ -65,6 +65,9 @@
     <Compile Include="SecurityService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Security.Platform.iOS.nuspec">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />
