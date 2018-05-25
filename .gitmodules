@@ -1,3 +1,3 @@
 [submodule "Example"]
 	path = Example
-	url = git@github.com:wojta/xamarin-showcase-template.git
+	url = git@github.com:aerogear/xamarin-showcase-template.git

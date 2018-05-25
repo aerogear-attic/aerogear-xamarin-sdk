@@ -1,6 +1,4 @@
 {
-    "showcase-repo":"https://github.com/wojta/aerogear-xamarin-sdk.git",
-    "showcase-dir":"../Example",
     "proj-refs": {
         "Example/Example/Example.csproj": [
             "..\\..\\Core\\Core\\Core.csproj",
