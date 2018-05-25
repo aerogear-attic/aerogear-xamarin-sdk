@@ -20,11 +20,16 @@
     <Compile Remove="Views\Pages\HomePage.xaml %28copy%29.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Views\Pages\SecurityPage.xaml.cs">
+      <DependentUpon>SecurityPage.xaml</DependentUpon>
+    </Compile>
     <Compile Update="Views\RootPageMenuItem.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Resources\StringResources.Designer.cs">
       <DependentUpon>StringResources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Condition=" '$(EnableDefaultCompileItems)' == 'true' " Update="Views\Pages\HomePage.xaml.cs">
       <DependentUpon>HomePage.xaml</DependentUpon>
@@ -72,6 +77,9 @@
     <EmbeddedResource Update="Views\Pages\ListViewPage1.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Views\Pages\SecurityPage.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Views\RootPageMaster.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -104,5 +112,6 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Core\Core\Core.csproj" />
     <ProjectReference Include="..\..\Auth\Auth\Auth.csproj" />
+    <ProjectReference Include="..\..\Security\Security.csproj" />
   </ItemGroup>
 </Project>

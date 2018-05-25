@@ -1,14 +1,16 @@
 ﻿using System;
 using AeroGear.Mobile.Core;
 using AeroGear.Mobile.Core.Configuration;
+using AeroGear.Mobile.Core.Utils;
 using AeroGear.Mobile.Security.Executors.Sync;
 
 namespace AeroGear.Mobile.Security
 {
-    public class SecurityService : IServiceModule
+    public abstract class AbstractSecurityService : ISecurityService
     {
-        public SecurityService()
+        public AbstractSecurityService(ISecurityCheckFactory checkFactory)
         {
+            ServiceFinder.RegisterInstance<ISecurityCheckFactory>(checkFactory);
         }
 
         public string Type => "security";

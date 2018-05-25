@@ -3,6 +3,7 @@ using Acr.UserDialogs;
 using AeroGear.Mobile.Auth;
 using AeroGear.Mobile.Auth.Config;
 using AeroGear.Mobile.Core;
+using AeroGear.Mobile.Security;
 using Android.App;
 using Android.Content;
 using Android.Content.PM;
@@ -32,10 +33,13 @@ namespace Example.Android
             UserDialogs.Init(this);
             Instance = this;
             var app = new App();
+            var ignore = SecurityChecks.BACKUP_DISALLOWED;
             MobileCoreAndroid.Init(app.GetType().Assembly,ApplicationContext);
             var authService = AuthService.InitializeService();
             var authConfig = AuthenticationConfig.Builder.RedirectUri("org.aerogear.mobile.example:/callback").Build();
             authService.Configure(authConfig);
+
+            SecurityService.InitializeService();
             LoadApplication(app);
         }
 

@@ -20,7 +20,7 @@ namespace AeroGear.Mobile.Security.Checks
 
         public override SecurityCheckResult Check()
         {
-            bool devModeEnabled = Settings.Secure.GetInt(
+            bool devModeEnabled = Settings.Global.GetInt(
                 context.ContentResolver,
                 Settings.Global.DevelopmentSettingsEnabled, 0) != 0;
             return new SecurityCheckResult(this, !devModeEnabled);

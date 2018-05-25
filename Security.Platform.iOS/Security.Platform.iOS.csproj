@@ -56,6 +56,7 @@
     <Compile Include="Checks\NotInEmulatorCheck.cs" />
     <Compile Include="Checks\NoDebuggerCheck.cs" />
     <Compile Include="Checks\DeviceLockCheck.cs" />
+    <Compile Include="SecurityService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

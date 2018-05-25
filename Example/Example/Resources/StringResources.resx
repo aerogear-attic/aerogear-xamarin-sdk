@@ -24,8 +24,11 @@
     <data name="NavAuth">
         <value>Auth</value>
     </data>
+    <data name="NavSecurity">
+        <value>Security</value>
+    </data>
     <data name="Home">
-        <value>Home!!!</value>
+        <value>Home</value>
     </data>
     <data name="Menu">
         <value>Menu</value>

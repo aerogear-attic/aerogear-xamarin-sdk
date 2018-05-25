@@ -155,6 +155,14 @@
       <Project>{CBB87B9E-D526-46B1-B05A-AD3D383EACED}</Project>
       <Name>Auth.Platform.iOS</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\Security.Platform.iOS\Security.Platform.iOS.csproj">
+      <Project>{4C856B1A-CE05-4880-B315-D3D3FEA3B3CC}</Project>
+      <Name>Security.Platform.iOS</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Security\Security.csproj">
+      <Project>{AA2048E3-2324-4922-A7FE-C0589AF4B74F}</Project>
+      <Name>Security</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Assets.xcassets\AppIcon.appiconset\Contents.json">
