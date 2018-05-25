@@ -47,6 +47,12 @@
     <Compile Include="Checks\NonRootedCheck.cs" />
     <Compile Include="AndroidSecurityCheckFactory.cs" />
     <Compile Include="SecurityChecks.cs" />
+    <Compile Include="Checks\NotInEmulatorCheck.cs" />
+    <Compile Include="Checks\DeveloperModeDisabledCheck.cs" />
+    <Compile Include="Checks\ScreenLockCheck.cs" />
+    <Compile Include="Checks\BackupDisallowedCheck.cs" />
+    <Compile Include="Checks\EncryptionCheck.cs" />
+    <Compile Include="Checks\NoDebuggerCheck.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
