@@ -1,13 +1,7 @@
 version: 0.1.0-BUILD{build}
 image: Visual Studio 2017
-environment:
-  priv_key:
-    secure: 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
 install:
-  - ps: $fileContent = "-----BEGIN RSA PRIVATE KEY-----`n"
-  - ps: $fileContent += $env:priv_key.Replace(' ', "`n")
-  - ps: $fileContent += "`n-----END RSA PRIVATE KEY-----`n"
-  - ps: Set-Content $env:userprofile\.ssh\id_rsa $fileContent
+  - git config --file=.gitmodules submodule.Example.url https://github.com/aerogear/xamarin-showcase-template.git
   - git submodule update --init --recursive 
   - cmd: cd scripts
   - cmd: npm install
