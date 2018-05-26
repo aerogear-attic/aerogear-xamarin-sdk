@@ -109,12 +109,12 @@
       <Project>{f1ea4bba-d775-45c0-99da-db0590bee87e}</Project>
       <Name>Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Security.Platform.Android\Security.Platform.Android.csproj">
+    <ProjectReference Include="..\..\Security\Security.Platform.Android\Security.Platform.Android.csproj">
       <Project>{fabacd6f-aa16-47b2-96cd-6790df9ae77f}</Project>
       <Name>Security.Platform.Android</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Security\Security.csproj">
-      <Project>{aa2048e3-2324-4922-a7fe-c0589af4b74f}</Project>
+    <ProjectReference Include="..\..\Security\Security\Security.csproj">
+      <Project>{e6a4e78f-25b7-4d82-89a8-f394b82e557a}</Project>
       <Name>Security</Name>
     </ProjectReference>
     <ProjectReference Include="..\Example\Example.csproj">

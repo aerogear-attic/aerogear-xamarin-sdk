@@ -155,7 +155,7 @@
       <Project>{CBB87B9E-D526-46B1-B05A-AD3D383EACED}</Project>
       <Name>Auth.Platform.iOS</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Security.Platform.iOS\Security.Platform.iOS.csproj">
+    <ProjectReference Include="..\..\Security\Security.Platform.iOS\Security.Platform.iOS.csproj">
       <Project>{4C856B1A-CE05-4880-B315-D3D3FEA3B3CC}</Project>
       <Name>Security.Platform.iOS</Name>
     </ProjectReference>
@@ -174,8 +174,6 @@
       <Version>2.5.1.444934</Version>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Auth\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
 </Project>

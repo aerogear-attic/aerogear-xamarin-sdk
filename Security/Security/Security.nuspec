@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>AeroGear.Mobile.Security</id>
+    <version>0.0.6</version>
+    <title>AeroGear SDK Security module</title>
+    <authors>AeroGear Community</authors>
+    <owners>AeroGear Community</owners>
+    <licenseUrl>https://github.com/aerogear/aerogear-xamarin-sdk/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/aerogear/aerogear-xamarin-sdk</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>.NET and Xamarin libraries for the AeroGear Mobile Core</description>
+    <copyright>Copyright 2018</copyright>
+    <tags>aerogear security sso openid xamarin iOS android mobile</tags>
+    <iconUrl>https://avatars1.githubusercontent.com/u/954205</iconUrl>
+    <dependencies>
+      <dependency id="AeroGear.Mobile.Core" version="0.0.6"/>      
+    </dependencies>
+    <references>
+      <group>
+        <reference file="AeroGear.Mobile.Security.dll" />
+      </group>
+    </references>
+  </metadata>
+  <files>
+    <file src="bin\Release\netstandard1.4\AeroGear.Mobile.Security.dll" target="lib\netstandard1.4" />
+    <file src="../../README.md" target="" />
+  </files>
+</package>
