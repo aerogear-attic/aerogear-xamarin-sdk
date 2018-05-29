@@ -1,5 +1,13 @@
 version: 0.1.0-BUILD{build}
 image: Visual Studio 2017
+install:
+  - git config --file=.gitmodules submodule.Example.url https://github.com/aerogear/xamarin-showcase-template.git
+  - git submodule update --init --recursive 
+  - cmd: cd scripts
+  - cmd: npm install
+  - cmd: node update_showcase.js removeNuGets --write
+  - cmd: node update_showcase.js addProjDeps --write
+  - cmd: cd ..
 before_build:
   - nuget restore
 configuration:

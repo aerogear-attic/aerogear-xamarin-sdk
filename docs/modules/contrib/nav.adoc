@@ -1,1 +1,3 @@
 * xref:contributing.adoc[Contributing]
+** xref:development-guide.adoc[Development guide]
+** xref:make-dist.adoc[Releasing NuGets]

@@ -3,6 +3,9 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+# Example app
+Example/
+
 # User-specific files
 *.suo
 *.user
@@ -87,6 +90,9 @@ StyleCopReport.xml
 
 # Chutzpah Test files
 _Chutzpah*
+
+# VisualStudio Code
+.vscode
 
 # Visual C++ cache files
 ipch/

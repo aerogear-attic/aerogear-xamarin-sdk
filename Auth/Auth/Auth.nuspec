@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>AeroGear.Mobile.Auth</id>
-    <version>0.0.2</version>
+    <version>0.0.6</version>
     <title>AeroGear SDK Auth module</title>
     <authors>AeroGear Community</authors>
     <owners>AeroGear Community</owners>
@@ -14,7 +14,7 @@
     <tags>aerogear security sso openid xamarin iOS android mobile</tags>
     <iconUrl>https://avatars1.githubusercontent.com/u/954205</iconUrl>
     <dependencies>
-      <dependency id="AeroGear.Mobile.Core" version="0.0.3"/>
+      <dependency id="AeroGear.Mobile.Core" version="0.0.6"/>
       <dependency id="JWT" version="4.0.0"/>      
     </dependencies>
     <references>

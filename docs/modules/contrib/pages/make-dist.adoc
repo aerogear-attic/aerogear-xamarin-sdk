@@ -1,0 +1,50 @@
+== Distributing NuGets
+
+There is example for releasing Core project. Same goes for others.
+
+=== 1. Pre-requisite
+
+* register to https://www.nuget.org/[NuGet central repo] and generate
+your api key. Be sure copy them somewhere, since they won't be
+visualized anymore
+* NuGets for the SDK starts with `AeroGear.Mobile`, if you want to
+release, you should be added to the list of owners (ask existing owner
+to add you)
+
+Create a branch with your new release version.
+
+=== 2. Build the project for the desired platform
+
+* open VisualStudio, open solution
+* choose `Release` on the top bar schema selection select `CoreXXX`
+where XXX is iOS or Android
+* build the solution / individual project
+
+=== 3. Bump version in `Core/Core.nuspec`
+
+=== 4. Update dependencies
+
+* check if you added something that you need to use in the library and
+add dependency to it
+
+=== 5. Push to NuGet
+
+* Make sure nuget.exe is installed and on the PATH. Download From
+https://dist.nuget.org/win-x86-commandline/latest/nuget.exe[here]
+* Add your keys by running (only the first time):
+
+[source,bash]
+----
+nuget setApiKey <api key>
+----
+
+After updating the nuspec with the right version you can pack the
+release and upload:
+
+[source,bash]
+----
+nuget pack Core.nuspec -Symbols 
+nuget push AeroGear.Mobile.Core.<version>.nupkg -Source https://api.nuget.org/v3/index.json
+----
+
+==== 6. Merge the branch

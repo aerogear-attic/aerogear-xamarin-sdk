@@ -16,15 +16,16 @@ Current Build : [![Build status](https://ci.appveyor.com/api/projects/status/ja8
 
 ## Documentation
 
-1. [End User Getting Started Guide](./Documentations/GettingStarted.md)
-2. [SDK architecture](./Documentations/SDKArch.md)
-3. [NuGet distributing](./Core/Core/Dist\make-dist.md)
+1. [End User Getting Started Guide](./docs/modules/getting-started/pages/getting-started.adoc)
+2. [SDK architecture](./docs/modules/architecture/pages/architecture.adoc)
+3. [NuGet distributing](./docs/modules/contrib/pages/make-dist.adoc)
+4. [Development Guide](./docs/modules/contrib/pages/development-guide.adoc)
 
 ## List of SDKs
 
 AeroGear Services SDK consist of set of separate SDKs
-* [Core](./Documentations/Core.md): Common base for all SDKs
-* Auth: Mobile authentication SDK
+* [Core](./docs/modules/getting-started/pages/core.adoc): Common base for all SDKs
+* [Auth](./docs/modules/getting-started/pages/auth.adoc): Mobile authentication SDK
 
 ## License 
 

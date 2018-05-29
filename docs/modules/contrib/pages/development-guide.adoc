@@ -1,0 +1,106 @@
+== AeroGear Xamarin SDK development guide
+This document is about how to start with SDK development.
+
+== Requirements
+
+* Visual Studio Comunnity 2017 for Windows or for Mac (or some other edition)
+* on Windows link:https://www.cygwin.com/[Cygwin] is requried for running some scripts
+* link:https://nodejs.org/en/[Node.js] 8.11.2 or later is required to run some scripts
+* macOS machine for running iOS applications
+* link:https://docs.microsoft.com/en-us/nuget/install-nuget-client-tools[nuget] tool for releasing packages 
+
+== Development process
+
+=== Prerequisite: Fork and clone the repo 
+
+Fork repo https://github.com/aerogear/aerogear-xamarin-sdk 
+
+[source,bash]
+----
+git clone git@github.com:<your-username>/aerogear-xamarin-sdk.git
+----
+
+=== 1. Update Example/Showcase Template
+First thing you need to do after you cloned the repo is initializing the module:
+[source,bash]
+----
+git submodule update --init --recursive
+----
+
+Get the latest Showcase app:
+[source,bash]
+----
+git submodule update --remote --merge Example
+----
+
+If you want to test Showcase template with your version of SDK, you'll need to replace NuGet dependencies with the project dependency:
+[source,bash]
+----
+cd scripts
+./update_showcase.js removeNuGets --write
+./update_showcase.js addProjDeps --write
+----
+Note: `npm install` is requried before running the scripts.
+
+=== 2. Do your coding
+Don't forget to write the tests. If you add something into the Showcase application, you will need to also make a PR in its repo (see step 5).
+
+=== 3. Make a PR on the github
+From your branch in your fork into aerogear `master`.
+
+=== 4. Release new NuGets (optional)
+
+There is a separate guide for that - xref:make-dist.adoc[Releasing NuGets]
+
+=== 5. Make a PR to the Showcase app repo
+If you changed the `Example`, you'll need to separately create PR to link:https://github.com/aerogear/xamarin-showcase-template[xamarin-showcase-template repo]
+
+Before you do that, you'll need to replace the project dependencies with the NuGet dependencies: 
+
+If you released new NuGets, it's necessary to update the versions in link:https://github.com/aerogear/aerogear-xamarin-sdk/blob/master/scripts/showcase_config.json[showcase_config.json].
+
+Then replace the dependencies in the projects:
+[source,bash]
+----
+cd scripts
+./update_showcase.js removeProjDeps --write
+./update_showcase.js addNuGets --write
+----
+
+Create a new branch:
+[source,bash]
+----
+cd ./Example
+git checkout -b yourbranch
+----
+
+Commit changes there (in `./Example`):
+[source,bash]
+----
+git commit
+----
+
+If you don't have your remote added yet (in `./Example`):
+[source,bash]
+----
+git remote add yourfork git@github.com:<your-username>/xamarin-showcase-template.git
+----
+
+Push into the branch (in `./Example`):
+[source,bash]
+----
+git push yourfork yourbranch
+----
+
+Then you can create a PR with this branch.
+
+You probably also want to update the reference to the Example HEAD in the parent SDK repo:
+[source,bash]
+----
+cd ..
+git add ./Example
+git commit
+git push
+----
+
+

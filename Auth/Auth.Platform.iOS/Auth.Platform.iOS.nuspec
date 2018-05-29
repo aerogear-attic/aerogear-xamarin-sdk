@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>AeroGear.Mobile.Auth.Platform.iOS</id>
-    <version>0.0.3</version>
+    <version>0.0.6</version>
     <title>AeroGear SDK Auth module (iOS)</title>
     <authors>AeroGear Community</authors>
     <owners>AeroGear Community</owners>
@@ -14,8 +14,8 @@
     <tags>aerogear security sso openid xamarin iOS android mobile</tags>
     <iconUrl>https://avatars1.githubusercontent.com/u/954205</iconUrl>
     <dependencies>
-      <dependency id="AeroGear.Mobile.Core.Platform.iOS" version="0.0.4"/>
-      <dependency id="AeroGear.Mobile.Auth" version="0.0.2"/>
+      <dependency id="AeroGear.Mobile.Core.Platform.iOS" version="0.0.6"/>
+      <dependency id="AeroGear.Mobile.Auth" version="0.0.6"/>
       <dependency id="Xamarin.OpenId.AppAuth.iOS" version="0.92.0"  />
     </dependencies>
     <references>

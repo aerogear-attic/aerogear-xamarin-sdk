@@ -2,7 +2,7 @@
 <package >
   <metadata>
     <id>AeroGear.Mobile.Auth.Platform.Android</id>
-    <version>0.0.5</version>
+    <version>0.0.6</version>
     <title>AeroGear SDK Auth module (Android)</title>
     <authors>AeroGear Community</authors>
     <owners>AeroGear Community</owners>
@@ -14,8 +14,8 @@
     <tags>aerogear security sso openid xamarin iOS android mobile</tags>
     <iconUrl>https://avatars1.githubusercontent.com/u/954205</iconUrl>
     <dependencies>
-      <dependency id="AeroGear.Mobile.Core.Platform.Android" version="0.0.3"/>
-      <dependency id="AeroGear.Mobile.Auth" version="0.0.2"/>
+      <dependency id="AeroGear.Mobile.Core.Platform.Android" version="0.0.6"/>
+      <dependency id="AeroGear.Mobile.Auth" version="0.0.6"/>
       <dependency id="Xamarin.OpenId.AppAuth.Android" version="0.7.0" />
       <dependency id="Xamarin.Android.Support.CustomTabs" version="25.4.0.2"/>
     </dependencies>
