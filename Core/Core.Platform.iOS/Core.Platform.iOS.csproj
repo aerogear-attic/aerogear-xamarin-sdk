@@ -68,6 +68,8 @@
     <Compile Include="Logging\IOSLogger.cs" />
     <Compile Include="Storage\StorageManager.cs" />
     <Compile Include="Storage\SecureKeyValueStore.cs" />
+    <Compile Include="Utils\PlatformBridge\IOSUserPreferences.cs" />
+    <Compile Include="Utils\PlatformBridge\IOSPlatformBridge.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core\Core.csproj">
@@ -85,6 +87,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Storage\" />
+    <Folder Include="Utils\" />
+    <Folder Include="Utils\PlatformBridge\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\..\..\packages\NuGet.Build.Packaging.0.2.0\build\NuGet.Build.Packaging.targets" Condition="Exists('..\..\..\packages\NuGet.Build.Packaging.0.2.0\build\NuGet.Build.Packaging.targets')" />

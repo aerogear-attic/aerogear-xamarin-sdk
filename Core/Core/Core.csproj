@@ -21,5 +21,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Storage\" />
+    <Folder Include="Metrics\" />
+    <Folder Include="Utils\PlatformBridge\" />
+    <Folder Include="Metrics\Publishers\" />
   </ItemGroup>
 </Project>
