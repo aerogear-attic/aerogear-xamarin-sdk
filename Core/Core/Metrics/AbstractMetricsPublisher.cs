@@ -1,11 +1,18 @@
 ﻿using System;
 using System.Json;
 using System.Threading.Tasks;
+using AeroGear.Mobile.Core.Logging;
+using AeroGear.Mobile.Core.Utils;
 
 namespace AeroGear.Mobile.Core.Metrics
 {
     public abstract class AbstractMetricsPublisher
     {
+        private static readonly ILogger LOGGER = MobileCore.Instance.Logger;
+
+        private const string STORAGE_NAME = "org.aerogear.mobile.metrics";
+        private const string STORAGE_KEY = "metrics-sdk-installation-id";
+
         private readonly IMetrics<JsonObject>[] DefaultMetrics;
         private static readonly DateTime Jan1st1970 = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
 
@@ -20,7 +27,27 @@ namespace AeroGear.Mobile.Core.Metrics
         }
 
 
-        protected abstract string getClientId();
+        /// <summary>
+        /// Get or create the client ID that identifies a device as long as the user doesn't reinstall
+        /// the app or delete the app storage. A random UUID is created and stored in the application
+        /// shared preferences.
+        /// </summary>
+        /// <returns>Client ID.</returns>
+        private static String GetClientId()
+        {
+            IUserPreferences preferences = ServiceFinder.Resolve<IPlatformBridge>().GetUserPreferences(STORAGE_NAME);
+
+            String clientId = preferences.GetString(STORAGE_KEY, null);
+
+            if (clientId == null)
+            {
+                clientId = System.Guid.NewGuid().ToString();
+                LOGGER.Info("Generated a new client ID: " + clientId);
+                preferences.PutString(STORAGE_KEY, clientId);
+            }
+
+            return clientId;
+        }
 
         /**
          * Parse metrics into a JSONObject and add common information for all metrics requests:
@@ -33,7 +60,7 @@ namespace AeroGear.Mobile.Core.Metrics
         {
             JsonObject json = new JsonObject();
 
-            json.Add("clientId", getClientId());
+            json.Add("clientId", GetClientId());
             json.Add("timestamp", CurrentTimeMillis());
             json.Add("type", type);
 

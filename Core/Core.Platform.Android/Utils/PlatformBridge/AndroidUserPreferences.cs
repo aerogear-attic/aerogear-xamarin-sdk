@@ -12,12 +12,12 @@ namespace AeroGear.Mobile.Core.Utils
             sharedPreferences = appContext.GetSharedPreferences(storageName, FileCreationMode.Private);
         }
 
-        public string getString(string key, string defaultValue = null)
+        public string GetString(string key, string defaultValue = null)
         {
             return sharedPreferences.GetString(key, defaultValue);
         }
 
-        public void putString(string key, string value)
+        public void PutString(string key, string value)
         {
             ISharedPreferencesEditor editor = sharedPreferences.Edit();
             editor.PutString(key, value);

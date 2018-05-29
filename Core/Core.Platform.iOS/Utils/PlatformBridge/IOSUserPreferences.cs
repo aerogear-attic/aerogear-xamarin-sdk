@@ -12,12 +12,12 @@ namespace AeroGear.Mobile.Core.Utils
             this.userDefaults = NSUserDefaults.StandardUserDefaults;
         }
 
-        public string getString(string key, string defaultValue = null)
+        public string GetString(string key, string defaultValue = null)
         {
             return userDefaults.StringForKey(key) ?? defaultValue;
         }
 
-        public void putString(string key, string value)
+        public void PutString(string key, string value)
         {
             userDefaults.SetString(value, key);
             userDefaults.Synchronize();

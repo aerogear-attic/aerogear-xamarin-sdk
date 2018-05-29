@@ -1,23 +1,27 @@
 ﻿using System;
 using System.Json;
+using System.Net.Http;
 using System.Threading.Tasks;
+using AeroGear.Mobile.Core.Logging;
 
 namespace AeroGear.Mobile.Core.Metrics.Publishers
 {
     public class NetworkMetricsPublisher : AbstractMetricsPublisher
     {
-        public NetworkMetricsPublisher()
-        {
-        }
+        private static readonly ILogger LOGGER = MobileCore.Instance.Logger;
+        private readonly string url;
 
-        protected override string getClientId()
+        private HttpClient httpClient = new HttpClient();
+
+        public NetworkMetricsPublisher(string url)
         {
-            throw new NotImplementedException();
+            this.url = url;
         }
 
         protected override Task Publish(string type, IMetrics<JsonObject>[] metrics)
         {
-            throw new NotImplementedException();
+            JsonObject json = createMetricsJSONObject(type, metrics);
+            return httpClient.PostAsync(url, new StringContent(json.ToString()));
         }
     }
 }

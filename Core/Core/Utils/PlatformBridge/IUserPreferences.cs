@@ -3,7 +3,7 @@ namespace AeroGear.Mobile.Core.Utils
 {
     public interface IUserPreferences
     {
-        string getString(string key, string defaultValue = null);
-        void putString(string key, string value);
+        string GetString(string key, string defaultValue = null);
+        void PutString(string key, string value);
     }
 }
