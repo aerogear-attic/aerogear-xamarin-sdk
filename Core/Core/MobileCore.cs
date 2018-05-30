@@ -8,6 +8,7 @@ using AeroGear.Mobile.Core.Http;
 using System.Reflection;
 using System.Net.Http;
 using AeroGear.Mobile.Core.Metrics;
+using System.Threading.Tasks;
 
 namespace AeroGear.Mobile.Core
 {
@@ -142,6 +143,20 @@ namespace AeroGear.Mobile.Core
         /// <returns>MobileCore singleton instance</returns>
         public static MobileCore Init(IPlatformInjector injector) => Init(injector, new Options());
 
+        private async static void sendAppAndDeviceMetrics() 
+        {
+            MetricsService metricsService = MobileCore.Instance.GetService<MetricsService>();
+            try
+            {
+                await metricsService.SendAppAndDeviceMetrics();    
+            }
+            catch (System.Exception e)
+            {
+                MobileCore.Instance.Logger.Debug(String.Format("Error publishing device metrics: {0}", e.Message));
+            }
+
+        }
+
         /// <summary>
         /// Initializes MobileCore with specific options and with platform-specific injector. 
         /// </summary>
@@ -157,8 +172,8 @@ namespace AeroGear.Mobile.Core
             NonNull<Options>(options, "init options");
             instance = new MobileCore(injector, options);
 
-            AbstractMetricService metricsService = MobileCore.Instance.GetService<AbstractMetricService>();
-            metricsService.SendAppAndDeviceMetrics();
+            sendAppAndDeviceMetrics();
+
             return instance;
         }
 

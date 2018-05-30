@@ -6,7 +6,7 @@ using AeroGear.Mobile.Core.Metrics.Publishers;
 
 namespace AeroGear.Mobile.Core.Metrics
 {
-    public class AbstractMetricService : IMetricsService
+    public class MetricsService : IServiceModule
     {
         private string identifier;
         private const string INIT_METRICS_TYPE = "init";
@@ -18,7 +18,7 @@ namespace AeroGear.Mobile.Core.Metrics
         public string Type => "metrics";
         public bool RequiresConfiguration => true;
 
-        public AbstractMetricService()
+        public MetricsService()
         {
         }
 
