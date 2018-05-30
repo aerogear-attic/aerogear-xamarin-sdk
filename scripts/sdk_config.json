@@ -1,0 +1,40 @@
+{
+    "projects": {
+        "Auth/Auth/Auth.csproj": {
+            "nuspec": "Auth/Auth/Auth.nuspec",
+            "package": "AeroGear.Mobile.Auth"
+        },
+        "Auth/Auth.Platform.Android/Auth.Platform.Android.csproj": {
+            "nuspec": "Auth/Auth.Platform.Android/Auth.Platform.Android.nuspec",
+            "package": "AeroGear.Mobile.Auth.Platform.Android"
+        },
+        "Auth/Auth.Platform.iOS/Auth.Platform.iOS.csproj": {
+            "nuspec": "Auth/Auth.Platform.iOS/Auth.Platform.iOS.nuspec",
+            "package": "AeroGear.Mobile.Auth.Platform.iOS"
+        },
+        "Core/Core/Core.csproj": {
+            "nuspec": "Core/Core/Core.nuspec",
+            "package": "AeroGear.Mobile.Core"
+        },
+        "Core/Core.Platform.Android/Core.Platform.Android.csproj": {
+            "nuspec": "Core/Core.Platform.Android/Core.Platform.Android.nuspec",
+            "package": "AeroGear.Mobile.Core.Platform.Android"
+        },
+        "Core/Core.Platform.iOS/Core.Platform.iOS.csproj": {
+            "nuspec": "Core/Core.Platform.iOS/Core.Platform.iOS.nuspec",
+            "package": "AeroGear.Mobile.Core.Platform.iOS"
+        },
+        "Security/Security/Security.csproj": {
+            "nuspec": "Security/Security/Security.nuspec",
+            "package": "AeroGear.Mobile.Security"
+        },
+        "Security/Security.Platform.Android/Security.Platform.Android.csproj": {
+            "nuspec": "Security/Security.Platform.Android/Security.Platform.Android.nuspec",
+            "package": "AeroGear.Mobile.Security.Platform.Android"
+        },
+        "Security/Security.Platform.iOS/Security.Platform.iOS.csproj": {
+            "nuspec": "Security/Security.Platform.iOS/Security.Platform.iOS.nuspec",
+            "package": "AeroGear.Mobile.Security.Platform.iOS"
+        }        
+    }
+}
