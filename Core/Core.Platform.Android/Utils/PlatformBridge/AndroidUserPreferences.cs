@@ -23,5 +23,12 @@ namespace AeroGear.Mobile.Core.Utils
             editor.PutString(key, value);
             editor.Apply();
         }
+
+        public void RemoveValue(string key)
+        {
+            ISharedPreferencesEditor editor = sharedPreferences.Edit();
+            editor.Remove(key);
+            editor.Apply();
+        }
     }
 }

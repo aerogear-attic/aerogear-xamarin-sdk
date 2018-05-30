@@ -116,11 +116,15 @@
     <Compile Include="Mocks\HttpRequestToBeExecutedMock.cs" />
     <Compile Include="Mocks\HttpResponseMock.cs" />
     <Compile Include="Mocks\LoggerMock.cs" />
+    <Compile Include="Core\Utils\PlatformBridge\IOSPlatformBridgeTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Storage\" />
     <Folder Include="Auth\" />
     <Folder Include="Mocks\" />
+    <Folder Include="Core\" />
+    <Folder Include="Core\Utils\" />
+    <Folder Include="Core\Utils\PlatformBridge\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Auth\Auth\Auth.csproj">

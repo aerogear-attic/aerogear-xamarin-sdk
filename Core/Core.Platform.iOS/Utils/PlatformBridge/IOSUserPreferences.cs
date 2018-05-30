@@ -22,5 +22,11 @@ namespace AeroGear.Mobile.Core.Utils
             userDefaults.SetString(value, key);
             userDefaults.Synchronize();
         }
+
+        public void RemoveValue(string key)
+        {
+            userDefaults.RemoveObject(key);
+            userDefaults.Synchronize();
+        }
     }
 }

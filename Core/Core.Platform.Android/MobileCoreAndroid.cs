@@ -41,11 +41,6 @@ namespace AeroGear.Mobile.Core
             Init(assembly, appContext, new Options());
         }
 
-        private static string GetVersionNumber(Context appContext)
-        {
-            return appContext.PackageManager.GetPackageInfo(appContext.PackageName, 0).VersionName;
-        }
-
         /// <summary>
         /// Initializes Mobile core for Android using custom assembly for storing resources. Best to be used with Xamarin.Forms.
         /// Resources needs to be stored in ./Resources directory of Xamarin.Forms platform-independent project.

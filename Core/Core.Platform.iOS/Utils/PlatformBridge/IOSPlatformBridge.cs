@@ -12,7 +12,7 @@ namespace AeroGear.Mobile.Core.Utils
         public IOSPlatformBridge()
         {
             this.ApplicationRuntimeInfo = new ApplicationRuntimeInfo(
-                NSBundle.MainBundle.InfoDictionary["CFBundleDisplayName"].ToString(),
+                NSBundle.MainBundle.InfoDictionary["CFBundleName"].ToString(),
                 NSBundle.MainBundle.InfoDictionary["CFBundleVersion"].ToString(),
                 "Xamarin.iOS"
             );
@@ -23,7 +23,7 @@ namespace AeroGear.Mobile.Core.Utils
 
         public IUserPreferences GetUserPreferences(string storageName = null)
         {
-            throw new NotImplementedException();
+            return new IOSUserPreferences();
         }
     }
 }
