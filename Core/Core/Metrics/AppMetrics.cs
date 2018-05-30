@@ -5,7 +5,7 @@ using AeroGear.Mobile.Core.Utils;
 
 namespace AeroGear.Mobile.Core.Metrics
 {
-    public class AppMetrics : IMetrics<JsonObject>
+    public class AppMetrics : IMetrics
     {
         private readonly string appId;
         private readonly string appVersion;

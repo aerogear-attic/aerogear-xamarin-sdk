@@ -1,25 +1,47 @@
 ﻿using System;
+using System.Json;
 using System.Threading.Tasks;
 using AeroGear.Mobile.Core.Configuration;
+using AeroGear.Mobile.Core.Metrics.Publishers;
 
 namespace AeroGear.Mobile.Core.Metrics
 {
-    public abstract class AbstractMetricService : IMetricsService
+    public class AbstractMetricService : IMetricsService
     {
+        private string identifier;
         private const string INIT_METRICS_TYPE = "init";
-        private static readonly IMetrics<Object>[] EMPTY_METRICS = new IMetrics<Object>[0];
+        private static readonly IMetrics[] EMPTY_METRICS = new IMetrics[0];
+
+        private IMetricsPublisher publisher;
+
+        public string Id => identifier;
+        public string Type => "metrics";
+        public bool RequiresConfiguration => true;
 
         public AbstractMetricService()
         {
         }
 
-        public abstract string Id { get; }
-        public string Type => "metrics";
-        public bool RequiresConfiguration => true;
+        public void Configure(MobileCore core, ServiceConfiguration config)
+        {
+            this.identifier = config.Id;
+            string metricsUrl = config.Url;
+            this.publisher = new NetworkMetricsPublisher(metricsUrl);
+        }
 
-        public abstract void Configure(MobileCore core, ServiceConfiguration config);
-        public abstract void Destroy();
-        public abstract Task Publish<T>(string type, params IMetrics<T>[] metrics);
+        public void Destroy()
+        {
+            
+        }
+
+        public Task Publish(string type, params IMetrics[] metrics)
+        {
+            if (publisher == null)
+            {
+                throw new NullReferenceException("Publisher has not been initialized");
+            }
+            return publisher.Publish(type, metrics);
+        }
 
         public Task SendAppAndDeviceMetrics()
         {

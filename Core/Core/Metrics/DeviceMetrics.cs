@@ -4,7 +4,7 @@ using AeroGear.Mobile.Core.Utils;
 
 namespace AeroGear.Mobile.Core.Metrics
 {
-    public class DeviceMetrics : IMetrics<JsonObject>
+    public class DeviceMetrics : IMetrics
     {
         private readonly PlatformInfo platformInfo = ServiceFinder.Resolve<IPlatformBridge>().PlatformInfo;
 

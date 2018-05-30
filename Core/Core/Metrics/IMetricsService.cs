@@ -6,6 +6,6 @@ namespace AeroGear.Mobile.Core.Metrics
     public interface IMetricsService : IServiceModule
     {
         Task SendAppAndDeviceMetrics();
-        Task Publish<T>(string type, params IMetrics<T>[] metrics);
+        Task Publish(string type, params IMetrics[] metrics);
     }
 }

@@ -18,7 +18,7 @@ namespace AeroGear.Mobile.Core.Metrics.Publishers
             this.url = url;
         }
 
-        protected override Task Publish(string type, IMetrics<JsonObject>[] metrics)
+        public override Task Publish(string type, IMetrics[] metrics)
         {
             JsonObject json = createMetricsJSONObject(type, metrics);
             return httpClient.PostAsync(url, new StringContent(json.ToString()));

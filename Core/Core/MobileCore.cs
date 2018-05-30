@@ -7,6 +7,7 @@ using AeroGear.Mobile.Core.Exception;
 using AeroGear.Mobile.Core.Http;
 using System.Reflection;
 using System.Net.Http;
+using AeroGear.Mobile.Core.Metrics;
 
 namespace AeroGear.Mobile.Core
 {
@@ -149,8 +150,15 @@ namespace AeroGear.Mobile.Core
         /// <returns>MobileCore singleton instance</returns>
         public static MobileCore Init(IPlatformInjector injector, Options options)
         {
+            if (instance != null) 
+            {
+                return instance;
+            }
             NonNull<Options>(options, "init options");
             instance = new MobileCore(injector, options);
+
+            AbstractMetricService metricsService = MobileCore.Instance.GetService<AbstractMetricService>();
+            metricsService.SendAppAndDeviceMetrics();
             return instance;
         }
 

@@ -6,19 +6,19 @@ using AeroGear.Mobile.Core.Utils;
 
 namespace AeroGear.Mobile.Core.Metrics
 {
-    public abstract class AbstractMetricsPublisher
+    public abstract class AbstractMetricsPublisher : IMetricsPublisher
     {
         private static readonly ILogger LOGGER = MobileCore.Instance.Logger;
 
         private const string STORAGE_NAME = "org.aerogear.mobile.metrics";
         private const string STORAGE_KEY = "metrics-sdk-installation-id";
 
-        private readonly IMetrics<JsonObject>[] DefaultMetrics;
+        private readonly IMetrics[] DefaultMetrics;
         private static readonly DateTime Jan1st1970 = new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc);
 
         public AbstractMetricsPublisher()
         {
-            DefaultMetrics = new IMetrics<JsonObject>[] { new AppMetrics(), new DeviceMetrics() };
+            DefaultMetrics = new IMetrics[] { new AppMetrics(), new DeviceMetrics() };
         }
 
         private static long CurrentTimeMillis()
@@ -56,7 +56,7 @@ namespace AeroGear.Mobile.Core.Metrics
          * @param metrics metrics
          * @return a JSONObject
          */
-        protected JsonObject createMetricsJSONObject(string type, IMetrics<JsonObject>[] metrics)
+        protected JsonObject createMetricsJSONObject(string type, IMetrics[] metrics)
         {
             JsonObject json = new JsonObject();
 
@@ -67,13 +67,13 @@ namespace AeroGear.Mobile.Core.Metrics
             JsonObject data = new JsonObject();
 
             // first put the default metrics (app and device info)
-            foreach (IMetrics<JsonObject> m in DefaultMetrics)
+            foreach (IMetrics m in DefaultMetrics)
             {
                 data.Add(m.Identifier(), m.Data());
             }
 
             // then put the specific ones
-            foreach (IMetrics<JsonObject> m in metrics)
+            foreach (IMetrics m in metrics)
             {
                 data.Add(m.Identifier(), m.Data());
             }
@@ -84,6 +84,6 @@ namespace AeroGear.Mobile.Core.Metrics
 
         }
 
-        protected abstract Task Publish(string type, IMetrics<JsonObject>[] metrics);
+        public abstract Task Publish(string type, IMetrics[] metrics);
     }
 }
