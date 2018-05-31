@@ -20,7 +20,7 @@ async function removeProjectDependency(doc, dependency) {
         for (let j = 0; j < projectReferences.length; j++) {
             const include = projectReferences.item(j).getAttribute("Include");
             if (include == dependency) {
-                projectReferences.item(j).removeChild(projectReferences.item(j));
+                itemGroups.item(i).removeChild(projectReferences.item(j));
                 return true;
             }
         }
