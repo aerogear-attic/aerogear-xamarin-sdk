@@ -1,5 +1,5 @@
 ﻿using System;
-using AeroGear.Mobile.Core.Storage;
+using AeroGear.Mobile.Core.Utils;
 
 namespace AeroGear.Mobile.Auth.Credentials
 {
@@ -9,16 +9,16 @@ namespace AeroGear.Mobile.Auth.Credentials
     public class CredentialManager : ICredentialManager
     {
         private static readonly string KeyName = "AuthState";
-        private readonly IStorageManager StorageManager;
+        private readonly IUserPreferences userPreferences;
 
         /// <summary>
         /// Create a new instance of <see cref="T:AeroGear.Mobile.Auth.Credentials.CredentialManager"/>
         /// using the provided storage manager.
         /// </summary>
         /// <param name="storageManager">Storage manager.</param>
-        public CredentialManager(IStorageManager storageManager)
+        public CredentialManager(IUserPreferences userPreferences)
         {
-            StorageManager = storageManager;
+            this.userPreferences = userPreferences;
         }
 
         /// <summary>
@@ -26,7 +26,7 @@ namespace AeroGear.Mobile.Auth.Credentials
         /// </summary>
         public void Clear()
         {
-            StorageManager.Remove(KeyName);
+            userPreferences.RemoveValue(KeyName);
         }
 
         /// <summary>
@@ -35,7 +35,7 @@ namespace AeroGear.Mobile.Auth.Credentials
         /// <returns>The serialized credential.</returns>
         public string LoadSerialized()
         {
-            return StorageManager.Read(KeyName);
+            return userPreferences.GetString(KeyName);
         }
 
         /// <summary>
@@ -44,7 +44,7 @@ namespace AeroGear.Mobile.Auth.Credentials
         /// <param name="credential">The credential to store.</param>
         public void Store(ICredential credential)
         {
-            StorageManager.Save(KeyName, credential.SerializedCredential);
+            userPreferences.PutString(KeyName, credential.SerializedCredential);
         }
     }
 }

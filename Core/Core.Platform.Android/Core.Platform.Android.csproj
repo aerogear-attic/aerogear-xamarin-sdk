@@ -41,7 +41,6 @@
     <Compile Include="MobileCoreAndroid.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Logging\AndroidLogger.cs" />
-    <Compile Include="Storage\StorageManager.cs" />
     <Compile Include="Utils\PlatformBridge\AndroidPlatformBridge.cs" />
     <Compile Include="Utils\PlatformBridge\AndroidUserPreferences.cs" />
   </ItemGroup>

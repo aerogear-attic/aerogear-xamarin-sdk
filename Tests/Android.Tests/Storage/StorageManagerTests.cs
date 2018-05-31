@@ -1,5 +1,5 @@
 ﻿using System;
-using AeroGear.Mobile.Core.Storage;
+using AeroGear.Mobile.Core.Utils;
 using Android.App;
 using NUnit.Framework;
 
@@ -9,12 +9,12 @@ namespace AeroGear.Mobile.Android.Tests.Core.Storage
     public class StorageManagerTests
     {
         private static readonly string StoreKey = "AuthState";
-        private StorageManager StorageManager;
+        private IUserPreferences StorageManager;
 
         [SetUp]
         public void Setup()
         {
-            StorageManager = new StorageManager("StorageManagerTest", Application.Context.ApplicationContext);
+            StorageManager = new AndroidUserPreferences(Application.Context.ApplicationContext, "StorageManagerTest");
         }
 
         [Test]
@@ -22,25 +22,25 @@ namespace AeroGear.Mobile.Android.Tests.Core.Storage
         {
             string testValue = "test";
 
-            StorageManager.Save(StoreKey, testValue);
-            string retrievedValue = StorageManager.Read(StoreKey);
+            StorageManager.PutString(StoreKey, testValue);
+            string retrievedValue = StorageManager.GetString(StoreKey);
             Assert.AreEqual(testValue, retrievedValue);
         }
 
         [Test]
         public void TestSaveNull()
         {
-            StorageManager.Save(StoreKey, "test");
-            StorageManager.Save(StoreKey, null);
-            Assert.IsNull(StorageManager.Read(StoreKey));
+            StorageManager.PutString(StoreKey, "test");
+            StorageManager.PutString(StoreKey, null);
+            Assert.IsNull(StorageManager.GetString(StoreKey));
         }
 
         [Test]
         public void TestRemove()
         {
-            StorageManager.Save(StoreKey, "test");
-            StorageManager.Remove(StoreKey);
-            Assert.IsNull(StorageManager.Read(StoreKey));
+            StorageManager.PutString(StoreKey, "test");
+            StorageManager.RemoveValue(StoreKey);
+            Assert.IsNull(StorageManager.GetString(StoreKey));
         }
     }
 }
