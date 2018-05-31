@@ -5,7 +5,7 @@ using AeroGear.Mobile.Core.Utils;
 
 namespace iOS.Tests.Storage
 {
-    public class StorageManagerTests
+    public class IOSUserPreferencesTests
     {
         private static readonly string StoreKey = "authState";
         private IUserPreferences Store;

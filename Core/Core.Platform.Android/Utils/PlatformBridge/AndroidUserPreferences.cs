@@ -3,7 +3,7 @@ using Android.Content;
 
 namespace AeroGear.Mobile.Core.Utils
 {
-    public class AndroidUserPreferences : IUserPreferences
+    public class AndroidUserPreferences : AbstractUserPreferences
     {
         private readonly ISharedPreferences sharedPreferences;
 
@@ -12,19 +12,19 @@ namespace AeroGear.Mobile.Core.Utils
             sharedPreferences = appContext.GetSharedPreferences(storageName, FileCreationMode.Private);
         }
 
-        public string GetString(string key, string defaultValue = null)
+        protected override string doGetString(string key, string defaultValue = null)
         {
             return sharedPreferences.GetString(key, defaultValue);
         }
 
-        public void PutString(string key, string value)
+        protected override void doPutString(string key, string value)
         {
             ISharedPreferencesEditor editor = sharedPreferences.Edit();
             editor.PutString(key, value);
             editor.Apply();
         }
 
-        public void RemoveValue(string key)
+        protected override void doRemoveValue(string key)
         {
             ISharedPreferencesEditor editor = sharedPreferences.Edit();
             editor.Remove(key);

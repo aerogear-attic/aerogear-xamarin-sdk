@@ -105,9 +105,9 @@
     <Compile Include="MainActivity.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Storage\StorageManagerTests.cs" />
     <Compile Include="Auth\OIDCAuthenticatorTests.cs" />
     <Compile Include="Core\Utils\PlatformBridge\AndroidPlatformBridgeTest.cs" />
+    <Compile Include="Core\Utils\PlatformBridge\AndroidUserPreferencesTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
