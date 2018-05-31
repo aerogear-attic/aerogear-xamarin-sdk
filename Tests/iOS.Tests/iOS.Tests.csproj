@@ -108,7 +108,6 @@
     <Compile Include="Main.cs" />
     <Compile Include="UnitTestAppDelegate.cs" />
     <Compile Include="Storage\KeychainWrapperTests.cs" />
-    <Compile Include="Storage\StorageManagerTests.cs" />
     <Compile Include="Auth\OIDCAuthenticatorTests.cs" />
     <Compile Include="Mocks\CredentialManagerMock.cs" />
     <Compile Include="Mocks\HttpServiceModuleMock.cs" />
@@ -116,11 +115,16 @@
     <Compile Include="Mocks\HttpRequestToBeExecutedMock.cs" />
     <Compile Include="Mocks\HttpResponseMock.cs" />
     <Compile Include="Mocks\LoggerMock.cs" />
+    <Compile Include="Core\Utils\PlatformBridge\IOSPlatformBridgeTest.cs" />
+    <Compile Include="Core\Utils\PlatformBridge\IOSUserPreferencesTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Storage\" />
     <Folder Include="Auth\" />
     <Folder Include="Mocks\" />
+    <Folder Include="Core\" />
+    <Folder Include="Core\Utils\" />
+    <Folder Include="Core\Utils\PlatformBridge\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Auth\Auth\Auth.csproj">

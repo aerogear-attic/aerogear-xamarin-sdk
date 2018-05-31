@@ -5,7 +5,6 @@ using AeroGear.Mobile.Auth.Config;
 using AeroGear.Mobile.Auth.Credentials;
 using AeroGear.Mobile.Core;
 using AeroGear.Mobile.Core.Configuration;
-using AeroGear.Mobile.Core.Storage;
 using AeroGear.Mobile.Auth;
 using Android.Content;
 using AeroGear.Mobile.Core.Utils;
@@ -25,9 +24,8 @@ namespace AeroGear.Mobile.Auth
         public AuthService(MobileCore mobileCore = null, ServiceConfiguration serviceConfig = null) : base(mobileCore, serviceConfig)
         {
             Core.Logger.Info("AuthService construct start");
-            var storageManager = new StorageManager("AeroGear.Mobile.Auth.Credentials", Android.App.Application.Context);
             Core.Logger.Info("AuthService construct storage");
-            CredentialManager = new CredentialManager(storageManager);
+            CredentialManager = new CredentialManager(ServiceFinder.Resolve<IPlatformBridge>().GetUserPreferences("AeroGear.Mobile.Auth.Credentials"));
             Core.Logger.Info("AuthService construct credential manager");
         }
 

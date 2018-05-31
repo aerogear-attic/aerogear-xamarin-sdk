@@ -14,12 +14,15 @@
     <Compile Remove="Dist\**" />
     <EmbeddedResource Remove="Dist\**" />
     <None Remove="Dist\**" />
+    <Compile Remove="Storage\IStorageManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="System.Json" Version="4.4.0" />
     <PackageReference Include="NuGet.Build.Packaging" Version="0.2.0" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Storage\" />
+    <Folder Include="Metrics\" />
+    <Folder Include="Utils\PlatformBridge\" />
+    <Folder Include="Metrics\Publishers\" />
   </ItemGroup>
 </Project>

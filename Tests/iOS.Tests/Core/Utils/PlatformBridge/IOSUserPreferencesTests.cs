@@ -1,63 +1,64 @@
 ﻿using System;
 using NUnit.Framework;
 using AeroGear.Mobile.Core.Storage;
+using AeroGear.Mobile.Core.Utils;
 
 namespace iOS.Tests.Storage
 {
-    public class StorageManagerTests
+    public class IOSUserPreferencesTests
     {
         private static readonly string StoreKey = "authState";
-        private StorageManager Store;
+        private IUserPreferences Store;
 
         [SetUp]
         public void Setup()
         {
-            Store = new StorageManager("org.aerogear.Core-Platform-iOS-Tests");
+            Store = new IOSUserPreferences();
         }
 
         [Test]
         public void TestSaveRead()
         {
             string testValue = "test";
-            Store.Save(StoreKey, testValue);
-            Assert.AreEqual(testValue, Store.Read(StoreKey));
+            Store.PutString(StoreKey, testValue);
+            Assert.AreEqual(testValue, Store.GetString(StoreKey));
         }
 
         [Test]
         public void TestSaveNull()
         {
-            Store.Save(StoreKey, "test");
-            Store.Save(StoreKey, null);
-            Assert.IsNull(Store.Read(StoreKey));
+            Store.PutString(StoreKey, "test");
+            Store.PutString(StoreKey, null);
+            Assert.IsNull(Store.GetString(StoreKey));
         }
 
         [Test]
         public void TestRemove()
         {
-            Store.Save(StoreKey, "test");
-            Store.Remove(StoreKey);
-            Assert.IsNull(Store.Read(StoreKey));
+            Store.PutString(StoreKey, "test");
+            Store.RemoveValue(StoreKey);
+            Assert.IsNull(Store.GetString(StoreKey));
         }
 
         [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void TestSaveKeyNull()
         {
-            Store.Save(null, "test");
+            Store.PutString(null, "test");
         }
 
         [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void TestReadKeyNull()
         {
-            Store.Read(null);
+            Store.GetString(null);
         }
 
         [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void TestRemoveKeyNull()
         {
-            Store.Remove(null);
+            Store.RemoveValue(null);
         }
     }
 }

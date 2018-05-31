@@ -3,7 +3,6 @@ using System.IO;
 using System.Json;
 using System.Reflection;
 using System.Threading.Tasks;
-using AeroGear.Mobile.Core;
 using AeroGear.Mobile.Core.Configuration;
 using AeroGear.Mobile.Core.Exception;
 using AeroGear.Mobile.Core.Logging;
@@ -13,7 +12,7 @@ using WireMock.RequestBuilders;
 using WireMock.ResponseBuilders;
 using WireMock.Server;
 
-namespace Aerogear.Mobile.Core
+namespace AeroGear.Mobile.Core.Tests
 {
     [TestFixture(Category = "Core")]
     public class MobileCoreTests
@@ -79,7 +78,7 @@ namespace Aerogear.Mobile.Core
 
             public void Destroy()
             {
-                throw new NotImplementedException();
+                
             }
         }
 

@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using AeroGear.Mobile.Core.Storage;
+using AeroGear.Mobile.Core.Utils;
 
 namespace Auth.Tests.Storage
 {
-    public class MockStorageManager : IStorageManager
+    public class MockStorageManager : IUserPreferences
     {
         private readonly Dictionary<string, string> Store;
 
@@ -13,17 +13,17 @@ namespace Auth.Tests.Storage
             Store = new Dictionary<string, string>();
         }
 
-        public string Read(string key)
+        public string GetString(string key, string defaultValue = null)
         {
             return Store.GetValueOrDefault(key, null);
         }
 
-        public void Remove(string key)
+        public void RemoveValue(string key)
         {
             Store.Remove(key);
         }
 
-        public void Save(string key, string value)
+        public void PutString(string key, string value)
         {
             Store.Add(key, value);
         }

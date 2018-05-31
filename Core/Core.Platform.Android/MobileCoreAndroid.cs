@@ -1,4 +1,5 @@
 ﻿using AeroGear.Mobile.Core.Platform.Android;
+using AeroGear.Mobile.Core.Utils;
 using Android.Content;
 using System.Reflection;
 
@@ -40,7 +41,6 @@ namespace AeroGear.Mobile.Core
             Init(assembly, appContext, new Options());
         }
 
-
         /// <summary>
         /// Initializes Mobile core for Android using custom assembly for storing resources. Best to be used with Xamarin.Forms.
         /// Resources needs to be stored in ./Resources directory of Xamarin.Forms platform-independent project.
@@ -50,9 +50,18 @@ namespace AeroGear.Mobile.Core
         /// <param name="options">additional initialization options</param>
         public static void Init(Assembly assembly, Context appContext, Options options)
         {
+            initializePlatformServices(appContext);
             IPlatformInjector platformInjector = new AndroidPlatformInjector(appContext);
             platformInjector.ExecutingAssembly = assembly;
             MobileCore.Init(platformInjector, options);
+        }
+
+        private static void initializePlatformServices(Context appContext)
+        {
+            if (!ServiceFinder.IsRegistered<IPlatformBridge>())
+            {
+                ServiceFinder.RegisterInstance<IPlatformBridge>(new AndroidPlatformBridge(appContext));
+            }
         }
     }
 }

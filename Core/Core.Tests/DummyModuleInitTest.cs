@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AeroGear.Mobile.Core.Configuration;
 using NUnit.Framework;
-using static Aerogear.Mobile.Core.MobileCoreTests;
+using static AeroGear.Mobile.Core.Tests.MobileCoreTests;
 
 namespace AeroGear.Mobile.Core.Tests
 {
