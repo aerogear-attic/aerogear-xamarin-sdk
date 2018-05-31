@@ -28,11 +28,19 @@
             "AeroGear.Mobile.Security": "0.0.8"
         },
         "Example/Example.Android/Example.Android.csproj": {
+            "AeroGear.Mobile.Core": "0.0.7",
+            "AeroGear.Mobile.Core.Platform.Android": "0.0.7",
+            "AeroGear.Mobile.Auth": "0.0.7",
             "AeroGear.Mobile.Auth.Platform.Android": "0.0.7",
+            "AeroGear.Mobile.Security": "0.0.8",
             "AeroGear.Mobile.Security.Platform.Android": "0.0.8"
         },
         "Example/Example.iOS/Example.iOS.csproj": {
+            "AeroGear.Mobile.Core": "0.0.7",
+            "AeroGear.Mobile.Core.Platform.iOS": "0.0.7",
+            "AeroGear.Mobile.Auth": "0.0.7",
             "AeroGear.Mobile.Auth.Platform.iOS": "0.0.7",
+            "AeroGear.Mobile.Security": "0.0.8",
             "AeroGear.Mobile.Security.Platform.iOS": "0.0.8"                                                    
         }
     }
