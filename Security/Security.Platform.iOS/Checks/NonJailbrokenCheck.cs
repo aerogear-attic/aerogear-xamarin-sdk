@@ -28,22 +28,22 @@ namespace AeroGear.Mobile.Security.Checks
                     || File.Exists("/private/var/lib/apt/")
                     || UIApplication.SharedApplication.CanOpenUrl(new NSUrl("cydia://package/com.example.package")))
                 {
-                    return new SecurityCheckResult(this, true);
+                    return new SecurityCheckResult(this, false);
                 }
 
                 try
                 {
                     File.WriteAllText("/private/JailbreakTest.txt", "Jailbreak Test", System.Text.Encoding.UTF8);
-                    return new SecurityCheckResult(this, true);
+                    return new SecurityCheckResult(this, false);
                 }
                 catch
                 {
-                    return new SecurityCheckResult(this, false);
+                    return new SecurityCheckResult(this, true);
                 }
             }
             else
             {
-                return new SecurityCheckResult(this, false);
+                return new SecurityCheckResult(this, true);
             }
         }
     }
