@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<package>
+  <metadata>
+    <id>Test1</id>
+    <version>0.0.1</version>
+    <title>AeroGear SDK Auth module (Android)</title>
+    <authors>AeroGear Community</authors>
+    <owners>AeroGear Community</owners>
+    <licenseUrl>https://github.com/aerogear/aerogear-xamarin-sdk/blob/master/LICENSE</licenseUrl>
+    <projectUrl>https://github.com/aerogear/aerogear-xamarin-sdk</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>.NET and Xamarin libraries for authentication through the AeroGear mobile services</description>
+    <copyright>Copyright 2018</copyright>
+    <tags>aerogear security sso openid xamarin iOS android mobile</tags>
+    <iconUrl>https://avatars1.githubusercontent.com/u/954205</iconUrl>
+    <dependencies>
+      <dependency id="Test2" version="0.0.2"/>      
+    </dependencies>
+    <references>
+      <group>
+        <reference file="AeroGear.Mobile.Auth.Platform.Android.dll"/>
+      </group>
+    </references>
+  </metadata>
+  <files>
+    <file src="bin\Release\AeroGear.Mobile.Auth.Platform.Android.dll" target="lib\monoandroid80"/>
+    <file src="../../README.md" target=""/>
+  </files>
+</package>

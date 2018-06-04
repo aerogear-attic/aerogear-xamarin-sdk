@@ -10,10 +10,10 @@ const xmlhandling = require('./xml_handling')
  * @param {string} projPath path to project
  * @param {projConfig} projConfig part of configuration with operation specific configuration
  * @param {function} operation operation (see `modules/showcase_operations.js`)
- * @param {bool} [dryrun] true=changes will be written to project files, false=changes are not saved 
+ * @param {bool} [dryrun] true=changes are not saved, false=changes will be written to project files 
  * @param {bool} [displayText] true=display saved/dry-run messages
  */
-async function processProject(projPath, projConfig, operation, dryrun,displayText) {
+async function processProject(projPath, projConfig, operation, dryrun, displayText) {
     const dir = `${__dirname}/../../`;
     try {
         const doc = await xmlhandling.openXML(dir, projPath)
@@ -28,6 +28,7 @@ async function processProject(projPath, projConfig, operation, dryrun,displayTex
         }
     } catch (e) {
         console.log(`${e}: Unable to modify project "${projPath}"`)
+        throw e
     }
 }
 

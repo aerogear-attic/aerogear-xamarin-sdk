@@ -13,7 +13,7 @@ const xmldom = require("xmldom")
  * Opens XML file.
  * @param {string} path path to solution directory
  * @param {string} xmlPath location to XML relative to solution dir
- * @returns {Promise}
+ * @returns {Promise<Document>}
  */
 async function openXML(path, xmlPath) {
     const fname = `${path}${xmlPath}`
