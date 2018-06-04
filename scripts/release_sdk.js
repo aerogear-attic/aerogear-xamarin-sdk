@@ -20,7 +20,7 @@ const argv = yargs.usage("Usage: $0 <command> [options]'")
     .command("bump <module|all> [level]", "Bumps SDK version (level is major,minor or patch)")
     .command("pack <module|all>", "Packages modules to NuGets")
     .command("pushLocal <dir>", "Copies NuGets to local directory")
-    .command("push", "Pushes NuGets to public repository")
+    .command("push <module|all>", "Pushes NuGets to public repository")
     .demandCommand(1)
     .option("write", {
         default: false, desc:
@@ -64,6 +64,12 @@ function configLoaded(config) {
             .filter(project => packModule == 'all' || packModule == config["projects"][project]['package'])
             .map(async project => await projop.processProject(project, config["projects"][project], sdkop.packNuGets)))
             .then(() => console.log("NuGet(s) packed."))
+    } else if (argv._.includes("push")) {
+        const pushModule = argv.module
+        Promise.all(Object.keys(config["projects"])
+        .filter(project => pushModule == 'all' || pushModule == config["projects"][project]['package'])
+        .map(async project => await projop.processProject(project, config["projects"][project], sdkop.pushNuGets)))
+        .then(() => console.log("NuGet(s) packages released."))    
     } else {
         console.log(`Invalid command "${argv._[0]}" specified\n`);
         yargs.showHelp()
