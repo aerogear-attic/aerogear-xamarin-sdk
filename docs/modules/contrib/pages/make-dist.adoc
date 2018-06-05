@@ -1,6 +1,6 @@
-== Distributing NuGets
+= Distributing NuGets
 
-There is example for releasing Core project. Same goes for others.
+== Common steps
 
 === 1. Pre-requisite
 
@@ -11,8 +11,6 @@ visualized anymore
 release, you should be added to the list of owners (ask existing owner
 to add you)
 
-Create a branch with your new release version.
-
 === 2. Build the project for the desired platform
 
 * open VisualStudio, open solution
@@ -20,14 +18,7 @@ Create a branch with your new release version.
 where XXX is iOS or Android
 * build the solution / individual project
 
-=== 3. Bump version in `Core/Core.nuspec`
-
-=== 4. Update dependencies
-
-* check if you added something that you need to use in the library and
-add dependency to it
-
-=== 5. Push to NuGet
+=== 3. Set-up your NuGet API key
 
 * Make sure nuget.exe is installed and on the PATH. Download From
 https://dist.nuget.org/win-x86-commandline/latest/nuget.exe[here]
@@ -38,6 +29,103 @@ https://dist.nuget.org/win-x86-commandline/latest/nuget.exe[here]
 nuget setApiKey <api key>
 ----
 
+== Distributing using release script (recommended)
+
+There is a `release_sdk.js` script in the `scripts` directory.
+
+=== 1. Preparation
+In the SDK base directory do:
+
+[source,bash]
+----
+cd scripts
+npm install
+----
+
+=== 2. Bump .nuspec versions of SDK projects
+
+Bump script automatically updates patch part of the version of the project's nuspec.
+
+==== Bump versions for all projects:
+
+[source,bash]
+----
+./release_sdk.js bump all --write
+----
+
+==== Bump versions for one specific project:
+
+[source,bash]
+----
+./release_sdk.js bump AeroGear.Mobile.Core --write
+----
+
+==== Bumping major or minor version
+
+Example: If the version is `1.1.23`.
+
+[source,bash]
+----
+./release_sdk.js bump AeroGear.Mobile.Auth minor --write
+----
+
+The version will be changed to `1.2.0`
+
+[source,bash]
+----
+./release_sdk.js bump AeroGear.Mobile.Auth major --write
+----
+
+The version will be changed to `2.0.0`
+
+Omit `--write` parameter to try it without writing any changes.
+
+=== 3. Pack NuGet(s)
+
+You need to build the released project (or all projects) in `Release` build type before doing that. 
+
+==== Pack all project's NuGets
+
+[source,bash]
+----
+./release_sdk.js pack all
+----
+
+==== Pack specific project's NuGet
+
+[source,bash]
+----
+./release_sdk.js pack AeroGear.Mobile.Core
+----
+
+=== 4. Publish NuGet(s) to the public repository
+
+==== Push all project's NuGets
+
+[source,bash]
+----
+./release_sdk.js push all
+----
+
+==== Push specific project's NuGet
+[source,bash]
+----
+./release_sdk.js push AeroGear.Mobile.Core
+----
+
+== Distributing manually
+
+There is example for releasing Core project. Same goes for others.
+
+=== 1. Bump version in `Core/Core.nuspec`
+
+=== 2. Update dependencies
+
+* check if you added something that you need to use in the library and
+add dependency to it
+
+=== 3. Push to NuGet
+
 After updating the nuspec with the right version you can pack the
 release and upload:
 
@@ -46,5 +134,3 @@ release and upload:
 nuget pack Core.nuspec -Symbols 
 nuget push AeroGear.Mobile.Core.<version>.nupkg -Source https://api.nuget.org/v3/index.json
 ----
-
-==== 6. Merge the branch
