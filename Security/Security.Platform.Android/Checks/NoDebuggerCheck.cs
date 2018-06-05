@@ -20,7 +20,7 @@ namespace AeroGear.Mobile.Security.Checks
 
         public override SecurityCheckResult Check()
         {
-            return new SecurityCheckResult(this, !Debug.IsDebuggerConnected);
+            return new SecurityCheckResult(this, !(Debug.IsDebuggerConnected || System.Diagnostics.Debugger.IsAttached));
         }
     }
 }
