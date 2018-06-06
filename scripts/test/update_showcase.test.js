@@ -18,6 +18,7 @@ describe('Showcase App updater', () => {
             fs.copySync(`${__dirname}/${csProjFileNuGetsOrig}`, `${__dirname}/${csProjFileNuGets}`)
             fs.copySync(`${__dirname}/${csProjFileProjDepsOrig}`, `${__dirname}/${csProjFileProjDeps}`)
         })
+
         it('should remove NuGet dependencies', async () => {
             const config = {
                 "AeroGear.Mobile.Core": "0.0.7",
@@ -34,24 +35,46 @@ describe('Showcase App updater', () => {
                 }
             }
         });
-        it('should add project dependencies',async () => {
+
+        describe("adding project dependencies", () => {
             const config = [
                 "..\\..\\Core\\Core\\Core.csproj",
                 "..\\..\\Auth\\Auth\\Auth.csproj",
                 "..\\..\\Security\\Security\\Security.csproj"
             ]
-            await projop.processProject(`scripts/test/${csProjFileNuGets}`, config, showcaseop.addProjDeps, false, true)
-            const doc = await xmlhandling.openXML(`${__dirname}/${csProjFileNuGets}`, '')
-            const projectRefs = doc.getElementsByTagName("ProjectReference")
-            let j=0
-            for (let i = 0; i < projectRefs.length; i++) {
-                const element = projectRefs.item(i)
-                if (element.hasAttribute('Include')) {
-                    if (config.includes(element.getAttribute('Include'))) j++
+
+            function getCount(doc) {
+                const projectRefs = doc.getElementsByTagName("ProjectReference")
+                let count = 0
+                for (let i = 0; i < projectRefs.length; i++) {
+                    const element = projectRefs.item(i)
+                    if (element.hasAttribute('Include')) {
+                        if (config.includes(element.getAttribute('Include'))) count++
+                    }
                 }
+                return count;
             }
-            assert.equal(j,config.length,"Check that all project dependencies were added")
-        });
+
+
+            it('should add project dependencies', async () => {
+                await projop.processProject(`scripts/test/${csProjFileNuGets}`, config, showcaseop.addProjDeps, false, true)
+                const doc = await xmlhandling.openXML(`${__dirname}/${csProjFileNuGets}`, '')
+
+                const count = getCount(doc)
+                assert.equal(count, config.length, "Check that all project dependencies were added")
+            })
+
+            it('shouldn\'t add project dependencies, if they are already there', async () => {
+                await projop.processProject(`scripts/test/${csProjFileNuGets}`, config, showcaseop.addProjDeps, false, true)
+                let doc = await xmlhandling.openXML(`${__dirname}/${csProjFileNuGets}`, '')
+                const count = getCount(doc)
+                await projop.processProject(`scripts/test/${csProjFileNuGets}`, config, showcaseop.addProjDeps, false, true)
+                doc = await xmlhandling.openXML(`${__dirname}/${csProjFileNuGets}`, '')
+                const newCount = getCount(doc)
+                assert.equal(newCount, count, "Check that no more project dependencies were added")
+            })
+        })
+
         it('should remove project dependencies', async () => {
             const config = [
                 "..\\..\\Core\\Core.Platform.Android\\Core.Platform.Android.csproj",
@@ -69,25 +92,50 @@ describe('Showcase App updater', () => {
                 }
             }
         });
-        it('should add NuGet dependencies', async () => {
+
+        describe("adding NuGet dependencies", () => {
+
+            function getCount(doc) {
+                const packageRefs = doc.getElementsByTagName("PackageReference")
+                let count = 0
+                for (let i = 0; i < packageRefs.length; i++) {
+                    const element = packageRefs.item(i)
+                    if (element.hasAttribute('Include')) {
+                        const val = element.getAttribute('Include')
+                        if (Object.keys(config).includes(val) && element.getAttribute("Version") == config[val]) count++
+                    }
+                }
+                return count
+            }
+
             const config = {
                 "AeroGear.Mobile.Core": "0.0.7",
                 "AeroGear.Mobile.Auth": "0.0.7",
                 "AeroGear.Mobile.Security": "0.0.8"
-            }         
-            await projop.processProject(`scripts/test/${csProjFileProjDeps}`, config, showcaseop.addNuGets, false, true)
-            const doc = await xmlhandling.openXML(`${__dirname}/${csProjFileProjDeps}`, '')
-            const packageRefs = doc.getElementsByTagName("PackageReference")
-            let j=0
-            for (let i = 0; i < packageRefs.length; i++) {
-                const element = packageRefs.item(i)
-                if (element.hasAttribute('Include')) {
-                    const val=element.getAttribute('Include')
-                    if (Object.keys(config).includes(val) && element.getAttribute("Version")==config[val]) j++
-                }
             }
-            assert.equal(j,Object.keys(config).length,"Check that all NuGet dependencies were added")
-        });
+
+            it('should add NuGet dependencies', async () => {
+                
+                await projop.processProject(`scripts/test/${csProjFileProjDeps}`, config, showcaseop.addNuGets, false, true)
+                const doc = await xmlhandling.openXML(`${__dirname}/${csProjFileProjDeps}`, '')
+                const count = getCount(doc)
+                assert.equal(count, Object.keys(config).length, "Check that all NuGet dependencies were added")
+            });
+
+            it('shouldn\'t add NuGet dependencies more than once', async () => {
+                await projop.processProject(`scripts/test/${csProjFileProjDeps}`, config, showcaseop.addNuGets, false, true)
+                let doc = await xmlhandling.openXML(`${__dirname}/${csProjFileProjDeps}`, '')
+                const count = getCount(doc)
+                
+                await projop.processProject(`scripts/test/${csProjFileProjDeps}`, config, showcaseop.addNuGets, false, true)
+                doc = await xmlhandling.openXML(`${__dirname}/${csProjFileProjDeps}`, '')
+                const newCount = getCount(doc)
+                assert.equal(newCount, count, "Check that NuGet dependencies are added only once")
+            });
+
+        })
+
+
         afterEach(() => {
             fs.removeSync(`${__dirname}/${csProjFileNuGets}`)
             fs.removeSync(`${__dirname}/${csProjFileProjDeps}`)
