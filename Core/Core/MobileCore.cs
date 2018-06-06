@@ -274,7 +274,7 @@ namespace AeroGear.Mobile.Core
             List<ServiceConfiguration> listOfConfigs = new List<ServiceConfiguration>();
             foreach (var item in servicesConfig)
             {
-                if (item.Value.Type == type)
+                if (item.Value.Type.ToLower() == type.ToLower())
                 {
                     listOfConfigs.Add(item.Value);
                 }
@@ -290,7 +290,8 @@ namespace AeroGear.Mobile.Core
         /// <returns>a single ServiceConfiguration</returns>
         public ServiceConfiguration GetFirstServiceConfigurationByType(String type)
         {
-            return servicesConfig.ContainsKey(type) ? servicesConfig[type] : null;
+            var lowerCaseType = type.ToLower();
+            return servicesConfig.ContainsKey(lowerCaseType) ? servicesConfig[lowerCaseType] : null;
         }
 
         /// <summary>
