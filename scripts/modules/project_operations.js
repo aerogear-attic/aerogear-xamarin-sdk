@@ -26,9 +26,9 @@ async function processProject(projPath, projConfig, operation, dryrun, displayTe
                 if (displayText) console.log(`Dry-run for project ${projPath} completed, changes not saved.`)
             }
         }
-    } catch (e) {
+    } catch (e) {        
         console.log(`${e}: Unable to modify project "${projPath}"`)
-        throw e
+        return;        
     }
 }
 

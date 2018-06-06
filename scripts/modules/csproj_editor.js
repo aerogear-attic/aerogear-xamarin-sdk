@@ -34,10 +34,21 @@ async function removeProjectDependency(doc, dependency) {
  * @param {string} dependency 
  */
 async function addProjectDependency(doc, dependency) {
+    function checkAlreadyExists(doc) {
+        const projRefs=doc.getElementsByTagName("ProjectReference");
+        for (let i=0;i<projRefs.length;i++) {
+            const element=projRefs.item(i)
+            const include=element.getAttribute('Include')
+            if (include==dependency) return true;
+        }
+        return false;
+    }
+
     const document = doc.documentElement;
     const existingProjectReference = document.getElementsByTagName("ProjectReference")
     const addToExistingGroup = existingProjectReference.length > 0
     const itemGroup = addToExistingGroup ? existingProjectReference.item(0).parentNode : doc.createElement("ItemGroup")
+    if (checkAlreadyExists(doc)) throw new Error(`Project dependency ${dependency} already exists.`)
     const projectReference = doc.createElement("ProjectReference")
     projectReference.setAttribute("Include", dependency)
     itemGroup.appendChild(projectReference)
@@ -52,11 +63,23 @@ async function addProjectDependency(doc, dependency) {
  * @param {string} version 
  */
 async function addNuGetDependency(doc, dependency, version) {
+    function checkAlreadyExists(doc) {
+        const packageRefs=doc.getElementsByTagName("PackageReference");
+        for (let i=0;i<packageRefs.length;i++) {
+            const element=packageRefs.item(i)
+            const include=element.getAttribute('Include')
+            if (include==dependency) return true;
+        }
+        return false;
+    }
+    
+    
     const document = doc.documentElement;
     const project = document.getElementsByTagName("Project").item(0)
     const existingPackageReference = document.getElementsByTagName("PackageReference")
     const addToExistingGroup = existingPackageReference.length > 0
     const itemGroup = addToExistingGroup ? existingPackageReference.item(0).parentNode : doc.createElement("ItemGroup")
+    if (checkAlreadyExists(doc)) throw new Error(`NuGet dependency ${dependency} already exists.`)
     const packageReference = doc.createElement("PackageReference")
     packageReference.setAttribute("Include", dependency)
     packageReference.setAttribute("Version", version)
@@ -88,6 +111,8 @@ async function removeNuGetDependency(doc, dependency, version) {
 }
 
 module.exports = {
-    "removeProjectDependency": removeProjectDependency, "addNuGetDependency": addNuGetDependency, "removeNuGetDependency": removeNuGetDependency,
+    "removeProjectDependency": removeProjectDependency, 
+    "addNuGetDependency": addNuGetDependency, 
+    "removeNuGetDependency": removeNuGetDependency,
     "addProjectDependency": addProjectDependency
 }

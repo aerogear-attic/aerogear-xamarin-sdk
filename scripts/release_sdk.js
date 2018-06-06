@@ -57,7 +57,8 @@ function configLoaded(config) {
             config["nuGets"] = nuGets
         }).then(() => Promise.all(Object.keys(config["projects"])
             .map(async project => await projop.processProject(project, config, sdkop.updateDependencies, !argv.write)))).then(() =>
-                console.log("Updated dependencies"))
+                console.log("Updated dependencies")).catch(fail =>
+                    console.log(fail))
     } else if (argv._.includes("pack")) {
         const packModule = argv.module
         Promise.all(Object.keys(config["projects"])
@@ -67,9 +68,9 @@ function configLoaded(config) {
     } else if (argv._.includes("push")) {
         const pushModule = argv.module
         Promise.all(Object.keys(config["projects"])
-        .filter(project => pushModule == 'all' || pushModule == config["projects"][project]['package'])
-        .map(async project => await projop.processProject(project, config["projects"][project], sdkop.pushNuGets)))
-        .then(() => console.log("NuGet(s) packages released."))    
+            .filter(project => pushModule == 'all' || pushModule == config["projects"][project]['package'])
+            .map(async project => await projop.processProject(project, config["projects"][project], sdkop.pushNuGets)))
+            .then(() => console.log("NuGet(s) packages released."))
     } else {
         console.log(`Invalid command "${argv._[0]}" specified\n`);
         yargs.showHelp()

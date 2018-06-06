@@ -68,9 +68,12 @@ describe('Showcase App updater', () => {
                 await projop.processProject(`scripts/test/${csProjFileNuGets}`, config, showcaseop.addProjDeps, false, true)
                 let doc = await xmlhandling.openXML(`${__dirname}/${csProjFileNuGets}`, '')
                 const count = getCount(doc)
-                await projop.processProject(`scripts/test/${csProjFileNuGets}`, config, showcaseop.addProjDeps, false, true)
+                try {
+                    await projop.processProject(`scripts/test/${csProjFileNuGets}`, config, showcaseop.addProjDeps, false, true)
+                } catch (e) { }
                 doc = await xmlhandling.openXML(`${__dirname}/${csProjFileNuGets}`, '')
                 const newCount = getCount(doc)
+
                 assert.equal(newCount, count, "Check that no more project dependencies were added")
             })
         })
@@ -115,7 +118,7 @@ describe('Showcase App updater', () => {
             }
 
             it('should add NuGet dependencies', async () => {
-                
+
                 await projop.processProject(`scripts/test/${csProjFileProjDeps}`, config, showcaseop.addNuGets, false, true)
                 const doc = await xmlhandling.openXML(`${__dirname}/${csProjFileProjDeps}`, '')
                 const count = getCount(doc)
@@ -126,11 +129,13 @@ describe('Showcase App updater', () => {
                 await projop.processProject(`scripts/test/${csProjFileProjDeps}`, config, showcaseop.addNuGets, false, true)
                 let doc = await xmlhandling.openXML(`${__dirname}/${csProjFileProjDeps}`, '')
                 const count = getCount(doc)
-                
+                try {
                 await projop.processProject(`scripts/test/${csProjFileProjDeps}`, config, showcaseop.addNuGets, false, true)
+                } catch (e) {                  
+                }
                 doc = await xmlhandling.openXML(`${__dirname}/${csProjFileProjDeps}`, '')
                 const newCount = getCount(doc)
-                assert.equal(newCount, count, "Check that NuGet dependencies are added only once")
+                assert.strictEqual(newCount, count, "Check that NuGet dependencies are added only once")
             });
 
         })

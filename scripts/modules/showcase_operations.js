@@ -12,11 +12,11 @@ const csprojeditor = require("./csproj_editor")
  * @param {string} projPath .csproj path
  */
 async function addNuGets(doc, nuGets, projPath) {
-    await Object.keys(nuGets).forEach(async dependency => {
+    await Promise.all(Object.keys(nuGets).map(async dependency => {
         const dependencyVersion = nuGets[dependency]
         const result = await csprojeditor.addNuGetDependency(doc, dependency, dependencyVersion)
         console.log(`Project "${projPath}" added dependency "${dependency}" version ${dependencyVersion}.`);
-    })
+    }))
     return doc;
 }
 
@@ -27,10 +27,10 @@ async function addNuGets(doc, nuGets, projPath) {
  * @param {string} projPath .csproj path
  */
 async function removeNuGets(doc, nuGets, projPath) {
-    await Object.keys(nuGets).forEach(async dependency => {
+    await Promise.all(Object.keys(nuGets).map(async dependency => {
         const result = await csprojeditor.removeNuGetDependency(doc, dependency)
         console.log(`NuGet "${projPath}" dependency "${dependency}" ${result ? "removed" : "not found"}.`);
-    })
+    }))
     return doc;
 }
 
@@ -41,10 +41,10 @@ async function removeNuGets(doc, nuGets, projPath) {
  * @param {string} projPath .csproj path
  */
 async function removeProjDeps(doc, projDeps, projPath) {
-    await projDeps.forEach(async dependency => {
+    await Promise.all(projDeps.map(async dependency => {
         const result = await csprojeditor.removeProjectDependency(doc, dependency)
         console.log(`Project "${projPath}" dependency "${dependency}" ${result ? "removed" : "not found"}.`);
-    })
+    }))
     return doc;
 }
 
@@ -56,10 +56,10 @@ async function removeProjDeps(doc, projDeps, projPath) {
  * @param {string} projPath .csproj path
  */
 async function addProjDeps(doc, projDeps, projPath) {
-    await projDeps.forEach(async dependency => {
+    await Promise.all(projDeps.map(async dependency => {
         const result = await csprojeditor.addProjectDependency(doc, dependency)
         console.log(`Project "${projPath}" dependency "${dependency}" added.`);
-    })
+    }))
     return doc;
 }
 
