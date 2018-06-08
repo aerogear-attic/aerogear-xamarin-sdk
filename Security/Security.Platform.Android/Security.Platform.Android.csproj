@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\NuGet.Build.Packaging.0.2.0\build\NuGet.Build.Packaging.props" Condition="Exists('..\packages\NuGet.Build.Packaging.0.2.0\build\NuGet.Build.Packaging.props')" />
+  <Import Project="..\packages\NuGet.Build.Packaging.0.2.0\build\NuGet.Build.Packaging.props" Condition="Exists('..\packages\NuGet.Build.Packaging.0.2.0\build\NuGet.Build.Packaging.props')"/>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -39,31 +39,31 @@
     </JavaMaximumHeapSize>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Xml" />
-    <Reference Include="System.Core" />
-    <Reference Include="Mono.Android" />
+    <Reference Include="System"/>
+    <Reference Include="System.Xml"/>
+    <Reference Include="System.Core"/>
+    <Reference Include="Mono.Android"/>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Checks\NonRootedCheck.cs" />
-    <Compile Include="AndroidSecurityCheckFactory.cs" />
-    <Compile Include="SecurityChecks.cs" />
-    <Compile Include="Checks\NotInEmulatorCheck.cs" />
-    <Compile Include="Checks\DeveloperModeDisabledCheck.cs" />
-    <Compile Include="Checks\ScreenLockCheck.cs" />
-    <Compile Include="Checks\BackupDisallowedCheck.cs" />
-    <Compile Include="Checks\EncryptionCheck.cs" />
-    <Compile Include="Checks\NoDebuggerCheck.cs" />
-    <Compile Include="SecurityService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs"/>
+    <Compile Include="Checks\NonRootedCheck.cs"/>
+    <Compile Include="AndroidSecurityCheckFactory.cs"/>
+    <Compile Include="SecurityChecks.cs"/>
+    <Compile Include="Checks\NotInEmulatorCheck.cs"/>
+    <Compile Include="Checks\DeveloperModeDisabledCheck.cs"/>
+    <Compile Include="Checks\ScreenLockCheck.cs"/>
+    <Compile Include="Checks\BackupDisallowedCheck.cs"/>
+    <Compile Include="Checks\EncryptionCheck.cs"/>
+    <Compile Include="Checks\NoDebuggerCheck.cs"/>
+    <Compile Include="SecurityService.cs"/>
   </ItemGroup>
   <ItemGroup>
     <None Include="Security.Platform.Android.nuspec">
       <SubType>Designer</SubType>
     </None>
-    <None Include="packages.config" />
+    <None Include="packages.config"/>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup/>
   <ItemGroup>
     <ProjectReference Include="..\Security\Security.csproj">
       <Project>{AA2048E3-2324-4922-A7FE-C0589AF4B74F}</Project>
@@ -74,6 +74,6 @@
       <Name>Core</Name>
     </ProjectReference>
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
-  <Import Project="..\packages\NuGet.Build.Packaging.0.2.0\build\NuGet.Build.Packaging.targets" Condition="Exists('..\packages\NuGet.Build.Packaging.0.2.0\build\NuGet.Build.Packaging.targets')" />
+  <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets"/>
+  <Import Project="..\packages\NuGet.Build.Packaging.0.2.0\build\NuGet.Build.Packaging.targets" Condition="Exists('..\packages\NuGet.Build.Packaging.0.2.0\build\NuGet.Build.Packaging.targets')"/>
 </Project>
