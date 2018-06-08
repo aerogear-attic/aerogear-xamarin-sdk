@@ -25,6 +25,11 @@ async function processSDKProject(doc, projConfig, projPath, dryrun) {
         let addendum = ""
         if (typeof projConfig["bumpVersion"] != 'undefined') {
             const splitVersion = version.split('.')
+            const suffixSplit = splitVersion[2].split('-')
+            if (suffixSplit.length == 2) {
+                splitVersion[2] = suffixSplit[0]
+                splitVersion[3] = suffixSplit[1]
+            }
             switch (projConfig["bumpVersion"]) {
                 case 'major':
                     splitVersion[0]++
@@ -39,7 +44,8 @@ async function processSDKProject(doc, projConfig, projPath, dryrun) {
                     splitVersion[2]++
                     break;
             }
-            const newVersion = `${splitVersion[0]}.${splitVersion[1]}.${splitVersion[2]}`
+            if (Object.keys(projConfig).includes("suffix")) splitVersion[3] = projConfig['suffix']
+            const newVersion = `${splitVersion[0]}.${splitVersion[1]}.${splitVersion[2]}` + `${splitVersion.length > 3 && splitVersion[3]!="" ? `-${splitVersion[3]}` : ""}`
             addendum = `bumping to ${chalk.green(newVersion)}`
             projConfig["newVersion"] = newVersion
             versionElement.textContent = newVersion
@@ -98,7 +104,7 @@ async function packNuGets(doc, projConfig, projPath, dryrun) {
     const dir = `${__dirname}/../../`;
     const nuSpecPath = `${dir}/${projConfig['nuspec']}`
     try {
-        const result=await execFile("nuget", ["pack", nuSpecPath,'-OutputDirectory',`${dir}/nugets`])
+        const result = await execFile("nuget", ["pack", nuSpecPath, '-OutputDirectory', `${dir}/nugets`])
         console.log(result.stdout)
         console.log(`Packed package ${chalk.green(projConfig['package'])}`)
     } catch (e) {
@@ -121,7 +127,7 @@ async function pushNuGets(doc, projConfig, projPath, dryrun) {
         const doc = await xmlhandling.openXML(dir, projConfig["nuspec"])
         const version = doc.getElementsByTagName('version').item(0).textContent
         const nuGetPath = `${dir}nugets/${projConfig['package']}.${version}.nupkg`
-        const result=await execFile("nuget", ["push", nuGetPath,'-Source','https://api.nuget.org/v3/index.json'])
+        const result = await execFile("nuget", ["push", nuGetPath, '-Source', 'https://api.nuget.org/v3/index.json'])
         console.log(result.stdout)
         console.log(`Released package ${chalk.green(projConfig['package'])} to public repository.`)
     } catch (e) {
@@ -135,7 +141,7 @@ async function pushNuGets(doc, projConfig, projPath, dryrun) {
 
 module.exports = {
     "processSDKProject": processSDKProject,
-    "packNuGets":packNuGets,
-    "pushNuGets":pushNuGets,
+    "packNuGets": packNuGets,
+    "pushNuGets": pushNuGets,
     "updateDependencies": updateDependencies
 }

@@ -17,15 +17,21 @@ const readFile = promisify(fs.readFile)
 
 const argv = yargs.usage("Usage: $0 <command> [options]'")
     .command("info", "Prints out information about configuration")
-    .command("bump <module|all> [level]", "Bumps SDK version (level is major,minor or patch)")
+    .command("bump <module|all> [level] [suffix]", "Bumps SDK version (level is major,minor, patch or suffix)",yargs=>
+    yargs.positional("suffix",{
+        default:"",
+        desc:"Suffix that is appended to the version number.",
+        type:'string'
+    }))
     .command("pack <module|all>", "Packages modules to NuGets")
-    .command("pushLocal <dir>", "Copies NuGets to local directory")
     .command("push <module|all>", "Pushes NuGets to public repository")
     .demandCommand(1)
     .option("write", {
         default: false, desc:
             "Writes changes to .csproj and .nuspec files (it's a dry-run by default)"
-    }).argv
+    })
+    
+    .argv
 
 readFile(`${__dirname}/sdk_config.json`).then(data =>
     configLoaded(JSON.parse(data))).catch(err => console.log(`${err}: Failed to open or read "sdk_config.json" file.`))
@@ -35,6 +41,7 @@ readFile(`${__dirname}/sdk_config.json`).then(data =>
  * @param {Object} config configuration
  */
 function configLoaded(config) {
+    console.log(argv)
     if (argv._.includes("info")) {
         console.log("This is the configuration of SDK packages:")
         Object.keys(config["projects"]).forEach(async project => {
@@ -45,6 +52,7 @@ function configLoaded(config) {
         Promise.all(Object.keys(config["projects"]).map(async project => {
             if (bumpModule == 'all' || bumpModule == config["projects"][project]['package']) {
                 config["projects"][project]['bumpVersion'] = argv.level ? argv.level : "patch"
+                if (argv.level=='suffix') config["projects"][project]['suffix'] = argv.suffix;
             }
             await projop.processProject(project, config["projects"][project], sdkop.processSDKProject, !argv.write)
         })).then(() => {

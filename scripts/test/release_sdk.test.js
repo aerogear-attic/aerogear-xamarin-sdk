@@ -69,7 +69,12 @@ describe('Release SDK script', () => {
             assert.equal(await bumpVersionType("major"), '1.0.0', "check major version bump")
             assert.equal(await bumpVersionType("patch"), '1.0.1', "check patch version bump")
             assert.equal(await bumpVersionType("minor"), '1.1.0', "check minor version bump")
-
+            config["projects"]["scripts/test/Test1.csproj.copy"]['suffix']='test'
+            assert.equal(await bumpVersionType("suffix"), '1.1.0-test', "check suffix test")
+            config["projects"]["scripts/test/Test1.csproj.copy"]['suffix']='kitten'
+            assert.equal(await bumpVersionType("suffix"), '1.1.0-kitten', "check suffix kitten")
+            config["projects"]["scripts/test/Test1.csproj.copy"]['suffix']=''
+            assert.equal(await bumpVersionType("suffix"), '1.1.0', "check suffix removal")
         });
         it('update versions in projects', async () => {
 
