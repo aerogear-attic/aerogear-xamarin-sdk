@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
-<package >
+<package>
   <metadata>
     <id>AeroGear.Mobile.Auth.Platform.iOS</id>
-    <version>0.0.6</version>
+    <version>1.0.0-alpha</version>
     <title>AeroGear SDK Auth module (iOS)</title>
     <authors>AeroGear Community</authors>
     <owners>AeroGear Community</owners>
@@ -14,18 +14,18 @@
     <tags>aerogear security sso openid xamarin iOS android mobile</tags>
     <iconUrl>https://avatars1.githubusercontent.com/u/954205</iconUrl>
     <dependencies>
-      <dependency id="AeroGear.Mobile.Core.Platform.iOS" version="0.0.6"/>
-      <dependency id="AeroGear.Mobile.Auth" version="0.0.6"/>
-      <dependency id="Xamarin.OpenId.AppAuth.iOS" version="0.92.0"  />
+      <dependency id="AeroGear.Mobile.Core.Platform.iOS" version="1.0.0-alpha"/>
+      <dependency id="AeroGear.Mobile.Auth" version="1.0.0-alpha"/>
+      <dependency id="Xamarin.OpenId.AppAuth.iOS" version="0.92.0"/>
     </dependencies>
     <references>
       <group>
-        <reference file="AeroGear.Mobile.Auth.Platform.iOS.dll" />
+        <reference file="AeroGear.Mobile.Auth.Platform.iOS.dll"/>
       </group>
     </references>
   </metadata>
   <files>
-    <file src="bin\Release\AeroGear.Mobile.Auth.Platform.iOS.dll" target="lib\xamarinios10" />
-    <file src="../../README.md" target="" />
+    <file src="bin\Release\AeroGear.Mobile.Auth.Platform.iOS.dll" target="lib\xamarinios10"/>
+    <file src="../../README.md" target=""/>
   </files>
 </package>

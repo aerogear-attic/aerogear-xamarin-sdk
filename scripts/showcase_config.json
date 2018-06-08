@@ -23,25 +23,25 @@
     },
     "nuget-deps": {
         "Example/Example/Example.csproj": {
-            "AeroGear.Mobile.Core": "0.0.7",
-            "AeroGear.Mobile.Auth": "0.0.7",
-            "AeroGear.Mobile.Security": "0.0.8"
+            "AeroGear.Mobile.Core": "1.0.0-alpha",
+            "AeroGear.Mobile.Auth": "1.0.0-alpha",
+            "AeroGear.Mobile.Security": "1.0.0-alpha"
         },
         "Example/Example.Android/Example.Android.csproj": {
-            "AeroGear.Mobile.Core": "0.0.7",
-            "AeroGear.Mobile.Core.Platform.Android": "0.0.7",
-            "AeroGear.Mobile.Auth": "0.0.7",
-            "AeroGear.Mobile.Auth.Platform.Android": "0.0.7",
-            "AeroGear.Mobile.Security": "0.0.8",
-            "AeroGear.Mobile.Security.Platform.Android": "0.0.8"
+            "AeroGear.Mobile.Core": "1.0.0-alpha",
+            "AeroGear.Mobile.Core.Platform.Android": "1.0.0-alpha",
+            "AeroGear.Mobile.Auth": "1.0.0-alpha",
+            "AeroGear.Mobile.Auth.Platform.Android": "1.0.0-alpha",
+            "AeroGear.Mobile.Security": "1.0.0-alpha",
+            "AeroGear.Mobile.Security.Platform.Android": "1.0.0-alpha"
         },
         "Example/Example.iOS/Example.iOS.csproj": {
-            "AeroGear.Mobile.Core": "0.0.7",
-            "AeroGear.Mobile.Core.Platform.iOS": "0.0.7",
-            "AeroGear.Mobile.Auth": "0.0.7",
-            "AeroGear.Mobile.Auth.Platform.iOS": "0.0.7",
-            "AeroGear.Mobile.Security": "0.0.8",
-            "AeroGear.Mobile.Security.Platform.iOS": "0.0.8"                                                    
+            "AeroGear.Mobile.Core": "1.0.0-alpha",
+            "AeroGear.Mobile.Core.Platform.iOS": "1.0.0-alpha",
+            "AeroGear.Mobile.Auth": "1.0.0-alpha",
+            "AeroGear.Mobile.Auth.Platform.iOS": "1.0.0-alpha",
+            "AeroGear.Mobile.Security": "1.0.0-alpha",
+            "AeroGear.Mobile.Security.Platform.iOS": "1.0.0-alpha"                                                    
         }
     }
 }
