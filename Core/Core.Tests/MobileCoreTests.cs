@@ -40,7 +40,7 @@ namespace AeroGear.Mobile.Core.Tests
             public int Data2 { get; private set; }
 
             public bool Data3 { get; private set; }
-                
+
             public bool RequiresConfiguration => true;
 
             public string Id => null;
@@ -73,12 +73,12 @@ namespace AeroGear.Mobile.Core.Tests
 
             public void Configure(MobileCore core, ServiceConfiguration serviceConfiguration)
             {
-                
+
             }
 
             public void Destroy()
             {
-                
+
             }
         }
 
@@ -102,7 +102,7 @@ namespace AeroGear.Mobile.Core.Tests
                 ExecutingAssembly = assembly;
             }
         }
-        
+
 
         [SetUp]
         public void SetUp()
@@ -115,7 +115,7 @@ namespace AeroGear.Mobile.Core.Tests
         [TearDown]
         public void TearDown()
         {
-            server.Stop();            
+            server.Stop();
         }
 
 
