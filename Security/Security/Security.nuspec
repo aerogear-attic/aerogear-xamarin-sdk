@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
-<package >
+<package>
   <metadata>
     <id>AeroGear.Mobile.Security</id>
-    <version>0.0.6</version>
+    <version>1.0.0-alpha</version>
     <title>AeroGear SDK Security module</title>
     <authors>AeroGear Community</authors>
     <owners>AeroGear Community</owners>
@@ -14,16 +14,16 @@
     <tags>aerogear security sso openid xamarin iOS android mobile</tags>
     <iconUrl>https://avatars1.githubusercontent.com/u/954205</iconUrl>
     <dependencies>
-      <dependency id="AeroGear.Mobile.Core" version="0.0.6"/>      
+      <dependency id="AeroGear.Mobile.Core" version="1.0.0-alpha"/>      
     </dependencies>
     <references>
       <group>
-        <reference file="AeroGear.Mobile.Security.dll" />
+        <reference file="AeroGear.Mobile.Security.dll"/>
       </group>
     </references>
   </metadata>
   <files>
-    <file src="bin\Release\netstandard1.4\AeroGear.Mobile.Security.dll" target="lib\netstandard1.4" />
-    <file src="../../README.md" target="" />
+    <file src="bin\Release\netstandard1.4\AeroGear.Mobile.Security.dll" target="lib\netstandard1.4"/>
+    <file src="../../README.md" target=""/>
   </files>
 </package>

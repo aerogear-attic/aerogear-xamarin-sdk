@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
-<package>
+<package >
   <metadata>
-    <id>AeroGear.Mobile.Auth</id>
-    <version>1.0.0-alpha</version>
-    <title>AeroGear SDK Auth module</title>
+    <id>Test3</id>
+    <version>0.0.3</version>
+    <title>AeroGear SDK Auth module (Android)</title>
     <authors>AeroGear Community</authors>
     <owners>AeroGear Community</owners>
     <licenseUrl>https://github.com/aerogear/aerogear-xamarin-sdk/blob/master/LICENSE</licenseUrl>
@@ -14,17 +14,19 @@
     <tags>aerogear security sso openid xamarin iOS android mobile</tags>
     <iconUrl>https://avatars1.githubusercontent.com/u/954205</iconUrl>
     <dependencies>
-      <dependency id="AeroGear.Mobile.Core" version="1.0.0-alpha"/>
-      <dependency id="JWT" version="4.0.0"/>      
+      <dependency id="Test2" version="0.0.2"/>
+      <dependency id="Test1" version="0.0.1"/>
+      <dependency id="Xamarin.OpenId.AppAuth.Android" version="0.7.0" />
+      <dependency id="Xamarin.Android.Support.CustomTabs" version="25.4.0.2"/>
     </dependencies>
     <references>
       <group>
-        <reference file="AeroGear.Mobile.Auth.dll"/>
+        <reference file="AeroGear.Mobile.Auth.Platform.Android.dll" />
       </group>
     </references>
   </metadata>
   <files>
-    <file src="bin\Release\netstandard1.4\AeroGear.Mobile.Auth.dll" target="lib\netstandard1.4"/>
-    <file src="../../README.md" target=""/>
+    <file src="bin\Release\AeroGear.Mobile.Auth.Platform.Android.dll" target="lib\monoandroid80" />
+    <file src="../../README.md" target="" />
   </files>
 </package>

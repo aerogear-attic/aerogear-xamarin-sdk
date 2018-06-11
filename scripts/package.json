@@ -1,15 +1,17 @@
 {
-  "name": "update_xamarin_showcase",
+  "name": "aerogear_xamarin_sdk_dev_scripts",
   "version": "1.0.0",
-  "description": "Updates Xamarin Showcase Template from SDK Example app",
+  "description": "AeroGear SDK Xamarin development scripts",
   "main": "update_app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "author": "",
   "license": "Apache-2.0",
   "dependencies": {
+    "chalk": "^2.4.1",
     "fs-extra": "^6.0.1",
+    "mocha": "^5.2.0",
     "xmldom": "^0.1.27",
     "yargs": "^11.0.0"
   }

@@ -19,3 +19,7 @@ build:
   verbosity: normal
   project: aerogear-xamarin-sdk.sln
 test: on
+test_script:
+  - cmd: cd scripts
+  - npm test
+  - cmd: cd ..
