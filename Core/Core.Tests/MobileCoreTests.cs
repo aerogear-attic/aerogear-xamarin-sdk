@@ -282,20 +282,4 @@ namespace AeroGear.Mobile.Core.Tests
         }
 
     }
-
-    public class DummyPlatformBridge : IPlatformBridge
-    {
-        public DummyPlatformBridge()
-        {
-        }
-
-        public ApplicationRuntimeInfo ApplicationRuntimeInfo => new ApplicationRuntimeInfo("id", "0.1", "Xamarin");
-
-        public PlatformInfo PlatformInfo => new PlatformInfo("Core.Tests", "0.1");
-
-        public IUserPreferences GetUserPreferences(string storageName = null)
-        {
-            throw new NotImplementedException();
-        }
-    }
 }
