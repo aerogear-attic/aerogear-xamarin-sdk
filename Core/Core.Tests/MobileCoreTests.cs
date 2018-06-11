@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using AeroGear.Mobile.Core.Configuration;
 using AeroGear.Mobile.Core.Exception;
 using AeroGear.Mobile.Core.Logging;
+using AeroGear.Mobile.Core.Utils;
 using NUnit.Framework;
 using WireMock.Matchers;
 using WireMock.RequestBuilders;
@@ -156,6 +157,7 @@ namespace AeroGear.Mobile.Core.Tests
         {
             server = FluentMockServer.Start();
             localUrl = server.Urls[0];
+            ServiceFinder.RegisterInstance<IPlatformBridge>(new DummyPlatformBridge());
             server.Given(Request.Create().WithPath(GET_TEST_PATH).UsingGet()).RespondWith(Response.Create().WithStatusCode(200).WithHeader("Content-Type", "application/json").WithBody(GET_TEST_BODY));
         }
 
@@ -279,5 +281,21 @@ namespace AeroGear.Mobile.Core.Tests
             MobileCore.Instance.Destroy();
         }
 
+    }
+
+    public class DummyPlatformBridge : IPlatformBridge
+    {
+        public DummyPlatformBridge()
+        {
+        }
+
+        public ApplicationRuntimeInfo ApplicationRuntimeInfo => new ApplicationRuntimeInfo("id", "0.1", "Xamarin");
+
+        public PlatformInfo PlatformInfo => new PlatformInfo("Core.Tests", "0.1");
+
+        public IUserPreferences GetUserPreferences(string storageName = null)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
