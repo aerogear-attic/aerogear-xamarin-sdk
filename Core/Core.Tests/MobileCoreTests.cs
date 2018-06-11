@@ -63,6 +63,37 @@ namespace AeroGear.Mobile.Core.Tests
             }
         }
 
+        class DummyTypeCasingModule : IDummyModule
+        {
+            public string Type => "DuMmY";
+
+            public String Data1 { get; private set; }
+            public int Data2 { get; private set; }
+
+            public bool Data3 { get; private set; }
+
+            public bool RequiresConfiguration => true;
+
+            public string Id => null;
+
+            public DummyTypeCasingModule(ServiceConfiguration serviceConfig)
+            {
+                Data1 = serviceConfig["data1"];
+                Data2 = int.Parse(serviceConfig["data2"]);
+                Data3 = bool.Parse(serviceConfig["data3"]);
+            }
+
+            public void Destroy()
+            {
+
+            }
+
+            public void Configure(MobileCore core, ServiceConfiguration config)
+            {
+                throw new NotImplementedException();
+            }
+        }
+
         public class TestService : ITestService
         {
             public string Type => throw new NotImplementedException();
@@ -100,6 +131,22 @@ namespace AeroGear.Mobile.Core.Tests
             public TestInjector(Assembly assembly)
             {
                 ExecutingAssembly = assembly;
+            }
+        }
+
+        public class DummyPlatformBridge : IPlatformBridge
+        {
+            public DummyPlatformBridge()
+            {
+            }
+
+            public ApplicationRuntimeInfo ApplicationRuntimeInfo => new ApplicationRuntimeInfo("id", "0.1", "Xamarin");
+
+            public PlatformInfo PlatformInfo => new PlatformInfo("Core.Tests", "0.1");
+
+            public IUserPreferences GetUserPreferences(string storageName = null)
+            {
+                throw new NotImplementedException();
             }
         }
 
@@ -193,6 +240,38 @@ namespace AeroGear.Mobile.Core.Tests
             var module = MobileCore.Instance.GetService<IDummyModule>();
             Assert.IsNotNull(module);
             Assert.AreEqual("dummy", module.Type);
+            Assert.AreEqual("Hello world, from anotherdummy!", module.Data1);
+            Assert.AreEqual(420, module.Data2);
+            Assert.IsFalse(module.Data3);
+
+            MobileCore.Instance.Destroy();
+        }
+
+        [Test]
+        public void TestServiceConfigByUpperCaseType()
+        {
+            MobileCore.Init(new TestInjector(Assembly.GetExecutingAssembly()));
+            var serviceConfigByType = MobileCore.Instance.GetServiceConfigurationByType("DUMMY");
+            MobileCore.Instance.RegisterService<IDummyModule>(new DummyModule(serviceConfigByType[1]));
+
+            var module = MobileCore.Instance.GetService<IDummyModule>();
+            Assert.IsNotNull(module);
+            Assert.AreEqual("Hello world, from anotherdummy!", module.Data1);
+            Assert.AreEqual(420, module.Data2);
+            Assert.IsFalse(module.Data3);
+
+            MobileCore.Instance.Destroy();
+        }
+
+        [Test]
+        public void TestServiceConfigCasingType()
+        {
+            MobileCore.Init(new TestInjector(Assembly.GetExecutingAssembly()));
+            var serviceConfigByType = MobileCore.Instance.GetServiceConfigurationByType("dummy");
+            MobileCore.Instance.RegisterService<IDummyModule>(new DummyTypeCasingModule(serviceConfigByType[1]));
+
+            var module = MobileCore.Instance.GetService<IDummyModule>();
+            Assert.IsNotNull(module);
             Assert.AreEqual("Hello world, from anotherdummy!", module.Data1);
             Assert.AreEqual(420, module.Data2);
             Assert.IsFalse(module.Data3);
