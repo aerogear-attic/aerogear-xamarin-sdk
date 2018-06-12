@@ -11,7 +11,7 @@ namespace AeroGear.Mobile.Core.Configuration
     /// </summary>
     public class MobileCoreJsonParser
     {
-        private Dictionary<String, ServiceConfiguration> values = new Dictionary<string, ServiceConfiguration>();
+        private Dictionary<String, ServiceConfiguration> values = new Dictionary<string, ServiceConfiguration>(StringComparer.OrdinalIgnoreCase);
 
         private MobileCoreJsonParser(Stream jsonStream)
         {

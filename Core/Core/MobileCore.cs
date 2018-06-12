@@ -274,7 +274,7 @@ namespace AeroGear.Mobile.Core
             List<ServiceConfiguration> listOfConfigs = new List<ServiceConfiguration>();
             foreach (var item in servicesConfig)
             {
-                if (item.Value.Type == type)
+                if (String.Equals(item.Value.Type, type, StringComparison.OrdinalIgnoreCase))
                 {
                     listOfConfigs.Add(item.Value);
                 }

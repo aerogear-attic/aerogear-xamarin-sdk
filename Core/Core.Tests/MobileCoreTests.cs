@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using AeroGear.Mobile.Core.Configuration;
 using AeroGear.Mobile.Core.Exception;
 using AeroGear.Mobile.Core.Logging;
+using AeroGear.Mobile.Core.Utils;
 using NUnit.Framework;
 using WireMock.Matchers;
 using WireMock.RequestBuilders;
@@ -40,12 +41,43 @@ namespace AeroGear.Mobile.Core.Tests
             public int Data2 { get; private set; }
 
             public bool Data3 { get; private set; }
-                
+
             public bool RequiresConfiguration => true;
 
             public string Id => null;
 
             public DummyModule(ServiceConfiguration serviceConfig)
+            {
+                Data1 = serviceConfig["data1"];
+                Data2 = int.Parse(serviceConfig["data2"]);
+                Data3 = bool.Parse(serviceConfig["data3"]);
+            }
+
+            public void Destroy()
+            {
+
+            }
+
+            public void Configure(MobileCore core, ServiceConfiguration config)
+            {
+                throw new NotImplementedException();
+            }
+        }
+
+        class DummyTypeCasingModule : IDummyModule
+        {
+            public string Type => "DuMmY";
+
+            public String Data1 { get; private set; }
+            public int Data2 { get; private set; }
+
+            public bool Data3 { get; private set; }
+
+            public bool RequiresConfiguration => true;
+
+            public string Id => null;
+
+            public DummyTypeCasingModule(ServiceConfiguration serviceConfig)
             {
                 Data1 = serviceConfig["data1"];
                 Data2 = int.Parse(serviceConfig["data2"]);
@@ -73,12 +105,12 @@ namespace AeroGear.Mobile.Core.Tests
 
             public void Configure(MobileCore core, ServiceConfiguration serviceConfiguration)
             {
-                
+
             }
 
             public void Destroy()
             {
-                
+
             }
         }
 
@@ -102,20 +134,37 @@ namespace AeroGear.Mobile.Core.Tests
                 ExecutingAssembly = assembly;
             }
         }
-        
+
+        public class DummyPlatformBridge : IPlatformBridge
+        {
+            public DummyPlatformBridge()
+            {
+            }
+
+            public ApplicationRuntimeInfo ApplicationRuntimeInfo => new ApplicationRuntimeInfo("id", "0.1", "Xamarin");
+
+            public PlatformInfo PlatformInfo => new PlatformInfo("Core.Tests", "0.1");
+
+            public IUserPreferences GetUserPreferences(string storageName = null)
+            {
+                throw new NotImplementedException();
+            }
+        }
+
 
         [SetUp]
         public void SetUp()
         {
             server = FluentMockServer.Start();
             localUrl = server.Urls[0];
+            ServiceFinder.RegisterInstance<IPlatformBridge>(new DummyPlatformBridge());
             server.Given(Request.Create().WithPath(GET_TEST_PATH).UsingGet()).RespondWith(Response.Create().WithStatusCode(200).WithHeader("Content-Type", "application/json").WithBody(GET_TEST_BODY));
         }
 
         [TearDown]
         public void TearDown()
         {
-            server.Stop();            
+            server.Stop();
         }
 
 
@@ -193,6 +242,38 @@ namespace AeroGear.Mobile.Core.Tests
             var module = MobileCore.Instance.GetService<IDummyModule>();
             Assert.IsNotNull(module);
             Assert.AreEqual("dummy", module.Type);
+            Assert.AreEqual("Hello world, from anotherdummy!", module.Data1);
+            Assert.AreEqual(420, module.Data2);
+            Assert.IsFalse(module.Data3);
+
+            MobileCore.Instance.Destroy();
+        }
+
+        [Test]
+        public void TestServiceConfigByUpperCaseType()
+        {
+            MobileCore.Init(new TestInjector(Assembly.GetExecutingAssembly()));
+            var serviceConfigByType = MobileCore.Instance.GetServiceConfigurationByType("DUMMY");
+            MobileCore.Instance.RegisterService<IDummyModule>(new DummyModule(serviceConfigByType[1]));
+
+            var module = MobileCore.Instance.GetService<IDummyModule>();
+            Assert.IsNotNull(module);
+            Assert.AreEqual("Hello world, from anotherdummy!", module.Data1);
+            Assert.AreEqual(420, module.Data2);
+            Assert.IsFalse(module.Data3);
+
+            MobileCore.Instance.Destroy();
+        }
+
+        [Test]
+        public void TestServiceConfigCasingType()
+        {
+            MobileCore.Init(new TestInjector(Assembly.GetExecutingAssembly()));
+            var serviceConfigByType = MobileCore.Instance.GetServiceConfigurationByType("dummy");
+            MobileCore.Instance.RegisterService<IDummyModule>(new DummyTypeCasingModule(serviceConfigByType[1]));
+
+            var module = MobileCore.Instance.GetService<IDummyModule>();
+            Assert.IsNotNull(module);
             Assert.AreEqual("Hello world, from anotherdummy!", module.Data1);
             Assert.AreEqual(420, module.Data2);
             Assert.IsFalse(module.Data3);
