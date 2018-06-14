@@ -24,7 +24,7 @@ namespace AeroGear.Mobile.Auth
         /// <summary>
         /// Role name. Can't be null.
         /// </summary>
-        private string Name { get; }
+        public string Name { get; }
 
         /// <summary>
         /// Role name space/client ID. Can be null.
