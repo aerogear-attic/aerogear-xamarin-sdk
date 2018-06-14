@@ -23,7 +23,7 @@
     </references>
   </metadata>
   <files>
-    <file src="bin\Release\AeroGear.Mobile.Core.Platform.Android.dll" target="lib\monoandroid44"/>
+    <file src="bin\$configuration$\AeroGear.Mobile.Core.Platform.Android.dll" target="lib\monoandroid44"/>
     <file src="../../README.md" target=""/>
   </files>
 </package>
