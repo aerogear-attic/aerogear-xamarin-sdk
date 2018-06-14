@@ -11,7 +11,7 @@ install:
 before_build:
   - nuget restore
 configuration:
-  - Release
+  - AppVeyor
 build:
   publish_nuget: true
   publish_nuget_symbols: true

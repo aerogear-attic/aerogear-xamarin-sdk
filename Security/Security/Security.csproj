@@ -4,12 +4,13 @@
     <TargetFramework>netstandard1.4</TargetFramework>
     <RootNamespace>AeroGear.Mobile.Security</RootNamespace>
     <AssemblyName>AeroGear.Mobile.Security</AssemblyName>
+    <Configurations>Debug;Release;AppVeyor</Configurations>
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Class1.cs"/>
+    <Compile Remove="Class1.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Core\Core\Core.csproj"/>
+    <ProjectReference Include="..\..\Core\Core\Core.csproj" />
   </ItemGroup>
 </Project>
