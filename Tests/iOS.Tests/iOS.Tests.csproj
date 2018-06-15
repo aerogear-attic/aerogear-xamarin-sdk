@@ -138,9 +138,6 @@
     <Compile Include="Core\Utils\PlatformBridge\IOSUserPreferencesTests.cs" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Castle.Core">
-      <Version>4.2.1</Version>
-    </PackageReference>
     <PackageReference Include="System.Linq.Queryable">
       <Version>4.3.0</Version>
     </PackageReference>

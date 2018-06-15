@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core", "Core\Core\Core.csproj", "{F1EA4BBA-D775-45C0-99DA-DB0590BEE87E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core", "Core\Core\Core.csproj", "{F1EA4BBA-D775-45C0-99DA-DB0590BEE87E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Platform.Android", "Core\Core.Platform.Android\Core.Platform.Android.csproj", "{E30A4499-8EF8-4542-AAF9-C9D30A543752}"
 EndProject
@@ -11,15 +11,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Platform.iOS", "Core\C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Tests", "Core\Core.Tests\Core.Tests.csproj", "{8EDF4429-251A-416D-BB68-93F227191BCF}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Example", "Example\Example\Example.csproj", "{F0217CFC-1E56-4703-AECE-EE4196A59B17}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example", "Example\Example\Example.csproj", "{F0217CFC-1E56-4703-AECE-EE4196A59B17}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example.Android", "Example\Example.Android\Example.Android.csproj", "{05EE2696-9D94-4DCE-AD4F-2C1C5C052A57}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Example.iOS", "Example\Example.iOS\Example.iOS.csproj", "{00023BF2-7D9E-439C-8942-54D3F21E2710}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Example.iOS", "Example\Example.iOS\Example.iOS.csproj", "{00023BF2-7D9E-439C-8942-54D3F21E2710}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Auth", "Auth\Auth\Auth.csproj", "{55FF3B02-07D1-46F3-B0D5-584D3B98467E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth", "Auth\Auth\Auth.csproj", "{55FF3B02-07D1-46F3-B0D5-584D3B98467E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Auth.Tests", "Auth\Auth.Tests\Auth.Tests.csproj", "{49AB0AE8-D54A-4C4A-A0B2-45CAD81F9EBE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth.Tests", "Auth\Auth.Tests\Auth.Tests.csproj", "{49AB0AE8-D54A-4C4A-A0B2-45CAD81F9EBE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Auth.Platform.iOS", "Auth\Auth.Platform.iOS\Auth.Platform.iOS.csproj", "{CBB87B9E-D526-46B1-B05A-AD3D383EACED}"
 EndProject
@@ -41,13 +41,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dist", "Dist", "{19494A1B-8
 		Core\Core\Dist\make-dist.md = Core\Core\Dist\make-dist.md
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Security", "Security\Security\Security.csproj", "{E6A4E78F-25B7-4D82-89A8-F394B82E557A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Security", "Security\Security\Security.csproj", "{E6A4E78F-25B7-4D82-89A8-F394B82E557A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Security.Platform.Android", "Security\Security.Platform.Android\Security.Platform.Android.csproj", "{FABACD6F-AA16-47B2-96CD-6790DF9AE77F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Security.Platform.iOS", "Security\Security.Platform.iOS\Security.Platform.iOS.csproj", "{4C856B1A-CE05-4880-B315-D3D3FEA3B3CC}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Security.Tests", "Security\Security.Tests\Security.Tests.csproj", "{97D4384A-832C-4E00-95A5-401733ACB0D0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Security.Tests", "Security\Security.Tests\Security.Tests.csproj", "{97D4384A-832C-4E00-95A5-401733ACB0D0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -278,8 +278,8 @@ Global
 		{00023BF2-7D9E-439C-8942-54D3F21E2710}.AppVeyor|iPhone.Build.0 = AppVeyor|Any CPU
 		{00023BF2-7D9E-439C-8942-54D3F21E2710}.AppVeyor|iPhoneSimulator.ActiveCfg = AppVeyor|Any CPU
 		{00023BF2-7D9E-439C-8942-54D3F21E2710}.AppVeyor|iPhoneSimulator.Build.0 = AppVeyor|Any CPU
-		{00023BF2-7D9E-439C-8942-54D3F21E2710}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{00023BF2-7D9E-439C-8942-54D3F21E2710}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00023BF2-7D9E-439C-8942-54D3F21E2710}.Debug|Any CPU.ActiveCfg = Debug|iPhoneSimulator
+		{00023BF2-7D9E-439C-8942-54D3F21E2710}.Debug|Any CPU.Build.0 = Debug|iPhoneSimulator
 		{00023BF2-7D9E-439C-8942-54D3F21E2710}.Debug|iPhone.ActiveCfg = Debug|Any CPU
 		{00023BF2-7D9E-439C-8942-54D3F21E2710}.Debug|iPhone.Build.0 = Debug|Any CPU
 		{00023BF2-7D9E-439C-8942-54D3F21E2710}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU

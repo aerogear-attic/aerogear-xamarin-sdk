@@ -92,7 +92,7 @@
       <Name>Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\Security\Security.csproj">
-      <Project>{AA2048E3-2324-4922-A7FE-C0589AF4B74F}</Project>
+      <Project>{E6A4E78F-25B7-4D82-89A8-F394B82E557A}</Project>
       <Name>Security</Name>
     </ProjectReference>
   </ItemGroup>
