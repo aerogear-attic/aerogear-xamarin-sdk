@@ -17,20 +17,19 @@ const readFile = promisify(fs.readFile)
 
 const argv = yargs.usage("Usage: $0 <command> [options]'")
     .command("info", "Prints out information about configuration")
-    .command("bump <module|all> [level] [suffix]", "Bumps SDK version (level is major,minor, patch or suffix)",yargs=>
-    yargs.positional("suffix",{
-        default:"",
-        desc:"Suffix that is appended to the version number.",
-        type:'string'
-    }))
-    .command("pack <module|all>", "Packages modules to NuGets")
+    .command("bump <module|all> [level] [suffix]", "Bumps SDK version (level is major,minor, patch or suffix)", yargs =>
+        yargs.positional("suffix", {
+            default: "",
+            desc: "Suffix that is appended to the version number.",
+            type: 'string'
+        }).option("write", {
+            default: false, desc:
+                "Writes changes to .csproj and .nuspec files (it's a dry-run by default)"
+        }))
+    .command("pack <module|all>", "Packages modules to NuGets", yargs =>
+        yargs.option("configuration", { default: 'Release', desc: 'Configuration that was used to build the projects (default is Release)' }))
     .command("push <module|all>", "Pushes NuGets to public repository")
     .demandCommand(1)
-    .option("write", {
-        default: false, desc:
-            "Writes changes to .csproj and .nuspec files (it's a dry-run by default)"
-    })
-    
     .argv
 
 readFile(`${__dirname}/sdk_config.json`).then(data =>
@@ -41,7 +40,6 @@ readFile(`${__dirname}/sdk_config.json`).then(data =>
  * @param {Object} config configuration
  */
 function configLoaded(config) {
-    console.log(argv)
     if (argv._.includes("info")) {
         console.log("This is the configuration of SDK packages:")
         Object.keys(config["projects"]).forEach(async project => {
@@ -52,7 +50,7 @@ function configLoaded(config) {
         Promise.all(Object.keys(config["projects"]).map(async project => {
             if (bumpModule == 'all' || bumpModule == config["projects"][project]['package']) {
                 config["projects"][project]['bumpVersion'] = argv.level ? argv.level : "patch"
-                if (argv.level=='suffix') config["projects"][project]['suffix'] = argv.suffix;
+                if (argv.level == 'suffix') config["projects"][project]['suffix'] = argv.suffix;
             }
             await projop.processProject(project, config["projects"][project], sdkop.processSDKProject, !argv.write)
         })).then(() => {
@@ -69,9 +67,10 @@ function configLoaded(config) {
                     console.log(fail))
     } else if (argv._.includes("pack")) {
         const packModule = argv.module
+        config['configuration'] = argv.configuration
         Promise.all(Object.keys(config["projects"])
             .filter(project => packModule == 'all' || packModule == config["projects"][project]['package'])
-            .map(async project => await projop.processProject(project, config["projects"][project], sdkop.packNuGets)))
+            .map(async project => await projop.processProject(project, {...config["projects"][project],configuration:config['configuration']}, sdkop.packNuGets)))
             .then(() => console.log("NuGet(s) packed."))
     } else if (argv._.includes("push")) {
         const pushModule = argv.module

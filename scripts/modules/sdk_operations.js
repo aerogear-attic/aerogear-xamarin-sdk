@@ -102,9 +102,9 @@ async function updateDependencies(doc, config, projPath, dryrun) {
  */
 async function packNuGets(doc, projConfig, projPath, dryrun) {
     const dir = `${__dirname}/../../`;
-    const nuSpecPath = `${dir}/${projConfig['nuspec']}`
+    const nuSpecPath =`${dir}/${projConfig['nuspec']}`
     try {
-        const result = await execFile("nuget", ["pack", nuSpecPath, '-OutputDirectory', `${dir}/nugets`])
+        const result = await execFile("nuget", ["pack", nuSpecPath, '-OutputDirectory', `${dir}/nugets`,'-Prop',`Configuration=${projConfig['configuration']}`])        
         console.log(result.stdout)
         console.log(`Packed package ${chalk.green(projConfig['package'])}`)
     } catch (e) {
