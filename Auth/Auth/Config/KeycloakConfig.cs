@@ -30,7 +30,7 @@ namespace AeroGear.Mobile.Auth.Config
         public KeycloakConfig(ServiceConfiguration configuration)
         {
             NonNull(configuration, "configuration");
-            if (configuration.Id != "keycloak")
+            if (configuration.Type != "keycloak")
             {
                 throw new ConfigurationNotFoundException("Missing Keycloak configuration");
             }

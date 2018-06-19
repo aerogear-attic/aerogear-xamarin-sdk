@@ -76,7 +76,7 @@
   <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\Security\Security.csproj">
-      <Project>{AA2048E3-2324-4922-A7FE-C0589AF4B74F}</Project>
+      <Project>{E6A4E78F-25B7-4D82-89A8-F394B82E557A}</Project>
       <Name>Security</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Core\Core\Core.csproj">
@@ -86,4 +86,4 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <Import Project="..\packages\NuGet.Build.Packaging.0.2.0\build\NuGet.Build.Packaging.targets" Condition="Exists('..\packages\NuGet.Build.Packaging.0.2.0\build\NuGet.Build.Packaging.targets')" />
-</Project>
+<Target Name="clean_folders" AfterTargets="Clean"><RemoveDir Directories=".obj" /><RemoveDir Directories=".bin" /></Target></Project>

@@ -10,6 +10,8 @@
     <RootNamespace>AeroGear.Mobile.Security</RootNamespace>
     <AssemblyName>AeroGear.Mobile.Security.Platform.iOS</AssemblyName>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -78,19 +80,22 @@
     <None Include="Security.Platform.iOS.nuspec">
       <SubType>Designer</SubType>
     </None>
-    <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <PackageReference Include="NuGet.Build.Packaging">
+      <Version>0.2.0</Version>
+    </PackageReference>
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Core\Core\Core.csproj">
       <Project>{f1ea4bba-d775-45c0-99da-db0590bee87e}</Project>
       <Name>Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\Security\Security.csproj">
-      <Project>{AA2048E3-2324-4922-A7FE-C0589AF4B74F}</Project>
+      <Project>{E6A4E78F-25B7-4D82-89A8-F394B82E557A}</Project>
       <Name>Security</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
   <Import Project="..\packages\NuGet.Build.Packaging.0.2.0\build\NuGet.Build.Packaging.targets" Condition="Exists('..\packages\NuGet.Build.Packaging.0.2.0\build\NuGet.Build.Packaging.targets')" />
-</Project>
+<Target Name="clean_folders" AfterTargets="Clean"><RemoveDir Directories=".obj" /><RemoveDir Directories=".bin" /></Target></Project>

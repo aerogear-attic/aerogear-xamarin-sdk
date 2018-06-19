@@ -290,7 +290,14 @@ namespace AeroGear.Mobile.Core
         /// <returns>a single ServiceConfiguration</returns>
         public ServiceConfiguration GetFirstServiceConfigurationByType(String type)
         {
-            return servicesConfig.ContainsKey(type) ? servicesConfig[type] : null;
+            foreach (ServiceConfiguration cfg in servicesConfig.Values)
+            {
+                if (cfg.Type.Equals(type, StringComparison.OrdinalIgnoreCase))
+                {
+                    return cfg;
+                }
+            }
+            return null;
         }
 
         /// <summary>
