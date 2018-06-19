@@ -123,4 +123,4 @@
   <Target Name="Test" DependsOnTargets="Build">
     <NUnit3 Assemblies=".\bin\Debug\AeroGear.Mobile.Core.Tests.dll" Process="Multiple" TestTimeout="2000" Workers="10" EnableShadowCopy="true" OutputXmlFile="Core.Tests.Results.xml" WorkingDirectory="." ToolPath="..\..\packages\NUnit.ConsoleRunner.3.8.0\tools" ShowLabels="All" />
   </Target>
-</Project>
+<Target Name="clean_folders" AfterTargets="Clean"><RemoveDir Directories=".obj" /><RemoveDir Directories=".bin" /></Target></Project>

@@ -43,4 +43,4 @@
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
-</Project>
+<Target Name="clean_folders" AfterTargets="Clean"><RemoveDir Directories=".obj" /><RemoveDir Directories=".bin" /></Target></Project>

@@ -24,4 +24,4 @@
     <Folder Include="Credentials\" />
     <Folder Include="Authenticator\" />
   </ItemGroup>
-</Project>
+<Target Name="clean_folders" AfterTargets="Clean"><RemoveDir Directories=".obj" /><RemoveDir Directories=".bin" /></Target></Project>

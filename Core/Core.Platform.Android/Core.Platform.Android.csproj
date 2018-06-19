@@ -90,4 +90,4 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\..\packages\NuGet.Build.Packaging.0.2.0\build\NuGet.Build.Packaging.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\NuGet.Build.Packaging.0.2.0\build\NuGet.Build.Packaging.props'))" />
   </Target>
-</Project>
+<Target Name="clean_folders" AfterTargets="Clean"><RemoveDir Directories=".obj" /><RemoveDir Directories=".bin" /></Target></Project>

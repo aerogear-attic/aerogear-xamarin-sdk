@@ -18,6 +18,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Auth\Auth.csproj" />
+    <ProjectReference Include="..\..\Core\Core\Core.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />
@@ -31,4 +32,4 @@
       <LogicalName>AeroGear.Mobile.Auth.Tests.Resources.mobile-services.json</LogicalName>
     </EmbeddedResource>
   </ItemGroup>
-</Project>
+<Target Name="clean_folders" AfterTargets="Clean"><RemoveDir Directories=".obj" /><RemoveDir Directories=".bin" /></Target></Project>
