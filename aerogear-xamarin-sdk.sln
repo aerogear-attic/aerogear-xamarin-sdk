@@ -273,7 +273,6 @@ Global
 		{00023BF2-7D9E-439C-8942-54D3F21E2710}.AppStore|iPhoneSimulator.ActiveCfg = AppVeyor|Any CPU
 		{00023BF2-7D9E-439C-8942-54D3F21E2710}.AppStore|iPhoneSimulator.Build.0 = AppVeyor|Any CPU
 		{00023BF2-7D9E-439C-8942-54D3F21E2710}.AppVeyor|Any CPU.ActiveCfg = AppVeyor|Any CPU
-		{00023BF2-7D9E-439C-8942-54D3F21E2710}.AppVeyor|Any CPU.Build.0 = AppVeyor|Any CPU
 		{00023BF2-7D9E-439C-8942-54D3F21E2710}.AppVeyor|iPhone.ActiveCfg = AppVeyor|Any CPU
 		{00023BF2-7D9E-439C-8942-54D3F21E2710}.AppVeyor|iPhone.Build.0 = AppVeyor|Any CPU
 		{00023BF2-7D9E-439C-8942-54D3F21E2710}.AppVeyor|iPhoneSimulator.ActiveCfg = AppVeyor|Any CPU
