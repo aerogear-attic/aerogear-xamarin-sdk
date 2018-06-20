@@ -33,7 +33,7 @@
       "config": {}
     },
     {
-      "id": "dummy",
+      "id": "dummy1",
       "name": "dummy",
       "type": "dummy",
       "url": "http://localhost",
