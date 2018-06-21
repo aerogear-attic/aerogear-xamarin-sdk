@@ -145,9 +145,9 @@ namespace AeroGear.Mobile.Core
 
         private async static void sendAppAndDeviceMetrics() 
         {
-            MetricsService metricsService = MobileCore.Instance.GetService<MetricsService>();
             try
             {
+                MetricsService metricsService = MobileCore.Instance.GetService<MetricsService>();
                 await metricsService.SendAppAndDeviceMetrics();    
             }
             catch (System.Exception e)
@@ -244,7 +244,7 @@ namespace AeroGear.Mobile.Core
             if (conf == null)
             {
                 ServiceConfiguration[] confs = GetServiceConfigurationByType(serviceModule.Type);
-                if (confs != null)
+                if (confs != null && confs.Length != 0)
                 {
                     result = confs[0];
                 }
