@@ -2,6 +2,7 @@
 using AeroGear.Mobile.Core;
 using AeroGear.Mobile.Core.Configuration;
 using AeroGear.Mobile.Core.Utils;
+using AeroGear.Mobile.Security.Executors;
 using AeroGear.Mobile.Security.Executors.Sync;
 
 namespace AeroGear.Mobile.Security
@@ -35,13 +36,20 @@ namespace AeroGear.Mobile.Security
         public SecurityCheckResult Check(ISecurityCheckType securityCheckType)
         {
             SecurityCheckResult[] results = new SecurityCheckResult[1];
-            GetSyncExecutor().WithSecurityCheck(securityCheckType).Build().Execute().Values.CopyTo(results, 0);
+            GetSyncExecutor()
+                .WithSecurityCheck(securityCheckType)
+                .Build()
+                .Execute().Values.CopyTo(results, 0);
             return results[0];
         }
 
         public SecurityCheckResult Check(ISecurityCheck securityCheck)
         {
-            return securityCheck.Check();
+            return SecurityCheckExecutor
+                .newSyncExecutor()
+                .WithSecurityCheck(securityCheck)
+                .Build()
+                .Execute()[securityCheck.GetId()];
         }
     }
 }

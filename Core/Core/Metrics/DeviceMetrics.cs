@@ -14,13 +14,12 @@ namespace AeroGear.Mobile.Core.Metrics
 
         public string Identifier() => "Device";
 
-        public JsonObject Data()
+        public JsonValue ToJson()
         {
             JsonObject data = new JsonObject();
             data.Add("platform", platformInfo.Name);
             data.Add("platformVersion", platformInfo.Version);
             return data;
         }
-
     }
 }

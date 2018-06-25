@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using AeroGear.Mobile.Core.Metrics;
 
 namespace AeroGear.Mobile.Security.Executors.Sync
 {
@@ -13,7 +14,7 @@ namespace AeroGear.Mobile.Security.Executors.Sync
         /// <see cref="T:AeroGear.Mobile.Security.Executors.Sync.SyncSecurityCheckExecutor"/> class.
         /// </summary>
         /// <param name="checks">List of checks to be executed.</param>
-        public SyncSecurityCheckExecutor(List<ISecurityCheck> checks) : base(checks)
+        public SyncSecurityCheckExecutor(List<ISecurityCheck> checks, MetricsService metricsService) : base(checks, metricsService)
         {
         }
 
@@ -44,7 +45,7 @@ namespace AeroGear.Mobile.Security.Executors.Sync
     {
         public override SyncSecurityCheckExecutor Build()
         {
-            return new SyncSecurityCheckExecutor(CheckList);
+            return new SyncSecurityCheckExecutor(CheckList, MetricsService);
         }
     }
 }

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using AeroGear.Mobile.Core.Metrics;
 using AeroGear.Mobile.Security.Executors;
 
 namespace AeroGear.Mobile.Security.Metrics
@@ -8,20 +10,24 @@ namespace AeroGear.Mobile.Security.Metrics
     /// </summary>
     internal class SecurityCheckMetricsPublisher
     {
-        // TODO: this should receive the metric service
-        public SecurityCheckMetricsPublisher()
+        private const string SECURITY_METRICS_EVENT_TYPE = "security";
+        private List<SecurityCheckResult> checkResults = new List<SecurityCheckResult>();
+        private readonly MetricsService metricService;
+
+        public SecurityCheckMetricsPublisher(MetricsService metricService)
         {
+            this.metricService = metricService;
         }
 
         public void SecurityCheckExecuted(object sender, SecurityCheckExecuterArgs args)
         {
             SecurityCheckResult result = args.CheckResult;
 
-            // TODO: store the metrics somewhere in this class
+            this.checkResults.Add(result);
         }
 
         public void SecurityCheckExecutionEnded(object sender, EventArgs args) {
-            // TODO: publish the metrics
+            metricService?.Publish(SECURITY_METRICS_EVENT_TYPE, new SecurityCheckResultMetric(checkResults));
         }
     }
 }
