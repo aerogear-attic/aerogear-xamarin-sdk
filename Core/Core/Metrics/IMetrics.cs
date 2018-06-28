@@ -7,6 +7,6 @@ namespace AeroGear.Mobile.Core.Metrics
     {
         string Identifier();
 
-        JsonObject Data();
+        JsonValue ToJson();
     }
 }

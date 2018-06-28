@@ -69,13 +69,13 @@ namespace AeroGear.Mobile.Core.Metrics
             // first put the default metrics (app and device info)
             foreach (IMetrics m in DefaultMetrics)
             {
-                data.Add(m.Identifier(), m.Data());
+                data.Add(m.Identifier(), m.ToJson());
             }
 
             // then put the specific ones
             foreach (IMetrics m in metrics)
             {
-                data.Add(m.Identifier(), m.Data());
+                data.Add(m.Identifier(), m.ToJson());
             }
 
             json.Add("data", data);

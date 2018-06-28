@@ -24,7 +24,7 @@ namespace AeroGear.Mobile.Core.Metrics
 
         public string Identifier() => "app";
 
-        public JsonObject Data()
+        public JsonValue ToJson()
         {
             JsonObject data = new JsonObject();
             data.Add("appId", appId);

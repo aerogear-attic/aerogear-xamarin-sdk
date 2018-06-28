@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using AeroGear.Mobile.Core.Metrics;
 using AeroGear.Mobile.Core.Utils;
 using AeroGear.Mobile.Security.Executors.Sync;
 
@@ -29,6 +30,7 @@ namespace AeroGear.Mobile.Security.Executors
     public abstract class AbstractExecutorBuilder<T,K> where T : AbstractExecutorBuilder<T,K>
     {
         protected readonly List<ISecurityCheck> CheckList = new List<ISecurityCheck>();
+        protected MetricsService MetricsService { private set; get; }
 
         /// <summary>
         /// Adds a security check by name. This method requires that the Security Check Factory is registered.
@@ -43,6 +45,13 @@ namespace AeroGear.Mobile.Security.Executors
                 ISecurityCheck check = ServiceFinder.Resolve<ISecurityCheckFactory>().create(checkName);
                 CheckList.Add(check);
             }
+
+            return (T)this;
+        }
+
+        public T WithSecurityCheck(ICollection<ISecurityCheck> checks)
+        {
+            CheckList.AddRange(checks);
 
             return (T)this;
         }
@@ -64,6 +73,14 @@ namespace AeroGear.Mobile.Security.Executors
                 ISecurityCheck check = ServiceFinder.Resolve<ISecurityCheckFactory>().create(checkType);
                 CheckList.Add(check);
             }
+            return (T)this;
+        }
+
+
+
+        public T WithMetricsService(MetricsService metricsService)
+        {
+            this.MetricsService = metricsService;
             return (T)this;
         }
 

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using AeroGear.Mobile.Core.Metrics;
+using AeroGear.Mobile.Security.Metrics;
 using static AeroGear.Mobile.Core.Utils.SanityCheck;
 
 namespace AeroGear.Mobile.Security.Executors
@@ -27,9 +29,17 @@ namespace AeroGear.Mobile.Security.Executors
         /// <see cref="T:AeroGear.Mobile.Security.Executors.AbstractSecurityCheckExecutor"/> class.
         /// </summary>
         /// <param name="checks">A list of checks to be executed.</param>
-        public AbstractSecurityCheckExecutor(List<ISecurityCheck> checks)
+        public AbstractSecurityCheckExecutor(List<ISecurityCheck> checks, MetricsService metricsService)
         {
             this.checks.AddRange(NonNull(checks, "checks"));
+
+            if (metricsService != null)
+            {
+                var publisher = new SecurityCheckMetricsPublisher(metricsService);
+
+                OnCheckExecutedEvent += publisher.SecurityCheckExecuted;
+                OnCheckExecutionFinishedEvent += publisher.SecurityCheckExecutionEnded;
+            }
         }
 
         /// <summary>
