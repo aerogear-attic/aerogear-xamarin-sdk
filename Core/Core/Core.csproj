@@ -12,18 +12,19 @@
     <Configurations>Debug;Release;AppVeyor</Configurations>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Remove="Dist\**"/>
-    <EmbeddedResource Remove="Dist\**"/>
-    <None Remove="Dist\**"/>
-    <Compile Remove="Storage\IStorageManager.cs"/>
+    <Compile Remove="Dist\**" />
+    <EmbeddedResource Remove="Dist\**" />
+    <None Remove="Dist\**" />
+    <Compile Remove="Storage\IStorageManager.cs" />
+    <Compile Remove="Configuration\MobileCoreJsonParser.cs" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="System.Json" Version="4.4.0"/>
-    <PackageReference Include="NuGet.Build.Packaging" Version="0.2.0"/>
+    <PackageReference Include="System.Json" Version="4.4.0" />
+    <PackageReference Include="NuGet.Build.Packaging" Version="0.2.0" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Metrics\"/>
-    <Folder Include="Utils\PlatformBridge\"/>
-    <Folder Include="Metrics\Publishers\"/>
+    <Folder Include="Metrics\" />
+    <Folder Include="Utils\PlatformBridge\" />
+    <Folder Include="Metrics\Publishers\" />
   </ItemGroup>
-<Target Name="clean_folders" AfterTargets="Clean"><RemoveDir Directories=".obj"/><RemoveDir Directories=".bin"/></Target></Project>
+<Target Name="clean_folders" AfterTargets="Clean"><RemoveDir Directories=".obj" /><RemoveDir Directories=".bin" /></Target></Project>
