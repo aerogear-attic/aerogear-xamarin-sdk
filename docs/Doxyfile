@@ -122,7 +122,10 @@ INPUT                  = Core/Core \
                          Core/Core.Platform.iOS \
                          Auth/Auth \
                          Auth.Platform.Android \
-                         Auth.Platform.iOS
+                         Auth.Platform.iOS \
+                         Security/Security \
+                         Security.Platform.Android \
+                         Security.Platform.iOS
 INPUT_ENCODING         = UTF-8
 FILE_PATTERNS          = *.c \
                          *.cc \
