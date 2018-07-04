@@ -14,14 +14,14 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Core\Core\Core.csproj" />
+    <ProjectReference Include="..\..\Core\Core\Core.csproj"/>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="NuGet.Build.Packaging" Version="0.2.0" />
-    <PackageReference Include="JWT" Version="4.0.0" />
+    <PackageReference Include="NuGet.Build.Packaging" Version="0.2.0"/>
+    <PackageReference Include="JWT" Version="4.0.0"/>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Credentials\" />
-    <Folder Include="Authenticator\" />
+    <Folder Include="Credentials\"/>
+    <Folder Include="Authenticator\"/>
   </ItemGroup>
-<Target Name="clean_folders" AfterTargets="Clean"><RemoveDir Directories=".obj" /><RemoveDir Directories=".bin" /></Target></Project>
+<Target Name="clean_folders" AfterTargets="Clean"><RemoveDir Directories=".obj"/><RemoveDir Directories=".bin"/></Target></Project>
