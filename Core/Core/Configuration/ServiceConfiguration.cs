@@ -132,14 +132,10 @@ namespace AeroGear.Mobile.Core.Configuration
     /// </summary>
     public class ServiceConfigurationBuilder
     {
-
         private string id;
-
-        private Dictionary<string, string> properties = new Dictionary<string, string>();
-
         private string type;
-
         private string url;
+        private Dictionary<string, string> properties = new Dictionary<string, string>();
 
         /// <summary>
         /// The id of the serivce

@@ -96,6 +96,8 @@ namespace AeroGear.Mobile.Core
         /// <returns>a single ServiceConfiguration</returns>
         public ServiceConfiguration GetServiceConfigurationById(String id) => this.mobileConfiguration.GetServiceConfigurationById(id);
 
+        public MobileCoreConfiguration Configuration => this.mobileConfiguration;
+
         /// <summary>
         /// Initializes MobileCore with defaults and without platform-specific injector. 
         /// </summary>
@@ -186,18 +188,10 @@ namespace AeroGear.Mobile.Core
             return instance;
         }
 
-        private async static void sendAppAndDeviceMetrics()
+        private static void sendAppAndDeviceMetrics()
         {
-            try
-            {
-                MetricsService metricsService = MobileCore.Instance.GetService<MetricsService>();
-                await metricsService.SendAppAndDeviceMetrics();
-            }
-            catch (System.Exception e)
-            {
-                MobileCore.Instance.Logger.Debug(String.Format("Error publishing device metrics: {0}", e.Message));
-            }
-
+            MetricsService metricsService = MobileCore.Instance.GetService<MetricsService>();
+            metricsService.SendAppAndDeviceMetrics();
         }
 
         /// <summary>

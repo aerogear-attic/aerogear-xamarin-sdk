@@ -84,6 +84,20 @@ namespace AeroGear.Mobile.Core.Metrics
 
         }
 
-        public abstract Task Publish(string type, IMetrics[] metrics);
+        protected abstract Task DoPublish(string type, IMetrics[] metrics);
+
+        public Task Publish(string type, IMetrics[] metrics)
+        {
+            Task ret = DoPublish(type, metrics);
+            ret.ContinueWith((task) => { 
+                if (task.IsFaulted)
+                {
+                    MobileCore.Instance.Logger.Info($"Error publishing metrics of type <{type}>: {task.Exception.InnerException.Message}");
+                    task.Exception.Handle(ex => { MobileCore.Instance.Logger.Debug(ex.ToString()); return false; });
+                } 
+            });
+
+            return ret;
+        }
     }
 }
