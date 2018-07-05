@@ -51,6 +51,12 @@ namespace AeroGear.Mobile.Core
         private ServiceInstanceCache serviceInstanceCache = new ServiceInstanceCache();
 
         /// <summary>
+        /// Gets the Mobile Core configuration.
+        /// </summary>
+        /// <value>The configuration.</value>
+        public MobileCoreConfiguration Configuration => this.mobileConfiguration;
+
+        /// <summary>
         /// Gets HTTP service module of the MobileCore.
         /// </summary>
         public IHttpServiceModule HttpLayer { get; private set; }
@@ -95,8 +101,6 @@ namespace AeroGear.Mobile.Core
         /// <param name="id">id field of the configuration</param>
         /// <returns>a single ServiceConfiguration</returns>
         public ServiceConfiguration GetServiceConfigurationById(String id) => this.mobileConfiguration.GetServiceConfigurationById(id);
-
-        public MobileCoreConfiguration Configuration => this.mobileConfiguration;
 
         /// <summary>
         /// Initializes MobileCore with defaults and without platform-specific injector. 

@@ -6,6 +6,9 @@ using static AeroGear.Mobile.Core.Utils.SanityCheck;
 
 namespace AeroGear.Mobile.Core.Configuration
 {
+    /// <summary>
+    /// This class represent the MobileCore configuration as parsed from the <code>mobile-services.json</code> file.
+    /// </summary>
     public class MobileCoreConfiguration
     {
         public string Version { get; private set; }
@@ -15,9 +18,18 @@ namespace AeroGear.Mobile.Core.Configuration
 
         private Dictionary<string, ServiceConfiguration> serviceConfigurations = new Dictionary<string, ServiceConfiguration>();
 
+        /// <summary>
+        /// Gets all the service configurations available.
+        /// </summary>
+        /// <value>The service configurations.</value>
         public ICollection<ServiceConfiguration> ServiceConfigurations => this.serviceConfigurations.Values;
-        public ServiceConfiguration GetServiceConfiguration(string id) => this.serviceConfigurations.ContainsKey(id) ? this.serviceConfigurations[id] : null;
-        public ServiceConfiguration GetServiceConfigurationById(String id) => this.serviceConfigurations[id];
+
+        /// <summary>
+        /// Gets the configuration for the service identified by the given id.
+        /// </summary>
+        /// <returns>The configuration for the service identified by the given id.</returns>
+        /// <param name="id">The service identifier.</param>
+        public ServiceConfiguration GetServiceConfigurationById(String id) => this.serviceConfigurations.ContainsKey(id) ? this.serviceConfigurations[id] : null;
 
         private MobileCoreConfiguration()
         {
@@ -88,6 +100,11 @@ namespace AeroGear.Mobile.Core.Configuration
             return listOfConfigs.ToArray();
         }
 
+        /// <summary>
+        /// Gets the configuration found for services of the given type.
+        /// </summary>
+        /// <returns>The configuration found for services of the given type.</returns>
+        /// <param name="type">The service type.</param>
         public ServiceConfiguration GetFirstServiceConfigurationByType(String type)
         {
             ServiceConfiguration[] confs = GetServiceConfigurationByType(type);
