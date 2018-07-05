@@ -58,7 +58,7 @@ namespace AeroGear.Mobile.Core.Configuration
             for (int i = 0; (i < length); i++)
             {
                 var value = servicesArray[i];
-                if (value is JsonObject) 
+                if (value is JsonObject)
                 {
                     ServiceConfiguration serviceConfig = ServiceConfiguration.FromJson((JsonObject)value);
                     mobileCoreConfiguration.serviceConfigurations[serviceConfig.Id] = serviceConfig;
