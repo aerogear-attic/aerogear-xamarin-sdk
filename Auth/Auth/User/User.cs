@@ -120,10 +120,18 @@ namespace AeroGear.Mobile.Auth
         /// <value>The refresh token.</value>
         public string RefreshToken { get; }
 
+        private List<UserRole> _roles;
+
         /// <summary>
         /// Roles associated with this principal.
         /// </summary>
-        public List<UserRole> Roles;
+        public ReadOnlyCollection<UserRole> Roles
+        {
+            get
+            {
+                return new ReadOnlyCollection<UserRole>(_roles);
+            }
+        }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="T:Aerogear.Mobile.Auth.User.User"/> class.
@@ -152,17 +160,19 @@ namespace AeroGear.Mobile.Auth
             this.IdentityToken = identityToken;
             this.AccessToken = accessToken;
             this.RefreshToken = refreshToken;
-            Roles = new List<UserRole>();
-            this.Roles.AddRange(roles);
+
+            this._roles = new List<UserRole>();
+            this._roles.AddRange(roles);
         }
 
         /// <summary>
         /// Gets the roles.
         /// </summary>
         /// <returns>All the roles associated with this user.</returns>
+        [Obsolete("getRoles is deprecated, use the Roles property instead.")]
         public ICollection<UserRole> getRoles()
         {
-            return new ReadOnlyCollection<UserRole>(Roles);
+            return new ReadOnlyCollection<UserRole>(_roles);
         }
 
         /// <summary>
