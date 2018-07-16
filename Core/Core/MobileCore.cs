@@ -86,7 +86,7 @@ namespace AeroGear.Mobile.Core
         /// </summary>
         /// <param name="type">type field of the configuration</param>
         /// <returns>array of ServiceConfiguration</returns>
-        public ServiceConfiguration[] GetServiceConfigurationByType(String type) => this.mobileConfiguration.GetServiceConfigurationByType(type);
+        public ServiceConfiguration[] GetServiceConfigurationsByType(String type) => this.mobileConfiguration.GetServiceConfigurationsByType(type);
 
         /// <summary>
         /// Returns the first instance of a ServiceConfiguration based on the type key
@@ -260,7 +260,7 @@ namespace AeroGear.Mobile.Core
             ServiceConfiguration result = conf;
             if (conf == null)
             {
-                ServiceConfiguration[] confs = GetServiceConfigurationByType(serviceModule.Type);
+                ServiceConfiguration[] confs = GetServiceConfigurationsByType(serviceModule.Type);
                 if (confs != null && confs.Length != 0)
                 {
                     result = confs[0];

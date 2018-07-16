@@ -85,7 +85,7 @@ namespace AeroGear.Mobile.Core.Configuration
         /// </summary>
         /// <param name="type">type field of the configuration</param>
         /// <returns>array of ServiceConfiguration</returns>
-        public ServiceConfiguration[] GetServiceConfigurationByType(String type)
+        public ServiceConfiguration[] GetServiceConfigurationsByType(String type)
         {
             List<ServiceConfiguration> listOfConfigs = new List<ServiceConfiguration>();
 
@@ -107,7 +107,7 @@ namespace AeroGear.Mobile.Core.Configuration
         /// <param name="type">The service type.</param>
         public ServiceConfiguration GetFirstServiceConfigurationByType(String type)
         {
-            ServiceConfiguration[] confs = GetServiceConfigurationByType(type);
+            ServiceConfiguration[] confs = GetServiceConfigurationsByType(type);
 
             if (confs.Length > 0)
             {
