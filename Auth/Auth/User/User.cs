@@ -22,7 +22,7 @@ namespace AeroGear.Mobile.Auth
         [JsonProperty(PropertyName = "name")]
         internal string Name { get; set; }
 
-        [JsonProperty(PropertyName = "preferred_name")]
+        [JsonProperty(PropertyName = "preferred_username")]
         internal string PreferredName { get; set; }
 
         [JsonProperty(PropertyName = "email")]
