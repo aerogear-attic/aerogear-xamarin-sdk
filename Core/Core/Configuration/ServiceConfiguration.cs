@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Json;
+using System.Linq;
 using static AeroGear.Mobile.Core.Utils.SanityCheck;
 
 namespace AeroGear.Mobile.Core.Configuration
@@ -65,7 +66,7 @@ namespace AeroGear.Mobile.Core.Configuration
 
         private IDictionary<string, string> properties;
 
-        private ServiceConfiguration(string id, IDictionary<string, string> properties, string type, string url)
+        internal ServiceConfiguration(string id, IDictionary<string, string> properties, string type, string url)
         {
             Id = id;
             this.properties = properties;
@@ -78,87 +79,6 @@ namespace AeroGear.Mobile.Core.Configuration
         /// </summary>
         /// <value>The builder.</value>
         public static ServiceConfigurationBuilder Builder => new ServiceConfigurationBuilder();
-
-        /// <summary>
-        /// Service configuration builder.
-        /// </summary>
-        public class ServiceConfigurationBuilder
-        {
-
-            private string id;
-
-            private Dictionary<string, string> properties = new Dictionary<string, string>();
-
-            private string type;
-
-            private string url;
-
-            /// <summary>
-            /// The id of the serivce
-            /// </summary>
-            /// <returns>the builder instance</returns>
-            /// <param name="id">Identifier.</param>
-            public ServiceConfigurationBuilder Id(string id) {
-                NonEmpty(id, "id");
-                this.id = id;
-                return this;
-            }
-
-            /// <summary>
-            /// Add a new property for the service
-            /// </summary>
-            /// <returns>the builder instance</returns>
-            /// <param name="name">Property name.</param>
-            /// <param name="value">Property value</param>
-            public ServiceConfigurationBuilder Property(string name, string value)
-            {
-                properties[name] = value;
-                return this;
-            }
-
-            /// <summary>
-            /// Add a new property for the service
-            /// </summary>
-            /// <returns>the builder instance</returns>
-            /// <param name="name">Property name.</param>
-            /// <param name="value">Property value</param>
-            public ServiceConfigurationBuilder Property(string name, JsonValue value)
-            {
-                properties[name] = value.JsonType == JsonType.String ? (string)value:value.ToString();
-                return this;
-            }
-
-            /// <summary>
-            /// The type of the service
-            /// </summary>
-            /// <returns>the builder instance</returns>
-            /// <param name="type">service type</param>
-            public ServiceConfigurationBuilder Type(string type)
-            {
-                this.type = type;
-                return this;
-            }
-
-            /// <summary>
-            /// The url of the service
-            /// </summary>
-            /// <returns>the builder instance</returns>
-            /// <param name="url">Service url</param>
-            public ServiceConfigurationBuilder Url(string url)
-            {
-                this.url = url;
-                return this;
-            }
-
-            /// <summary>
-            /// Build the service configuration
-            /// </summary>
-            /// <returns>A new ServiceConfiguration instance</returns>
-            public ServiceConfiguration Build()
-            {
-                return new ServiceConfiguration(this.id, this.properties, this.type, this.url);
-            }
-        }
 
         /// <summary>
         /// If the properties contain the given key
@@ -187,6 +107,101 @@ namespace AeroGear.Mobile.Core.Configuration
         IEnumerator IEnumerable.GetEnumerator()
         {
             return ((IReadOnlyDictionary<string, string>)properties).GetEnumerator();
+        }
+
+        internal static ServiceConfiguration FromJson(JsonObject jsonObject)
+        {
+            var configDictionary = new Dictionary<string, string>();
+
+            JsonObject config = (JsonObject)jsonObject["config"];
+            var names = config.Keys;
+
+            foreach (var name in config.Keys ?? Enumerable.Empty<string>())
+            {
+                configDictionary[name] = config[name].JsonType == JsonType.String ? (string)config[name] : config[name].ToString();
+            }
+
+            return new ServiceConfiguration(jsonObject["id"], configDictionary, jsonObject["type"], jsonObject["url"]);
+        }
+    }
+
+
+
+    /// <summary>
+    /// Service configuration builder.
+    /// </summary>
+    public class ServiceConfigurationBuilder
+    {
+        private string id;
+        private string type;
+        private string url;
+        private Dictionary<string, string> properties = new Dictionary<string, string>();
+
+        /// <summary>
+        /// The id of the serivce
+        /// </summary>
+        /// <returns>the builder instance</returns>
+        /// <param name="id">Identifier.</param>
+        public ServiceConfigurationBuilder Id(string id)
+        {
+            NonEmpty(id, "id");
+            this.id = id;
+            return this;
+        }
+
+        /// <summary>
+        /// Add a new property for the service
+        /// </summary>
+        /// <returns>the builder instance</returns>
+        /// <param name="name">Property name.</param>
+        /// <param name="value">Property value</param>
+        public ServiceConfigurationBuilder Property(string name, string value)
+        {
+            properties[name] = value;
+            return this;
+        }
+
+        /// <summary>
+        /// Add a new property for the service
+        /// </summary>
+        /// <returns>the builder instance</returns>
+        /// <param name="name">Property name.</param>
+        /// <param name="value">Property value</param>
+        public ServiceConfigurationBuilder Property(string name, JsonValue value)
+        {
+            properties[name] = value.JsonType == JsonType.String ? (string)value : value.ToString();
+            return this;
+        }
+
+        /// <summary>
+        /// The type of the service
+        /// </summary>
+        /// <returns>the builder instance</returns>
+        /// <param name="type">service type</param>
+        public ServiceConfigurationBuilder Type(string type)
+        {
+            this.type = type;
+            return this;
+        }
+
+        /// <summary>
+        /// The url of the service
+        /// </summary>
+        /// <returns>the builder instance</returns>
+        /// <param name="url">Service url</param>
+        public ServiceConfigurationBuilder Url(string url)
+        {
+            this.url = url;
+            return this;
+        }
+
+        /// <summary>
+        /// Build the service configuration
+        /// </summary>
+        /// <returns>A new ServiceConfiguration instance</returns>
+        public ServiceConfiguration Build()
+        {
+            return new ServiceConfiguration(this.id, this.properties, this.type, this.url);
         }
     }
 }

@@ -5,10 +5,8 @@ using AeroGear.Mobile.Core.Configuration;
 using AeroGear.Mobile.Core.Logging;
 using AeroGear.Mobile.Core.Exception;
 using AeroGear.Mobile.Core.Http;
-using System.Reflection;
 using System.Net.Http;
 using AeroGear.Mobile.Core.Metrics;
-using System.Threading.Tasks;
 
 namespace AeroGear.Mobile.Core
 {
@@ -48,35 +46,76 @@ namespace AeroGear.Mobile.Core
 
         private static MobileCore instance;
 
-        /// <summary>
-        /// Holds MobileCore singleton instance. It's needed to initialize core before using this.
-        /// </summary>
-        public static MobileCore Instance
-        {
-            get
-            {
-                if (instance == null)
-                {
-                    throw new InitializationException("Core is not initialized, don't forget to call MobileCore.init() before using this instance.");
-                }
+        private MobileCoreConfiguration mobileConfiguration;
 
-                return instance;
-            }
-        }
+        private ServiceInstanceCache serviceInstanceCache = new ServiceInstanceCache();
+
+        /// <summary>
+        /// Gets the Mobile Core configuration.
+        /// </summary>
+        /// <value>The configuration.</value>
+        public MobileCoreConfiguration Configuration => this.mobileConfiguration;
 
         /// <summary>
         /// Gets HTTP service module of the MobileCore.
         /// </summary>
-        public IHttpServiceModule HttpLayer
-        {
-            get; private set;
-        }
+        public IHttpServiceModule HttpLayer { get; private set; }
 
-        private Dictionary<String, ServiceConfiguration> servicesConfig;
+        /// <summary>
+        /// Holds MobileCore singleton instance. It's needed to initialize core before using this.
+        /// </summary>
+        public static MobileCore Instance => instance ?? throw new InitializationException("Core is not initialized, don't forget to call MobileCore.init() before using this instance.");
 
-        private ServiceInstanceCache serviceInstanceCache = new ServiceInstanceCache();
+        /// <summary>
+        /// Returns the service of the given type, if present.
+        /// </summary>
+        /// <returns>The service.</returns>
+        /// <typeparam name="T">The type of the service to be returned.</typeparam>
+        public T GetService<T>() where T : IServiceModule => GetService<T>(typeof(T));
 
-        protected MobileCore(IPlatformInjector injector, Options options)
+        /// <summary>
+        /// Returns the service identified by the given id if it exists.
+        /// </summary>
+        /// <returns>The service.</returns>
+        /// <param name="serviceId">Service identifier.</param>
+        /// <typeparam name="T">The type of the service to be returned.</typeparam>
+        public T GetService<T>(string serviceId) where T : IServiceModule => GetService<T>(typeof(T), GetServiceConfigurationById(serviceId));
+
+        /// <summary>
+        /// Returns array of ServiceConfiguration, filtered by type
+        /// </summary>
+        /// <param name="type">type field of the configuration</param>
+        /// <returns>array of ServiceConfiguration</returns>
+        public ServiceConfiguration[] GetServiceConfigurationsByType(String type) => this.mobileConfiguration.GetServiceConfigurationsByType(type);
+
+        /// <summary>
+        /// Returns the first instance of a ServiceConfiguration based on the type key
+        /// </summary>
+        /// <param name="type">type field of the configuration</param>
+        /// <returns>a single ServiceConfiguration</returns>
+        public ServiceConfiguration GetFirstServiceConfigurationByType(String type) => this.mobileConfiguration.GetFirstServiceConfigurationByType(type);
+
+        /// <summary>
+        /// Returns a ServiceConfiguration based on the id key
+        /// </summary>
+        /// <param name="id">id field of the configuration</param>
+        /// <returns>a single ServiceConfiguration</returns>
+        public ServiceConfiguration GetServiceConfigurationById(String id) => this.mobileConfiguration.GetServiceConfigurationById(id);
+
+        /// <summary>
+        /// Initializes MobileCore with defaults and without platform-specific injector. 
+        /// </summary>
+        /// <returns>MobileCore singleton instance</returns>
+        public static MobileCore Init() => Init(null, new Options());
+
+        /// <summary>
+        /// Initializes MobileCore with defaults and with platform-specific injector. 
+        /// </summary>
+        /// <param name="injector">platform specific implementation dependency injection module</param>
+        /// <returns>MobileCore singleton instance</returns>
+        public static MobileCore Init(IPlatformInjector injector) => Init(injector, new Options());
+
+        private MobileCore(IPlatformInjector injector, Options options)
         {
 
             Logger = options.Logger ?? injector?.CreateLogger() ?? new NullLogger();
@@ -87,7 +126,7 @@ namespace AeroGear.Mobile.Core
                 {
                     using (var stream = injector.GetBundledFileStream(options.ConfigFileName))
                     {
-                        servicesConfig = MobileCoreJsonParser.Parse(stream);
+                        mobileConfiguration = MobileCoreConfiguration.Parse(stream);
                     }
                 }
                 catch (System.Exception e)
@@ -101,7 +140,7 @@ namespace AeroGear.Mobile.Core
                 {
                     try
                     {
-                        MobileCoreJsonParser.Parse(options.ConfigJson);
+                        mobileConfiguration = MobileCoreConfiguration.Parse(options.ConfigJson);
                     }
                     catch (System.Exception e)
                     {
@@ -127,34 +166,10 @@ namespace AeroGear.Mobile.Core
                 httpServiceModule.Configure(this, configuration);
                 HttpLayer = httpServiceModule;
             }
-            else HttpLayer = options.HttpServiceModule;
-        }
-
-        /// <summary>
-        /// Initializes MobileCore with defaults and without platform-specific injector. 
-        /// </summary>
-        /// <returns>MobileCore singleton instance</returns>
-        public static MobileCore Init() => Init(null, new Options());
-
-        /// <summary>
-        /// Initializes MobileCore with defaults and with platform-specific injector. 
-        /// </summary>
-        /// <param name="injector">platform specific implementation dependency injection module</param>
-        /// <returns>MobileCore singleton instance</returns>
-        public static MobileCore Init(IPlatformInjector injector) => Init(injector, new Options());
-
-        private async static void sendAppAndDeviceMetrics() 
-        {
-            try
+            else 
             {
-                MetricsService metricsService = MobileCore.Instance.GetService<MetricsService>();
-                await metricsService.SendAppAndDeviceMetrics();    
+                HttpLayer = options.HttpServiceModule;   
             }
-            catch (System.Exception e)
-            {
-                MobileCore.Instance.Logger.Debug(String.Format("Error publishing device metrics: {0}", e.Message));
-            }
-
         }
 
         /// <summary>
@@ -175,6 +190,12 @@ namespace AeroGear.Mobile.Core
             sendAppAndDeviceMetrics();
 
             return instance;
+        }
+
+        private static void sendAppAndDeviceMetrics()
+        {
+            MetricsService metricsService = MobileCore.Instance.GetService<MetricsService>();
+            metricsService.SendAppAndDeviceMetrics();
         }
 
         /// <summary>
@@ -200,10 +221,6 @@ namespace AeroGear.Mobile.Core
             serviceInstanceCache.Add<T>(NonNull(serviceModule, "serviceModule"));
             return serviceModule;
         }
-
-        public T GetService<T>() where T : IServiceModule => GetService<T>(typeof(T));
-
-        public T GetService<T>(string serviceId) where T : IServiceModule => GetService<T>(typeof(T), GetServiceConfigurationById(serviceId));
 
         private T GetService<T>(Type serviceClass, ServiceConfiguration serviceConfiguration = null)
             where T : IServiceModule
@@ -243,7 +260,7 @@ namespace AeroGear.Mobile.Core
             ServiceConfiguration result = conf;
             if (conf == null)
             {
-                ServiceConfiguration[] confs = GetServiceConfigurationByType(serviceModule.Type);
+                ServiceConfiguration[] confs = GetServiceConfigurationsByType(serviceModule.Type);
                 if (confs != null && confs.Length != 0)
                 {
                     result = confs[0];
@@ -263,54 +280,11 @@ namespace AeroGear.Mobile.Core
                 return null;
             }
         }
-
-        /// <summary>
-        /// Returns array of ServiceConfiguration, filtered by type
-        /// </summary>
-        /// <param name="type">type field of the configuration</param>
-        /// <returns>array of ServiceConfiguration</returns>
-        public ServiceConfiguration[] GetServiceConfigurationByType(String type)
-        {
-            List<ServiceConfiguration> listOfConfigs = new List<ServiceConfiguration>();
-            foreach (var item in servicesConfig)
-            {
-                if (String.Equals(item.Value.Type, type, StringComparison.OrdinalIgnoreCase))
-                {
-                    listOfConfigs.Add(item.Value);
-                }
-            }
-            ServiceConfiguration[] arrayOfConfigs = listOfConfigs.ToArray();
-            return arrayOfConfigs;
-        }
-
-        /// <summary>
-        /// Returns the first instance of a ServiceConfiguration based on the type key
-        /// </summary>
-        /// <param name="type">type field of the configuration</param>
-        /// <returns>a single ServiceConfiguration</returns>
-        public ServiceConfiguration GetFirstServiceConfigurationByType(String type)
-        {
-            foreach (ServiceConfiguration cfg in servicesConfig.Values)
-            {
-                if (cfg.Type.Equals(type, StringComparison.OrdinalIgnoreCase))
-                {
-                    return cfg;
-                }
-            }
-            return null;
-        }
-
-        /// <summary>
-        /// Returns a ServiceConfiguration based on the id key
-        /// </summary>
-        /// <param name="id">id field of the configuration</param>
-        /// <returns>a single ServiceConfiguration</returns>
-        public ServiceConfiguration GetServiceConfigurationById(String id)
-        {
-            return servicesConfig.ContainsKey(id) ? servicesConfig[id] : null;
-        }
     }
 
+    /// <summary>
+    /// Service instance cache.
+    /// </summary>
     class ServiceInstanceCache
     {
         /// <summary>
@@ -322,6 +296,11 @@ namespace AeroGear.Mobile.Core
         /// The cache by type. This is used only if the service has no configuration (hence, it has no id).
         /// </summary>
         private Dictionary<Type, IServiceModule> cacheByType = new Dictionary<Type, IServiceModule>();
+
+        public IServiceModule GetCachedInstance(Type type) => cacheByType[type];
+        public IServiceModule GetCachedInstance(string id) => cacheById[id];
+        public bool IsCached(Type type) => cacheByType.ContainsKey(type);
+        public bool IsCached(string id) => cacheById.ContainsKey(id);
 
         public void Add<T>(IServiceModule serviceModule)
         {
@@ -337,14 +316,6 @@ namespace AeroGear.Mobile.Core
                 cacheByType[typeof(T)] = serviceModule;    
             }
         }
-
-        public IServiceModule GetCachedInstance(Type type) => cacheByType[type];
-
-        public IServiceModule GetCachedInstance(string id) => cacheById[id];
-
-        public bool IsCached(Type type) => cacheByType.ContainsKey(type);
-
-        public bool IsCached(string id) => cacheById.ContainsKey(id);
 
         public List<IServiceModule> GetAllCachedServices()
         {

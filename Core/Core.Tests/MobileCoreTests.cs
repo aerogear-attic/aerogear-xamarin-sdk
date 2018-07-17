@@ -236,7 +236,7 @@ namespace AeroGear.Mobile.Core.Tests
         public void TestServiceConfigByType()
         {
             MobileCore.Init(new TestInjector(Assembly.GetExecutingAssembly()));
-            var serviceConfigByType = MobileCore.Instance.GetServiceConfigurationByType("dummy");
+            var serviceConfigByType = MobileCore.Instance.GetServiceConfigurationsByType("dummy");
             MobileCore.Instance.RegisterService<IDummyModule>(new DummyModule(serviceConfigByType[1]));
 
             var module = MobileCore.Instance.GetService<IDummyModule>();
@@ -253,7 +253,7 @@ namespace AeroGear.Mobile.Core.Tests
         public void TestServiceConfigByUpperCaseType()
         {
             MobileCore.Init(new TestInjector(Assembly.GetExecutingAssembly()));
-            var serviceConfigByType = MobileCore.Instance.GetServiceConfigurationByType("DUMMY");
+            var serviceConfigByType = MobileCore.Instance.GetServiceConfigurationsByType("DUMMY");
             MobileCore.Instance.RegisterService<IDummyModule>(new DummyModule(serviceConfigByType[1]));
 
             var module = MobileCore.Instance.GetService<IDummyModule>();
@@ -269,7 +269,7 @@ namespace AeroGear.Mobile.Core.Tests
         public void TestServiceConfigCasingType()
         {
             MobileCore.Init(new TestInjector(Assembly.GetExecutingAssembly()));
-            var serviceConfigByType = MobileCore.Instance.GetServiceConfigurationByType("dummy");
+            var serviceConfigByType = MobileCore.Instance.GetServiceConfigurationsByType("dummy");
             MobileCore.Instance.RegisterService<IDummyModule>(new DummyTypeCasingModule(serviceConfigByType[1]));
 
             var module = MobileCore.Instance.GetService<IDummyModule>();

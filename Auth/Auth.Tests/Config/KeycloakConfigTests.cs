@@ -20,8 +20,8 @@ namespace AeroGear.Mobile.Auth.Tests.Config
             var assembly = Assembly.GetExecutingAssembly();
             using (var configStream = assembly.GetManifestResourceStream("AeroGear.Mobile.Auth.Tests.Resources.mobile-services.json"))
             {
-                var serviceConfig = MobileCoreJsonParser.Parse(configStream);
-                var authConfig = serviceConfig["keycloak"];
+                var mobileCoreConfig = MobileCoreConfiguration.Parse(configStream);
+                var authConfig = mobileCoreConfig.GetFirstServiceConfigurationByType("keycloak");
                 keycloakConfig = new KeycloakConfig(authConfig);
             }
 

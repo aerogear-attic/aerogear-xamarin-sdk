@@ -26,3 +26,4 @@ using System.Runtime.CompilerServices;
 //[assembly: AssemblyKeyFile("")]
 
 [assembly: InternalsVisibleTo("AeroGear.Mobile.Core.Tests")]
+[assembly: InternalsVisibleTo("Auth.Tests")]
