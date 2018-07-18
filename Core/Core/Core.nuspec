@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>AeroGear.Mobile.Core</id>
-    <version>1.1.0</version>
+    <version>1.1.0-alpha</version>
     <title>AeroGear SDK Core</title>
     <authors>AeroGear Community</authors>
     <owners>AeroGear Community</owners>

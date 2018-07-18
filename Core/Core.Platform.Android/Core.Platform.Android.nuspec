@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>AeroGear.Mobile.Core.Platform.Android</id>
-    <version>1.1.0</version>
+    <version>1.1.0-alpha</version>
     <title>AeroGear Xamarin SDK Core (Android)</title>
     <authors>AeroGear Community</authors>
     <owners>AeroGear Community</owners>
@@ -14,7 +14,7 @@
     <tags>aerogear security sso openid xamarin iOS android mobile</tags>
     <iconUrl>https://avatars1.githubusercontent.com/u/954205</iconUrl>
     <dependencies>
-      <dependency id="AeroGear.Mobile.Core" version="1.1.0"/>      
+      <dependency id="AeroGear.Mobile.Core" version="1.1.0-alpha"/>      
     </dependencies>
     <references>
       <group>
