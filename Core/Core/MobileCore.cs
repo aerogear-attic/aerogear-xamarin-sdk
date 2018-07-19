@@ -187,7 +187,14 @@ namespace AeroGear.Mobile.Core
             NonNull<Options>(options, "init options");
             instance = new MobileCore(injector, options);
 
-            sendAppAndDeviceMetrics();
+            try
+            {
+                sendAppAndDeviceMetrics();
+            }
+            catch (System.Exception e)
+            {
+                MobileCore.Instance.Logger.Debug(String.Format("Error publishing device metrics: {0}", e.Message));
+            }
 
             return instance;
         }
