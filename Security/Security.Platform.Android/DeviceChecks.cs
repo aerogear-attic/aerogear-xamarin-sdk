@@ -19,13 +19,13 @@ namespace AeroGear.Mobile.Security
     {
         private static Dictionary<string, DeviceChecks> typesByName = new Dictionary<string, DeviceChecks>();
 
-        public static readonly DeviceChecks NOT_ROOTED = new DeviceChecks(typeof(NonRootedCheck));
-        public static readonly DeviceChecks DEVELOPER_MODE_DISABLED = new DeviceChecks(typeof(DeveloperModeDisabledCheck));
-        public static readonly DeviceChecks NOT_IN_EMULATOR = new DeviceChecks(typeof(NotInEmulatorCheck));
-        public static readonly DeviceChecks SCREEN_LOCK = new DeviceChecks(typeof(ScreenLockCheck));
-        public static readonly DeviceChecks BACKUP_DISALLOWED = new DeviceChecks(typeof(BackupDisallowedCheck));
-        public static readonly DeviceChecks ENCRYPTION = new DeviceChecks(typeof(EncryptionCheck));
-        public static readonly DeviceChecks NO_DEBUGGER = new DeviceChecks(typeof(NoDebuggerCheck));
+        public static readonly DeviceChecks ROOT_ENABLED = new DeviceChecks(typeof(RootEnabledCheck));
+        public static readonly DeviceChecks DEVELOPER_MODE_ENABLED = new DeviceChecks(typeof(DeveloperModeEnabledCheck));
+        public static readonly DeviceChecks IS_EMULATOR = new DeviceChecks(typeof(EmulatorCheck));
+        public static readonly DeviceChecks SCREEN_LOCK_ENABLED = new DeviceChecks(typeof(ScreenLockEnabledCheck));
+        public static readonly DeviceChecks BACKUP_ALLOWED = new DeviceChecks(typeof(BackupAllowedCheck));
+        public static readonly DeviceChecks ENCRYPTION_ENABLED = new DeviceChecks(typeof(EncryptionEnabledCheck));
+        public static readonly DeviceChecks DEBUGGER_ENABLED = new DeviceChecks(typeof(DebuggerEnabledCheck));
 
         // add others checks here
         // i.e. 

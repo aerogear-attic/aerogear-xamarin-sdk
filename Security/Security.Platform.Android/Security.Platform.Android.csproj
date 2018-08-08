@@ -56,15 +56,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Checks\NonRootedCheck.cs" />
+    <Compile Include="Checks\RootEnabledCheck.cs" />
     <Compile Include="AndroidDeviceCheckFactory.cs" />
     <Compile Include="DeviceChecks.cs" />
-    <Compile Include="Checks\NotInEmulatorCheck.cs" />
-    <Compile Include="Checks\DeveloperModeDisabledCheck.cs" />
-    <Compile Include="Checks\ScreenLockCheck.cs" />
-    <Compile Include="Checks\BackupDisallowedCheck.cs" />
-    <Compile Include="Checks\EncryptionCheck.cs" />
-    <Compile Include="Checks\NoDebuggerCheck.cs" />
+    <Compile Include="Checks\EmulatorCheck.cs" />
+    <Compile Include="Checks\DeveloperModeEnabledCheck.cs" />
+    <Compile Include="Checks\ScreenLockEnabledCheck.cs" />
+    <Compile Include="Checks\BackupAllowedCheck.cs" />
+    <Compile Include="Checks\EncryptionEnabledCheck.cs" />
+    <Compile Include="Checks\DebuggerEnabledCheck.cs" />
     <Compile Include="SecurityService.cs" />
   </ItemGroup>
   <ItemGroup>

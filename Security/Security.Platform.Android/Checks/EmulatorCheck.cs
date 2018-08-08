@@ -7,13 +7,13 @@ namespace AeroGear.Mobile.Security.Checks
     /// <summary>
     /// A check for whether the device the application is running on an emulator.
     /// </summary>
-    public class NotInEmulatorCheck : AbstractDeviceCheck
+    public class EmulatorCheck : AbstractDeviceCheck
     {
         protected override string Name => "Emulator Check";
 
         private readonly Context context;
 
-        public NotInEmulatorCheck(Context ctx)
+        public EmulatorCheck(Context ctx)
         {
             this.context = ctx;
         }
@@ -24,9 +24,9 @@ namespace AeroGear.Mobile.Security.Checks
             {
                 if (Build.Fingerprint.Contains("vbox") ||
                     Build.Fingerprint.Contains("generic"))
-                    return new DeviceCheckResult(this, false);
+                    return new DeviceCheckResult(this, true);
             }
-            return new DeviceCheckResult(this, true);
+            return new DeviceCheckResult(this, false);
         }
     }
 }

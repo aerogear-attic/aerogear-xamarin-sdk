@@ -7,13 +7,13 @@ namespace AeroGear.Mobile.Security.Checks
     /// <summary>
     /// Detects whether a devices filesystem is encrypted.
     /// </summary>
-    public class EncryptionCheck : AbstractDeviceCheck
+    public class EncryptionEnabledCheck : AbstractDeviceCheck
     {
         protected override string Name => "Encryption Check";
 
         private readonly Context context;
 
-        public EncryptionCheck(Context ctx)
+        public EncryptionEnabledCheck(Context ctx)
         {
             this.context = ctx;
         }

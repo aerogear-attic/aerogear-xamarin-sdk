@@ -7,13 +7,13 @@ namespace AeroGear.Mobile.Security.Checks
     /// <summary>
     /// A check for whether the device the application is running on has a screen lock.
     /// </summary>
-    public class ScreenLockCheck : AbstractDeviceCheck
+    public class ScreenLockEnabledCheck : AbstractDeviceCheck
     {
         protected override string Name => "Screen Lock Check";
 
         private readonly Context context;
 
-        public ScreenLockCheck(Context ctx)
+        public ScreenLockEnabledCheck(Context ctx)
         {
             this.context = ctx;
         }
