@@ -21,9 +21,9 @@ namespace AeroGear.Mobile.Security
 
         public static readonly DeviceChecks ROOT_ENABLED = new DeviceChecks(typeof(RootEnabledCheck));
         public static readonly DeviceChecks DEVELOPER_MODE_ENABLED = new DeviceChecks(typeof(DeveloperModeEnabledCheck));
-        public static readonly DeviceChecks IS_EMULATOR = new DeviceChecks(typeof(EmulatorCheck));
+        public static readonly DeviceChecks IS_EMULATOR = new DeviceChecks(typeof(IsEmulatorCheck));
         public static readonly DeviceChecks SCREEN_LOCK_ENABLED = new DeviceChecks(typeof(ScreenLockEnabledCheck));
-        public static readonly DeviceChecks BACKUP_ALLOWED = new DeviceChecks(typeof(BackupAllowedCheck));
+        public static readonly DeviceChecks BACKUP_ENABLED = new DeviceChecks(typeof(BackupEnabledCheck));
         public static readonly DeviceChecks ENCRYPTION_ENABLED = new DeviceChecks(typeof(EncryptionEnabledCheck));
         public static readonly DeviceChecks DEBUGGER_ENABLED = new DeviceChecks(typeof(DebuggerEnabledCheck));
 

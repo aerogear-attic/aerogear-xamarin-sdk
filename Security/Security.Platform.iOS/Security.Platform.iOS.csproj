@@ -71,7 +71,7 @@
     <Compile Include="Checks\JailbrokenDeviceCheck.cs" />
     <Compile Include="IOSDeviceCheckFactory.cs" />
     <Compile Include="DeviceChecks.cs" />
-    <Compile Include="Checks\EmulatorCheck.cs" />
+    <Compile Include="Checks\IsEmulatorCheck.cs" />
     <Compile Include="Checks\DebuggerAttachedCheck.cs" />
     <Compile Include="Checks\DeviceLockEnabledCheck.cs" />
     <Compile Include="SecurityService.cs" />
@@ -83,7 +83,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="NuGet.Build.Packaging">
-      <Version>0.2.0</Version>
+      <Version>0.2.2</Version>
     </PackageReference>
   </ItemGroup>
   <ItemGroup>

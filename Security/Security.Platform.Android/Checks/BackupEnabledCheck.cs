@@ -7,13 +7,13 @@ namespace AeroGear.Mobile.Security.Checks
     /// <summary>
     /// Check to determine whether the allowBackup flag is enabled for the application.
     /// </summary>
-    public class BackupAllowedCheck : AbstractDeviceCheck
+    public class BackupEnabledCheck : AbstractDeviceCheck
     {
         protected override string Name => "Backup Flag Check";
 
         private readonly Context context;
 
-        public BackupAllowedCheck(Context ctx)
+        public BackupEnabledCheck(Context ctx)
         {
             this.context = ctx;
         }
