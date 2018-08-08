@@ -7,7 +7,7 @@ namespace AeroGear.Mobile.Security.Checks
     /// <summary>
     /// A check for whether a debugger is attached to the current application.
     /// </summary>
-    public class NoDebuggerCheck : AbstractSecurityCheck
+    public class NoDebuggerCheck : AbstractDeviceCheck
     {
         protected override string Name => "Debugger Check";
 
@@ -18,9 +18,9 @@ namespace AeroGear.Mobile.Security.Checks
             this.context = ctx;
         }
 
-        public override SecurityCheckResult Check()
+        public override DeviceCheckResult Check()
         {
-            return new SecurityCheckResult(this, !(Debug.IsDebuggerConnected || System.Diagnostics.Debugger.IsAttached));
+            return new DeviceCheckResult(this, !(Debug.IsDebuggerConnected || System.Diagnostics.Debugger.IsAttached));
         }
     }
 }

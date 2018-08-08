@@ -5,7 +5,7 @@ namespace AeroGear.Mobile.Security.Checks
     /// <summary>
     /// A check for whether the device the application is running on an emulator.
     /// </summary>
-    public class NotInEmulatorCheck : AbstractSecurityCheck
+    public class NotInEmulatorCheck : AbstractDeviceCheck
     {
         protected override string Name => "Emulator Check";
 
@@ -13,10 +13,10 @@ namespace AeroGear.Mobile.Security.Checks
         {
         }
 
-        public override SecurityCheckResult Check()
+        public override DeviceCheckResult Check()
         {
             bool inDevice = ObjCRuntime.Runtime.Arch == ObjCRuntime.Arch.DEVICE;
-            return new SecurityCheckResult(this, inDevice);
+            return new DeviceCheckResult(this, inDevice);
         }
     }
 }

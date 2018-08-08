@@ -4,13 +4,13 @@ namespace AeroGear.Mobile.Security
     /// <summary>
     /// Interface for a single check to be executed.
     /// </summary>
-    public interface ISecurityCheck
+    public interface IDeviceCheck
     {
         /// <summary>
         /// Perform the check and return a result.
         /// </summary>
         /// <returns>The result of the test</returns>
-        SecurityCheckResult Check();
+        DeviceCheckResult Check();
 
         /// <summary>
         /// Gets the name of the check to be used for display purposes in reports. This value should

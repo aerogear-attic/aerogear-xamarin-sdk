@@ -11,9 +11,9 @@ namespace AeroGear.Mobile.Security.Executors
     /// <summary>
     /// Entry point for the SecurityCheckExecutor. This class provides the builders.
     /// </summary>
-    public class SecurityCheckExecutor
+    public class DeviceCheckExecutor
     {
-        private SecurityCheckExecutor()
+        private DeviceCheckExecutor()
         {
         }
 
@@ -29,7 +29,7 @@ namespace AeroGear.Mobile.Security.Executors
 
     public abstract class AbstractExecutorBuilder<T,K> where T : AbstractExecutorBuilder<T,K>
     {
-        protected readonly List<ISecurityCheck> CheckList = new List<ISecurityCheck>();
+        protected readonly List<IDeviceCheck> CheckList = new List<IDeviceCheck>();
         protected MetricsService MetricsService { private set; get; }
 
         /// <summary>
@@ -38,25 +38,25 @@ namespace AeroGear.Mobile.Security.Executors
         /// </summary>
         /// <returns>The security check.</returns>
         /// <param name="checksNames">Checks names.</param>
-        public T WithSecurityCheck(params string[] checksNames)
+        public T WithDeviceCheck(params string[] checksNames)
         {
             foreach (var checkName in NonNull(checksNames, "checksNames"))
             {
-                ISecurityCheck check = ServiceFinder.Resolve<ISecurityCheckFactory>().create(checkName);
+                IDeviceCheck check = ServiceFinder.Resolve<IDeviceCheckFactory>().create(checkName);
                 CheckList.Add(check);
             }
 
             return (T)this;
         }
 
-        public T WithSecurityCheck(ICollection<ISecurityCheck> checks)
+        public T WithDeviceCheck(ICollection<IDeviceCheck> checks)
         {
             CheckList.AddRange(checks);
 
             return (T)this;
         }
 
-        public T WithSecurityCheck(params ISecurityCheck[] checks)
+        public T WithDeviceCheck(params IDeviceCheck[] checks)
         {
             foreach (var check in NonNull(checks, "checks"))
             {
@@ -66,11 +66,11 @@ namespace AeroGear.Mobile.Security.Executors
             return (T)this;
         }
 
-        public T WithSecurityCheck(params ISecurityCheckType[] checkTypes)
+        public T WithDeviceCheck(params IDeviceCheckType[] checkTypes)
         {
             foreach (var checkType in NonNull(checkTypes, "checkTypes"))
             {
-                ISecurityCheck check = ServiceFinder.Resolve<ISecurityCheckFactory>().create(checkType);
+                IDeviceCheck check = ServiceFinder.Resolve<IDeviceCheckFactory>().create(checkType);
                 CheckList.Add(check);
             }
             return (T)this;
@@ -84,9 +84,9 @@ namespace AeroGear.Mobile.Security.Executors
             return (T)this;
         }
 
-        private ISecurityCheckFactory GetSecurityCheckFactory()
+        private IDeviceCheckFactory GetSecurityCheckFactory()
         {
-            ISecurityCheckFactory factory = ServiceFinder.Resolve<ISecurityCheckFactory>();
+            IDeviceCheckFactory factory = ServiceFinder.Resolve<IDeviceCheckFactory>();
 
             if (factory == null) 
             {

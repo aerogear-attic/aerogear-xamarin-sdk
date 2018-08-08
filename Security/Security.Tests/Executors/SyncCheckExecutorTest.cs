@@ -10,39 +10,39 @@ namespace AeroGear.Mobile.Security.Tests
     [TestFixture(Category = "Executors")]
     public class SyncCheckExecutorTest
     {
-        private ISecurityCheck mockSecurityCheck;
-        private ISecurityCheckFactory mockCheckFactory;
-        private ISecurityCheckType mockSecurityCheckType;
+        private IDeviceCheck mockSecurityCheck;
+        private IDeviceCheckFactory mockCheckFactory;
+        private IDeviceCheckType mockSecurityCheckType;
 
         [SetUp]
         public void SetUp()
         {
-            mockSecurityCheckType = new Mock<ISecurityCheckType>().Object;
+            mockSecurityCheckType = new Mock<IDeviceCheckType>().Object;
 
-            var mock = new Mock<ISecurityCheck>();
+            var mock = new Mock<IDeviceCheck>();
             mockSecurityCheck = mock.Object;
             mock.Setup(mockSecurityCheck => mockSecurityCheck.GetId()).Returns("test-id");
             mock.Setup(mockSecurityCheck => mockSecurityCheck.GetName()).Returns("test-name");
 
-            SecurityCheckResult result = new SecurityCheckResult(mockSecurityCheck, true);
+            DeviceCheckResult result = new DeviceCheckResult(mockSecurityCheck, true);
 
             mock.Setup(mockSecurityCheck => mockSecurityCheck.Check()).Returns(result);
 
-            var mockSecurityCheckFactory = new Mock<ISecurityCheckFactory>();
+            var mockSecurityCheckFactory = new Mock<IDeviceCheckFactory>();
             this.mockCheckFactory = mockSecurityCheckFactory.Object;
 
             mockSecurityCheckFactory.Setup(mockCheckFactory => mockCheckFactory.create(mockSecurityCheckType)).Returns(mockSecurityCheck);
 
-            ServiceFinder.RegisterInstance<ISecurityCheckFactory>(mockCheckFactory);
+            ServiceFinder.RegisterInstance<IDeviceCheckFactory>(mockCheckFactory);
         }
 
         [Test]
         public void TestExecuteSyncSingle()
         {
             
-            Dictionary<String, SecurityCheckResult> results =
-                SecurityCheckExecutor.newSyncExecutor()
-                                     .WithSecurityCheck(mockSecurityCheckType)
+            Dictionary<String, DeviceCheckResult> results =
+                DeviceCheckExecutor.newSyncExecutor()
+                                     .WithDeviceCheck(mockSecurityCheckType)
                                      .Build()
                                      .Execute();
 

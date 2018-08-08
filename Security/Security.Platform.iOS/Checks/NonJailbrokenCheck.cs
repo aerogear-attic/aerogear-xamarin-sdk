@@ -8,7 +8,7 @@ namespace AeroGear.Mobile.Security.Checks
     /// <summary>
     /// Check if the device is Jailbroken.
     /// </summary>
-    public class NonJailbrokenCheck : AbstractSecurityCheck
+    public class NonJailbrokenCheck : AbstractDeviceCheck
     {
         protected override string Name => "Jailbreak Check";
 
@@ -16,7 +16,7 @@ namespace AeroGear.Mobile.Security.Checks
         {
         }
 
-        public override SecurityCheckResult Check()
+        public override DeviceCheckResult Check()
         {
             if (ObjCRuntime.Runtime.Arch == ObjCRuntime.Arch.DEVICE)
             {
@@ -28,22 +28,22 @@ namespace AeroGear.Mobile.Security.Checks
                     || File.Exists("/private/var/lib/apt/")
                     || UIApplication.SharedApplication.CanOpenUrl(new NSUrl("cydia://package/com.example.package")))
                 {
-                    return new SecurityCheckResult(this, false);
+                    return new DeviceCheckResult(this, false);
                 }
 
                 try
                 {
                     File.WriteAllText("/private/JailbreakTest.txt", "Jailbreak Test", System.Text.Encoding.UTF8);
-                    return new SecurityCheckResult(this, false);
+                    return new DeviceCheckResult(this, false);
                 }
                 catch
                 {
-                    return new SecurityCheckResult(this, true);
+                    return new DeviceCheckResult(this, true);
                 }
             }
             else
             {
-                return new SecurityCheckResult(this, true);
+                return new DeviceCheckResult(this, true);
             }
         }
     }

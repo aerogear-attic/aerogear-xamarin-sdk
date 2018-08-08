@@ -15,30 +15,30 @@ namespace AeroGear.Mobile.Security.Executors
         /// <summary>
         /// Occurs when a check has just been executed.
         /// </summary>
-        private event EventHandler<SecurityCheckExecuterArgs> OnCheckExecutedEvent;
+        private event EventHandler<DeviceCheckExecuterArgs> OnCheckExecutedEvent;
 
         /// <summary>
         /// Occurs when all checks have been executed.
         /// </summary>
         private event EventHandler OnCheckExecutionFinishedEvent;
 
-        protected readonly List<ISecurityCheck> checks = new List<ISecurityCheck>();
+        protected readonly List<IDeviceCheck> checks = new List<IDeviceCheck>();
 
         /// <summary>
         /// Initializes a new instance of the
         /// <see cref="T:AeroGear.Mobile.Security.Executors.AbstractSecurityCheckExecutor"/> class.
         /// </summary>
         /// <param name="checks">A list of checks to be executed.</param>
-        public AbstractSecurityCheckExecutor(List<ISecurityCheck> checks, MetricsService metricsService)
+        public AbstractSecurityCheckExecutor(List<IDeviceCheck> checks, MetricsService metricsService)
         {
             this.checks.AddRange(NonNull(checks, "checks"));
 
             if (metricsService != null)
             {
-                var publisher = new SecurityCheckMetricsPublisher(metricsService);
+                var publisher = new DeviceCheckMetricsPublisher(metricsService);
 
-                OnCheckExecutedEvent += publisher.SecurityCheckExecuted;
-                OnCheckExecutionFinishedEvent += publisher.SecurityCheckExecutionEnded;
+                OnCheckExecutedEvent += publisher.DeviceCheckExecuted;
+                OnCheckExecutionFinishedEvent += publisher.DeviceCheckExecutionEnded;
             }
         }
 
@@ -46,11 +46,11 @@ namespace AeroGear.Mobile.Security.Executors
         /// Invoked after every check execution.
         /// </summary>
         /// <param name="result">Result of the check just executed.</param>
-        protected void OnCheckExecuted(SecurityCheckResult result) 
+        protected void OnCheckExecuted(DeviceCheckResult result) 
         {
             if (OnCheckExecutedEvent != null) 
             {
-                OnCheckExecutedEvent(this, new SecurityCheckExecuterArgs(result));
+                OnCheckExecutedEvent(this, new DeviceCheckExecuterArgs(result));
             }
         }
 
@@ -67,13 +67,13 @@ namespace AeroGear.Mobile.Security.Executors
     }
 
     /// <summary>
-    /// Event argument containing a SecurityCheckResult object.
+    /// Event argument containing a DeviceCheckResult object.
     /// </summary>
-    internal class SecurityCheckExecuterArgs : EventArgs
+    internal class DeviceCheckExecuterArgs : EventArgs
     {
-        public readonly SecurityCheckResult CheckResult;
+        public readonly DeviceCheckResult CheckResult;
 
-        public SecurityCheckExecuterArgs(SecurityCheckResult result)
+        public DeviceCheckExecuterArgs(DeviceCheckResult result)
         {
             this.CheckResult = result;
         }

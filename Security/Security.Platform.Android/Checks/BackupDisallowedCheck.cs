@@ -7,7 +7,7 @@ namespace AeroGear.Mobile.Security.Checks
     /// <summary>
     /// Check to determine whether the allowBackup flag is enabled for the application.
     /// </summary>
-    public class BackupDisallowedCheck : AbstractSecurityCheck
+    public class BackupDisallowedCheck : AbstractDeviceCheck
     {
         protected override string Name => "Backup Flag Check";
 
@@ -18,11 +18,11 @@ namespace AeroGear.Mobile.Security.Checks
             this.context = ctx;
         }
 
-        public override SecurityCheckResult Check()
+        public override DeviceCheckResult Check()
         {
             PackageInfo packageInfo = context.PackageManager.GetPackageInfo(context.PackageName, 0);
             bool disabled = (packageInfo.ApplicationInfo.Flags & ApplicationInfoFlags.AllowBackup) == 0;
-            return new SecurityCheckResult(this, disabled);
+            return new DeviceCheckResult(this, disabled);
         }
     }
 }

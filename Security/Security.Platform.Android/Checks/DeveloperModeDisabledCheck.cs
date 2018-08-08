@@ -7,7 +7,7 @@ namespace AeroGear.Mobile.Security.Checks
     /// <summary>
     /// Security check that detects if developer mode is enabled in the device.
     /// </summary>
-    public class DeveloperModeDisabledCheck : AbstractSecurityCheck
+    public class DeveloperModeDisabledCheck : AbstractDeviceCheck
     {
         protected override string Name => "Developer Mode Check";
 
@@ -18,12 +18,12 @@ namespace AeroGear.Mobile.Security.Checks
             this.context = ctx;
         }
 
-        public override SecurityCheckResult Check()
+        public override DeviceCheckResult Check()
         {
             bool devModeEnabled = Settings.Global.GetInt(
                 context.ContentResolver,
                 Settings.Global.DevelopmentSettingsEnabled, 0) != 0;
-            return new SecurityCheckResult(this, !devModeEnabled);
+            return new DeviceCheckResult(this, !devModeEnabled);
         }
     }
 }

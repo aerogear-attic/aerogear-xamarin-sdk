@@ -1,7 +1,7 @@
 ﻿using System;
 namespace AeroGear.Mobile.Security
 {
-    public class SecurityCheckResult
+    public class DeviceCheckResult
     {
         /// <summary>
         /// The identifier of the check that produced this result.
@@ -18,7 +18,7 @@ namespace AeroGear.Mobile.Security
         /// </summary>
         public readonly bool Passed;
 
-        public SecurityCheckResult(ISecurityCheck check, bool passed)
+        public DeviceCheckResult(IDeviceCheck check, bool passed)
         {
             this.Id = check.GetId();
             this.Name = check.GetName();

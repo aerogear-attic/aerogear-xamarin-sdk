@@ -7,7 +7,7 @@ namespace AeroGear.Mobile.Security.Checks
     /// <summary>
     /// Detects whether a devices filesystem is encrypted.
     /// </summary>
-    public class EncryptionCheck : AbstractSecurityCheck
+    public class EncryptionCheck : AbstractDeviceCheck
     {
         protected override string Name => "Encryption Check";
 
@@ -18,13 +18,13 @@ namespace AeroGear.Mobile.Security.Checks
             this.context = ctx;
         }
 
-        public override SecurityCheckResult Check()
+        public override DeviceCheckResult Check()
         {
             DevicePolicyManager policyManager = (DevicePolicyManager)context
                 .GetSystemService(Context.DevicePolicyService);
             bool enabled = policyManager != null && policyManager
                 .StorageEncryptionStatus == EncryptionStatus.Active;
-            return new SecurityCheckResult(this, enabled);
+            return new DeviceCheckResult(this, enabled);
         }
     }
 }
