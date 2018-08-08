@@ -19,10 +19,10 @@ namespace AeroGear.Mobile.Security
     {
         private static Dictionary<string, DeviceChecks> typesByName = new Dictionary<string, DeviceChecks>();
 
-        public static readonly DeviceChecks NOT_JAILBROKEN = new DeviceChecks(typeof(NonJailbrokenCheck));
-        public static readonly DeviceChecks NOT_IN_EMULATOR = new DeviceChecks(typeof(NotInEmulatorCheck));
-        public static readonly DeviceChecks NO_DEBUGGER = new DeviceChecks(typeof(NoDebuggerCheck));
-        public static readonly DeviceChecks DEVICE_LOCK = new DeviceChecks(typeof(DeviceLockCheck));
+        public static readonly DeviceChecks JAILBROKEN_ENABLED = new DeviceChecks(typeof(JailbrokenDeviceCheck));
+        public static readonly DeviceChecks IS_EMULATOR = new DeviceChecks(typeof(EmulatorCheck));
+        public static readonly DeviceChecks DEBUGGER_ATTACHED = new DeviceChecks(typeof(DebuggerAttachedCheck));
+        public static readonly DeviceChecks DEVICE_LOCK_ENABLED = new DeviceChecks(typeof(DeviceLockEnabledCheck));
         // add others checks here
         // i.e. 
         // public static readonly DeviceChecks NO_DEBUGGER = new DeviceChecks(typeof(NoDebuggerCheck));

@@ -7,11 +7,11 @@ namespace AeroGear.Mobile.Security.Checks
     /// <summary>
     /// Check if a lock screen is set on the device.
     /// </summary>
-    public class DeviceLockCheck : AbstractDeviceCheck
+    public class DeviceLockEnabledCheck : AbstractDeviceCheck
     {
         protected override string Name => "Device Lock Check";
 
-        public DeviceLockCheck()
+        public DeviceLockEnabledCheck()
         {
         }
 
