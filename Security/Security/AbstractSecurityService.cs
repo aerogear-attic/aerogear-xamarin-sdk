@@ -9,9 +9,9 @@ namespace AeroGear.Mobile.Security
 {
     public abstract class AbstractSecurityService : ISecurityService
     {
-        public AbstractSecurityService(ISecurityCheckFactory checkFactory)
+        public AbstractSecurityService(IDeviceCheckFactory checkFactory)
         {
-            ServiceFinder.RegisterInstance<ISecurityCheckFactory>(checkFactory);
+            ServiceFinder.RegisterInstance<IDeviceCheckFactory>(checkFactory);
         }
 
         public string Type => "security";
@@ -33,21 +33,21 @@ namespace AeroGear.Mobile.Security
             return new Builder();
         }
 
-        public SecurityCheckResult Check(ISecurityCheckType securityCheckType)
+        public DeviceCheckResult Check(IDeviceCheckType securityCheckType)
         {
-            SecurityCheckResult[] results = new SecurityCheckResult[1];
+            DeviceCheckResult[] results = new DeviceCheckResult[1];
             GetSyncExecutor()
-                .WithSecurityCheck(securityCheckType)
+                .WithDeviceCheck(securityCheckType)
                 .Build()
                 .Execute().Values.CopyTo(results, 0);
             return results[0];
         }
 
-        public SecurityCheckResult Check(ISecurityCheck securityCheck)
+        public DeviceCheckResult Check(IDeviceCheck securityCheck)
         {
-            return SecurityCheckExecutor
+            return DeviceCheckExecutor
                 .newSyncExecutor()
-                .WithSecurityCheck(securityCheck)
+                .WithDeviceCheck(securityCheck)
                 .Build()
                 .Execute()[securityCheck.GetId()];
         }

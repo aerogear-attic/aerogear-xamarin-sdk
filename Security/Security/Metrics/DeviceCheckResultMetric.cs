@@ -5,28 +5,28 @@ using AeroGear.Mobile.Core.Metrics;
 
 namespace AeroGear.Mobile.Security.Metrics
 {
-    public class SecurityCheckResultMetric : IMetrics
+    public class DeviceCheckResultMetric : IMetrics
     {
-        private readonly SecurityCheckResult[] results;
+        private readonly DeviceCheckResult[] results;
 
         private const string KEY_ID = "id";
         private const string KEY_NAME = "name";
         private const string KEY_VALUE = "passed";
 
-        public SecurityCheckResultMetric()
+        public DeviceCheckResultMetric()
         {
         }
 
         public string Identifier() => "security";
 
-        public SecurityCheckResultMetric(params SecurityCheckResult[] results)
+        public DeviceCheckResultMetric(params DeviceCheckResult[] results)
         {
             this.results = results;
         }
 
-        public SecurityCheckResultMetric(ICollection<SecurityCheckResult> results)
+        public DeviceCheckResultMetric(ICollection<DeviceCheckResult> results)
         {
-            this.results = new SecurityCheckResult[results.Count];
+            this.results = new DeviceCheckResult[results.Count];
             results.CopyTo(this.results, 0);
         }
 
@@ -34,7 +34,7 @@ namespace AeroGear.Mobile.Security.Metrics
         public JsonValue ToJson()
         {
             JsonArray jsonResult = new JsonArray();
-            foreach (SecurityCheckResult result in results)
+            foreach (DeviceCheckResult result in results)
             {
                 JsonObject jsonObject = new JsonObject();
                 jsonObject.Add(KEY_ID, result.Id);

@@ -7,14 +7,14 @@ namespace AeroGear.Mobile.Security.Executors.Sync
     /// <summary>
     /// Synchronously executes provided SecurityChecks.
     /// </summary>
-    public class SyncSecurityCheckExecutor : AbstractSecurityCheckExecutor
+    public class SyncDeviceCheckExecutor : AbstractSecurityCheckExecutor
     {
         /// <summary>
         /// Initializes a new instance of the
         /// <see cref="T:AeroGear.Mobile.Security.Executors.Sync.SyncSecurityCheckExecutor"/> class.
         /// </summary>
         /// <param name="checks">List of checks to be executed.</param>
-        public SyncSecurityCheckExecutor(List<ISecurityCheck> checks, MetricsService metricsService) : base(checks, metricsService)
+        public SyncDeviceCheckExecutor(List<IDeviceCheck> checks, MetricsService metricsService) : base(checks, metricsService)
         {
         }
 
@@ -24,9 +24,9 @@ namespace AeroGear.Mobile.Security.Executors.Sync
         /// <returns>A Dictionary containing the results of each executed test. 
         /// The key of the Dictionary will be the output of SecurityCheck.getId(), 
         /// while the value will be the SecurityCheckResult of the check.</returns>
-        public Dictionary<string, SecurityCheckResult> Execute()
+        public Dictionary<string, DeviceCheckResult> Execute()
         {
-            var results = new Dictionary<string, SecurityCheckResult>();
+            var results = new Dictionary<string, DeviceCheckResult>();
 
             foreach (var securityCheck in checks)
             {
@@ -41,11 +41,11 @@ namespace AeroGear.Mobile.Security.Executors.Sync
         }
     }
 
-    public class Builder : AbstractExecutorBuilder<Builder, SyncSecurityCheckExecutor>
+    public class Builder : AbstractExecutorBuilder<Builder, SyncDeviceCheckExecutor>
     {
-        public override SyncSecurityCheckExecutor Build()
+        public override SyncDeviceCheckExecutor Build()
         {
-            return new SyncSecurityCheckExecutor(CheckList, MetricsService);
+            return new SyncDeviceCheckExecutor(CheckList, MetricsService);
         }
     }
 }

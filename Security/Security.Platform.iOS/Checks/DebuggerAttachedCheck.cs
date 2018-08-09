@@ -6,17 +6,17 @@ namespace AeroGear.Mobile.Security.Checks
     /// <summary>
     /// Check if the device is running in Debug mode.
     /// </summary>
-    public class NoDebuggerCheck : AbstractSecurityCheck
+    public class DebuggerAttachedCheck : AbstractDeviceCheck
     {
         protected override string Name => "Debugger Check";
 
-        public NoDebuggerCheck()
+        public DebuggerAttachedCheck()
         {
         }
 
-        public override SecurityCheckResult Check()
+        public override DeviceCheckResult Check()
         {
-            return new SecurityCheckResult(this, !Debugger.IsAttached);
+            return new DeviceCheckResult(this, Debugger.IsAttached);
         }
     }
 }

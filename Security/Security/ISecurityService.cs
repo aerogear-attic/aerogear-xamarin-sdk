@@ -7,7 +7,7 @@ namespace AeroGear.Mobile.Security
     public interface ISecurityService : IServiceModule
     {
         Builder GetSyncExecutor();
-        SecurityCheckResult Check(ISecurityCheckType securityCheckType);
-        SecurityCheckResult Check(ISecurityCheck securityCheck);
+        DeviceCheckResult Check(IDeviceCheckType securityCheckType);
+        DeviceCheckResult Check(IDeviceCheck securityCheck);
     }
 }

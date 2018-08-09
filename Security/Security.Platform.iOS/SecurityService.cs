@@ -6,7 +6,7 @@ namespace AeroGear.Mobile.Security
 {
     public class SecurityService : AbstractSecurityService
     {
-        private SecurityService() : base(IOSSecurityCheckFactory.INSTANCE)
+        private SecurityService() : base(IOSDeviceCheckFactory.INSTANCE)
         {
         }
 

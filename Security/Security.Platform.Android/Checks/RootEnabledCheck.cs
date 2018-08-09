@@ -9,13 +9,13 @@ namespace AeroGear.Mobile.Security.Checks
     /// <summary>
     /// A check for whether the device the application is running on is rooted.
     /// </summary>
-    public class NonRootedCheck : AbstractSecurityCheck
+    public class RootEnabledCheck : AbstractDeviceCheck
     {
         protected override string Name => "Rooted Check";
 
         private readonly Context context;
 
-        public NonRootedCheck(Context ctx)
+        public RootEnabledCheck(Context ctx)
         {
             this.context = ctx;
         }
@@ -24,10 +24,10 @@ namespace AeroGear.Mobile.Security.Checks
         /// Solution found at https://stackoverflow.com/a/8097801.
         /// </summary>
         /// <returns>The check.</returns>
-        public override SecurityCheckResult Check()
+        public override DeviceCheckResult Check()
         {
             bool rooted = CheckForTestKeys() || CheckForSuBinary() || CheckSuExists();
-            return new SecurityCheckResult(this, !rooted);
+            return new DeviceCheckResult(this, rooted);
         }
 
         /// <summary>
