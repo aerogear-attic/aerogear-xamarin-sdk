@@ -1,6 +1,7 @@
 ﻿using System;
 using AeroGear.Mobile.Core;
 using AeroGear.Mobile.Core.Configuration;
+using AeroGear.Mobile.Core.Metrics;
 using AeroGear.Mobile.Core.Utils;
 using AeroGear.Mobile.Security.Executors;
 using AeroGear.Mobile.Security.Executors.Sync;
@@ -33,21 +34,23 @@ namespace AeroGear.Mobile.Security
             return new Builder();
         }
 
-        public DeviceCheckResult Check(IDeviceCheckType securityCheckType)
+        public DeviceCheckResult Check(IDeviceCheckType securityCheckType, MetricsService metricsService = null)
         {
             DeviceCheckResult[] results = new DeviceCheckResult[1];
             GetSyncExecutor()
                 .WithDeviceCheck(securityCheckType)
+                .WithMetricsService(metricsService)
                 .Build()
                 .Execute().Values.CopyTo(results, 0);
             return results[0];
         }
 
-        public DeviceCheckResult Check(IDeviceCheck securityCheck)
+        public DeviceCheckResult Check(IDeviceCheck securityCheck, MetricsService metricsService = null)
         {
             return DeviceCheckExecutor
                 .newSyncExecutor()
                 .WithDeviceCheck(securityCheck)
+                .WithMetricsService(metricsService)
                 .Build()
                 .Execute()[securityCheck.GetId()];
         }
