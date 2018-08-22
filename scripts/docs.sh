@@ -9,6 +9,6 @@
 command -v doxygen >/dev/null 2>&1 || { echo >&2 "Doxygen is not found. To install, run: (yum) yum -y install doxygen | (Homebrew) brew install doxygen."; exit 1; }
 
 echo "Creating documentation for the Xamarin SDK."
-doxygen Documentations/Doxyfile
+doxygen docs/Doxyfile
 
 echo "Documentation is stored in the Documentations/html/ directory."
