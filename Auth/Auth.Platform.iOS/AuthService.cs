@@ -31,7 +31,7 @@ namespace AeroGear.Mobile.Auth
         /// Retrieve the current user.
         /// </summary>
         /// <returns>The current user.</returns>
-        public override User CurrentUser()
+        public override User CurrentUser(bool autoRefresh = true)
         {
             var serializedCredential = CredentialManager.LoadSerialized();
             if (serializedCredential == null)
@@ -41,7 +41,7 @@ namespace AeroGear.Mobile.Auth
             var parsedCredential = new OIDCCredential(serializedCredential);
             return User.NewUser().FromUnverifiedCredential(parsedCredential, KeycloakConfig.ResourceId);
         }
-       
+
         /// <summary>
         /// Initializes the service and pass the configuration to be used to configure it
         /// </summary>

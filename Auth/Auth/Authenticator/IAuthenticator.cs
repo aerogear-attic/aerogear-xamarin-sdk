@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using AeroGear.Mobile.Auth;
+using AeroGear.Mobile.Auth.Credentials;
 
 namespace AeroGear.Mobile.Auth.Authenticator
 {
@@ -22,5 +23,7 @@ namespace AeroGear.Mobile.Auth.Authenticator
         /// <returns>If the logout operation is successful.</returns>
         /// <param name="currentUser">Current user.</param>
         Task<bool> Logout(User currentUser);
+
+        User Renew(ICredential currentCredentials);
     }
 }

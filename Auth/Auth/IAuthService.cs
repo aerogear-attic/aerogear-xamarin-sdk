@@ -11,6 +11,8 @@ namespace AeroGear.Mobile.Auth
     /// </summary>
     public interface IAuthService : IServiceModule
     {
+        Task<User> CurrentUser(bool autoRefresh);
+
         /// <summary>
         /// Retrieve the current user.
         /// </summary>

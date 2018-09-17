@@ -69,5 +69,6 @@ namespace AeroGear.Mobile.Auth.Authenticator
         }
 
         public abstract Task<User> Authenticate(IAuthenticateOptions authenticateOptions);
+        public abstract User Renew(ICredential currentCredentials);
     }
 }

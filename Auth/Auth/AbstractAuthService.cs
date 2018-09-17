@@ -25,6 +25,7 @@ namespace AeroGear.Mobile.Auth
         public string Id => null;
 
         public abstract User CurrentUser();
+        public abstract Task<User> CurrentUser(bool autoRefresh);
 
         /// <summary>
         /// Initializes a new instance of the <see cref="T:AeroGear.Mobile.Auth.AbstractAuthService"/> class.

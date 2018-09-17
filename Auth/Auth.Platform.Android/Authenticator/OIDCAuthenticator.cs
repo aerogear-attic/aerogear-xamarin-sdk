@@ -12,6 +12,7 @@ using Android.Content;
 using OpenId.AppAuth.Browser;
 using AeroGear.Mobile.Core.Logging;
 using AeroGear.Mobile.Core.Http;
+using Auth.Platform.Authenticator;
 
 namespace AeroGear.Mobile.Auth.Authenticator
 {
@@ -136,6 +137,38 @@ namespace AeroGear.Mobile.Auth.Authenticator
 
         private User GetUser(ICredential credential)
         {
+            return User.NewUser().FromUnverifiedCredential(credential, keycloakConfig.ResourceId);
+        }
+
+        public override User Renew(ICredential currentCredentials)
+        {
+            OIDCCredential credential = currentCredentials as OIDCCredential;
+            credential.Refresh();
+
+            //if (currentCredentials.RefreshToken == null)
+            //{
+            //    throw new Exception("currentCredentials did not have a refresh token");
+            //}
+
+            //TokenRequestTask requestTask = new TokenRequestTask(authState.CreateTokenRefreshRequest(), NoClientAuthentication.Instance);
+
+            //TokenResponse tokenResponse = null;
+            //AuthorizationException exception = null;
+
+            //try 
+            //{
+            //    tokenResponse = requestTask.Request();
+            //} catch (AuthorizationException e)
+            //{
+            //    exception = e;
+            //}
+
+            //authState.Update(tokenResponse, exception);
+
+            //OIDCCredential oidcTokens = new OIDCCredential(authState.JsonSerializeString());
+
+            //credentialManager.Store(oidcTokens);
+
             return User.NewUser().FromUnverifiedCredential(credential, keycloakConfig.ResourceId);
         }
     }
