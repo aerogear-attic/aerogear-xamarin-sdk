@@ -139,37 +139,5 @@ namespace AeroGear.Mobile.Auth.Authenticator
         {
             return User.NewUser().FromUnverifiedCredential(credential, keycloakConfig.ResourceId);
         }
-
-        public override User Renew(ICredential currentCredentials)
-        {
-            OIDCCredential credential = currentCredentials as OIDCCredential;
-            credential.Refresh();
-
-            //if (currentCredentials.RefreshToken == null)
-            //{
-            //    throw new Exception("currentCredentials did not have a refresh token");
-            //}
-
-            //TokenRequestTask requestTask = new TokenRequestTask(authState.CreateTokenRefreshRequest(), NoClientAuthentication.Instance);
-
-            //TokenResponse tokenResponse = null;
-            //AuthorizationException exception = null;
-
-            //try 
-            //{
-            //    tokenResponse = requestTask.Request();
-            //} catch (AuthorizationException e)
-            //{
-            //    exception = e;
-            //}
-
-            //authState.Update(tokenResponse, exception);
-
-            //OIDCCredential oidcTokens = new OIDCCredential(authState.JsonSerializeString());
-
-            //credentialManager.Store(oidcTokens);
-
-            return User.NewUser().FromUnverifiedCredential(credential, keycloakConfig.ResourceId);
-        }
     }
 }
