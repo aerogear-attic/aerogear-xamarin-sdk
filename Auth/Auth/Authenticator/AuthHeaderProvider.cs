@@ -18,9 +18,9 @@ namespace AeroGear.Mobile.Auth.Authenticator
             this.authService = authService;
         }
 
-        public IDictionary<String, String> GetHeaders()
+        public async Task<IDictionary<String, String>> GetHeaders()
         {
-            var user = authService.CurrentUser();
+            var user = await authService.CurrentUser(true).ConfigureAwait(false);
 
             if (user != null && user.AccessToken != null)
             {
