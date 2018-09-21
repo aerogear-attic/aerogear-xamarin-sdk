@@ -17,6 +17,12 @@ namespace Auth.Platform.Authenticator
 
         private readonly AppAuthConfiguration clientConfiguration = new AppAuthConfiguration.Builder().Build();
 
+        public TokenRequestTask(TokenRequest request)
+        {
+            this.tokenRequest = request;
+            this.clientAuthentication = NoClientAuthentication.Instance;
+        }
+
         public TokenRequestTask(TokenRequest request, IClientAuthentication clientAuthentication)
         {
             this.tokenRequest = request;

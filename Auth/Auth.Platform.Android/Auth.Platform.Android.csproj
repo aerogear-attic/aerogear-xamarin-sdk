@@ -56,6 +56,9 @@
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
     <Reference Include="Mono.Android" />
+    <Reference Include="System.Net.Http">
+      <HintPath>..\..\..\..\..\..\..\Library\Frameworks\Mono.framework\External\xbuild-frameworks\MonoAndroid\v1.0\System.Net.Http.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -64,6 +67,7 @@
     <Compile Include="Authenticator\AndroidAuthenticateOptions.cs" />
     <Compile Include="AuthService.cs" />
     <Compile Include="Authenticator\TokenRequestTask.cs" />
+    <Compile Include="Authenticator\TokenRequestTaskNative.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Auth.Platform.Android.nuspec">

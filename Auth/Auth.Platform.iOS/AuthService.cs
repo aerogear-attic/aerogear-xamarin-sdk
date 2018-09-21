@@ -1,4 +1,5 @@
-﻿using AeroGear.Mobile.Auth.Authenticator;
+﻿using System.Threading.Tasks;
+using AeroGear.Mobile.Auth.Authenticator;
 using AeroGear.Mobile.Auth.Config;
 using AeroGear.Mobile.Auth.Credentials;
 using AeroGear.Mobile.Core;
@@ -27,19 +28,18 @@ namespace AeroGear.Mobile.Auth
             Authenticator = new OIDCAuthenticator(authConfig, KeycloakConfig, CredentialManager, Core.HttpLayer, Core.Logger);
         }
 
+        public override User CurrentUser()
+        {
+            return null;
+        }
+
         /// <summary>
         /// Retrieve the current user.
         /// </summary>
         /// <returns>The current user.</returns>
-        public override User CurrentUser(bool autoRefresh = true)
+        public override Task<User> CurrentUser(bool autoRefresh)
         {
-            var serializedCredential = CredentialManager.LoadSerialized();
-            if (serializedCredential == null)
-            {
-                return null;
-            }
-            var parsedCredential = new OIDCCredential(serializedCredential);
-            return User.NewUser().FromUnverifiedCredential(parsedCredential, KeycloakConfig.ResourceId);
+            return null;
         }
 
         /// <summary>

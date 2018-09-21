@@ -82,7 +82,7 @@ namespace AeroGear.Mobile.Auth.Credentials
 
             try
             {
-                TokenRequestTask requestTask = new TokenRequestTask(AuthState.CreateTokenRefreshRequest(), NoClientAuthentication.Instance);
+                var requestTask = new TokenRequestTaskNative(AuthState.CreateTokenRefreshRequest());
                 TokenResponse tokenResponse = await requestTask.RequestAsync().ConfigureAwait(false);
                 AuthState.Update(tokenResponse, null);
             }

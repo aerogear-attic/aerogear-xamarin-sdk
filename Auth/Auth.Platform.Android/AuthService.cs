@@ -48,7 +48,7 @@ namespace AeroGear.Mobile.Auth
         /// <returns>The current user if authenticated, <c>null</c> otherwise.</returns>
         public override User CurrentUser()
         {
-            return CurrentUser(false).GetAwaiter().GetResult();
+            return CurrentUser(true).GetAwaiter().GetResult();
         }
 
         /// <summary>
@@ -76,7 +76,7 @@ namespace AeroGear.Mobile.Auth
                 {
                     await parsedCredential.Refresh().ConfigureAwait(false);
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
                     // Credential needs renewal but we have not been able to refresh
                     return null;
