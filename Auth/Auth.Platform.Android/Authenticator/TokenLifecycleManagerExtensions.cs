@@ -15,6 +15,10 @@ namespace Auth.Platform.Authenticator.extensions
                 var json = await tlcm.RefreshAsync(tokenRequest.Configuration.TokenEndpoint.ToString(), tokenRequest.ClientId, tokenRequest.RefreshToken).ConfigureAwait(false);
                 return new TokenResponse.Builder(tokenRequest).FromResponseJson(new JSONObject(json.ToString())).Build();
             }
+            catch (AuthException ae)
+            {
+                throw ae;
+            }
             catch (Exception je)
             {
                 throw AuthException.fromTemplate(

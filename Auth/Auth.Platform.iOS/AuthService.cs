@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using AeroGear.Mobile.Auth.Authenticator;
 using AeroGear.Mobile.Auth.Config;
 using AeroGear.Mobile.Auth.Credentials;
@@ -30,16 +31,38 @@ namespace AeroGear.Mobile.Auth
 
         public override User CurrentUser()
         {
-            return null;
+            return CurrentUser(true).GetAwaiter().GetResult();
         }
 
         /// <summary>
         /// Retrieve the current user.
         /// </summary>
         /// <returns>The current user.</returns>
-        public override Task<User> CurrentUser(bool autoRefresh)
+        public override async Task<User> CurrentUser(bool autoRefresh)
         {
-            return null;
+            var serializedCredential = CredentialManager.LoadSerialized();
+            if (serializedCredential == null)
+            {
+                return null;
+            }
+            var parsedCredential = new OIDCCredential(serializedCredential);
+
+            if (autoRefresh && parsedCredential.NeedsRenewal)
+            {
+                try
+                {
+                    await parsedCredential.Refresh().ConfigureAwait(false);
+                }
+                catch (Exception)
+                {
+                    // Credential needs renewal but we have not been able to refresh
+                    return null;
+                }
+
+                CredentialManager.Store(parsedCredential);
+            }
+
+            return User.NewUser().FromUnverifiedCredential(parsedCredential, KeycloakConfig.ResourceId);
         }
 
         /// <summary>

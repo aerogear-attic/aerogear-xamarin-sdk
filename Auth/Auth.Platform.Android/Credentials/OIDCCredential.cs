@@ -81,17 +81,10 @@ namespace AeroGear.Mobile.Auth.Credentials
                 throw new Exception("currentCredentials did not have a refresh token");
             }
 
-            try
-            {
-                TokenLifecycleManager tlcm = new TokenLifecycleManager();
-                TokenResponse tokenResponse = await tlcm.RefreshTokenAsync(AuthState.CreateTokenRefreshRequest()).ConfigureAwait(false);
+            TokenLifecycleManager tlcm = new TokenLifecycleManager();
+            TokenResponse tokenResponse = await tlcm.RefreshTokenAsync(AuthState.CreateTokenRefreshRequest()).ConfigureAwait(false);
 
-                AuthState.Update(tokenResponse, null);
-            }
-            catch (AuthException e)
-            {
-                throw new Exception(e.Message);
-            }
+            AuthState.Update(tokenResponse, null);
         }
     }
 }

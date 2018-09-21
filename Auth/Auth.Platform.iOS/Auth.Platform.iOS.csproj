@@ -74,7 +74,7 @@
     <Compile Include="Authenticator\OIDCAuthenticator.cs" />
     <Compile Include="Authenticator\IOSAuthenticateOptions.cs" />
     <Compile Include="Credentials\OIDCCredential.cs" />
-    <Compile Include="Authenticator\TokenRequestTaskNative.cs" />
+    <Compile Include="Authenticator\TokenLifecycleManagerExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Auth.Platform.iOS.nuspec">
