@@ -1,8 +1,9 @@
 ﻿using System;
 using System.Threading.Tasks;
-using AeroGear.Mobile.Auth.Credentials;
-using Auth.Platform.Authenticator;
+using AeroGear.Mobile.Auth.Authenticator;
+using static Auth.Platform.Authenticator.extensions.TokenLifecycleManagerExtensions;
 using OpenId.AppAuth;
+using AuthException = AeroGear.Mobile.Auth.Authenticator.AuthorizationException;
 
 namespace AeroGear.Mobile.Auth.Credentials
 {
@@ -82,11 +83,12 @@ namespace AeroGear.Mobile.Auth.Credentials
 
             try
             {
-                var requestTask = new TokenRequestTaskNative(AuthState.CreateTokenRefreshRequest());
-                TokenResponse tokenResponse = await requestTask.RequestAsync().ConfigureAwait(false);
+                TokenLifecycleManager tlcm = new TokenLifecycleManager();
+                TokenResponse tokenResponse = await tlcm.RefreshTokenAsync(AuthState.CreateTokenRefreshRequest()).ConfigureAwait(false);
+
                 AuthState.Update(tokenResponse, null);
             }
-            catch (AuthorizationException e)
+            catch (AuthException e)
             {
                 throw new Exception(e.Message);
             }

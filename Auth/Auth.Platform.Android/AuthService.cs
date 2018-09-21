@@ -76,7 +76,7 @@ namespace AeroGear.Mobile.Auth
                 {
                     await parsedCredential.Refresh().ConfigureAwait(false);
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     // Credential needs renewal but we have not been able to refresh
                     return null;

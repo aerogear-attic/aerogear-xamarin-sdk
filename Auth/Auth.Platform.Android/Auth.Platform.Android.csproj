@@ -66,8 +66,7 @@
     <Compile Include="Authenticator\OIDCAuthenticator.cs" />
     <Compile Include="Authenticator\AndroidAuthenticateOptions.cs" />
     <Compile Include="AuthService.cs" />
-    <Compile Include="Authenticator\TokenRequestTask.cs" />
-    <Compile Include="Authenticator\TokenRequestTaskNative.cs" />
+    <Compile Include="Authenticator\TokenLifecycleManagerExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Auth.Platform.Android.nuspec">
