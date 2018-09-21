@@ -9,12 +9,22 @@ using AuthException = AeroGear.Mobile.Auth.Authenticator.AuthorizationException;
 
 namespace AeroGear.Mobile.Auth.Authenticator
 {
+    /// <summary>
+    /// Class for managing the toke lifecycle.
+    /// </summary>
     public class TokenLifecycleManager
     {
         public TokenLifecycleManager()
         {
         }
 
+        /// <summary>
+        /// Performs a token refresh.
+        /// </summary>
+        /// <returns>The JSOn answer received by the server.</returns>
+        /// <param name="url">The url of the openid serevr</param>
+        /// <param name="clientId">Client identifier.</param>
+        /// <param name="refreshToken">Refresh token.</param>
         public async Task<JsonValue> RefreshAsync(String url, String clientId, String refreshToken) 
         {
             JsonValue json = null;

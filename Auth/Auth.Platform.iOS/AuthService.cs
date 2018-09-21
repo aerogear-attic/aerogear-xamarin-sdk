@@ -31,7 +31,7 @@ namespace AeroGear.Mobile.Auth
 
         public override User CurrentUser()
         {
-            return CurrentUser(true).GetAwaiter().GetResult();
+            return CurrentUser(false).GetAwaiter().GetResult();
         }
 
         /// <summary>
