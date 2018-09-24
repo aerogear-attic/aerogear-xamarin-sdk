@@ -5,10 +5,8 @@ using AeroGear.Mobile.Auth.Config;
 using AeroGear.Mobile.Auth.Credentials;
 using AeroGear.Mobile.Core;
 using AeroGear.Mobile.Core.Configuration;
-using AeroGear.Mobile.Auth;
 using Android.Content;
 using AeroGear.Mobile.Core.Utils;
-using OpenId.AppAuth;
 
 namespace AeroGear.Mobile.Auth
 {
@@ -72,7 +70,7 @@ namespace AeroGear.Mobile.Auth
 
             if (autoRefresh && parsedCredential.NeedsRenewal)
             {
-                try 
+                try
                 {
                     await parsedCredential.Refresh().ConfigureAwait(false);
                 }

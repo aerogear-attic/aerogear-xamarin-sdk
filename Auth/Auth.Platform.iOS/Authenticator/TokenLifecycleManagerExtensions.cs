@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using AeroGear.Mobile.Auth.Authenticator;
 using Foundation;
 using OpenId.AppAuth;
-using AuthException = AeroGear.Mobile.Auth.Authenticator.AuthorizationException;
 
 namespace Auth.Platform.Authenticator.extensions
 {
@@ -31,14 +29,14 @@ namespace Auth.Platform.Authenticator.extensions
 
                 return new TokenResponse(tokenRequest, parameters);
             }
-            catch (AuthException ae) 
+            catch (AuthzException ae) 
             {
                 throw ae;
             }
             catch (Exception je)
             {
-                throw AuthException.fromTemplate(
-                    AuthException.GeneralErrors.JSON_DESERIALIZATION_ERROR, je);
+                throw AuthzException.fromTemplate(
+                    AuthzException.GeneralErrors.JSON_DESERIALIZATION_ERROR, je);
             }
         }
     }

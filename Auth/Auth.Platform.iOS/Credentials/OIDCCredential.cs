@@ -4,7 +4,6 @@ using AeroGear.Mobile.Auth.Authenticator;
 using static Auth.Platform.Authenticator.extensions.TokenLifecycleManagerExtensions;
 using Foundation;
 using OpenId.AppAuth;
-using AuthException = AeroGear.Mobile.Auth.Authenticator.AuthorizationException;
 
 namespace AeroGear.Mobile.Auth.Credentials
 {

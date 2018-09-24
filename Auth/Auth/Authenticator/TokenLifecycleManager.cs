@@ -5,7 +5,6 @@ using System.Json;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
-using AuthException = AeroGear.Mobile.Auth.Authenticator.AuthorizationException;
 
 namespace AeroGear.Mobile.Auth.Authenticator
 {
@@ -52,31 +51,31 @@ namespace AeroGear.Mobile.Auth.Authenticator
             }
             catch (IOException e)
             {
-                throw AuthException.fromTemplate(AuthException.GeneralErrors.NETWORK_ERROR, e);
+                throw AuthzException.fromTemplate(AuthzException.GeneralErrors.NETWORK_ERROR, e);
             }
             catch (ArgumentException e)
             {
-                throw AuthException.fromTemplate(AuthException.GeneralErrors.JSON_DESERIALIZATION_ERROR, e);
+                throw AuthzException.fromTemplate(AuthzException.GeneralErrors.JSON_DESERIALIZATION_ERROR, e);
             }
             catch (Exception e)
             {
-                throw AuthException.fromTemplate(AuthException.GeneralErrors.NETWORK_ERROR, e);
+                throw AuthzException.fromTemplate(AuthzException.GeneralErrors.NETWORK_ERROR, e);
             }
 
-            if (json.ContainsKey(AuthException.PARAM_ERROR))
+            if (json.ContainsKey(AuthzException.PARAM_ERROR))
             {
-                AuthException ex;
+                AuthzException ex;
                 try
                 {
-                    string error = json[AuthException.PARAM_ERROR];
-                    ex = AuthException.fromOAuthTemplate(
-                            AuthException.TokenRequestErrors.byString(error), error,
-                        json.ContainsKey(AuthException.PARAM_ERROR_DESCRIPTION) ? json[AuthException.PARAM_ERROR_DESCRIPTION] : null,
-                        parseUriIfAvailable(json.ContainsKey(AuthException.PARAM_ERROR_URI) ? json[AuthException.PARAM_ERROR_URI] : null));
+                    string error = json[AuthzException.PARAM_ERROR];
+                    ex = AuthzException.fromOAuthTemplate(
+                            AuthzException.TokenRequestErrors.byString(error), error,
+                        json.ContainsKey(AuthzException.PARAM_ERROR_DESCRIPTION) ? json[AuthzException.PARAM_ERROR_DESCRIPTION] : null,
+                        parseUriIfAvailable(json.ContainsKey(AuthzException.PARAM_ERROR_URI) ? json[AuthzException.PARAM_ERROR_URI] : null));
                 }
                 catch (Exception e)
                 {
-                    ex = AuthException.fromTemplate(AuthException.GeneralErrors.JSON_DESERIALIZATION_ERROR, e);
+                    ex = AuthzException.fromTemplate(AuthzException.GeneralErrors.JSON_DESERIALIZATION_ERROR, e);
                 }
 
                 throw ex;

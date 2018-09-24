@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using AeroGear.Mobile.Auth.Authenticator;
 using static Auth.Platform.Authenticator.extensions.TokenLifecycleManagerExtensions;
 using OpenId.AppAuth;
-using AuthException = AeroGear.Mobile.Auth.Authenticator.AuthorizationException;
 
 namespace AeroGear.Mobile.Auth.Credentials
 {
@@ -16,7 +15,7 @@ namespace AeroGear.Mobile.Auth.Credentials
         /// <summary>
         /// The <see cref="AuthState"/> that backs the wrapping credential.
         /// </summary>
-        internal AuthState AuthState;
+        private AuthState AuthState;
 
         /// <summary>
         /// Retrieve a JSON form of the OpenID Connect credential.
@@ -78,7 +77,7 @@ namespace AeroGear.Mobile.Auth.Credentials
 
             if (RefreshToken == null)
             {
-                throw new Exception("currentCredentials did not have a refresh token");
+                throw new Exception("CurrentCredentials does not have a refresh token");
             }
 
             TokenLifecycleManager tlcm = new TokenLifecycleManager();
