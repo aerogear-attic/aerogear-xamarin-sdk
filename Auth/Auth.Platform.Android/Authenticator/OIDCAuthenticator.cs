@@ -12,6 +12,8 @@ using Android.Content;
 using OpenId.AppAuth.Browser;
 using AeroGear.Mobile.Core.Logging;
 using AeroGear.Mobile.Core.Http;
+using AuthException = OpenId.AppAuth.AuthorizationException;
+
 
 namespace AeroGear.Mobile.Auth.Authenticator
 {
@@ -80,7 +82,7 @@ namespace AeroGear.Mobile.Auth.Authenticator
             NonNull(authenticateTaskComplete, "authenticateTaskComplete");
 
             AuthorizationResponse response = AuthorizationResponse.FromIntent(intent);
-            AuthorizationException error = AuthorizationException.FromIntent(intent);
+            AuthException error = AuthException.FromIntent(intent);
 
             authState.Update(response, error);
 

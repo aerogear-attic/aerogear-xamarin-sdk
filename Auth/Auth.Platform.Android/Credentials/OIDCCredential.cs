@@ -1,5 +1,7 @@
 ﻿using System;
-using AeroGear.Mobile.Auth.Credentials;
+using System.Threading.Tasks;
+using AeroGear.Mobile.Auth.Authenticator;
+using static Auth.Platform.Authenticator.extensions.TokenLifecycleManagerExtensions;
 using OpenId.AppAuth;
 
 namespace AeroGear.Mobile.Auth.Credentials
@@ -51,12 +53,14 @@ namespace AeroGear.Mobile.Auth.Credentials
         /// <value><c>true</c> if is expired; otherwise, <c>false</c>.</value>
         public bool IsExpired => AuthState.HasClientSecretExpired;
 
+        public bool NeedsRenewal => AuthState.NeedsTokenRefresh;
+
         /// <summary>
         /// Initializes a new instance of the <see cref="T:AeroGear.Mobile.Auth.Credentials.OIDCCredential"/> class
         /// using the provided serialized form of the credential.
         /// </summary>
         /// <param name="serializedCredential">Serialized credential <see cref="SerializedCredential"/>.</param>
-        public OIDCCredential(string serializedCredential)
+        internal OIDCCredential(string serializedCredential)
         {
             AuthState = AuthState.JsonDeserialize(serializedCredential);
         }
@@ -67,6 +71,19 @@ namespace AeroGear.Mobile.Auth.Credentials
         public OIDCCredential()
         {
             AuthState = new AuthState();
+        }
+
+        public async Task Refresh() {
+
+            if (RefreshToken == null)
+            {
+                throw new Exception("CurrentCredentials does not have a refresh token");
+            }
+
+            TokenLifecycleManager tlcm = new TokenLifecycleManager();
+            TokenResponse tokenResponse = await tlcm.RefreshTokenAsync(AuthState.CreateTokenRefreshRequest()).ConfigureAwait(false);
+
+            AuthState.Update(tokenResponse, null);
         }
     }
 }

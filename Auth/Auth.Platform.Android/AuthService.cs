@@ -5,7 +5,6 @@ using AeroGear.Mobile.Auth.Config;
 using AeroGear.Mobile.Auth.Credentials;
 using AeroGear.Mobile.Core;
 using AeroGear.Mobile.Core.Configuration;
-using AeroGear.Mobile.Auth;
 using Android.Content;
 using AeroGear.Mobile.Core.Utils;
 
@@ -38,13 +37,29 @@ namespace AeroGear.Mobile.Auth
             Authenticator = new OIDCAuthenticator(authConfig, KeycloakConfig, CredentialManager, Core.HttpLayer, Core.Logger);
         }
 
+        /// <summary>
+        /// Retrieves the current authenticated user. If there is no currently
+        /// authenticated user then <c>null</c> is returned.
+        /// 
+        /// No check is performed if the credentials are expired or not.
+        /// </summary>
+        /// <returns>The current user if authenticated, <c>null</c> otherwise.</returns>
+        public override User CurrentUser()
+        {
+            return CurrentUser(false).GetAwaiter().GetResult();
+        }
 
         /// <summary>
         /// Retrieves the current authenticated user. If there is no currently
         /// authenticated user then <c>null</c> is returned.
+        /// If <paramref name="autoRefresh"/> is <c>true</c>, then 
+        /// the access token is automatically refreshed if the refresh token is not expired.
+        /// If <paramref name="autoRefresh"/> is <c>true</c>, the access token needs to 
+        /// be refreshed but the refresh is not possible, <c>null</c> is returned.
         /// </summary>
-        /// <returns>The current user if authenticated. Else <c>null</c>.</returns>
-        public override User CurrentUser()
+        /// <returns>The current user if authenticated, <c>null</c> otherwise.</returns>
+        /// <param name="autoRefresh">Whether the access token should be silenty refreshed or not.</param>
+        public override async Task<User> CurrentUser(bool autoRefresh)
         {
             var serializedCredential = CredentialManager.LoadSerialized();
             if (serializedCredential == null)
@@ -52,7 +67,24 @@ namespace AeroGear.Mobile.Auth
                 return null;
             }
             var parsedCredential = new OIDCCredential(serializedCredential);
-            return User.NewUser().FromUnverifiedCredential(parsedCredential, KeycloakConfig.ResourceId);
+
+            if (autoRefresh && parsedCredential.NeedsRenewal)
+            {
+                try
+                {
+                    await parsedCredential.Refresh().ConfigureAwait(false);
+                }
+                catch (Exception)
+                {
+                    // Credential needs renewal but we have not been able to refresh
+                    return null;
+                }
+
+                CredentialManager.Store(parsedCredential);
+            }
+
+            User currentUser = User.NewUser().FromUnverifiedCredential(parsedCredential, KeycloakConfig.ResourceId);
+            return currentUser;
         }
 
         /// <summary>

@@ -19,12 +19,20 @@ namespace AeroGear.Mobile.Auth
         protected AuthenticationConfig AuthenticationConfig { get; private set; }
         protected readonly MobileCore Core;
         protected IAuthenticator Authenticator { get; set; }
+
+        /// <summary>
+        /// interface that is used to provide authentication headers. Clients can use this interface 
+        /// to add headers into their own network layer.
+        /// </summary>
+        public readonly AuthHeaderProvider AuthHeaderProvider;
+
         public string Type => "keycloak";
         public bool RequiresConfiguration => false;
 
         public string Id => null;
 
         public abstract User CurrentUser();
+        public abstract Task<User> CurrentUser(bool autoRefresh);
 
         /// <summary>
         /// Initializes a new instance of the <see cref="T:AeroGear.Mobile.Auth.AbstractAuthService"/> class.
@@ -36,6 +44,7 @@ namespace AeroGear.Mobile.Auth
             Core = mobileCore ?? MobileCore.Instance;
             var serviceConfiguration = NonNull(serviceConfig ?? Core.GetFirstServiceConfigurationByType(Type), "serviceConfig");
             KeycloakConfig = new KeycloakConfig(serviceConfiguration);
+            this.AuthHeaderProvider = new AuthHeaderProvider(this);
         }
 
         /// <summary>

@@ -1,4 +1,7 @@
 using System;
+using System.Threading.Tasks;
+using AeroGear.Mobile.Auth.Authenticator;
+using static Auth.Platform.Authenticator.extensions.TokenLifecycleManagerExtensions;
 using Foundation;
 using OpenId.AppAuth;
 
@@ -48,7 +51,7 @@ namespace AeroGear.Mobile.Auth.Credentials
         /// Retrieve the refresh token of the credential.
         /// </summary>
         /// <value>The refresh token.</value>
-        public string RefreshToken => AuthState.LastTokenResponse.RefreshToken;
+        public string RefreshToken => AuthState.RefreshToken;
         
         /// <summary>
         /// Whether the credential <see cref="T:AeroGear.Mobile.Auth.Credentials.OIDCCredential"/> is authorized.
@@ -64,12 +67,14 @@ namespace AeroGear.Mobile.Auth.Credentials
         {
             get
             {
-                NSDate expirationDate = AuthState.LastAuthorizationResponse.AccessTokenExpirationDate;
+                NSDate expirationDate = AuthState.LastTokenResponse.AccessTokenExpirationDate;
                 NSDate now = new NSDate();
-                return now.Compare(expirationDate) == NSComparisonResult.Ascending;
+                return expirationDate.Compare(now) == NSComparisonResult.Ascending;
             }
         }
-        
+
+        public bool NeedsRenewal => this.IsExpired;
+
         /// <summary>
         /// Retrieve a serialized string representation of the credential.
         /// </summary>
@@ -81,6 +86,23 @@ namespace AeroGear.Mobile.Auth.Credentials
                 NSData encodedData = NSKeyedArchiver.ArchivedDataWithRootObject(AuthState);
                 return encodedData.GetBase64EncodedString(NSDataBase64EncodingOptions.EndLineWithLineFeed);
             }
+        }
+
+        /// <summary>
+        /// Refresh the current credentials if a valid refresh token is present.
+        /// </summary>
+        /// <returns>The refresh.</returns>
+        public async Task Refresh()
+        {
+            if (RefreshToken == null)
+            {
+                throw new Exception("currentCredentials did not have a refresh token");
+            }
+
+            TokenLifecycleManager tlcm = new TokenLifecycleManager();
+            TokenResponse tokenResponse = await tlcm.RefreshTokenAsync(AuthState.TokenRefreshRequest()).ConfigureAwait(false);
+
+            AuthState.Update(tokenResponse, null);
         }
     }
 }
