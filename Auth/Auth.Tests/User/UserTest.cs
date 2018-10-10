@@ -48,6 +48,7 @@ namespace AeroGear.Mobile.Auth.Test
             Assert.AreEqual(user.IdentityToken, IDENTITY_TOKEN);
 
             Assert.AreEqual(2, user.getRoles().Count);
+            Assert.AreEqual(2, user.Roles.Count);
             Assert.IsTrue(user.HasRealmRole(ROLE1));
             Assert.IsTrue(user.HasResourceRole(ROLE2, NAMESPACE));
         }

@@ -110,7 +110,7 @@ service.Authenticate(authOptions).ContinueWith(result =>
 
 var user = MobileCore.Instance.GetInstance<IAuthService>().CurrentUser();
 var roleItems = new List<string> { };
-foreach(var role in user.getRoles())
+foreach(var role in user.Roles)
 {
     roleItems.Add(role.ToString());
 }
